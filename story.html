@@ -46,6 +46,9 @@
       <a href="social.html" data-page="social"><span class="dot"></span>바 · 함장 · 플레이어</a>
       <a href="ui.html" data-page="ui"><span class="dot"></span>게임 UI</a>
     </div>
+    <div class="sidebar-group"><h5>커뮤니티</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>커뮤니티 게시판</a>
+    </div>
   </nav>
 
   <main class="main">
@@ -121,6 +124,10 @@
         3개 서사 아키타입이 언급돼 있다 — 아직 구체적인 퀘스트로 구현되지는 않은 상위 설계 개념이다.
       </p>
 
+          <section class="comments" id="comments">
+        <h2>이 문서에 대한 의견</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
     </article>
     </div>
   </main>
@@ -131,6 +138,7 @@
 <script src="assets/data/missions.js"></script>
 <script src="assets/datatable.js"></script>
 <script src="assets/wiki.js"></script>
+<script src="assets/comments.js"></script>
 <script>
   mountWikiDataTable({
     mount: document.getElementById("mission-table"),

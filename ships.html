@@ -48,6 +48,9 @@
       <a href="social.html" data-page="social"><span class="dot"></span>바 · 함장 · 플레이어</a>
       <a href="ui.html" data-page="ui"><span class="dot"></span>게임 UI</a>
     </div>
+    <div class="sidebar-group"><h5>커뮤니티</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>커뮤니티 게시판</a>
+    </div>
   </nav>
 
   <main class="main">
@@ -118,6 +121,10 @@
       <h2>장비 슬롯</h2>
       <p>모든 함선은 <code>ARMOR · ENGINE · SYSTEM · EX_01</code> 4개 기본 슬롯을 가지며, <a href="items.html#equipment">57종 장비 카탈로그</a>에 따라 최대 <code>EX_04</code>·<code>FIGHTER</code>까지 확장된다.</p>
 
+          <section class="comments" id="comments">
+        <h2>이 문서에 대한 의견</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
     </article>
     </div>
   </main>
@@ -128,6 +135,7 @@
 <script src="assets/data/ships.js"></script>
 <script src="assets/datatable.js"></script>
 <script src="assets/wiki.js"></script>
+<script src="assets/comments.js"></script>
 <script>
   mountWikiDataTable({
     mount: document.getElementById("ship-table"),
