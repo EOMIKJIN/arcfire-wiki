@@ -229,16 +229,26 @@ h2 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5vw, 
 .lens-glow { animation: lens 3.2s ease-in-out infinite; }
 @keyframes lens { 0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 60, 60, .4)); } 50% { filter: drop-shadow(0 0 40px rgba(255, 60, 60, .95)); } }
 
-/* ---------- 함선 행렬(자동 스크롤) ---------- */
-.fleet { padding-block: clamp(70px, 10vw, 120px); overflow: hidden; }
-.fleet .head { padding-inline: var(--gutter); max-width: 1240px; margin: 0 auto 36px; }
-.fleet-track { display: flex; gap: 22px; width: max-content; animation: tick 60s linear infinite; }
-.fleet:hover .fleet-track { animation-play-state: paused; }
-.ship-card { width: clamp(240px, 30vw, 360px); flex: none; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); position: relative; background: #0b0e18; }
-.ship-card img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform 1s; }
-.ship-card:hover img { transform: scale(1.06); }
-.ship-card figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 16px 14px; background: linear-gradient(transparent, rgba(5,6,11,.92)); font-family: var(--display); letter-spacing: .12em; font-size: 14px; }
-.ship-card figcaption small { display: block; font-family: var(--mono); color: var(--flare); font-size: 11px; letter-spacing: .2em; }
+/* ---------- 함선 소개(4척) ---------- */
+.fleet { padding: clamp(70px, 10vw, 120px) var(--gutter); max-width: 1240px; margin: 0 auto; }
+.fleet .head { margin-bottom: 40px; }
+.ship-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.ship-card { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, #10141f, #0a0d17); transition: transform .35s ease, border-color .35s, box-shadow .35s; }
+.ship-card:hover { transform: translateY(-6px); border-color: rgba(255, 170, 90, .55); box-shadow: 0 24px 60px -24px rgba(255, 130, 50, .55); }
+.ship-card .pic { position: relative; overflow: hidden; aspect-ratio: 1; }
+.ship-card .pic img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.8,.2,1); }
+.ship-card:hover .pic img { transform: scale(1.08); }
+.ship-card .pic::after { /* 격납고 스캔 라인 */
+  content: ""; position: absolute; left: 0; right: 0; height: 30%; top: -30%;
+  background: linear-gradient(180deg, transparent, rgba(79, 216, 196, .22), transparent);
+}
+.ship-card:hover .pic::after { animation: shipScan 1.4s ease-in-out; }
+@keyframes shipScan { to { top: 100%; } }
+.ship-card .no { position: absolute; top: 12px; left: 14px; font-family: var(--mono); font-size: 12px; letter-spacing: .2em; color: #fff; background: rgba(5,6,11,.6); padding: 3px 8px; border-radius: 4px; }
+.ship-card .info { padding: 18px 20px 22px; border-top: 1px solid var(--line); }
+.ship-card .info small { font-family: var(--mono); color: var(--flare); font-size: 11px; letter-spacing: .22em; }
+.ship-card .info h3 { font-family: var(--display); font-size: 21px; margin: 6px 0 8px; letter-spacing: .02em; }
+.ship-card .info p { margin: 0; color: var(--dim); font-size: 14.5px; }
 
 /* ---------- 숫자 ---------- */
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-top: 48px; }
@@ -247,10 +257,11 @@ h2 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5vw, 
 .stat .l { margin-top: 10px; color: var(--dim); font-size: 14px; }
 
 /* ---------- 스텔라 ---------- */
-.stella { display: grid; grid-template-columns: minmax(200px, 300px) 1fr; gap: clamp(30px, 6vw, 80px); align-items: center; }
+.stella { display: grid; grid-template-columns: minmax(200px, 280px) 1fr; gap: clamp(30px, 6vw, 80px); align-items: center; }
 @media (max-width: 760px) { .stella { grid-template-columns: 1fr; } .stella .card { margin: 0 auto; } }
 .stella .card { position: relative; max-width: 300px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(79, 216, 196, .35); box-shadow: 0 0 80px -20px rgba(79, 216, 196, .5); animation: float 7s ease-in-out infinite; }
-.stella .card img { width: 100%; }
+.stella .card img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.stella .card .name { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 34px 16px 14px; text-align: center; font-family: var(--display); font-weight: 700; letter-spacing: .3em; font-size: 15px; background: linear-gradient(transparent, rgba(5,6,11,.9)); }
 .stella .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 0 46%, rgba(79,216,196,.22) 50%, transparent 54%); background-size: 100% 220%; animation: scan 4s linear infinite; mix-blend-mode: screen; }
 @keyframes scan { from { background-position: 0 -120%; } to { background-position: 0 120%; } }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
@@ -394,7 +405,7 @@ footer a:hover { color: var(--text); }
         <p>아크코어가 매일 경제·세력·교통을 계산한다. 어제와 같은 은하는 없다.</p>
       </article>
       <article class="feat reveal d2" data-tilt>
-        <div class="art cover"><img src="img/ship/Player_dreadnought_mk1.png" alt="" /></div>
+        <div class="art cover"><img src="media/ships/npc_red_fleet_1.png" alt="" /></div>
         <span class="tag">ORBITAL COMBAT</span>
         <h3>실시간 궤도 전투</h3>
         <p>레이저·미사일·로켓·드론·함재기. 103종 무장과 45개 스킬로 나만의 전함을 만든다.</p>
@@ -419,13 +430,25 @@ footer a:hover { color: var(--text); }
     <div class="head">
       <div class="eyebrow reveal">Fleet</div>
       <h2 class="reveal d1">격납고에서 기다리는 함선들</h2>
-      <p class="lead reveal d2">작은 무역선에서 시작해 순양함, 전함, 초대형 모함까지. 광물로 함선마다 따로 강화한다.</p>
+      <p class="lead reveal d2">생존 포드 하나로 시작해 화물선과 전함을 손에 넣는다. 광물로 함선마다 따로 강화한다.</p>
     </div>
-    <div class="fleet-track" id="fleetTrack">
-      <figure class="ship-card"><img loading="lazy" src="img/ship/Player_super_capital_mk1.png" alt="초대형 모함" /><figcaption><small>SUPER CAPITAL</small>초대형 모함</figcaption></figure>
-      <figure class="ship-card"><img loading="lazy" src="img/ship/Player_apex_legend_mk1.png" alt="전설급 전함" /><figcaption><small>APEX LEGEND</small>전설급 전함</figcaption></figure>
-      <figure class="ship-card"><img loading="lazy" src="img/ship/Player_dreadnought_mk1.png" alt="드레드노트" /><figcaption><small>DREADNOUGHT</small>드레드노트</figcaption></figure>
-      <figure class="ship-card"><img loading="lazy" src="img/ship/Player_battlecruiser_apex.png" alt="순양전함" /><figcaption><small>BATTLECRUISER</small>순양전함</figcaption></figure>
+    <div class="ship-grid">
+      <article class="ship-card reveal d1">
+        <div class="pic"><img loading="lazy" src="media/ships/npc_test_ship_001.png" alt="생존 포드" /><span class="no">01</span></div>
+        <div class="info"><small>SURVIVAL POD</small><h3>생존 포드</h3><p>잔해에서 건져 올린 첫 함선. 작고 약하지만, 모든 항해는 여기서 시작된다.</p></div>
+      </article>
+      <article class="ship-card reveal d2">
+        <div class="pic"><img loading="lazy" src="media/ships/npc_faction_cargo_ship_s_01.png" alt="산업 화물선 S-01" /><span class="no">02</span></div>
+        <div class="info"><small>INDUSTRIAL FREIGHTER</small><h3>산업 화물선 S-01</h3><p>광부 길드의 산업 항로를 오가는 수송선. 두툼한 화물칸에 광물과 교역품을 싣고 아르카디아를 떠난다.</p></div>
+      </article>
+      <article class="ship-card reveal d3">
+        <div class="pic"><img loading="lazy" src="media/ships/npc_red_fleet_1.png" alt="레드 전함 Mk.I" /><span class="no">03</span></div>
+        <div class="info"><small>RED HULL MK.I</small><h3>레드 전함 Mk.I</h3><p>뉴에덴 선적의 전열 전함. 중량 레이저와 노바 미사일을 얹은, 교역소에서 가장 비싼 매물 중 하나.</p></div>
+      </article>
+      <article class="ship-card reveal d1">
+        <div class="pic"><img loading="lazy" src="media/ships/npc_vega_test_ship_a.png" alt="베가 전함 A" /><span class="no">04</span></div>
+        <div class="info"><small>VEGA HULL A</small><h3>베가 전함 A</h3><p>베가 전초기지 방어선의 주력 전열함. 유도 미사일 3연발로 다가오는 적을 먼저 끊어 낸다.</p></div>
+      </article>
     </div>
   </section>
 
@@ -446,7 +469,7 @@ footer a:hover { color: var(--text); }
   <!-- 스텔라 -->
   <section class="block" id="stella" style="padding-top:0">
     <div class="stella">
-      <div class="card reveal"><img src="img/stella_aris_char001.png" alt="오퍼레이터 스텔라 아리스" /></div>
+      <div class="card reveal"><img src="media/stella_aris.png" alt="오퍼레이터 스텔라 아리스" /><span class="name">STELLA ARIS</span></div>
       <div>
         <div class="eyebrow reveal">Operator</div>
         <h2 class="reveal d1">스텔라 아리스</h2>
@@ -534,9 +557,6 @@ footer a:hover { color: var(--text); }
   var t = document.getElementById("ticker"), html = words.map(function (w) { return "<span>" + w + "</span>"; }).join("");
   t.innerHTML = html + html;
 
-  /* 함선 행렬: HTML의 카드 4장을 이어 붙여 끊김 없이 흐르게 한다(경로는 HTML에만 둔다 — 배포 스크립트가 HTML 경로만 복사함) */
-  var ft = document.getElementById("fleetTrack"), one = ft.innerHTML;
-  ft.innerHTML = one + one + one + one;
 
   /* 등장 애니메이션 · 숫자 세기 */
   function countUp(el) {
