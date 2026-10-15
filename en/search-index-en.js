@@ -17,6 +17,7 @@ window.WIKI_INDEX = [
   { title: "Shipyard facility levels", page: "Planet Development", href: "planetdev.html", tags: "shipyard facility level" },
   { title: "Defense Satellite", page: "Planet Development", href: "planetdev.html", tags: "defense satellite facility" },
   { title: "Laboratory facility", page: "Planet Development", href: "planetdev.html", tags: "laboratory facility rnd" },
+  { title: "Military Command", page: "Planet Development", href: "planetdev.html", tags: "military command facility doctrine logistics" },
   { title: "Game UI", page: "Systems", href: "ui.html", tags: "ui overlay host" },
   { title: "Single overlay host", page: "Game UI", href: "ui.html", tags: "ArcOverlayHost overlay card" },
   { title: "In-game dialogue window", page: "Game UI", href: "ui.html", tags: "narrative dialog popup" },

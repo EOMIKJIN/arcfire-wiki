@@ -17,6 +17,7 @@ window.WIKI_INDEX = [
   { title: "조선소 시설 레벨", page: "행성개발", href: "planetdev.html", tags: "shipyard facility level" },
   { title: "방위위성", page: "행성개발", href: "planetdev.html", tags: "defense satellite facility" },
   { title: "연구소 시설", page: "행성개발", href: "planetdev.html", tags: "laboratory facility rnd" },
+  { title: "군사령부", page: "행성개발", href: "planetdev.html", tags: "military command facility 사령부 교리 군수" },
   { title: "게임 UI", page: "체제", href: "ui.html", tags: "ui overlay host 게임 UI 오버레이" },
   { title: "단일 오버레이 호스트", page: "게임 UI", href: "ui.html", tags: "ArcOverlayHost overlay card" },
   { title: "인게임 대화창", page: "게임 UI", href: "ui.html", tags: "narrative dialog 대화창 팝업" },

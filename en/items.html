@@ -95,14 +95,14 @@
             <tr><td>Propulsion</td><td>Ion Acceleration Booster · Fusion Core · Vector Thruster</td><td>ENGINE/SYSTEM/EX_01</td><td>Speed · power efficiency · maneuverability <span class="pill accent">Live</span></td></tr>
             <tr><td>Defense</td><td>Molecular Armor Plate · Shield Amplifier · Ablative Armor</td><td>ARMOR/EX_02/ARMOR</td><td>Armor rate · shield rate · damage reduction cap <span class="pill accent">Live</span></td></tr>
             <tr><td>Sensors</td><td>Long-Range Scanner · Secure Comms Module · Passive Sensor</td><td>EX_03/EX_04/FIGHTER</td><td>Detection range · comms stability · stealth detection <span class="pill accent">Live</span></td></tr>
-            <tr><td>Electronic warfare</td><td>ECM Jammer · Tactical Data Link · Decoy Launcher</td><td>EX_01/EX_02/EX_03</td><td>ECM strength <span class="pill accent">Live</span> · ally buff <span class="pill">Not implemented</span> · decoy strength <span class="pill accent">Live</span></td></tr>
-            <tr><td>Support</td><td>Nano Repair Drones · Fire Suppression System · Hull Patch Bay · Cargo Bay Module</td><td>EX_04/SYSTEM/FIGHTER/EX_04</td><td>Hull regeneration <span class="pill accent">Live</span> · heat reduction <span class="pill accent">Live</span> · post-battle repair <span class="pill">Not implemented</span> · cargo capacity <span class="pill accent">Live</span></td></tr>
-            <tr><td>Navigation</td><td>Nav Assist Unit · Tactical Compute Processor · Warp Nav Calculator</td><td>SYSTEM/EX_04/FIGHTER</td><td>Evasion <span class="pill accent">Live</span> · cooldown reduction <span class="pill accent">Live</span> · route efficiency <span class="pill">Not implemented</span></td></tr>
+            <tr><td>Electronic warfare</td><td>ECM Jammer · Tactical Data Link · Decoy Launcher</td><td>EX_01/EX_02/EX_03</td><td>ECM strength <span class="pill accent">Live</span> · ally buff <span class="pill warm">Effect coming soon</span> · decoy strength <span class="pill accent">Live</span></td></tr>
+            <tr><td>Support</td><td>Nano Repair Drones · Fire Suppression System · Hull Patch Bay · Cargo Bay Module</td><td>EX_04/SYSTEM/FIGHTER/EX_04</td><td>Hull regeneration <span class="pill accent">Live</span> · heat reduction <span class="pill accent">Live</span> · post-battle repair <span class="pill warm">Effect coming soon</span> · cargo capacity <span class="pill accent">Live</span></td></tr>
+            <tr><td>Navigation</td><td>Nav Assist Unit · Tactical Compute Processor · Warp Nav Calculator</td><td>SYSTEM/EX_04/FIGHTER</td><td>Evasion <span class="pill accent">Live</span> · cooldown reduction <span class="pill accent">Live</span> · route efficiency <span class="pill warm">Effect coming soon</span></td></tr>
             <tr><td>Mining</td><td>Mining Drone</td><td>FIGHTER</td><td>Mining yield <span class="pill accent">Live</span></td></tr>
           </tbody>
         </table>
       </div>
-      <p style="font-size:0.85rem;color:var(--text-faint);">9 of the 90 (three grades each of the Tactical Data Link, Hull Patch Bay and Warp Nav Calculator) have no effect yet, so trade ports do not sell them. The Mining Drone and Cargo Bay Module have had live effects and been on sale since 2026-10-14.</p>
+      <p style="font-size:0.85rem;color:var(--text-faint);">9 of the 90 (three grades each of the Tactical Data Link, Hull Patch Bay and Warp Nav Calculator) have no effect yet, so trade ports do not sell them (marked "Effect coming soon" in the full list below). The Mining Drone and Cargo Bay Module have had live effects and been on sale since 2026-10-14.</p>
 
       <h2>The 10 minerals</h2>
       <p>In order of rarity: Ferrite → Silicate → Carbonaceous → Nickel → Titanium → Platinum → Energy Crystal → Orichalcum → Neutronium → Voidstone. Base prices rise from 10 to 420. They are consumed by shipyard upgrades.</p>
@@ -155,7 +155,7 @@
     label: "Items",
     searchKeys: ["id", "nameEn", "category", "kind", "type", "descEn"],
     columns: [
-      { key: "nameEn", label: "Name", render: function (r) { return String(r.nameEn || r.id).replace(/</g, "&lt;"); } },
+      { key: "nameEn", label: "Name", render: function (r) { return String(r.nameEn || r.id).replace(/</g, "&lt;") + (r.pending ? ' <span class="pill warm">Effect coming soon</span>' : ""); } },
       { key: "category", label: "Category", render: function (r) { return CATEGORY_EN[r.category] || r.category; } },
       { key: "type", label: "Type" },
       { key: "price", label: "Base price", num: true },

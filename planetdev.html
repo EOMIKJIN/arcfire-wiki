@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>행성개발 — 아크파이어 위키</title>
-<meta name="description" content="무역소·조선소·방위위성·연구소·바 5개 시설, 레벨 1~15 업그레이드 체계와 일일 스탯 넛지" />
+<meta name="description" content="무역소·조선소·방위위성·연구소·바·군사령부 6개 시설, 레벨 1~15 업그레이드 체계와 일일 스탯 넛지" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
 <link rel="stylesheet" href="assets/style.css" />
@@ -58,8 +58,8 @@
       <div class="eyebrow">체제 · 성장</div>
       <h1 class="page-title">행성개발</h1>
       <p class="page-lede">
-        본거지 행성에는 5개의 건설 가능한 시설 — 무역소·조선소·방위위성·연구소·바 — 이 있고, 각각 레벨 1~15까지
-        올릴 수 있다. 시설 레벨은 매일 배치에서 행성 5대 지표(R/P/D/T/E)를 조금씩 밀어 올리는 방식으로
+        본거지 행성에는 6개의 건설 가능한 시설 — 무역소·조선소·방위위성·연구소·바·군사령부 — 이 있고, 각각 레벨 1~15까지
+        올릴 수 있다. 시설 레벨은 매일 배치에서 행성 5대 지표(R/P/D/T/E)를 조금씩 움직이는 방식으로
         <a href="economy.html">경제 시스템</a>과 연결된다.
       </p>
 
@@ -71,15 +71,16 @@
         Table-First 원칙에 따라 실제 CSV 값을 기준으로 작성했다 — 오래된 기획 문서와 다른 숫자가 보이면 이 페이지가 더 최신이다.
       </div>
 
-      <h2>5개 시설 한눈에</h2>
+      <h2>6개 시설 한눈에</h2>
       <div class="card-grid">
         <div class="card"><span class="card-eyebrow">무역소</span><h4>Trade Port</h4><p>거래 수수료↓·재고 상한↑·고급 무기 취급 비중↑. R·P 지표 밀어올림.</p></div>
         <div class="card"><span class="card-eyebrow">조선소</span><h4>Shipyard</h4><p>건조 가능 함급 해금·광물 강화 상한↑·건조 시간↓. T 지표.</p></div>
         <div class="card"><span class="card-eyebrow">방위위성</span><h4>Defense Satellite</h4><p>위성 수·DPS·침공 요격률↑. D 지표(파괴 시 즉시 감소, 격퇴 시 증가).</p></div>
         <div class="card"><span class="card-eyebrow">연구소</span><h4>Laboratory</h4><p>R&amp;D 해금 속도↑·환경 재생·첩보 탐지·대테러·드론 요격 보너스. T·E 지표.</p></div>
         <div class="card"><span class="card-eyebrow">바</span><h4>Bar</h4><p>현상금 게시판 슬롯↑·평판 보너스·용병 등급 해금. P 지표.</p></div>
+        <div class="card"><span class="card-eyebrow">군사령부</span><h4>Military Command</h4><p>영토 방어 교리 보정·자체 유지비 군수 할인. D·T 보정, 대신 R·P·E 소폭 감소.</p></div>
       </div>
-      <p style="font-size:0.85rem;color:var(--text-faint);">일일 유지비 테이블에는 이 5개 외에 <code>population_dome</code>(거주돔)이라는 6번째 시설명이 등장하지만, 레벨 정책 테이블도 기획 문서도 없어 실제 효과는 확인할 수 없다 — 데이터에만 존재하는 시설로 표기해 둔다.</p>
+      <p style="font-size:0.85rem;color:var(--text-faint);">일일 유지비 테이블에는 이 6개 외에 <code>population_dome</code>(거주돔)이라는 시설명이 등장하지만, 레벨 정책 테이블도 기획 문서도 없어 실제 효과는 확인할 수 없다 — 데이터에만 존재하는 시설로 표기해 둔다.</p>
 
       <h2>레벨별 실제 수치</h2>
 
@@ -131,7 +132,25 @@
       <p style="font-size:0.82rem;color:var(--text-faint);">* Lv5는 기술(T) 지표 30 이상도 함께 요구. 이 연구소는 <a href="skills.html">허브 스킬 트리</a>와는 다른 시설이다 — 스킬 트리는 파일럿 영구 특성, 이 연구소는 R&amp;D 해금 타이머·방위 관련 보조 스탯만 다룬다.</p>
 
       <h3>방위위성</h3>
-      <p>Lv1: 위성 1기·DPS 200·요격률 5% → Lv10: 위성 5기·DPS 150,000·요격률 95%. 위성이 파괴되면 D 지표가 즉시 깎이고, 침공을 격퇴하면 D 지표가 오른다 — 다른 4개 시설과 달리 <strong>양방향으로 지표가 움직이는</strong> 유일한 시설이다.</p>
+      <p>Lv1: 위성 1기·DPS 200·요격률 5% → Lv10: 위성 5기·DPS 150,000·요격률 95%. 위성이 파괴되면 D 지표가 즉시 깎이고, 침공을 격퇴하면 D 지표가 오른다 — 무역소·조선소·연구소·바와 달리 <strong>양방향으로 지표가 움직이는</strong> 시설이다.</p>
+
+      <h3>군사령부</h3>
+      <p>방위위성과 따로 도는 「영토 교리」 시설이다. 위성 수·요격률은 바꾸지 않고, 다음 세 가지를 레벨에 비례해 적용한다.</p>
+      <ul>
+        <li><strong>영토 방어 교리</strong> — 자동 분쟁 전투에서 방어측 보정 Lv1 +0.4% → Lv15 +6%(상한 6%)</li>
+        <li><strong>군수 할인</strong> — 군사령부 자신의 일일 유지비를 최대 12% 깎는다(전역 유지비 할인과 합산 상한 22%, 방위위성 유지비에는 미적용)</li>
+        <li><strong>지표 보정</strong> — 일일 배치 뒤 Lv15 기준 D +2 · T +1.5, 대신 R −1 · P −1 · E −1.2(보정 후 하한 8). 다른 시설의 「스탯 넛지」와는 별도 축이다</li>
+      </ul>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Lv</th><th>이름</th><th class="num">설치/강화 비용</th><th>소요시간</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>궤도 전초 사령</td><td class="num">2,200cr</td><td>즉시 설치</td></tr>
+          <tr><td class="num">5</td><td>요새 사령부</td><td class="num">176,000cr*</td><td>2일</td></tr>
+          <tr><td class="num">10</td><td>은하 사령부</td><td class="num">23,100,000cr</td><td>8일</td></tr>
+          <tr><td class="num">15</td><td>은하 최종 사령</td><td class="num">807,167,680cr</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+      <p style="font-size:0.82rem;color:var(--text-faint);">* Lv5는 파일럿 Lv20 + 방어(D) 지표 30 이상도 함께 요구. Lv11~15는 표에 소요시간이 비어 있다. 정본: <code>facility_military_command_level_policy.csv</code> · <code>planet_military_command_policy.csv</code></p>
 
       <h2>매일 일어나는 일 — 스탯 넛지</h2>
       <p>시설 레벨은 실시간으로 아무것도 하지 않는다. <strong>매일 12:00 KST 배치</strong>에서만 레벨×계수만큼 지표를 밀어올린다(100 상한, 미점유 중엔 중단).</p>
@@ -161,9 +180,10 @@
           <tr><td>조선소</td><td class="num">24</td><td class="num">64</td><td class="num">114</td><td class="num">164</td></tr>
           <tr><td>연구소</td><td class="num">20</td><td class="num">56</td><td class="num">101</td><td class="num">146</td></tr>
           <tr><td>무역소</td><td class="num">18</td><td class="num">50</td><td class="num">90</td><td class="num">130</td></tr>
+          <tr><td>군사령부</td><td class="num">22</td><td class="num">58</td><td class="num">103</td><td class="num">148</td></tr>
         </tbody>
       </table></div>
-      <p style="font-size:0.82rem;color:var(--text-faint);">방위위성·바는 이 유지비 테이블에 행 자체가 없다 — 추가 유지비가 없거나 다른 표에서 관리되는 것으로 보인다.</p>
+      <p style="font-size:0.82rem;color:var(--text-faint);">군사령부 유지비는 위 값에서 군수 할인이 적용된다. 방위위성·바는 이 유지비 테이블에 행 자체가 없다 — 추가 유지비가 없거나 다른 표에서 관리되는 것으로 보인다.</p>
 
       <h2>건설 조건</h2>
       <p>점유한 행성이면 어떤 시설이든 별도 전투 승수 조건 없이 바로 건설 착수 가능하다 — 설치 대기시간(15~30분)만 있다. 레벨을 올릴 때는 파일럿 레벨과 특정 지표 문턱이 걸린다.</p>
@@ -174,6 +194,7 @@
           <tr><td>조선소</td><td>파일럿 Lv20</td><td>파일럿 Lv40</td></tr>
           <tr><td>바</td><td>파일럿 Lv15 + 인구(P) 30</td><td>파일럿 Lv30 + 인구(P) 55</td></tr>
           <tr><td>연구소</td><td>파일럿 Lv20 + 기술(T) 30</td><td>파일럿 Lv40 + 기술(T) 55</td></tr>
+          <tr><td>군사령부</td><td>파일럿 Lv20 + 방어(D) 30</td><td>파일럿 Lv40 + 방어(D) 55</td></tr>
         </tbody>
       </table></div>
       <p>지표 문턱 때문에 시설들은 서로 직접적인 선행조건은 없어도, <strong>같은 5대 지표 풀을 공유</strong>해 간접적으로 서로를 밀어준다 — 무역소·연구소가 올린 T·P가 바·연구소의 다음 단계 조건을 채워주는 식이다.</p>

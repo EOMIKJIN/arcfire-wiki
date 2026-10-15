@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Planet Development · ARCFIRE Wiki</title>
-<meta name="description" content="ARCFIRE's five planet facilities — Trade Port, Shipyard, Defense Satellite, Laboratory and Bar — with level tables, daily nudges, upkeep and build conditions." />
+<meta name="description" content="ARCFIRE's six planet facilities — Trade Port, Shipyard, Defense Satellite, Laboratory, Bar and Military Command — with level tables, daily nudges, upkeep and build conditions." />
 <link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/planetdev.html" />
 <link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/planetdev.html" />
 <link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/planetdev.html" />
@@ -68,8 +68,8 @@
       <div class="eyebrow">Systems · Growth</div>
       <h1 class="page-title">Planet Development</h1>
       <p class="page-lede">
-        Your home planet has five buildable facilities — Trade Port, Shipyard, Defense Satellite, Laboratory and Bar — each upgradable from level 1 to 15.
-        Facility levels connect to the <a href="economy.html">economy</a> by nudging the planet's five indicators (R/P/D/T/E) a little upward in each daily batch.
+        Your home planet has six buildable facilities — Trade Port, Shipyard, Defense Satellite, Laboratory, Bar and Military Command — each upgradable from level 1 to 15.
+        Facility levels connect to the <a href="economy.html">economy</a> by nudging the planet's five indicators (R/P/D/T/E) a little in each daily batch.
       </p>
 
       <div class="callout warn">
@@ -80,15 +80,16 @@
         if you see numbers that differ from older design documents, this page is the newer one.
       </div>
 
-      <h2>The five facilities at a glance</h2>
+      <h2>The six facilities at a glance</h2>
       <div class="card-grid">
         <div class="card"><span class="card-eyebrow">Trade</span><h4>Trade Port</h4><p>Lower trade fees · higher stock cap · more high-end weapons in stock. Pushes R and P.</p></div>
         <div class="card"><span class="card-eyebrow">Ships</span><h4>Shipyard</h4><p>Unlocks buildable hull classes · raises the mineral upgrade cap · shortens build time. Pushes T.</p></div>
         <div class="card"><span class="card-eyebrow">Defense</span><h4>Defense Satellite</h4><p>More satellites, DPS and invasion interception. D indicator (drops instantly when destroyed, rises when invasions are repelled).</p></div>
         <div class="card"><span class="card-eyebrow">Research</span><h4>Laboratory</h4><p>Faster R&amp;D unlocks · environment regeneration · intel detection, counter-terror and drone interception bonuses. Pushes T and E.</p></div>
         <div class="card"><span class="card-eyebrow">Social</span><h4>Bar</h4><p>More bounty board slots · reputation bonus · unlocks mercenary grades. Pushes P.</p></div>
+        <div class="card"><span class="card-eyebrow">Command</span><h4>Military Command</h4><p>Territorial defense doctrine · logistics discount on its own upkeep. Raises D and T at a small cost to R, P and E.</p></div>
       </div>
-      <p style="font-size:0.85rem;color:var(--text-faint);">The daily upkeep table also mentions a sixth facility, <code>population_dome</code>, but it has neither a level policy table nor a design document, so its actual effect cannot be confirmed — we list it as a facility that exists only in data.</p>
+      <p style="font-size:0.85rem;color:var(--text-faint);">The daily upkeep table also mentions another facility, <code>population_dome</code>, but it has neither a level policy table nor a design document, so its actual effect cannot be confirmed — we list it as a facility that exists only in data.</p>
 
       <h2>Actual values by level</h2>
 
@@ -140,7 +141,25 @@
       <p style="font-size:0.82rem;color:var(--text-faint);">* Lv5 also requires a Technology (T) indicator of 30 or more. This Laboratory is a different facility from the <a href="skills.html">hub skill tree</a> — the skill tree gives permanent pilot traits, while this Laboratory only handles R&amp;D unlock timers and defense-related support stats.</p>
 
       <h3>Defense Satellite</h3>
-      <p>Lv1: 1 satellite · DPS 200 · 5% interception → Lv10: 5 satellites · DPS 150,000 · 95% interception. When a satellite is destroyed the D indicator drops immediately, and repelling an invasion raises it — unlike the other four facilities, it is the only one that <strong>moves its indicator in both directions</strong>.</p>
+      <p>Lv1: 1 satellite · DPS 200 · 5% interception → Lv10: 5 satellites · DPS 150,000 · 95% interception. When a satellite is destroyed the D indicator drops immediately, and repelling an invasion raises it — unlike the Trade Port, Shipyard, Laboratory and Bar, it <strong>moves its indicator in both directions</strong>.</p>
+
+      <h3>Military Command</h3>
+      <p>A "territorial doctrine" facility that works separately from the Defense Satellite. It does not change satellite counts or interception; instead it applies three effects that scale with level.</p>
+      <ul>
+        <li><strong>Territorial defense doctrine</strong> — a defender bonus in automatic territorial battles, from +0.4% at Lv1 to +6% at Lv15 (capped at 6%)</li>
+        <li><strong>Logistics discount</strong> — cuts the Military Command's own daily upkeep by up to 12% (combined cap of 22% with the global upkeep discount; does not apply to Defense Satellite upkeep)</li>
+        <li><strong>Indicator offsets</strong> — after the daily batch, at Lv15: D +2 · T +1.5, but R −1 · P −1 · E −1.2 (floor of 8 after the offset). This is separate from the other facilities' stat nudges</li>
+      </ul>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Lv</th><th>Name</th><th class="num">Build/upgrade cost</th><th>Time</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Orbital Outpost Command</td><td class="num">2,200 cr</td><td>Instant install</td></tr>
+          <tr><td class="num">5</td><td>Fortress Command</td><td class="num">176,000 cr*</td><td>2 days</td></tr>
+          <tr><td class="num">10</td><td>Galactic Command</td><td class="num">23,100,000 cr</td><td>8 days</td></tr>
+          <tr><td class="num">15</td><td>Galaxy's Final Command</td><td class="num">807,167,680 cr</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+      <p style="font-size:0.82rem;color:var(--text-faint);">* Lv5 also requires pilot Lv20 and a Defense (D) indicator of 30 or more. Upgrade times for Lv11–15 are blank in the table. Level names are English renderings of the Korean originals.</p>
 
       <h2>What happens every day — stat nudges</h2>
       <p>Facility levels do nothing in real time. Only in the <strong>daily 12:00 KST batch</strong> do they push indicators up by level × coefficient (capped at 100, paused while the planet is unoccupied).</p>
@@ -170,9 +189,10 @@
           <tr><td>Shipyard</td><td class="num">24</td><td class="num">64</td><td class="num">114</td><td class="num">164</td></tr>
           <tr><td>Laboratory</td><td class="num">20</td><td class="num">56</td><td class="num">101</td><td class="num">146</td></tr>
           <tr><td>Trade Port</td><td class="num">18</td><td class="num">50</td><td class="num">90</td><td class="num">130</td></tr>
+          <tr><td>Military Command</td><td class="num">22</td><td class="num">58</td><td class="num">103</td><td class="num">148</td></tr>
         </tbody>
       </table></div>
-      <p style="font-size:0.82rem;color:var(--text-faint);">The Defense Satellite and Bar have no rows in this upkeep table — they appear to have no extra upkeep or to be managed in another table.</p>
+      <p style="font-size:0.82rem;color:var(--text-faint);">The Military Command's logistics discount is applied to the values above. The Defense Satellite and Bar have no rows in this upkeep table — they appear to have no extra upkeep or to be managed in another table.</p>
 
       <h2>Build conditions</h2>
       <p>On any planet you occupy, you can start building any facility right away with no combat-win condition — only the installation wait (15–30 minutes). Upgrading requires pilot levels and certain indicator thresholds.</p>
@@ -183,6 +203,7 @@
           <tr><td>Shipyard</td><td>Pilot Lv20</td><td>Pilot Lv40</td></tr>
           <tr><td>Bar</td><td>Pilot Lv15 + Population (P) 30</td><td>Pilot Lv30 + Population (P) 55</td></tr>
           <tr><td>Laboratory</td><td>Pilot Lv20 + Technology (T) 30</td><td>Pilot Lv40 + Technology (T) 55</td></tr>
+          <tr><td>Military Command</td><td>Pilot Lv20 + Defense (D) 30</td><td>Pilot Lv40 + Defense (D) 55</td></tr>
         </tbody>
       </table></div>
       <p>Because of these thresholds, the facilities have no direct prerequisites on each other but <strong>share the same pool of five indicators</strong> and so push each other indirectly — the T and P raised by the Trade Port and Laboratory meet the next-step conditions for the Bar and Laboratory.</p>

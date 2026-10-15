@@ -85,14 +85,14 @@
             <tr><td>추진</td><td>이온가속부스터 · 핵융합코어 · 벡터추력기</td><td>ENGINE/SYSTEM/EX_01</td><td>속도 · 출력 효율 · 기동성 <span class="pill accent">가동</span></td></tr>
             <tr><td>방어</td><td>분자장갑판 · 실드증폭기 · 외장장갑</td><td>ARMOR/EX_02/ARMOR</td><td>장갑률 · 실드율 · 피해 감소 상한 <span class="pill accent">가동</span></td></tr>
             <tr><td>센서</td><td>장거리스캔 · 암호통신모듈 · 패시브센서</td><td>EX_03/EX_04/FIGHTER</td><td>탐지거리 · 통신 안정 · 은신 탐지 <span class="pill accent">가동</span></td></tr>
-            <tr><td>전자전</td><td>전자파재머 · 전술데이터링크 · 미끼발사기</td><td>EX_01/EX_02/EX_03</td><td>ECM 강도 <span class="pill accent">가동</span> · 아군 버프 <span class="pill">미구현</span> · 디코이 강도 <span class="pill accent">가동</span></td></tr>
-            <tr><td>지원</td><td>나노수리로봇 · 화재진압시스템 · 선체패치베이 · 확장화물모듈</td><td>EX_04/SYSTEM/FIGHTER/EX_04</td><td>선체 재생 <span class="pill accent">가동</span> · 과열 감소 <span class="pill accent">가동</span> · 전후 수리 <span class="pill">미구현</span> · 화물 용량 <span class="pill accent">가동</span></td></tr>
-            <tr><td>항법</td><td>보조항법장치 · 전술연산프로세서 · 워프항법계산기</td><td>SYSTEM/EX_04/FIGHTER</td><td>회피 <span class="pill accent">가동</span> · 쿨다운 감소 <span class="pill accent">가동</span> · 항로 효율 <span class="pill">미구현</span></td></tr>
+            <tr><td>전자전</td><td>전자파재머 · 전술데이터링크 · 미끼발사기</td><td>EX_01/EX_02/EX_03</td><td>ECM 강도 <span class="pill accent">가동</span> · 아군 버프 <span class="pill warm">효과 준비 중</span> · 디코이 강도 <span class="pill accent">가동</span></td></tr>
+            <tr><td>지원</td><td>나노수리로봇 · 화재진압시스템 · 선체패치베이 · 확장화물모듈</td><td>EX_04/SYSTEM/FIGHTER/EX_04</td><td>선체 재생 <span class="pill accent">가동</span> · 과열 감소 <span class="pill accent">가동</span> · 전후 수리 <span class="pill warm">효과 준비 중</span> · 화물 용량 <span class="pill accent">가동</span></td></tr>
+            <tr><td>항법</td><td>보조항법장치 · 전술연산프로세서 · 워프항법계산기</td><td>SYSTEM/EX_04/FIGHTER</td><td>회피 <span class="pill accent">가동</span> · 쿨다운 감소 <span class="pill accent">가동</span> · 항로 효율 <span class="pill warm">효과 준비 중</span></td></tr>
             <tr><td>채굴</td><td>채굴드론</td><td>FIGHTER</td><td>채굴 수율 <span class="pill accent">가동</span></td></tr>
           </tbody>
         </table>
       </div>
-      <p style="font-size:0.85rem;color:var(--text-faint);">90종 중 9종(전술데이터링크 · 선체패치베이 · 워프항법계산기 각 3등급)은 아직 효과가 연결되지 않아 무역소에서 팔지 않는다. 채굴드론·확장화물모듈은 2026-10-14부터 효과가 연결돼 판매 중이다.</p>
+      <p style="font-size:0.85rem;color:var(--text-faint);">90종 중 9종(전술데이터링크 · 선체패치베이 · 워프항법계산기 각 3등급)은 아직 효과가 연결되지 않아 무역소에서 팔지 않는다(아래 전체 목록에 「효과 준비 중」 표시). 채굴드론·확장화물모듈은 2026-10-14부터 효과가 연결돼 판매 중이다.</p>
 
       <h2>광물 10종</h2>
       <p>페라이트 → 실리케이트 → 탄소질 → 니켈 → 티타늄 → 백금 → 에너지 결정 → 오리하르콘 → 중성자 → 공허석 순으로 희귀해지며, 기본가는 10에서 420까지 오른다. 조선소 강화의 소모 자원이다.</p>
@@ -143,7 +143,7 @@
     label: "아이템",
     searchKeys: ["id", "name", "nameEn", "category", "kind", "type", "desc"],
     columns: [
-      { key: "name", label: "이름" },
+      { key: "name", label: "이름", render: function (r) { return String(r.name).replace(/</g, "&lt;") + (r.pending ? ' <span class="pill warm">효과 준비 중</span>' : ""); } },
       { key: "nameEn", label: "영문명" },
       { key: "category", label: "분류" },
       { key: "type", label: "타입" },
