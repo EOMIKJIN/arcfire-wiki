@@ -54,6 +54,7 @@ window.WIKI_INDEX = [
   // 함선
   { title: "레인저 CM.I", page: "함선", href: "ships.html", tags: "starter ship ranger" },
   { title: "스트라이커 Mk.II", page: "함선", href: "ships.html", tags: "striker ship" },
+  { title: "코르벳 Mk.I", page: "함선", href: "ships.html", tags: "corvette ship" },
   { title: "가디언 구축함", page: "함선", href: "ships.html", tags: "guardian destroyer ship" },
   { title: "오라클 순양함", page: "함선", href: "ships.html", tags: "oracle cruiser ship" },
   { title: "소버린 순양전함", page: "함선", href: "ships.html", tags: "sovereign battlecruiser ship" },
@@ -115,6 +116,18 @@ window.WIKI_INDEX = [
   { title: "전술 링크", page: "스킬 · 함대", href: "skills.html#fleet", tags: "tactical link skill" },
   { title: "항모 프로토콜", page: "스킬 · 함대", href: "skills.html#fleet", tags: "carrier protocol skill" },
   { title: "오버로드의 위엄", page: "스킬 · 함대", href: "skills.html#fleet", tags: "overlord presence skill" },
+  { title: "반응 장갑 Ⅱ", page: "스킬 · 전투", href: "skills.html#combat", tags: "reactive armor 2 skill" },
+  { title: "실드 과부하 Ⅱ", page: "스킬 · 전투", href: "skills.html#combat", tags: "shield overload 2 skill" },
+  { title: "장갑 관통 Ⅱ", page: "스킬 · 전투", href: "skills.html#combat", tags: "armor piercing 2 skill" },
+  { title: "플라즈마 포 Ⅱ", page: "스킬 · 전투", href: "skills.html#combat", tags: "plasma cannon 2 skill" },
+  { title: "나노봇 수복 Ⅱ", page: "스킬 · 전투", href: "skills.html#combat", tags: "hull regeneration 2 skill" },
+  { title: "정찰 센서 Ⅱ", page: "스킬 · 항법", href: "skills.html#navigation", tags: "sensor array 2 skill" },
+  { title: "협상 전문가 Ⅱ", page: "스킬 · 무역", href: "skills.html#trade", tags: "negotiation pro 2 skill" },
+  { title: "대량 거래 Ⅱ", page: "스킬 · 무역", href: "skills.html#trade", tags: "bulk trading 2 skill" },
+  { title: "중장 대형", page: "스킬 · 함대", href: "skills.html#fleet", tags: "formation heavy skill" },
+  { title: "함대 지휘 Ⅱ", page: "스킬 · 함대", href: "skills.html#fleet", tags: "fleet command 2 skill" },
+  { title: "윙맨 시너지 Ⅱ", page: "스킬 · 함대", href: "skills.html#fleet", tags: "wingman synergy 2 skill" },
+  { title: "항모 프로토콜 Ⅱ", page: "스킬 · 함대", href: "skills.html#fleet", tags: "carrier protocol 2 skill" },
 
   // 체제 주요 개념
   { title: "5축 금고", page: "경제 시스템", href: "economy.html#vault", tags: "vault economy 5축 금고" },

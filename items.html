@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>아이템 · 강화 — 아크파이어 위키</title>
-<meta name="description" content="290종 아이템 분류, 57종 함선 장비, 10종 광물, 조선소 강화 시스템" />
+<meta name="description" content="320종 아이템 분류, 90종 함선 장비, 10종 광물, 조선소 강화 시스템" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
 <link rel="stylesheet" href="assets/style.css" />
@@ -58,26 +58,26 @@
       <div class="eyebrow">전력 · 장비</div>
       <h1 class="page-title">아이템 · 강화</h1>
       <p class="page-lede">
-        아이템 290종은 분류상 사치품(행성 소유권 증서 중심)·기술·광물·식료품·무역용 무기 화물·밀수품으로 나뉜다.
+        아이템 320종은 분류상 사치품(행성 소유권 증서 중심)·기술·광물·식료품·무역용 무기 화물·밀수품으로 나뉜다.
         함선을 실제로 강하게 만드는 축은 셋 — <strong>함급 구매</strong>·<strong>장비 장착</strong>·<strong>광물 강화</strong>가 동시에 쌓인다.
       </p>
 
       <h2>아이템 분류</h2>
       <div class="card-grid">
-        <div class="card"><span class="card-eyebrow">129</span><h4>사치품</h4><p>행성 소유권 증서 100여 종이 대부분</p></div>
-        <div class="card"><span class="card-eyebrow">86</span><h4>기술</h4><p>장비·모듈류</p></div>
+        <div class="card"><span class="card-eyebrow">126</span><h4>사치품</h4><p>행성 소유권 증서 99종이 대부분</p></div>
+        <div class="card"><span class="card-eyebrow">119</span><h4>기술</h4><p>함선 장비 90종 등 장비·모듈류</p></div>
         <div class="card"><span class="card-eyebrow">36</span><h4>광물</h4><p>강화 원료</p></div>
         <div class="card"><span class="card-eyebrow">19</span><h4>식료품</h4><p>교역 상품</p></div>
         <div class="card"><span class="card-eyebrow">12</span><h4>무기(화물)</h4><p>탑재 무기가 아닌 교역용 무기 화물</p></div>
         <div class="card"><span class="card-eyebrow">8</span><h4>밀수품</h4><p>고위험 고수익 교역 품목</p></div>
       </div>
 
-      <h2 id="all-items">전체 아이템 목록 — 290종</h2>
-      <p><code>item_defs.csv</code> 전체다. 사치품(행성 증서 다수)·기술·광물·식료품·무기(화물)·밀수품을 모두 포함한다.</p>
+      <h2 id="all-items">전체 아이템 목록 — 320종</h2>
+      <p><code>item_defs.csv</code>에서 비활성 성계의 소유권 증서 3종을 뺀 전체다. 사치품(행성 증서 다수)·기술·광물·식료품·무기(화물)·밀수품을 모두 포함한다.</p>
       <div id="item-table"></div>
 
-      <h2 id="equipment">함선 장비 — 57종</h2>
-      <p>7개 계열 × 3등급(1/2/3). 등급이 오를수록 효과와 가격이 대략 두 배씩 뛴다.</p>
+      <h2 id="equipment">함선 장비 — 90종</h2>
+      <p>7개 계열, 라인마다 1~5등급(일부 라인은 1~3등급). 등급이 오를수록 효과와 가격이 오른다.</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th>계열</th><th>대표 라인</th><th>슬롯</th><th>효과</th></tr></thead>
@@ -86,30 +86,33 @@
             <tr><td>방어</td><td>분자장갑판 · 실드증폭기 · 외장장갑</td><td>ARMOR/EX_02/ARMOR</td><td>장갑률 · 실드율 · 피해 감소 상한 <span class="pill accent">가동</span></td></tr>
             <tr><td>센서</td><td>장거리스캔 · 암호통신모듈 · 패시브센서</td><td>EX_03/EX_04/FIGHTER</td><td>탐지거리 · 통신 안정 · 은신 탐지 <span class="pill accent">가동</span></td></tr>
             <tr><td>전자전</td><td>전자파재머 · 전술데이터링크 · 미끼발사기</td><td>EX_01/EX_02/EX_03</td><td>ECM 강도 <span class="pill accent">가동</span> · 아군 버프 <span class="pill">미구현</span> · 디코이 강도 <span class="pill accent">가동</span></td></tr>
-            <tr><td>지원</td><td>나노수리로봇 · 화재진압시스템 · 선체패치베이</td><td>EX_04/SYSTEM/FIGHTER</td><td>선체 재생 <span class="pill accent">가동</span> · 과열 감소 <span class="pill accent">가동</span> · 전후 수리 <span class="pill">미구현</span></td></tr>
+            <tr><td>지원</td><td>나노수리로봇 · 화재진압시스템 · 선체패치베이 · 확장화물모듈</td><td>EX_04/SYSTEM/FIGHTER/EX_04</td><td>선체 재생 <span class="pill accent">가동</span> · 과열 감소 <span class="pill accent">가동</span> · 전후 수리 <span class="pill">미구현</span> · 화물 용량 <span class="pill accent">가동</span></td></tr>
             <tr><td>항법</td><td>보조항법장치 · 전술연산프로세서 · 워프항법계산기</td><td>SYSTEM/EX_04/FIGHTER</td><td>회피 <span class="pill accent">가동</span> · 쿨다운 감소 <span class="pill accent">가동</span> · 항로 효율 <span class="pill">미구현</span></td></tr>
-            <tr><td>채굴</td><td>채굴드론</td><td>FIGHTER</td><td>채굴 수율 <span class="pill">미구현</span></td></tr>
+            <tr><td>채굴</td><td>채굴드론</td><td>FIGHTER</td><td>채굴 수율 <span class="pill accent">가동</span></td></tr>
           </tbody>
         </table>
       </div>
-      <p style="font-size:0.85rem;color:var(--text-faint);">57종 중 12종(채굴드론 3등급 · 전술데이터링크 · 선체패치베이 · 워프항법계산기)은 판매되지만 아직 수치 효과가 연결되지 않았다.</p>
+      <p style="font-size:0.85rem;color:var(--text-faint);">90종 중 9종(전술데이터링크 · 선체패치베이 · 워프항법계산기 각 3등급)은 아직 효과가 연결되지 않아 무역소에서 팔지 않는다. 채굴드론·확장화물모듈은 2026-10-14부터 효과가 연결돼 판매 중이다.</p>
 
       <h2>광물 10종</h2>
       <p>페라이트 → 실리케이트 → 탄소질 → 니켈 → 티타늄 → 백금 → 에너지 결정 → 오리하르콘 → 중성자 → 공허석 순으로 희귀해지며, 기본가는 10에서 420까지 오른다. 조선소 강화의 소모 자원이다.</p>
 
       <h2>조선소 강화</h2>
       <p>
-        선체 장갑·실드 셀·엔진 코어·무기 모드·에너지 5개 슬롯 중 하나를 골라 주 광물(60%)과 보조 광물(40%)을
-        소모해 레벨을 올린다. 필요량은 <code>5×다음레벨−2</code>로 늘어나며(레벨1=3개, 레벨8=38개), 최대 강화 레벨은
-        파일럿 전투레벨로 상한이 걸린다(≤14 → 5강 · ≤30 → 8강 · ≤50 → 12강 · 그 이상 → 15강). 최대 HP +50,
-        최대 실드 +30, 선회율 +3%/레벨 등 고정 보너스가 붙고, 레이저·미사일 계열은 추가로 피해·재장전·사거리
-        보너스를 받는다.
+        강화는 <strong>함선마다 따로</strong> 저장되고 다른 함선으로 넘겨줄 수 없다(2026-10-10 개편). 강화 항목은 선체 내구도 · 실드 ·
+        선회 속도 · 레이저 공격력 · 레이저 연사 · 미사일 공격력 · 미사일 연사 · 화물칸 확장 8가지이며, 크레딧과 광물을 함께 소모한다.
+        레벨당 효과와 비용은 함선 등급마다 다르다 — 끝까지 강화하면 그 함선 원래 능력치의 약 160%(다음 등급 기본형의 약 87.5%)가 되고,
+        강화 총비용은 다음 등급 구매가의 약 80%다.
+      </p>
+      <p>
+        최대 강화 레벨은 파일럿 레벨 상한 · 조선소 시설 상한 · 함선 등급 상한 중 가장 낮은 값이다.
+        파일럿 레벨 상한: Lv 15 이하 → 5강 · 29 이하 → 8강 · 43 이하 → 10강 · 59 이하 → 12강 · 그 이상 → 15강.
       </p>
 
       <div class="callout note">
-        <strong>행성 소유권 증서(102종)</strong>
-        아이템 카테고리 중 가장 큰 비중(129개 사치품의 대부분)을 차지하는 특수 품목으로, 21개 핵심 행성 + 약 45개
-        신스(Synth) 행성마다 하나씩 존재한다. 고정 12,000cr, 재판매 불가 — 구매 시 해당 행성이 플레이어 클랜 소유로 귀속된다.
+        <strong>행성 소유권 증서(99종)</strong>
+        아이템 카테고리 중 가장 큰 비중(126개 사치품의 대부분)을 차지하는 특수 품목으로, 21개 핵심 행성 + 신스(Synth) 행성 78곳마다
+        하나씩 존재한다. 고정 12,000cr, 재판매 불가 — 구매 시 해당 행성이 플레이어 클랜 소유로 귀속된다.
       </div>
 
       <h2>12좌 유물</h2>

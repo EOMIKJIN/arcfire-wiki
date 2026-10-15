@@ -54,6 +54,7 @@ window.WIKI_INDEX = [
   // Ships
   { title: "Starter Ranger CM.I", page: "Ships", href: "ships.html", tags: "starter ship ranger" },
   { title: "Striker Mk.II", page: "Ships", href: "ships.html", tags: "striker ship" },
+  { title: "Corvette Mk.I", page: "Ships", href: "ships.html", tags: "corvette ship" },
   { title: "Guardian Destroyer", page: "Ships", href: "ships.html", tags: "guardian destroyer ship" },
   { title: "Oracle Cruiser", page: "Ships", href: "ships.html", tags: "oracle cruiser ship" },
   { title: "Sovereign Battlecruiser", page: "Ships", href: "ships.html", tags: "sovereign battlecruiser ship" },
@@ -115,6 +116,18 @@ window.WIKI_INDEX = [
   { title: "Tactical Link", page: "Skills · Fleet", href: "skills.html#fleet", tags: "tactical link skill" },
   { title: "Carrier Protocol", page: "Skills · Fleet", href: "skills.html#fleet", tags: "carrier protocol skill" },
   { title: "Overlord's Majesty", page: "Skills · Fleet", href: "skills.html#fleet", tags: "overlord presence skill" },
+  { title: "Reactive Armor II", page: "Skills · Combat", href: "skills.html#combat", tags: "reactive armor 2 skill" },
+  { title: "Shield Overload II", page: "Skills · Combat", href: "skills.html#combat", tags: "shield overload 2 skill" },
+  { title: "Armor Piercing II", page: "Skills · Combat", href: "skills.html#combat", tags: "armor piercing 2 skill" },
+  { title: "Plasma Cannon II", page: "Skills · Combat", href: "skills.html#combat", tags: "plasma cannon 2 skill" },
+  { title: "Nanobot Repair II", page: "Skills · Combat", href: "skills.html#combat", tags: "hull regeneration 2 skill" },
+  { title: "Recon Sensors II", page: "Skills · Navigation", href: "skills.html#navigation", tags: "sensor array 2 skill" },
+  { title: "Expert Negotiator II", page: "Skills · Trade", href: "skills.html#trade", tags: "negotiation pro 2 skill" },
+  { title: "Bulk Trading II", page: "Skills · Trade", href: "skills.html#trade", tags: "bulk trading 2 skill" },
+  { title: "Heavy Formation", page: "Skills · Fleet", href: "skills.html#fleet", tags: "formation heavy skill" },
+  { title: "Fleet Command II", page: "Skills · Fleet", href: "skills.html#fleet", tags: "fleet command 2 skill" },
+  { title: "Wingman Synergy II", page: "Skills · Fleet", href: "skills.html#fleet", tags: "wingman synergy 2 skill" },
+  { title: "Carrier Protocol II", page: "Skills · Fleet", href: "skills.html#fleet", tags: "carrier protocol 2 skill" },
 
   // Key system concepts
   { title: "The five vaults", page: "Economy", href: "economy.html#vault", tags: "vault economy five axis" },

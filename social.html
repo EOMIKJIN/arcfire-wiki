@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>바 · 함장 · 플레이어 — 아크파이어 위키</title>
-<meta name="description" content="사교 공간 바, NPC 함장 298명, 캐릭터 생성, 타로 운명 시스템, 튜토리얼" />
+<meta name="description" content="사교 공간 바, NPC 함장 324명, 캐릭터 생성, 타로 운명 시스템, 튜토리얼" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
 <link rel="stylesheet" href="assets/style.css" />
@@ -58,12 +58,12 @@
       <div class="eyebrow">체제 · 사회</div>
       <h1 class="page-title">바 · 함장 · 플레이어</h1>
       <p class="page-lede">
-        싱글플레이 게임이지만 은하에는 298명의 이름 있는 NPC 함장과, 행성마다 문을 여는 사교 공간 「바」가 있다.
+        싱글플레이 게임이지만 은하에는 300명이 넘는 이름 있는 NPC 함장과, 행성마다 문을 여는 사교 공간 「바」가 있다.
         플레이어 자신도 시작부터 배경이 있는 파일럿으로 출발한다.
       </p>
 
       <h2 id="bar">바 — 사교 허브</h2>
-      <p>기획 문서는 바를 <strong>「부가 메뉴가 아니라 메인 콘텐츠」</strong>로 명시한다. 18개 행성에 바가 있고, 종업원이 행성별로 5~20명씩 배치된다(수도급 행성일수록 더 많고 화려하다).</p>
+      <p>기획 문서는 바를 <strong>「부가 메뉴가 아니라 메인 콘텐츠」</strong>로 명시한다. 기획상으로는 수도급 행성일수록 종업원이 더 많고 화려하게 배치된다. 지금 테이블에는 핵심 행성과 신스 행성을 합쳐 96개 행성의 바에 1~2명씩 등록돼 있다.</p>
       <ol>
         <li>바에 입장 → 호스트 NPC가 "한 잔 사줄래?" 인게임 대화로 말을 건다</li>
         <li>수락 → 종업원 명단 표시</li>
@@ -79,19 +79,19 @@
       <div class="callout note"><strong>콘텐츠 등급</strong> 설계 문서는 「선정성 없음·미성년 캐릭터 묘사 없음」을 명시적인 원칙으로 못박고 있다.</div>
 
       <div class="callout warn">
-        <strong>기획 목표 288명 vs 실제 등록 103명</strong>
+        <strong>기획 목표 288명 vs 실제 등록 100명</strong>
         기획 문서는 galaxy-wide 288명을 목표로 서술하지만, <code>bar_attendants.csv</code>를 직접 센 결과 현재
-        실제로 등록된 종업원은 <strong>103명</strong>이다. 이 위키는 문서의 목표치가 아니라 실제 테이블 행 수를 기준으로 삼는다.
+        공개 성계에 등록된 종업원은 <b>100명</b>이다(103행 중 비활성 성계 3명 제외). 이 위키는 문서의 목표치가 아니라 실제 테이블 행 수를 기준으로 삼는다.
       </div>
 
-      <h2 id="all-attendants">전체 종업원 목록 — 103명</h2>
+      <h2 id="all-attendants">전체 종업원 목록 — 100명</h2>
       <p>행성·이름·태그라인으로 검색할 수 있다.</p>
       <div id="attendant-table"></div>
 
-      <h2 id="captains">NPC 함장 — 298명</h2>
-      <p>2026-10 기준 298명 — 전투 진영은 블루 81 · 레드 74 · 비전투 143명이고, 이 중 <strong>38명은 퀘스트 전용 함장</strong>(서브 의뢰·본편에서만 등장)이다. 초상은 285종(일부 함장은 공유)이며 아래 표 첫 열에서 볼 수 있다. 바 종업원 103명은 초상 22종을 나눠 쓴다.</p>
+      <h2 id="captains">NPC 함장 — 324명</h2>
+      <p>2026-10-15 기준 공개 함장은 324명 — 전투 진영은 블루 58 · 레드 159 · 비전투 107명이다. 퀘스트에서만 만나는 함장(144명)과 테스트용 함장은 스포일러·혼동을 피하려고 싣지 않았다. 초상은 313종(일부 함장은 공유)이며 아래 표 첫 열에서 볼 수 있다. 바 종업원 100명은 초상 22종을 나눠 쓴다.</p>
       <p>
-        <code>npc_ai_captains.csv</code>에 등록된 298명은 계급(제독·대령·함대장·전쟁군주 등)·소속·AI 성향(신중~광폭)·
+        이 324명은 계급(제독·대령·함대장·전쟁군주 등)·소속·AI 성향(신중~광폭)·
         역할(함대장·순찰·호위·수비대·사냥꾼·상인 호위)을 가진 독립 개체다. 관측된 유형:
       </p>
       <ul>
@@ -105,14 +105,14 @@
       </ul>
       <p>이 중 12명은 「민간 궤도 보충 라인」 — 이름은 있지만 순수 교통량 채우기용 함장이다.</p>
 
-      <h2 id="all-captains">전체 함장 목록 — 298명</h2>
+      <h2 id="all-captains">전체 함장 목록 — 324명</h2>
       <p>이름·계급·소속·역할·AI 클랜으로 검색할 수 있다.</p>
       <div id="captain-table"></div>
 
       <div class="callout warn">
         <strong>영구 사망 시스템 — 설계만, 아직 아무도 죽지 않는다</strong>
         일반 순찰·웨이브 스폰·접전지역 함장은 명시적으로 <strong>불사(면제)</strong> 처리된다 — 리스크가 너무 크다.
-        영구 사망은 오직 「메인 스토리 지정 함장」만 대상인데, 현재 298명 중 그렇게 지정된 함장은 <strong>0명</strong>이다.
+        영구 사망은 오직 「메인 스토리 지정 함장」만 대상인데, 현재 전체 함장 중 그렇게 지정된 함장은 <strong>0명</strong>이다.
         시스템(원장·게이트)은 이미 구현돼 있지만 아직 누구도 「죽을 수 있는」 상태로 태그되지 않았다.
       </div>
 

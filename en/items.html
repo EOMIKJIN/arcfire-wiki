@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Items · Upgrades · ARCFIRE Wiki</title>
-<meta name="description" content="ARCFIRE's 290 items, 57 pieces of ship equipment, 10 minerals and shipyard mineral upgrades." />
+<meta name="description" content="ARCFIRE's 320 items, 90 pieces of ship equipment, 10 minerals and shipyard mineral upgrades." />
 <link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/items.html" />
 <link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/items.html" />
 <link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/items.html" />
@@ -68,56 +68,60 @@
       <div class="eyebrow">Power · Equipment</div>
       <h1 class="page-title">Items · Upgrades</h1>
       <p class="page-lede">
-        The 290 items fall into luxury goods (mostly planet ownership deeds), tech, minerals, food, weapons cargo for trade and contraband.
+        The 320 items fall into luxury goods (mostly planet ownership deeds), tech, minerals, food, weapons cargo for trade and contraband.
         Three axes actually make your ship stronger, and they stack together — <strong>buying hull classes</strong>, <strong>fitting equipment</strong> and <strong>mineral upgrades</strong>.
       </p>
 
       <h2>Item categories</h2>
       <div class="card-grid">
-        <div class="card"><span class="card-eyebrow">129</span><h4>Luxury</h4><p>Mostly the 100-odd planet ownership deeds</p></div>
-        <div class="card"><span class="card-eyebrow">86</span><h4>Tech</h4><p>Equipment and modules</p></div>
+        <div class="card"><span class="card-eyebrow">126</span><h4>Luxury</h4><p>Mostly the 99 planet ownership deeds</p></div>
+        <div class="card"><span class="card-eyebrow">119</span><h4>Tech</h4><p>Equipment and modules, including the 90 pieces of ship equipment</p></div>
         <div class="card"><span class="card-eyebrow">36</span><h4>Minerals</h4><p>Upgrade materials</p></div>
         <div class="card"><span class="card-eyebrow">19</span><h4>Food</h4><p>Trade goods</p></div>
         <div class="card"><span class="card-eyebrow">12</span><h4>Weapons (cargo)</h4><p>Weapons shipped as trade cargo, not mounted weapons</p></div>
         <div class="card"><span class="card-eyebrow">8</span><h4>Contraband</h4><p>High-risk, high-return trade goods</p></div>
       </div>
 
-      <h2 id="all-items">Full item list — 290 items</h2>
-      <p>The whole <code>item_defs.csv</code>, covering luxury goods (many planet deeds), tech, minerals, food, weapons cargo and contraband.</p>
+      <h2 id="all-items">Full item list — 320 items</h2>
+      <p><code>item_defs.csv</code> minus the three ownership deeds for disabled star systems, covering luxury goods (many planet deeds), tech, minerals, food, weapons cargo and contraband.</p>
       <div id="item-table"></div>
 
-      <h2 id="equipment">Ship equipment — 57 items</h2>
-      <p>Seven families × three grades (1/2/3). Each grade roughly doubles both effect and price.</p>
+      <h2 id="equipment">Ship equipment — 90 items</h2>
+      <p>Seven families; each line comes in grades 1–5 (a few lines only 1–3). Effect and price rise with each grade.</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Family</th><th>Representative lines</th><th>Slot</th><th>Effect</th></tr></thead>
           <tbody>
-            <tr><td>Propulsion</td><td>Ion Booster · Fusion Core · Vector Thruster</td><td>ENGINE/SYSTEM/EX_01</td><td>Speed · power efficiency · maneuverability <span class="pill accent">Live</span></td></tr>
-            <tr><td>Defense</td><td>Molecular Armor Plate · Shield Amplifier · External Armor</td><td>ARMOR/EX_02/ARMOR</td><td>Armor rate · shield rate · damage reduction cap <span class="pill accent">Live</span></td></tr>
-            <tr><td>Sensors</td><td>Long-Range Scan · Encrypted Comms Module · Passive Sensor</td><td>EX_03/EX_04/FIGHTER</td><td>Detection range · comms stability · stealth detection <span class="pill accent">Live</span></td></tr>
-            <tr><td>Electronic warfare</td><td>EM Jammer · Tactical Data Link · Decoy Launcher</td><td>EX_01/EX_02/EX_03</td><td>ECM strength <span class="pill accent">Live</span> · ally buff <span class="pill">Not implemented</span> · decoy strength <span class="pill accent">Live</span></td></tr>
-            <tr><td>Support</td><td>Nano Repair Bots · Fire Suppression System · Hull Patch Bay</td><td>EX_04/SYSTEM/FIGHTER</td><td>Hull regeneration <span class="pill accent">Live</span> · heat reduction <span class="pill accent">Live</span> · post-battle repair <span class="pill">Not implemented</span></td></tr>
-            <tr><td>Navigation</td><td>Auxiliary Nav Unit · Tactical Processor · Warp Nav Computer</td><td>SYSTEM/EX_04/FIGHTER</td><td>Evasion <span class="pill accent">Live</span> · cooldown reduction <span class="pill accent">Live</span> · route efficiency <span class="pill">Not implemented</span></td></tr>
-            <tr><td>Mining</td><td>Mining Drone</td><td>FIGHTER</td><td>Mining yield <span class="pill">Not implemented</span></td></tr>
+            <tr><td>Propulsion</td><td>Ion Acceleration Booster · Fusion Core · Vector Thruster</td><td>ENGINE/SYSTEM/EX_01</td><td>Speed · power efficiency · maneuverability <span class="pill accent">Live</span></td></tr>
+            <tr><td>Defense</td><td>Molecular Armor Plate · Shield Amplifier · Ablative Armor</td><td>ARMOR/EX_02/ARMOR</td><td>Armor rate · shield rate · damage reduction cap <span class="pill accent">Live</span></td></tr>
+            <tr><td>Sensors</td><td>Long-Range Scanner · Secure Comms Module · Passive Sensor</td><td>EX_03/EX_04/FIGHTER</td><td>Detection range · comms stability · stealth detection <span class="pill accent">Live</span></td></tr>
+            <tr><td>Electronic warfare</td><td>ECM Jammer · Tactical Data Link · Decoy Launcher</td><td>EX_01/EX_02/EX_03</td><td>ECM strength <span class="pill accent">Live</span> · ally buff <span class="pill">Not implemented</span> · decoy strength <span class="pill accent">Live</span></td></tr>
+            <tr><td>Support</td><td>Nano Repair Drones · Fire Suppression System · Hull Patch Bay · Cargo Bay Module</td><td>EX_04/SYSTEM/FIGHTER/EX_04</td><td>Hull regeneration <span class="pill accent">Live</span> · heat reduction <span class="pill accent">Live</span> · post-battle repair <span class="pill">Not implemented</span> · cargo capacity <span class="pill accent">Live</span></td></tr>
+            <tr><td>Navigation</td><td>Nav Assist Unit · Tactical Compute Processor · Warp Nav Calculator</td><td>SYSTEM/EX_04/FIGHTER</td><td>Evasion <span class="pill accent">Live</span> · cooldown reduction <span class="pill accent">Live</span> · route efficiency <span class="pill">Not implemented</span></td></tr>
+            <tr><td>Mining</td><td>Mining Drone</td><td>FIGHTER</td><td>Mining yield <span class="pill accent">Live</span></td></tr>
           </tbody>
         </table>
       </div>
-      <p style="font-size:0.85rem;color:var(--text-faint);">12 of the 57 (all three grades of the Mining Drone, Tactical Data Link, Hull Patch Bay and Warp Nav Computer) are sold but do not yet apply any numeric effect.</p>
+      <p style="font-size:0.85rem;color:var(--text-faint);">9 of the 90 (three grades each of the Tactical Data Link, Hull Patch Bay and Warp Nav Calculator) have no effect yet, so trade ports do not sell them. The Mining Drone and Cargo Bay Module have had live effects and been on sale since 2026-10-14.</p>
 
       <h2>The 10 minerals</h2>
       <p>In order of rarity: Ferrite → Silicate → Carbonaceous → Nickel → Titanium → Platinum → Energy Crystal → Orichalcum → Neutronium → Voidstone. Base prices rise from 10 to 420. They are consumed by shipyard upgrades.</p>
 
       <h2>Shipyard upgrades</h2>
       <p>
-        Pick one of five slots — hull armor, shield cells, engine core, weapon mods or energy — and spend a primary mineral (60%) and a secondary mineral (40%)
-        to raise its level. The amount needed grows as <code>5 × next level − 2</code> (level 1 = 3, level 8 = 38), and the maximum upgrade level is capped
-        by your pilot combat level (≤14 → +5 · ≤30 → +8 · ≤50 → +12 · above → +15). Each level adds fixed bonuses such as max HP +50,
-        max shield +30 and turn rate +3%, and laser and missile weapons also gain damage, reload and range bonuses.
+        Upgrades are saved <strong>per ship</strong> and cannot be transferred to another ship (reworked 2026-10-10). There are eight upgrade tracks — hull HP · shield ·
+        turn speed · laser damage · laser fire rate · missile damage · missile fire rate · cargo hold — and each level costs both credits and minerals.
+        Per-level effects and costs depend on the ship's tier: fully upgrading a ship brings it to about 160% of its original stats (about 87.5% of the next tier's base model),
+        for a total cost of about 80% of the next tier's purchase price.
+      </p>
+      <p>
+        The maximum upgrade level is the lowest of three caps: your pilot level, the Shipyard facility level and the ship's tier.
+        Pilot level caps: Lv 15 or below → +5 · 29 or below → +8 · 43 or below → +10 · 59 or below → +12 · above → +15.
       </p>
 
       <div class="callout note">
-        <strong>Planet ownership deeds (102 types)</strong>
-        The largest share of any item category (most of the 129 luxury goods). There is one for each of the 21 core planets plus about 45
+        <strong>Planet ownership deeds (99 types)</strong>
+        The largest group in any item category (most of the 126 luxury goods). There is one for each of the 21 core planets and 78
         Synth planets. Fixed at 12,000 cr and not resellable — buying one makes that planet the property of the player's clan.
       </div>
 

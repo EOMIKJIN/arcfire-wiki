@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>스킬 — 아크파이어 위키</title>
-<meta name="description" content="아크파이어의 전투·항법·무역·함대 4개 계열, 45개 스킬 전체 목록과 효과" />
+<meta name="description" content="아크파이어의 전투·항법·무역·함대 4개 계열, 57개 스킬 전체 목록과 효과" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
 <link rel="stylesheet" href="assets/style.css" />
@@ -65,7 +65,7 @@
       <h1 class="page-title">스킬</h1>
       <p class="page-lede">
         허브의 「연구소(Research Lab)」에서 파일럿 레벨과 선행 스킬 조건을 소비해 배우는 SP 기반 특성 트리다.
-        전투·항법·무역·함대 네 계열, 계열마다 1~5티어로 나뉘며 총 <strong>45개</strong>다. 상위 티어일수록
+        전투·항법·무역·함대 네 계열, 계열마다 1~7티어로 나뉘며 총 <strong>57개</strong>다(6~7티어는 기존 스킬을 한 번 더 강화하는 「Ⅱ」 스킬). 상위 티어일수록
         레벨 요구치가 높고 선행 스킬을 요구해 나무 형태로 갈라진다.
       </p>
 
@@ -77,12 +77,12 @@
 
       <div class="callout note">
         <strong>가동 상태 (2026-10-05 갱신)</strong>
-        게임 안 스킬 트리 배지(<code>skillRuntimeStatus.ts</code>) 기준 <strong>45개 중 44개가 「완료」</strong> — 배우면 전투·이동·무역·함대
+        게임 안 스킬 트리 배지(<code>skillRuntimeStatus.ts</code>) 기준 <strong>57개 중 56개가 「완료」</strong> — 배우면 전투·이동·무역·함대
         수치가 실제로 바뀐다. 자동전투 스킬의 쿨다운·지속시간은 <code>skill_auto_combat_policy.csv</code>(1턴 = 8초)로 조정된다.
         <strong>웜홀 생성기</strong>만 「부분」 <span class="pill warm">부분</span> — 워프 시 1홉 건너뛰기는 동작하고, 영구 포탈은 보류 중이다.
       </div>
 
-      <h2 id="combat">전투 (Combat) — 12개</h2>
+      <h2 id="combat">전투 (Combat) — 17개</h2>
       <p>피해량·방어·즉발 전투 스킬 계열. 초반 <code>double_shot</code>은 신규 플레이어에게 무료로 지급된다.</p>
       <div class="table-wrap">
         <table>
@@ -100,11 +100,16 @@
             <tr><td>나노봇 수복</td><td class="num">4</td><td class="num">32</td><td>반응 장갑</td><td>턴마다 손실 HP의 5% 재생</td></tr>
             <tr><td>싱귤래리티 포</td><td class="num">5</td><td class="num">50</td><td>다중 타겟팅</td><td>특이점 생성 — 적 흡인 + 범위 피해</td></tr>
             <tr><td>절대 방어 체계</td><td class="num">5</td><td class="num">55</td><td>나노봇 수복</td><td>8초간 전 피해 완전 무효</td></tr>
+            <tr><td>반응 장갑 Ⅱ</td><td class="num">6</td><td class="num">34</td><td>반응 장갑</td><td>피격 데미지 추가 −10%(합산 상한 적용)</td></tr>
+            <tr><td>실드 과부하 Ⅱ</td><td class="num">6</td><td class="num">42</td><td>실드 과부하</td><td>최대 실드 추가 +15%</td></tr>
+            <tr><td>장갑 관통 Ⅱ</td><td class="num">6</td><td class="num">46</td><td>장갑 관통</td><td>적 장갑 추가 −5</td></tr>
+            <tr><td>플라즈마 포 Ⅱ</td><td class="num">7</td><td class="num">52</td><td>플라즈마 포</td><td>실드 관통 추가 10%</td></tr>
+            <tr><td>나노봇 수복 Ⅱ</td><td class="num">7</td><td class="num">57</td><td>나노봇 수복</td><td>턴마다 손실 HP의 3% 추가 재생</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h2 id="navigation">항법 (Navigation) — 13개</h2>
+      <h2 id="navigation">항법 (Navigation) — 14개</h2>
       <p>이동·은신·연료 효율 계열. 연료 절감 3종은 합산 상한 50%가 걸린다(성계 개척자의 +100%도 50%로 잘림).</p>
       <div class="table-wrap">
         <table>
@@ -123,11 +128,12 @@
             <tr><td>궤도 슬링 증폭</td><td class="num">4</td><td class="num">34</td><td>중력 가속</td><td>연료 효율 +15%</td></tr>
             <tr><td>성계 개척자</td><td class="num">4</td><td class="num">35</td><td>웜홀 탐색기</td><td>미탐사 항로 연료 효율 +100%(상한 50%)</td></tr>
             <tr><td>웜홀 생성기</td><td class="num">5</td><td class="num">52</td><td>웜홀 탐색기</td><td>워프 시 1홉 스킵(보류 시 영구 포탈) <span class="pill warm">부분</span></td></tr>
+            <tr><td>정찰 센서 Ⅱ</td><td class="num">6</td><td class="num">40</td><td>정찰 센서</td><td>탐지 범위 추가 +10%</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h2 id="trade">무역 (Trade) — 9개</h2>
+      <h2 id="trade">무역 (Trade) — 11개</h2>
       <div class="table-wrap">
         <table>
           <thead><tr><th>이름</th><th class="num">티어</th><th class="num">요구 Lv</th><th>선행</th><th>효과</th></tr></thead>
@@ -141,11 +147,13 @@
             <tr><td>암시장 거물</td><td class="num">4</td><td class="num">35</td><td>밀수 루트</td><td>전 밀수품 거래 가능, 세금 면제</td></tr>
             <tr><td>투자자 협약</td><td class="num">4</td><td class="num">38</td><td>관세 면제 · 대량 거래</td><td>수리·정비 비용 면제</td></tr>
             <tr><td>시장 독점자</td><td class="num">5</td><td class="num">58</td><td>암시장 거물</td><td>본인 구매가 −30%(세계 시세는 불변)</td></tr>
+            <tr><td>협상 전문가 Ⅱ</td><td class="num">6</td><td class="num">40</td><td>협상 전문가</td><td>구매가 추가 −3% / 판매가 추가 +3%</td></tr>
+            <tr><td>대량 거래 Ⅱ</td><td class="num">7</td><td class="num">50</td><td>대량 거래</td><td>대량 판매 시 추가 수익 +5%</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h2 id="fleet">함대 (Fleet) — 11개</h2>
+      <h2 id="fleet">함대 (Fleet) — 15개</h2>
       <div class="table-wrap">
         <table>
           <thead><tr><th>이름</th><th class="num">티어</th><th class="num">요구 Lv</th><th>선행</th><th>효과</th></tr></thead>
@@ -161,6 +169,10 @@
             <tr><td>전술 링크</td><td class="num">4</td><td class="num">40</td><td>함대 지휘 · 긴급 탈출</td><td>시너지 스킬 보유 시 전투 보너스 +5%</td></tr>
             <tr><td>항모 프로토콜</td><td class="num">4</td><td class="num">42</td><td>항모 지휘관 · 긴급 탈출</td><td>함재기·드론 피해 +50%</td></tr>
             <tr><td>오버로드의 위엄</td><td class="num">5</td><td class="num">60</td><td>항모 지휘관</td><td>아군 명중 +4 / 적 명중 −4</td></tr>
+            <tr><td>중장 대형</td><td class="num">6</td><td class="num">38</td><td>기본 대형</td><td>기함 장갑 추가 +5</td></tr>
+            <tr><td>함대 지휘 Ⅱ</td><td class="num">6</td><td class="num">44</td><td>함대 지휘</td><td>파티 명중 추가 +2</td></tr>
+            <tr><td>윙맨 시너지 Ⅱ</td><td class="num">6</td><td class="num">48</td><td>윙맨 시너지</td><td>무기 재장전 시간 추가 −5%(합산 상한 적용)</td></tr>
+            <tr><td>항모 프로토콜 Ⅱ</td><td class="num">7</td><td class="num">56</td><td>항모 프로토콜</td><td>함재기·드론 피해 추가 +25%</td></tr>
           </tbody>
         </table>
       </div>

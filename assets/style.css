@@ -476,7 +476,7 @@ td.num, th.num { text-align: right; }
 }
 .callout.note { border-left: 3px solid var(--accent); }
 .callout.warn { border-left: 3px solid var(--warm); background: var(--warm-soft); }
-.callout strong { display: block; margin-bottom: 3px; }
+.callout > strong:first-child { display: block; margin-bottom: 3px; }
 
 /* ---------- 전체 데이터 테이블 ---------- */
 .dt-wrap { margin: 1.2em 0 1.8em; }

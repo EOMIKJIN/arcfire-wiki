@@ -1,1 +1,1 @@
-window.WIKI_META = {"builtAt":"2026-10-05","counts":{"planets":21,"captains":298,"ships":293,"items":290,"weapons":103,"missions":104,"attendants":103}};
+window.WIKI_META = {"builtAt":"2026-10-15","counts":{"planets":21,"captains":324,"ships":327,"items":320,"weapons":99,"missions":106,"attendants":100}};

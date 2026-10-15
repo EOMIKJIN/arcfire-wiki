@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>함선 — 아크파이어 위키</title>
-<meta name="description" content="플레이어 함급 12종과 6개 선체 원형, NPC 함대 구조" />
+<meta name="description" content="플레이어 함급 13단계와 6개 선체 원형, NPC 함대 구조" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
 <link rel="stylesheet" href="assets/style.css" />
@@ -60,45 +60,46 @@
       <div class="eyebrow">전력 · 함선</div>
       <h1 class="page-title">함선</h1>
       <p class="page-lede">
-        플레이어는 시작 정찰함부터 최상위 「아펙스 레전드」까지 12단계 함급을 조선소에서 구매하며 성장한다.
-        NPC는 293종의 함선이 존재하지만 실제 선체 원형은 6종뿐이며, 이름과 진영·역할만 다르다.
+        플레이어는 시작 정찰함부터 최상위 「아펙스 레전드」까지 13단계 함급을 조선소에서 구매하며 성장한다.
+        이 위키에 실린 함선은 327척이지만 실제 선체 원형은 6종뿐이며, 이름과 진영·역할만 다르다.
       </p>
 
       <h2>플레이어 함급 사다리</h2>
-      <p>조선소 상점 12등급(<code>capital_ship_trade_listing_policy.csv</code>). 구축함부터는 <strong>격투형(기본 라인)과 정찰형(대체 라인)</strong>이 같은 등급에 함께 진열된다 — 정찰형은 HP·실드가 낮은 대신 기동형 선체를 쓴다. 가격·요구 레벨은 <code>capital_hull_purchase_policy.csv</code>.</p>
+      <p>조선소 상점 13단계(<code>capital_ship_trade_listing_policy.csv</code>). 2026-10-13에 스트라이커와 구축함 사이 중간 단계 「코르벳 Mk.I」가 추가됐다. 구축함부터는 <strong>격투형(기본 라인)과 정찰형(대체 라인)</strong>이 같은 등급에 함께 진열된다 — 정찰형은 HP·실드가 낮은 대신 기동형 선체를 쓴다. 가격·요구 레벨은 <code>capital_hull_purchase_policy.csv</code>.</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th>이미지</th><th>함급 (기본 / 대체)</th><th class="num">요구 Lv</th><th class="num">HP</th><th class="num">실드</th><th class="num">장갑</th><th>선체</th><th class="num">가격(cr)</th></tr></thead>
           <tbody>
             <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_scout_ship.png" alt="기본전함 레인저 CM.I" /></td><td>기본전함 레인저 CM.I</td><td class="num">1</td><td class="num">72</td><td class="num">88</td><td class="num">11</td><td>patrol</td><td class="num">0 (기본 지급)</td></tr>
             <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/ship_001.png" alt="기본전함 파이터 Mk.I" /></td><td>기본전함 파이터 Mk.I</td><td class="num">1</td><td class="num">560</td><td class="num">210</td><td class="num">16</td><td>line</td><td class="num">0 (기본 지급)</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_frigate_mk2.png" alt="스트라이커 Mk.II" /></td><td>스트라이커 Mk.II</td><td class="num">7</td><td class="num">400</td><td class="num">95</td><td class="num">9</td><td>raider</td><td class="num">250,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_destroyer_mk1.png" alt="가디언 구축함" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_hunter_mk1.png" alt="헌터 구축함" /></td><td>가디언 구축함 / 헌터 구축함</td><td class="num">15</td><td class="num">600 / 450</td><td class="num">250 / 125</td><td class="num">18 / 10</td><td>patrol / raider</td><td class="num">1,200,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_destroyer_mk2.png" alt="가디언 구축함 Mk.II" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_hunter_mk2.png" alt="헌터 구축함 Mk.II" /></td><td>가디언 구축함 Mk.II / 헌터 구축함 Mk.II</td><td class="num">25</td><td class="num">580 / 480</td><td class="num">220 / 135</td><td class="num">17 / 11</td><td>line / raider</td><td class="num">1,800,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_cruiser_mk1.png" alt="오라클 순양함" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_shadow_cruiser_mk1.png" alt="섀도우 순양함" /></td><td>오라클 순양함 / 섀도우 순양함</td><td class="num">31</td><td class="num">600 / 470</td><td class="num">235 / 140</td><td class="num">17 / 11</td><td>siege / patrol</td><td class="num">5,000,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_cruiser_mk2.png" alt="오라클 순양함 Mk.II" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_shadow_cruiser_mk2.png" alt="섀도우 순양함 Mk.II" /></td><td>오라클 순양함 Mk.II / 섀도우 순양함 Mk.II</td><td class="num">40</td><td class="num">610 / 490</td><td class="num">240 / 148</td><td class="num">17 / 12</td><td>siege / patrol</td><td class="num">7,500,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_battlecruiser_mk1.png" alt="소버린 순양전함" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_raptor_bc_mk1.png" alt="랩터 순양전함" /></td><td>소버린 순양전함 / 랩터 순양전함</td><td class="num">52</td><td class="num">620 / 500</td><td class="num">245 / 155</td><td class="num">18 / 12</td><td>siege / raider</td><td class="num">15,000,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_battlecruiser_apex.png" alt="소버린 순양전함·완성형" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_raptor_bc_apex.png" alt="랩터 순양전함·완성형" /></td><td>소버린 순양전함·완성형 / 랩터 순양전함·완성형</td><td class="num">60</td><td class="num">640 / 520</td><td class="num">255 / 165</td><td class="num">18 / 13</td><td>siege / raider</td><td class="num">강화 정점</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_dreadnought_mk1.png" alt="드레드노트" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_phantom_dreadnought_mk1.png" alt="팬텀 드레드노트" /></td><td>드레드노트 / 팬텀 드레드노트</td><td class="num">65</td><td class="num">680 / 540</td><td class="num">265 / 175</td><td class="num">19 / 13</td><td>siege / patrol</td><td class="num">25,000,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_frigate_mk2.png" alt="스트라이커 Mk.II" /></td><td>스트라이커 Mk.II</td><td class="num">7</td><td class="num">400</td><td class="num">95</td><td class="num">9</td><td>raider</td><td class="num">75,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/ship_001.png" alt="코르벳 Mk.I" /></td><td>코르벳 Mk.I</td><td class="num">7</td><td class="num">780</td><td class="num">300</td><td class="num">17</td><td>line</td><td class="num">60,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_destroyer_mk1.png" alt="가디언 구축함" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_hunter_mk1.png" alt="헌터 구축함" /></td><td>가디언 구축함 / 헌터 구축함</td><td class="num">16</td><td class="num">1,024 / 768</td><td class="num">384 / 192</td><td class="num">18 / 10</td><td>patrol / raider</td><td class="num">270,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_destroyer_mk2.png" alt="가디언 구축함 Mk.II" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_hunter_mk2.png" alt="헌터 구축함 Mk.II" /></td><td>가디언 구축함 Mk.II / 헌터 구축함 Mk.II</td><td class="num">22</td><td class="num">1,385 / 1,146</td><td class="num">519 / 319</td><td class="num">17 / 11</td><td>line / raider</td><td class="num">380,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_cruiser_mk1.png" alt="오라클 순양함" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_shadow_cruiser_mk1.png" alt="섀도우 순양함" /></td><td>오라클 순양함 / 섀도우 순양함</td><td class="num">28</td><td class="num">1,872 / 1,467</td><td class="num">702 / 418</td><td class="num">17 / 11</td><td>siege / patrol</td><td class="num">810,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_cruiser_mk2.png" alt="오라클 순양함 Mk.II" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_shadow_cruiser_mk2.png" alt="섀도우 순양함 Mk.II" /></td><td>오라클 순양함 Mk.II / 섀도우 순양함 Mk.II</td><td class="num">35</td><td class="num">2,532 / 2,034</td><td class="num">950 / 586</td><td class="num">17 / 12</td><td>siege / patrol</td><td class="num">1,340,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_battlecruiser_mk1.png" alt="소버린 순양전함" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_raptor_bc_mk1.png" alt="랩터 순양전함" /></td><td>소버린 순양전함 / 랩터 순양전함</td><td class="num">42</td><td class="num">3,424 / 2,761</td><td class="num">1,284 / 812</td><td class="num">18 / 12</td><td>siege / raider</td><td class="num">3,210,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_battlecruiser_apex.png" alt="소버린 순양전함·완성형" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_raptor_bc_apex.png" alt="랩터 순양전함·완성형" /></td><td>소버린 순양전함·완성형 / 랩터 순양전함·완성형</td><td class="num">50</td><td class="num">4,630 / 3,762</td><td class="num">1,736 / 1,123</td><td class="num">18 / 13</td><td>siege / raider</td><td class="num">4,770,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_dreadnought_mk1.png" alt="드레드노트" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_phantom_dreadnought_mk1.png" alt="팬텀 드레드노트" /></td><td>드레드노트 / 팬텀 드레드노트</td><td class="num">58</td><td class="num">6,261 / 4,972</td><td class="num">2,348 / 1,550</td><td class="num">19 / 13</td><td>siege / patrol</td><td class="num">10,170,000</td></tr>
             <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_super_capital_mk1.png" alt="슈퍼캐피털" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_phantom_super_capital_mk1.png" alt="팬텀 슈퍼캐피털" /></td><td>슈퍼캐피털 / 팬텀 슈퍼캐피털</td><td class="num">72</td><td class="num">800 / 580</td><td class="num">295 / 190</td><td class="num">20 / 14</td><td>line / raider</td><td class="num">50,000,000</td></tr>
             <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_apex_legend_mk1.png" alt="아펙스 레전드" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="img/ship/Player_phantom_apex_legend_mk1.png" alt="팬텀 레전드" /></td><td>아펙스 레전드 / 팬텀 레전드</td><td class="num">80</td><td class="num">880 / 620</td><td class="num">320 / 205</td><td class="num">21 / 15</td><td>line / patrol</td><td class="num">100,000,000</td></tr>
           </tbody>
         </table>
       </div>
-      <p>「완성형」은 구매가 아니라 순양전함을 끝까지 강화한 정점 단계다. 별도로 웨이브 디펜스 테스트 전용 「웨이브 디펜스 전함」(HP 3,700·실드 1,500)이 상점에 상시 진열된다.</p>
+      <p>「완성형」은 순양전함 라인의 정점 단계로, 지금은 별도 가격으로 구매할 수 있다. 슈퍼캐피털·아펙스 레전드는 조선소 사다리 안내에 나오지 않는 장기 목표 함선이다. 「생존포드」는 상점에서 팔지 않는 비상용 선체다.</p>
 
       <h2>플레이어 함선 갤러리</h2>
       <div id="player-ship-gallery" class="gallery ships"></div>
 
       <h2>선체 6원형</h2>
-      <p>플레이어·NPC 함선 293척 전체가 아래 6개 선체 중 하나를 공유한다.</p>
+      <p>이 위키에 실린 플레이어·NPC 함선 327척 전체가 아래 6개 선체 중 하나를 공유한다.</p>
       <div class="card-grid">
-        <div class="card"><h4>patrol</h4><p>가장 많이 쓰이는 경·중형 순찰 프레임 (192척)</p></div>
-        <div class="card"><h4>raider</h4><p>기동형 습격 프레임 (35척)</p></div>
-        <div class="card"><h4>line</h4><p>플레이어 최상위 라인의 주력함 프레임 (30척)</p></div>
-        <div class="card"><h4>siege</h4><p>순양함~드레드노트급 공성 프레임 (15척)</p></div>
-        <div class="card"><h4>research</h4><p>「블루 플릿」 등 연구/모의전용 프레임 (11척)</p></div>
-        <div class="card"><h4>carrier_light</h4><p>「서바이벌 포드」 경량 캐리어 (10척)</p></div>
+        <div class="card"><h4>patrol</h4><p>가장 많이 쓰이는 경·중형 순찰 프레임 (161척)</p></div>
+        <div class="card"><h4>line</h4><p>플레이어 최상위 라인의 주력함 프레임 (74척)</p></div>
+        <div class="card"><h4>raider</h4><p>기동형 습격 프레임 (60척)</p></div>
+        <div class="card"><h4>siege</h4><p>순양함~드레드노트급 공성 프레임 (13척)</p></div>
+        <div class="card"><h4>carrier_light</h4><p>「생존포드」 등 경량 캐리어 (10척)</p></div>
+        <div class="card"><h4>research</h4><p>「블루 플릿」 등 연구 프레임 (9척)</p></div>
       </div>
 
       <h2>NPC 함대와 진영</h2>
@@ -108,19 +109,19 @@
         그리고 분쟁지역 클랜 「나이트폴(홍월/Crimson Moon)」까지 총 11개 본성계 소속이 등록돼 있다.
       </p>
 
-      <h2 id="all-ships">전체 함선 목록 — 293척</h2>
-      <p><code>npc_ai_ships.csv</code> 전체다. 플레이어 12함급을 포함해 모든 NPC 함선의 본성계·선체·스탯을 담았다.</p>
+      <h2 id="all-ships">전체 함선 목록 — 327척</h2>
+      <p><code>npc_ai_ships.csv</code>에서 퀘스트 전용 함선·테스트/목업 함선·웨이브 예비 함선을 뺀 목록이다. 플레이어 함급을 포함해 본성계·선체·스탯을 담았다.</p>
       <div id="ship-table"></div>
 
-      <h2>웨이브 디펜스 침입자</h2>
+      <h2>웨이브 디펜스의 적</h2>
       <p>
-        웨이브 디펜스 모드는 <code>npc_wave_invader_t1</code>부터 <code>t30</code>까지 30단계 침입자를 쓴다.
-        모두 기초 스탯(HP 80·실드 40·장갑 8)은 동일하고, 장착 무기만 티어가 오를수록 기본 레이저에서
-        후반 「싱귤래리티/코스메가 로켓」급으로 강해진다 — <a href="combat.html#tcl">전투 난이도는 스탯이 아니라 무기로 오른다</a>.
+        웨이브 디펜스의 적은 그 행성에 배정된 적 함장들의 함선으로 편성된다(2026-10-07부터 핵심 21행성 전부).
+        30단계 공용 침입자(<code>npc_wave_invader_t1~t30</code>)는 행성 전용 적이 없을 때만 쓰는 예비 함선이라 이 위키 목록에서는 뺐다.
+        난이도가 오르는 방식은 <a href="combat.html#tcl">전투 · 분쟁</a> 참고.
       </p>
 
       <h2>장비 슬롯</h2>
-      <p>모든 함선은 <code>ARMOR · ENGINE · SYSTEM · EX_01</code> 4개 기본 슬롯을 가지며, <a href="items.html#equipment">57종 장비 카탈로그</a>에 따라 최대 <code>EX_04</code>·<code>FIGHTER</code>까지 확장된다.</p>
+      <p>모든 함선은 <code>ARMOR · ENGINE · SYSTEM · EX_01</code> 4개 기본 슬롯을 가지며, <a href="items.html#equipment">90종 장비 카탈로그</a>에 따라 최대 <code>EX_04</code>·<code>FIGHTER</code>까지 확장된다.</p>
 
           <section class="comments" id="comments">
         <h2>이 문서에 대한 의견</h2>

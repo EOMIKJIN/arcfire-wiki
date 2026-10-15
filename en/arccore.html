@@ -157,8 +157,8 @@
       </div>
       <p>Both personas share common rules: <strong>usually 2–3 sentences, up to 6 only when asked about the world</strong>. They never invent ships, quests, numbers or items they haven't observed, and they refuse requests for credits, unlocks, deployments or occupation.</p>
 
-      <h3>What you can ask about — 21 conversation topics</h3>
-      <p>Your sentence is matched to one of 21 topics by keyword hints, and each topic's CSV states "how far to answer and where to stop". Some actual rules:</p>
+      <h3>What you can ask about — 23 conversation topics</h3>
+      <p>Your sentence is matched to one of 23 topics by keyword hints, and each topic's CSV states "how far to answer and where to stop". Some actual rules:</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Topic</th><th>Example keywords</th><th>Answer rule</th></tr></thead>
@@ -178,7 +178,7 @@
           </tbody>
         </table>
       </div>
-      <p>The other nine (notices, trade port, shipyard, greetings, story, routes, misc. and so on) follow the same principle — <strong>state one observed fact, and never change the world directly.</strong></p>
+      <p>The other eleven (next-goal guidance, advice, notices, safety, trade port, shipyard, greetings, story, routes, miscellaneous and so on) follow the same principle — <strong>state one observed fact, and never change the world directly.</strong></p>
 
       <h3>How an answer is built</h3>
       <p>The server builds each answer in one of four response modes (react → lead → clue → hold).</p>
@@ -192,10 +192,10 @@
 
       <div class="callout warn">
         <strong>Local rule-based dialogue is live · cloud free generation is LIVE=false</strong>
-        The 21 topics, personas and four-mode response structure above <span class="pill accent">really run</span> on local CSVs and templates — fairly natural rule-based
+        The 23 topics, personas and four-mode response structure above <span class="pill accent">really run</span> on local CSVs and templates — fairly natural rule-based
         conversation already works without any cloud call. However, the <strong>cloud LLM path</strong> (Groq free tier + AWS Lambda) that produces fully free-form sentences
         is implemented in code but locked at <strong>LIVE=false</strong> according to the integrated design document — gated to switch on only after an API token is issued.
-        So for now it is "very natural reactions within 21 set topics", not yet "a free-generation chatbot you can ask anything".
+        So for now it is "very natural reactions within 23 set topics", not yet "a free-generation chatbot you can ask anything".
       </div>
 
       <h3>Safeguards</h3>

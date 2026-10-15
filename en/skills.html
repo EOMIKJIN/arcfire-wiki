@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Skills · ARCFIRE Wiki</title>
-<meta name="description" content="ARCFIRE's 45-skill SP talent tree across Combat, Navigation, Trade and Fleet, with tiers, requirements and effects." />
+<meta name="description" content="ARCFIRE's 57-skill SP talent tree across Combat, Navigation, Trade and Fleet, with tiers, requirements and effects." />
 <link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/skills.html" />
 <link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/skills.html" />
 <link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/skills.html" />
@@ -69,8 +69,9 @@
       <h1 class="page-title">Skills</h1>
       <p class="page-lede">
         An SP-based talent tree learned at the hub's Research Lab, gated by pilot level and prerequisite skills.
-        It has four branches — Combat, Navigation, Trade and Fleet — each split into tiers 1 to 5, for <strong>45 skills</strong> in total.
-        Higher tiers need higher levels and require earlier skills, so the tree branches out as you go.
+        It has four branches — Combat, Navigation, Trade and Fleet — each split into tiers 1 to 7, for <strong>57 skills</strong> in total
+        (tiers 6–7 are "II" skills that power up an existing skill a second time).
+        Higher tiers need higher levels and earlier skills, so the tree branches out as you go.
       </p>
 
       <div class="callout note">
@@ -81,12 +82,12 @@
 
       <div class="callout note">
         <strong>Status (updated 2026-10-05)</strong>
-        According to the in-game skill tree badges (<code>skillRuntimeStatus.ts</code>), <strong>44 of 45 skills are "Complete"</strong> — learning them really changes
+        According to the in-game skill tree badges (<code>skillRuntimeStatus.ts</code>), <strong>56 of 57 skills are "Complete"</strong> — learning them really changes
         combat, travel, trade and fleet numbers. Auto-combat skill cooldowns and durations are tuned by <code>skill_auto_combat_policy.csv</code> (1 turn = 8 seconds).
         Only the <strong>Wormhole Generator</strong> is "Partial" <span class="pill warm">Partial</span> — skipping one hop on warp works, while permanent portals are on hold.
       </div>
 
-      <h2 id="combat">Combat — 12 skills</h2>
+      <h2 id="combat">Combat — 17 skills</h2>
       <p>Damage, defense and active combat skills. The early <code>double_shot</code> is given free to new players.</p>
       <div class="table-wrap">
         <table>
@@ -104,11 +105,16 @@
             <tr><td>Nanobot Repair</td><td class="num">4</td><td class="num">32</td><td>Reactive Armor</td><td>Regenerates 5% of lost HP each turn</td></tr>
             <tr><td>Singularity Cannon</td><td class="num">5</td><td class="num">50</td><td>Multi-Targeting</td><td>Creates a singularity — pulls enemies in and deals area damage</td></tr>
             <tr><td>Absolute Defense</td><td class="num">5</td><td class="num">55</td><td>Nanobot Repair</td><td>Fully negates all damage for 8 seconds</td></tr>
+            <tr><td>Reactive Armor II</td><td class="num">6</td><td class="num">34</td><td>Reactive Armor</td><td>A further −10% damage taken (subject to the combined cap)</td></tr>
+            <tr><td>Shield Overload II</td><td class="num">6</td><td class="num">42</td><td>Shield Overload</td><td>A further +15% max shield</td></tr>
+            <tr><td>Armor Piercing II</td><td class="num">6</td><td class="num">46</td><td>Armor Piercing</td><td>A further −5 enemy armor</td></tr>
+            <tr><td>Plasma Cannon II</td><td class="num">7</td><td class="num">52</td><td>Plasma Cannon</td><td>A further 10% shield penetration</td></tr>
+            <tr><td>Nanobot Repair II</td><td class="num">7</td><td class="num">57</td><td>Nanobot Repair</td><td>Regenerates a further 3% of lost HP each turn</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h2 id="navigation">Navigation — 13 skills</h2>
+      <h2 id="navigation">Navigation — 14 skills</h2>
       <p>Travel, stealth and fuel-efficiency skills. The three fuel-saving skills share a combined cap of 50% (Stellar Pioneer's +100% is also clipped to 50%).</p>
       <div class="table-wrap">
         <table>
@@ -127,11 +133,12 @@
             <tr><td>Orbital Sling Amplifier</td><td class="num">4</td><td class="num">34</td><td>Gravity Boost</td><td>Fuel efficiency +15%</td></tr>
             <tr><td>Stellar Pioneer</td><td class="num">4</td><td class="num">35</td><td>Wormhole Seeker</td><td>Fuel efficiency +100% on unexplored routes (capped at 50%)</td></tr>
             <tr><td>Wormhole Generator</td><td class="num">5</td><td class="num">52</td><td>Wormhole Seeker</td><td>Skips one hop on warp (permanent portal on hold) <span class="pill warm">Partial</span></td></tr>
+            <tr><td>Recon Sensors II</td><td class="num">6</td><td class="num">40</td><td>Recon Sensors</td><td>A further +10% detection range</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h2 id="trade">Trade — 9 skills</h2>
+      <h2 id="trade">Trade — 11 skills</h2>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Name</th><th class="num">Tier</th><th class="num">Req. Lv</th><th>Prerequisite</th><th>Effect</th></tr></thead>
@@ -145,11 +152,13 @@
             <tr><td>Black Market Tycoon</td><td class="num">4</td><td class="num">35</td><td>Smuggling Route</td><td>Can trade all contraband, tax-free</td></tr>
             <tr><td>Investor Accord</td><td class="num">4</td><td class="num">38</td><td>Tariff Exemption · Bulk Trading</td><td>Repair and maintenance costs waived</td></tr>
             <tr><td>Market Monopolist</td><td class="num">5</td><td class="num">58</td><td>Black Market Tycoon</td><td>Your own buy prices −30% (world prices unchanged)</td></tr>
+            <tr><td>Expert Negotiator II</td><td class="num">6</td><td class="num">40</td><td>Expert Negotiator</td><td>A further −3% buy price / +3% sell price</td></tr>
+            <tr><td>Bulk Trading II</td><td class="num">7</td><td class="num">50</td><td>Bulk Trading</td><td>A further +5% profit on bulk sales</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h2 id="fleet">Fleet — 11 skills</h2>
+      <h2 id="fleet">Fleet — 15 skills</h2>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Name</th><th class="num">Tier</th><th class="num">Req. Lv</th><th>Prerequisite</th><th>Effect</th></tr></thead>
@@ -165,6 +174,10 @@
             <tr><td>Tactical Link</td><td class="num">4</td><td class="num">40</td><td>Fleet Command · Emergency Escape</td><td>Combat bonus +5% while holding synergy skills</td></tr>
             <tr><td>Carrier Protocol</td><td class="num">4</td><td class="num">42</td><td>Carrier Commander · Emergency Escape</td><td>Fighter and drone damage +50%</td></tr>
             <tr><td>Overlord's Majesty</td><td class="num">5</td><td class="num">60</td><td>Carrier Commander</td><td>Ally accuracy +4 / enemy accuracy −4</td></tr>
+            <tr><td>Heavy Formation</td><td class="num">6</td><td class="num">38</td><td>Basic Formation</td><td>A further +5 flagship armor</td></tr>
+            <tr><td>Fleet Command II</td><td class="num">6</td><td class="num">44</td><td>Fleet Command</td><td>A further +2 party accuracy</td></tr>
+            <tr><td>Wingman Synergy II</td><td class="num">6</td><td class="num">48</td><td>Wingman Synergy</td><td>A further −5% weapon reload time (subject to the combined cap)</td></tr>
+            <tr><td>Carrier Protocol II</td><td class="num">7</td><td class="num">56</td><td>Carrier Protocol</td><td>A further +25% fighter and drone damage</td></tr>
           </tbody>
         </table>
       </div>
