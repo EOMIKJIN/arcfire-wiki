@@ -8,11 +8,21 @@
     });
   }
 
+  /** 영어판(en/) 페이지는 데이터의 상대 이미지 경로 앞에 「../」를 붙인다 — 페이지에서 window.WIKI_ASSET_PREFIX 지정 */
+  window.wikiAsset = function (src) {
+    if (!src || /^(https?:|\/|data:)/.test(src)) return src;
+    return (window.WIKI_ASSET_PREFIX || "") + src;
+  };
+  var EN = (document.documentElement.lang || "").indexOf("en") === 0;
+  var T = EN
+    ? { search: "Search this table…", none: "No results", rows: "rows", of: "of", prev: "Prev", next: "Next" }
+    : { search: "이 표 안에서 검색…", none: "결과 없음", rows: "개", of: "전체", prev: "이전", next: "다음" };
+
   /** 썸네일 — 게임 에셋(img/...) 지연 로딩. 경로 없으면 빈 칸 */
   window.wikiThumb = function (src, alt, variant) {
     if (!src) return '<span class="dt-thumb dt-thumb-empty" aria-hidden="true"></span>';
     return '<img class="dt-thumb' + (variant ? ' dt-thumb-' + variant : '') + '" loading="lazy" decoding="async" src="' +
-      escapeHtml(src) + '" alt="' + escapeHtml(alt || '') + '" />';
+      escapeHtml(window.wikiAsset(src)) + '" alt="' + escapeHtml(alt || '') + '" />';
   };
 
   function renderRow(row, columns) {
@@ -41,7 +51,7 @@
     wrap.innerHTML =
       '<div class="dt-toolbar">' +
         '<div class="dt-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>' +
-        '<input type="text" placeholder="이 표 안에서 검색…" /></div>' +
+        '<input type="text" placeholder="' + T.search + '" /></div>' +
         '<div class="dt-count"></div>' +
       '</div>' +
       '<div class="table-wrap"><table><thead><tr>' +
@@ -76,15 +86,17 @@
 
       tbody.innerHTML = pageRows.length
         ? pageRows.map(function (row) { return renderRow(row, columns); }).join("")
-        : '<tr><td colspan="' + columns.length + '" style="color:var(--text-faint);text-align:center;padding:20px;">결과 없음</td></tr>';
+        : '<tr><td colspan="' + columns.length + '" style="color:var(--text-faint);text-align:center;padding:20px;">' + T.none + '</td></tr>';
 
-      countEl.textContent = (opts.label || "행") + " " + list.length + "개" + (data.length !== list.length ? " (전체 " + data.length + "개 중)" : "");
+      countEl.textContent = EN
+        ? (opts.label || "Rows") + ": " + list.length + (data.length !== list.length ? " (of " + data.length + ")" : "")
+        : (opts.label || "행") + " " + list.length + "개" + (data.length !== list.length ? " (전체 " + data.length + "개 중)" : "");
 
       if (totalPages > 1) {
         var parts = [];
-        parts.push('<button type="button" data-act="prev"' + (state.page === 0 ? " disabled" : "") + '>이전</button>');
+        parts.push('<button type="button" data-act="prev"' + (state.page === 0 ? " disabled" : "") + '>' + T.prev + '</button>');
         parts.push('<span class="dt-page-label">' + (state.page + 1) + ' / ' + totalPages + '</span>');
-        parts.push('<button type="button" data-act="next"' + (state.page >= totalPages - 1 ? " disabled" : "") + '>다음</button>');
+        parts.push('<button type="button" data-act="next"' + (state.page >= totalPages - 1 ? " disabled" : "") + '>' + T.next + '</button>');
         pagerEl.innerHTML = parts.join("");
         pagerEl.style.display = "flex";
       } else {

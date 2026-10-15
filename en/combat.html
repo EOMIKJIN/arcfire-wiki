@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Combat · Conflict · ARCFIRE Wiki</title>
+<meta name="description" content="ARCFIRE's four combat axes, target combat level (TCL), drone and fighter combat, contested zones, capital defense and Stellium annexation." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/combat.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/combat.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/combat.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="combat">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat" class="active"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">Systems · Combat</div>
+      <h1 class="page-title">Combat · Conflict</h1>
+      <p class="page-lede">
+        Combat is not a single system but four distinct axes, and the galaxy's balance of power shifts separately through an automatic
+        rotation every 20 minutes. This page covers those four axes and the contested-zone system that changes the map.
+      </p>
+
+      <h2>The four combat axes</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Axis</th><th>Player experience</th><th>Trigger</th><th>Difficulty input</th></tr></thead>
+          <tbody>
+            <tr><td><strong>A. Hub real-time combat</strong></td><td>Engage immediately after readying when enemies are in orbit</td><td>A hostile captain in orbit</td><td>TCL → weapon loadout only</td></tr>
+            <tr><td><strong>B. Wave defense (9 rounds)</strong></td><td>Invasions that grow 3 → 6 → 12 after a countdown</td><td>Contested-zone turn · assault · mission-assigned</td><td>TCL → invader tier (only when the planet has no dedicated roster)</td></tr>
+            <tr><td><strong>C. In-transit encounters</strong></td><td>Random encounters while traveling between systems</td><td>Probability roll · certain quests</td><td>Encounter target level function</td></tr>
+            <tr><td><strong>D. Quest combat</strong></td><td>Destroy one designated enemy while traveling</td><td>Mission combat operation table</td><td>Inherits the anchor planet's TCL and ship CSV</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="tcl">Combat level (TCL) — what difficulty actually means</h2>
+      <p>
+        Every planet has a <strong>target combat level (TCL)</strong> between 1 and 60. But TCL actually changes only
+        <strong>enemy weapon loadouts</strong> and <strong>encounter/wave invader tiers</strong>. Enemy ship HP, armor and shields are fixed in the ship CSV
+        regardless of TCL, and all 30 wave invader tiers share HP 80 · shield 40 · armor 8 —
+        the sense that the game gets harder later on comes mostly from <strong>weapon swaps</strong> and a growing <strong>number of simultaneous enemies</strong>.
+      </p>
+      <div class="callout warn">
+        <strong>Four level scales run separately</strong>
+        TCL (for weapons and encounter selection) · recommended pilot level (for pacing) · the level shown on the map (cosmetic, often out of line with TCL) ·
+        actual captain and ship combat levels (not rescaled by TCL) — these four can show different numbers for the same planet.
+        Example: Helios Core shows level 9 on the map, but its actual TCL is 37.
+      </div>
+
+      <h2>Drone and fighter combat</h2>
+      <p>
+        Drones do not hover in front of the ship in advance. They wait, then <strong>launch one at a time from the bay → fly straight at the enemy → circle once near the target → ram it</strong>,
+        with a fiery explosion on impact (improved 2026-10-03). Fighters <strong>launch from the carrier → attack several times in a figure-eight path → return to the carrier (at its current position) when time runs out</strong>.
+        The existing missile Bézier curves cannot express this, so they are implemented separately with fixed slot pools of 8 drones and 8 fighters — see <a href="weapons.html">Weapons</a>.
+      </p>
+
+      <h2 id="territorial">Contested zones — why "conflict" splits three ways</h2>
+      <p>
+        The galaxy map moves through a campaign rotation that visits <strong>one planet every 20 minutes</strong> (the sub-core only checks every 60 seconds
+        whether "it's time"). However, the word "contested zone" is used with three different definitions in the code — a structural flaw identified
+        as the root cause of the map changing while the economy and the feel of play fail to keep up.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Definition</th><th>Used for</th><th>Scope</th></tr></thead>
+          <tbody>
+            <tr><td><strong>A. Seed conflict</strong></td><td>Daily "aftermath" stat changes · skipping internal affairs (WDI/rebellion)</td><td><strong>Only 3</strong>: Draco, Omega and Shadow Market</td></tr>
+            <tr><td><strong>B. Campaign conflict</strong></td><td>20-minute rotation · NPC auto-battles · map ring markers</td><td>A's three + Helios · Titan + dynamic promotions</td></tr>
+            <tr><td><strong>C. Dynamic conflict</strong></td><td>Filling the pool (8–12) · war spoils eligibility</td><td>Planets promoted as front lines or strategic neutrals</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>As a result, "aftermath" (planet stat changes) applies only to three planets, leaving a blind spot where visibly front-line planets like Helios and Titan get neither aftermath nor internal-affairs changes.</p>
+      <p>Cooldown formula: <code>demotion cooldown laps × active pool size × 1200 s</code>. With a pool of 8, about 5.3 hours.</p>
+
+      <h2>Capital defense</h2>
+      <p>
+        Each of the four faction lanes has one "capital" planet — New Eden in the west (Stellium), Arcfire Core Prime in the east (Crimson),
+        while the south and north (Mercurium/Aurelium) are only designated as Synth planets for future expansion. While at least one neighboring system is friendly,
+        the capital stays <strong>fully immune</strong> (auto-invasion, neutral declaration and pool promotion are all blocked). Only when friendly neighbors drop to zero and a
+        hostile neighbor appears does it become <strong>open to siege</strong> — and even then the defender gets a favorable multiplier. This system applies only to auto-battles
+        and does not affect the win/loss rules of wave battles the player fights directly.
+      </p>
+
+      <h2 id="annex">Stellium annexation — turning neutral planets blue</h2>
+      <p>
+        Players can annex a <strong>neutral core planet</strong> into Stellium Union (blue) territory (re-enabled 2026-10-03).
+        When every condition is met, a "Join the Stellium Union" button opens in the planet info panel.
+      </p>
+      <ul>
+        <li>You must be <strong>landed</strong> on that planet</li>
+        <li>The planet has a <strong>Defense Satellite of Lv 1 or higher</strong></li>
+        <li>At least one neighboring system is <strong>friendly blue territory</strong></li>
+        <li>Pay <strong>8,000 cr</strong> from the blue shared vault (not your wallet)</li>
+        <li>Endgame planets (Eternity Throne · Genesis Origin) are excluded</li>
+      </ul>
+      <p>Annexation applies only once, when you confirm it in the info panel (never automatically on tick or boot), and the vault payment is refunded on failure. Policy values are tuned in <code>tables/balance/stellium_annex_policy.csv</code>.</p>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+
+</body>
+</html>

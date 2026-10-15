@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ships · ARCFIRE Wiki</title>
+<meta name="description" content="ARCFIRE's 12-tier player hull ladder, six hull archetypes, NPC fleets and the full list of 293 ships." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/ships.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/ships.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/ships.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="ships">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships" class="active"><span class="dot"></span>Ships</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">Power · Ships</div>
+      <h1 class="page-title">Ships</h1>
+      <p class="page-lede">
+        Players grow by buying hulls at the shipyard across 12 classes, from the starting scout up to the top-tier "Apex Legend".
+        There are 293 NPC ships, but only six actual hull archetypes underneath — they differ only in name, faction and role.
+      </p>
+
+      <h2>Player hull ladder</h2>
+      <p>Twelve shipyard tiers. From destroyers onward, <strong>a brawler (main line) and a scout (alternate line)</strong> are listed together at the same tier — scouts have lower HP and shields but use more agile hulls.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Image</th><th>Class (main / alternate)</th><th class="num">Req. Lv</th><th class="num">HP</th><th class="num">Shield</th><th class="num">Armor</th><th>Hull</th><th class="num">Price (cr)</th></tr></thead>
+          <tbody>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_scout_ship.png" alt="Starter Ranger CM.I" /></td><td>Starter Ranger CM.I</td><td class="num">1</td><td class="num">72</td><td class="num">88</td><td class="num">11</td><td>patrol</td><td class="num">0 (starter)</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/ship_001.png" alt="Starter Fighter Mk.I" /></td><td>Starter Fighter Mk.I</td><td class="num">1</td><td class="num">560</td><td class="num">210</td><td class="num">16</td><td>line</td><td class="num">0 (starter)</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_frigate_mk2.png" alt="Striker Mk.II" /></td><td>Striker Mk.II</td><td class="num">7</td><td class="num">400</td><td class="num">95</td><td class="num">9</td><td>raider</td><td class="num">250,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_destroyer_mk1.png" alt="Guardian Destroyer" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_hunter_mk1.png" alt="Hunter Destroyer" /></td><td>Guardian Destroyer / Hunter Destroyer</td><td class="num">15</td><td class="num">600 / 450</td><td class="num">250 / 125</td><td class="num">18 / 10</td><td>patrol / raider</td><td class="num">1,200,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_destroyer_mk2.png" alt="Guardian Destroyer Mk.II" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_hunter_mk2.png" alt="Hunter Destroyer Mk.II" /></td><td>Guardian Destroyer Mk.II / Hunter Destroyer Mk.II</td><td class="num">25</td><td class="num">580 / 480</td><td class="num">220 / 135</td><td class="num">17 / 11</td><td>line / raider</td><td class="num">1,800,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_cruiser_mk1.png" alt="Oracle Cruiser" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_shadow_cruiser_mk1.png" alt="Shadow Cruiser" /></td><td>Oracle Cruiser / Shadow Cruiser</td><td class="num">31</td><td class="num">600 / 470</td><td class="num">235 / 140</td><td class="num">17 / 11</td><td>siege / patrol</td><td class="num">5,000,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_cruiser_mk2.png" alt="Oracle Cruiser Mk.II" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_shadow_cruiser_mk2.png" alt="Shadow Cruiser Mk.II" /></td><td>Oracle Cruiser Mk.II / Shadow Cruiser Mk.II</td><td class="num">40</td><td class="num">610 / 490</td><td class="num">240 / 148</td><td class="num">17 / 12</td><td>siege / patrol</td><td class="num">7,500,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_battlecruiser_mk1.png" alt="Sovereign Battlecruiser" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_raptor_bc_mk1.png" alt="Raptor Battlecruiser" /></td><td>Sovereign Battlecruiser / Raptor Battlecruiser</td><td class="num">52</td><td class="num">620 / 500</td><td class="num">245 / 155</td><td class="num">18 / 12</td><td>siege / raider</td><td class="num">15,000,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_battlecruiser_apex.png" alt="Sovereign Battlecruiser Apex" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_raptor_bc_apex.png" alt="Raptor Battlecruiser Apex" /></td><td>Sovereign Battlecruiser Apex / Raptor Battlecruiser Apex</td><td class="num">60</td><td class="num">640 / 520</td><td class="num">255 / 165</td><td class="num">18 / 13</td><td>siege / raider</td><td class="num">Upgrade peak</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_dreadnought_mk1.png" alt="Dreadnought" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_phantom_dreadnought_mk1.png" alt="Phantom Dreadnought" /></td><td>Dreadnought / Phantom Dreadnought</td><td class="num">65</td><td class="num">680 / 540</td><td class="num">265 / 175</td><td class="num">19 / 13</td><td>siege / patrol</td><td class="num">25,000,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_super_capital_mk1.png" alt="Super Capital" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_phantom_super_capital_mk1.png" alt="Phantom Super Capital" /></td><td>Super Capital / Phantom Super Capital</td><td class="num">72</td><td class="num">800 / 580</td><td class="num">295 / 190</td><td class="num">20 / 14</td><td>line / raider</td><td class="num">50,000,000</td></tr>
+            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_apex_legend_mk1.png" alt="Apex Legend" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_phantom_apex_legend_mk1.png" alt="Phantom Legend" /></td><td>Apex Legend / Phantom Legend</td><td class="num">80</td><td class="num">880 / 620</td><td class="num">320 / 205</td><td class="num">21 / 15</td><td>line / patrol</td><td class="num">100,000,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>"Apex" is not bought; it is the peak reached by fully upgrading a battlecruiser. Separately, the "Wave Defense Battleship" (HP 3,700 · shield 1,500), used only for wave-defense testing, is always listed in the shop.</p>
+
+      <h2>Player ship gallery</h2>
+      <div id="player-ship-gallery" class="gallery ships"></div>
+
+      <h2>Six hull archetypes</h2>
+      <p>All 293 player and NPC ships share one of the six hulls below.</p>
+      <div class="card-grid">
+        <div class="card"><h4>patrol</h4><p>The most common light-to-medium patrol frame (192 ships)</p></div>
+        <div class="card"><h4>raider</h4><p>An agile raiding frame (35 ships)</p></div>
+        <div class="card"><h4>line</h4><p>The mainline frame of the player's top line (30 ships)</p></div>
+        <div class="card"><h4>siege</h4><p>A siege frame for cruisers up to dreadnoughts (15 ships)</p></div>
+        <div class="card"><h4>research</h4><p>Research and simulation frames such as the "Blue Fleet" (11 ships)</p></div>
+        <div class="card"><h4>carrier_light</h4><p>The "Survival Pod" light carrier (10 ships)</p></div>
+      </div>
+
+      <h2>NPC fleets and factions</h2>
+      <p>
+        NPC ships carry role-based name variants per home system — Invader / Interdictor / Pursuer / Raider / Hunter and so on.
+        Eleven home systems are registered in total: Arcadia, Draco Nebula, Solar Port, Minerva, Vega Outpost, New Eden, Iron Cross,
+        Omega Station, Helios and Sirius, plus the contested-zone clan "Nightfall (Crimson Moon)".
+      </p>
+
+      <h2 id="all-ships">Full ship list — 293 ships</h2>
+      <p>The whole <code>npc_ai_ships.csv</code>: home system, hull and stats for every NPC ship, including the twelve player classes.</p>
+      <div id="ship-table"></div>
+
+      <h2>Wave-defense invaders</h2>
+      <p>
+        Wave defense uses 30 tiers of invaders, from <code>npc_wave_invader_t1</code> to <code>t30</code>.
+        They all share the same base stats (HP 80 · shield 40 · armor 8); only their weapons grow stronger with the tier,
+        from a basic laser up to late "Singularity / Cosmega rocket" class — <a href="combat.html#tcl">combat difficulty rises through weapons, not stats</a>.
+      </p>
+
+      <h2>Equipment slots</h2>
+      <p>Every ship has four base slots — <code>ARMOR · ENGINE · SYSTEM · EX_01</code> — and, depending on the <a href="items.html#equipment">57-item equipment catalog</a>, can expand up to <code>EX_04</code> and <code>FIGHTER</code>.</p>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+<script src="../assets/data/ships.js"></script>
+<script src="../assets/datatable.js"></script>
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+<script>
+  mountWikiDataTable({
+    mount: document.getElementById("ship-table"),
+    data: window.SHIP_DATA || [],
+    label: "Ships",
+    searchKeys: ["id", "nameEn", "homeSystemEn", "hull", "archetype"],
+    columns: [
+      { key: "img", label: "Image", render: function (r) { return wikiThumb(r.img, r.nameEn || r.id, "ship"); } },
+      { key: "nameEn", label: "Name", render: function (r) { return String(r.nameEn || r.id).replace(/</g, "&lt;"); } },
+      { key: "homeSystemEn", label: "Home system" },
+      { key: "hull", label: "Hull" },
+      { key: "hp", label: "HP", num: true },
+      { key: "shield", label: "Shield", num: true },
+      { key: "armor", label: "Armor", num: true },
+      { key: "lvl", label: "Combat Lv", num: true },
+      { key: "archetype", label: "Archetype" },
+    ],
+  });
+</script>
+<script>
+  (function () {
+    var host = document.getElementById("player-ship-gallery");
+    if (!host) return;
+    var list = (window.SHIP_DATA || []).filter(function (s) { return /^player_/i.test(s.id) && s.img; });
+    list.sort(function (a, b) { return (+a.lvl || 0) - (+b.lvl || 0); });
+    host.innerHTML = list.map(function (s) {
+      var n = s.nameEn || s.id;
+      return '<figure><img loading="lazy" src="' + wikiAsset(s.img) + '" alt="' + n + '" /><figcaption>' + n + ' · Lv ' + s.lvl + '</figcaption></figure>';
+    }).join("");
+  })();
+</script>
+</body>
+</html>

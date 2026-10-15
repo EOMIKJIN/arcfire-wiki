@@ -2,8 +2,33 @@
 (function () {
   "use strict";
 
-  // ---- 테마 토글 ----
   var root = document.documentElement;
+  var IS_EN = (root.lang || "").indexOf("en") === 0;
+
+  // ---- 언어 전환 KO | EN — 같은 페이지의 한국어(x.html) ↔ 영어(en/x.html) · 선택은 랜딩과 같은 키에 기억 ----
+  (function () {
+    var header = document.querySelector(".site-header");
+    if (!header) return;
+    var file = (location.pathname.split("/").pop() || "wiki.html");
+    if (!/\.html$/i.test(file)) file = "wiki.html";
+    var koHref = IS_EN ? "../" + file : file;
+    var enHref = IS_EN ? file : "en/" + file;
+    var box = document.createElement("div");
+    box.className = "lang-switch";
+    box.setAttribute("role", "group");
+    box.setAttribute("aria-label", "Language");
+    box.innerHTML = '<a href="' + koHref + '" hreflang="ko" lang="ko" data-lang="ko"' + (IS_EN ? "" : ' aria-current="true"') + '>KO</a>'
+      + '<a href="' + enHref + '" hreflang="en" lang="en" data-lang="en"' + (IS_EN ? ' aria-current="true"' : "") + '>EN</a>';
+    box.addEventListener("click", function (ev) {
+      var a = ev.target.closest("a[data-lang]");
+      if (!a) return;
+      try { localStorage.setItem("arcfire_lang", a.getAttribute("data-lang")); } catch (e) {}
+    });
+    var theme = header.querySelector(".theme-toggle");
+    header.insertBefore(box, theme || null);
+  })();
+
+  // ---- 테마 토글 ----
   var STORAGE_KEY = "arcfire-wiki-theme";
 
   function applyTheme(mode) {
@@ -26,7 +51,9 @@
     btn.innerHTML = effectiveDark
       ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>'
       : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
-    btn.setAttribute("aria-label", effectiveDark ? "라이트 모드로 전환" : "다크 모드로 전환");
+    btn.setAttribute("aria-label", IS_EN
+      ? (effectiveDark ? "Switch to light mode" : "Switch to dark mode")
+      : (effectiveDark ? "라이트 모드로 전환" : "다크 모드로 전환"));
   }
 
   try {
@@ -76,7 +103,9 @@
 
     function render(list, q) {
       if (!list.length) {
-        hitsBox.innerHTML = '<div class="empty">「' + q + '」에 대한 결과가 없습니다.</div>';
+        hitsBox.innerHTML = IS_EN
+          ? '<div class="empty">No results for “' + q + '”.</div>'
+          : '<div class="empty">「' + q + '」에 대한 결과가 없습니다.</div>';
         hitsBox.classList.add("open");
         return;
       }

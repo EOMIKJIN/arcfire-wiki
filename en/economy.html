@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Economy · ARCFIRE Wiki</title>
+<meta name="description" content="How ARCFIRE's galaxy economy runs on a once-a-day batch: planet indicators, PGP, the five vaults, trade fees, upkeep and mining." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/economy.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/economy.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/economy.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="economy">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy" class="active"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">Systems · Economy</div>
+      <h1 class="page-title">Economy</h1>
+      <p class="page-lede">
+        The galaxy economy does not run in real time; it runs on a <strong>once-a-day batch at 12:00 KST</strong>. Trades always happen instantly,
+        but their effects reach planet indicators, prices and treasuries only through the batch — the biggest reason this economy feels like
+        "a galaxy the AI keeps running on its own".
+      </p>
+
+      <h2>The daily batch — what it does</h2>
+      <p>
+        <code>runArcCoreDailyOpsBatch</code> processes, in order: the resource (R) pass → environment pass → conflict aftermath → war-danger index (WDI) and rebellion →
+        master balance → economic fabric rebalance → three-stage price cap adjustment → transport (convoy) settlement → upkeep collection → fiscal closed loop (military spending) →
+        equilibrium adjustment → PGP (planetary gross product) → deed pricing. If you skip days, it catches up — if <strong>two or more days</strong> are missing it runs right away on your next login,
+        and if yesterday is already processed it waits until today's 12:00 has passed (prevents early runs just after midnight · adjusted 2026-10-03).
+        This is the actual mechanism behind the feeling that "the world moved while I was away".
+      </p>
+      <div class="callout note"><strong>Price elasticity = 0</strong> Individual trades are not reflected in prices in real time. Prices move only in the batch's three-stage cap adjustment.</div>
+
+      <h2>The five planet indicators &amp; PGP</h2>
+      <p>Every planet has five indicators (0–100): Resources (R), Population (P), Defense (D), Technology (T) and Environment (E). Together they produce <strong>PGP (planetary gross product)</strong>:</p>
+      <blockquote><code>PGP = (R+P+D+T+E) / 5 × 3,375</code> — with all five at 50, PGP is 84,375</blockquote>
+      <p>PGP is recalculated only in the daily batch. Real-time trades cannot move the indicators directly; a day's worth of observations from convoys and player trade volume is applied lightly in the batch, capped at ±2.</p>
+
+      <h2 id="vault">The five vaults — the factions' coffers</h2>
+      <p>Galaxy money flows into five independent vaults. They are also treated differently when an account is reset (purged).</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Vault</th><th>On purge</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><strong>ArcCore (RED) = central bank</strong></td><td>World-persistent — kept</td></tr>
+            <tr><td>2</td><td><strong>Transport convoys</strong></td><td>World-persistent — kept</td></tr>
+            <tr><td>3</td><td><strong>Blue (Stellium) shared vault</strong></td><td>World-persistent — kept</td></tr>
+            <tr><td>4</td><td><strong>Neutral vault</strong></td><td>World-persistent — kept</td></tr>
+            <tr><td>5</td><td><strong>Player independent-nation vault</strong></td><td><span class="pill warm">Reset</span> — to zero, holdings return to neutral</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Seed values: transport convoys 500,000 cr · ArcCore (RED) 100,000 cr · Blue 100,000 cr. The central bank's surplus is split 34% fleet spending, 33% expansion spending and 33% development budget.</p>
+
+      <h2>Trade and fees</h2>
+      <p>Seventeen trade ports link supply and demand planets. The trade fee is <strong>10% of the total</strong> — 5% goes to that planet's player wallet pool (settled once a day) and 5% goes immediately to the occupying faction's vault. Convoys pay the full cost up front and send <strong>30% of their margin to the central bank, keeping 70%</strong> (no fixed costs — the structure is meant to build up a surplus).</p>
+
+      <h2>Upkeep</h2>
+      <p>Each planet costs a base <strong>800 credits</strong> a day, plus level-based upkeep for developed facilities such as defense satellites, drawn from the occupying faction's vault. If the balance runs short it stops at zero and only logs <code>upkeep_shortfall</code> (no penalty yet).</p>
+
+      <h2 id="mining">Minerals and mining</h2>
+      <p>
+        The galaxy has two mineral regions: the <strong>Core Trade Belt</strong> (safety and trade, 35% of galaxy clusters) and the <strong>Frontier Rim</strong> (neutral and high-risk, 28%).
+        Most of the 21 core planets and the Synth planets belong to one of the two. Mining rewards currently go only to the player's inventory
+        and are not yet linked to a planet's R indicator — a planned follow-up connection in the design.
+      </p>
+
+      <h2>Fiscal and military closed loop</h2>
+      <p>
+        Since 2026-08-25 the daily batch has run a live <strong>fiscal opex pass</strong>. Using the D (defense) indicator, PGP, ship count and research/captain
+        levels, it calculates each faction's "military spending" and actually removes credits from its vault — a military-spending proxy that replaced
+        the old "empty burn". It is only an aggregate per faction, though; it does not simulate each individual ship.
+      </p>
+
+      <div class="callout warn">
+        <strong>A known structural gap</strong>
+        Resetting an account (personal purge) and "resetting the world economy for service launch" are different levers, but there is no dedicated API
+        for the latter yet — flagged as the top-priority gap in the 2026-08-04 audit.
+      </div>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+
+</body>
+</html>

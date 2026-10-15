@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Skills · ARCFIRE Wiki</title>
+<meta name="description" content="ARCFIRE's 45-skill SP talent tree across Combat, Navigation, Trade and Fleet, with tiers, requirements and effects." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/skills.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/skills.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/skills.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="skills">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills" class="active"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">Power · Growth</div>
+      <h1 class="page-title">Skills</h1>
+      <p class="page-lede">
+        An SP-based talent tree learned at the hub's Research Lab, gated by pilot level and prerequisite skills.
+        It has four branches — Combat, Navigation, Trade and Fleet — each split into tiers 1 to 5, for <strong>45 skills</strong> in total.
+        Higher tiers need higher levels and require earlier skills, so the tree branches out as you go.
+      </p>
+
+      <div class="callout note">
+        <strong>Not the same as the planet-development "Research Lab" facility</strong>
+        The hub skill tree (this page) gives permanent traits to your pilot. The planet-development facility called "Research Lab" (levels 1–15)
+        is a separate building that only changes R&amp;D unlock timer speed and counter-terror detection. The shared name makes them easy to confuse.
+      </div>
+
+      <div class="callout note">
+        <strong>Status (updated 2026-10-05)</strong>
+        According to the in-game skill tree badges (<code>skillRuntimeStatus.ts</code>), <strong>44 of 45 skills are "Complete"</strong> — learning them really changes
+        combat, travel, trade and fleet numbers. Auto-combat skill cooldowns and durations are tuned by <code>skill_auto_combat_policy.csv</code> (1 turn = 8 seconds).
+        Only the <strong>Wormhole Generator</strong> is "Partial" <span class="pill warm">Partial</span> — skipping one hop on warp works, while permanent portals are on hold.
+      </div>
+
+      <h2 id="combat">Combat — 12 skills</h2>
+      <p>Damage, defense and active combat skills. The early <code>double_shot</code> is given free to new players.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th class="num">Tier</th><th class="num">Req. Lv</th><th>Prerequisite</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td>Double Shot</td><td class="num">1</td><td class="num">2</td><td>—</td><td>Weapon reload −12% · +1 missile salvo <span class="pill accent">Free</span></td></tr>
+            <tr><td>Shield Overload</td><td class="num">1</td><td class="num">3</td><td>—</td><td>Max shield +20%</td></tr>
+            <tr><td>EMP Burst</td><td class="num">2</td><td class="num">5</td><td>Double Shot</td><td>On cooldown, drains 25% of enemy max shield</td></tr>
+            <tr><td>Armor Piercing</td><td class="num">2</td><td class="num">6</td><td>Double Shot</td><td>Enemy armor −5</td></tr>
+            <tr><td>Reactive Armor</td><td class="num">2</td><td class="num">5</td><td>Shield Overload</td><td>Damage taken −15%</td></tr>
+            <tr><td>Focused Strike</td><td class="num">3</td><td class="num">10</td><td>Armor Piercing</td><td>Critical range 19–20</td></tr>
+            <tr><td>Plasma Cannon</td><td class="num">3</td><td class="num">12</td><td>EMP Burst</td><td>10% shield penetration</td></tr>
+            <tr><td>Fortress Mode</td><td class="num">3</td><td class="num">15</td><td>Reactive Armor</td><td>Cannot move, defense +50%</td></tr>
+            <tr><td>Multi-Targeting</td><td class="num">4</td><td class="num">28</td><td>Double Shot</td><td>Lock on and fire at up to 3 targets</td></tr>
+            <tr><td>Nanobot Repair</td><td class="num">4</td><td class="num">32</td><td>Reactive Armor</td><td>Regenerates 5% of lost HP each turn</td></tr>
+            <tr><td>Singularity Cannon</td><td class="num">5</td><td class="num">50</td><td>Multi-Targeting</td><td>Creates a singularity — pulls enemies in and deals area damage</td></tr>
+            <tr><td>Absolute Defense</td><td class="num">5</td><td class="num">55</td><td>Nanobot Repair</td><td>Fully negates all damage for 8 seconds</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="navigation">Navigation — 13 skills</h2>
+      <p>Travel, stealth and fuel-efficiency skills. The three fuel-saving skills share a combined cap of 50% (Stellar Pioneer's +100% is also clipped to 50%).</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th class="num">Tier</th><th class="num">Req. Lv</th><th>Prerequisite</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td>Jump Acceleration</td><td class="num">1</td><td class="num">2</td><td>—</td><td>Hyperspace jump speed +30%</td></tr>
+            <tr><td>Recon Sensors</td><td class="num">1</td><td class="num">2</td><td>—</td><td>Detection range +20%</td></tr>
+            <tr><td>Counter-Terror Scanner</td><td class="num">2</td><td class="num">8</td><td>Recon Sensors</td><td>Spy and terror infiltration detection +15%</td></tr>
+            <tr><td>Stealth Drive</td><td class="num">2</td><td class="num">5</td><td>Jump Acceleration</td><td>3-turn stealth that evades detection</td></tr>
+            <tr><td>Warp Stabilizer</td><td class="num">2</td><td class="num">6</td><td>Recon Sensors</td><td>Travel fuel use −20%</td></tr>
+            <tr><td>Arc Threat Analysis</td><td class="num">3</td><td class="num">18</td><td>Counter-Terror Scanner</td><td>ArcCore drone and backdoor terror damage reduced +12%</td></tr>
+            <tr><td>Ghost Ship</td><td class="num">3</td><td class="num">11</td><td>Stealth Drive</td><td>First attack after leaving stealth deals +100% damage</td></tr>
+            <tr><td>Wormhole Seeker</td><td class="num">3</td><td class="num">13</td><td>Warp Stabilizer</td><td>Wormhole discovery chance +15%</td></tr>
+            <tr><td>Gravity Boost</td><td class="num">3</td><td class="num">18</td><td>Jump Acceleration</td><td>Temporary max speed +50% inside combat zones</td></tr>
+            <tr><td>Dimensional Leap</td><td class="num">4</td><td class="num">30</td><td>Ghost Ship</td><td>Invulnerable teleport during combat</td></tr>
+            <tr><td>Orbital Sling Amplifier</td><td class="num">4</td><td class="num">34</td><td>Gravity Boost</td><td>Fuel efficiency +15%</td></tr>
+            <tr><td>Stellar Pioneer</td><td class="num">4</td><td class="num">35</td><td>Wormhole Seeker</td><td>Fuel efficiency +100% on unexplored routes (capped at 50%)</td></tr>
+            <tr><td>Wormhole Generator</td><td class="num">5</td><td class="num">52</td><td>Wormhole Seeker</td><td>Skips one hop on warp (permanent portal on hold) <span class="pill warm">Partial</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="trade">Trade — 9 skills</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th class="num">Tier</th><th class="num">Req. Lv</th><th>Prerequisite</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td>Market Sense</td><td class="num">1</td><td class="num">2</td><td>—</td><td>Reveals prices in neighboring systems</td></tr>
+            <tr><td>Cargo Optimization</td><td class="num">1</td><td class="num">3</td><td>—</td><td>Inventory slots +10</td></tr>
+            <tr><td>Smuggling Route</td><td class="num">2</td><td class="num">7</td><td>Market Sense</td><td>Contraband detection risk −50%</td></tr>
+            <tr><td>Expert Negotiator</td><td class="num">2</td><td class="num">8</td><td>Market Sense</td><td>Buy price −5% / sell price +5%</td></tr>
+            <tr><td>Bulk Trading</td><td class="num">3</td><td class="num">20</td><td>Expert Negotiator</td><td>Extra +10% profit on bulk sales</td></tr>
+            <tr><td>Tariff Exemption</td><td class="num">3</td><td class="num">22</td><td>Cargo Optimization</td><td>Trade tax reduced by 10%</td></tr>
+            <tr><td>Black Market Tycoon</td><td class="num">4</td><td class="num">35</td><td>Smuggling Route</td><td>Can trade all contraband, tax-free</td></tr>
+            <tr><td>Investor Accord</td><td class="num">4</td><td class="num">38</td><td>Tariff Exemption · Bulk Trading</td><td>Repair and maintenance costs waived</td></tr>
+            <tr><td>Market Monopolist</td><td class="num">5</td><td class="num">58</td><td>Black Market Tycoon</td><td>Your own buy prices −30% (world prices unchanged)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="fleet">Fleet — 11 skills</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th class="num">Tier</th><th class="num">Req. Lv</th><th>Prerequisite</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td>Wingman Recruitment</td><td class="num">1</td><td class="num">4</td><td>—</td><td>Max hangar ships +1</td></tr>
+            <tr><td>Basic Formation</td><td class="num">1</td><td class="num">3</td><td>—</td><td>Flagship armor +5</td></tr>
+            <tr><td>Wingman</td><td class="num">2</td><td class="num">8</td><td>Wingman Recruitment</td><td>Summons an AI wingman ship for 3 turns</td></tr>
+            <tr><td>Repair Drones</td><td class="num">2</td><td class="num">10</td><td>Basic Formation</td><td>Slow fleet HP regeneration out of combat</td></tr>
+            <tr><td>Wingman Synergy</td><td class="num">2</td><td class="num">12</td><td>Wingman Recruitment</td><td>Weapon reload time −5%</td></tr>
+            <tr><td>Fleet Command</td><td class="num">3</td><td class="num">15</td><td>Wingman</td><td>Party accuracy +2</td></tr>
+            <tr><td>Emergency Escape</td><td class="num">3</td><td class="num">25</td><td>Repair Drones</td><td>One forced escape when hull drops below 10%</td></tr>
+            <tr><td>Carrier Commander</td><td class="num">4</td><td class="num">38</td><td>Fleet Command</td><td>Max fleet slots +2</td></tr>
+            <tr><td>Tactical Link</td><td class="num">4</td><td class="num">40</td><td>Fleet Command · Emergency Escape</td><td>Combat bonus +5% while holding synergy skills</td></tr>
+            <tr><td>Carrier Protocol</td><td class="num">4</td><td class="num">42</td><td>Carrier Commander · Emergency Escape</td><td>Fighter and drone damage +50%</td></tr>
+            <tr><td>Overlord's Majesty</td><td class="num">5</td><td class="num">60</td><td>Carrier Commander</td><td>Ally accuracy +4 / enemy accuracy −4</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+
+</body>
+</html>

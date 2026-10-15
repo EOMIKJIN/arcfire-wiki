@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Planet Development · ARCFIRE Wiki</title>
+<meta name="description" content="ARCFIRE's five planet facilities — Trade Port, Shipyard, Defense Satellite, Laboratory and Bar — with level tables, daily nudges, upkeep and build conditions." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/planetdev.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/planetdev.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/planetdev.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="planetdev">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev" class="active"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">Systems · Growth</div>
+      <h1 class="page-title">Planet Development</h1>
+      <p class="page-lede">
+        Your home planet has five buildable facilities — Trade Port, Shipyard, Defense Satellite, Laboratory and Bar — each upgradable from level 1 to 15.
+        Facility levels connect to the <a href="economy.html">economy</a> by nudging the planet's five indicators (R/P/D/T/E) a little upward in each daily batch.
+      </p>
+
+      <div class="callout warn">
+        <strong>Design document vs actual tables — this page follows the actual tables</strong>
+        The original design document (<code>_000_09_DESIGN_FACILITY_UPGRADE_SYSTEM_v2_0.md</code>, 2026-06-19) specifies levels 1–10 and build conditions based on combat wins
+        (Trade Port 10 wins, Shipyard 5, Laboratory 15, Bar 8), but the tables actually in use (v3.1/v3.2) <strong>extend levels to 15</strong> and
+        <strong>remove every combat-win condition</strong> (only the installation wait remains). Following the Table-First principle, this page uses the real CSV values —
+        if you see numbers that differ from older design documents, this page is the newer one.
+      </div>
+
+      <h2>The five facilities at a glance</h2>
+      <div class="card-grid">
+        <div class="card"><span class="card-eyebrow">Trade</span><h4>Trade Port</h4><p>Lower trade fees · higher stock cap · more high-end weapons in stock. Pushes R and P.</p></div>
+        <div class="card"><span class="card-eyebrow">Ships</span><h4>Shipyard</h4><p>Unlocks buildable hull classes · raises the mineral upgrade cap · shortens build time. Pushes T.</p></div>
+        <div class="card"><span class="card-eyebrow">Defense</span><h4>Defense Satellite</h4><p>More satellites, DPS and invasion interception. D indicator (drops instantly when destroyed, rises when invasions are repelled).</p></div>
+        <div class="card"><span class="card-eyebrow">Research</span><h4>Laboratory</h4><p>Faster R&amp;D unlocks · environment regeneration · intel detection, counter-terror and drone interception bonuses. Pushes T and E.</p></div>
+        <div class="card"><span class="card-eyebrow">Social</span><h4>Bar</h4><p>More bounty board slots · reputation bonus · unlocks mercenary grades. Pushes P.</p></div>
+      </div>
+      <p style="font-size:0.85rem;color:var(--text-faint);">The daily upkeep table also mentions a sixth facility, <code>population_dome</code>, but it has neither a level policy table nor a design document, so its actual effect cannot be confirmed — we list it as a facility that exists only in data.</p>
+
+      <h2>Actual values by level</h2>
+
+      <h3>Trade Port</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Lv</th><th>Name</th><th class="num">Fee</th><th class="num">Stock cap</th><th class="num">Supply mult.</th><th class="num">Build/upgrade cost</th><th>Time</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Makeshift Trading Post</td><td class="num">10%</td><td class="num">100</td><td class="num">1.0</td><td class="num">500 cr</td><td>15–30 min</td></tr>
+          <tr><td class="num">5</td><td>Regional Trade Center</td><td class="num">8%</td><td class="num">750</td><td class="num">1.15</td><td class="num">64,000 cr</td><td>1 day</td></tr>
+          <tr><td class="num">10</td><td>Galactic Trade Hub</td><td class="num">5%</td><td class="num">5,000</td><td class="num">1.4</td><td class="num">7,000,000 cr</td><td>7 days</td></tr>
+          <tr><td class="num">15</td><td>Galactic Trade Absolute</td><td class="num">3%</td><td class="num">15,000</td><td class="num">1.65</td><td class="num">236,000,000 cr</td><td>60 days</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Shipyard</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Lv</th><th>Name</th><th>Unlocked classes (cumulative)</th><th class="num">Upgrade cap</th><th class="num">Build speed</th><th class="num">Cost</th><th>Time</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Makeshift Repair Bay</td><td>Basic frigate</td><td class="num">+3</td><td class="num">±0%</td><td class="num">800 cr</td><td>~18 min</td></tr>
+          <tr><td class="num">5</td><td>Mid-size Shipyard</td><td>+Cruisers</td><td class="num">+9</td><td class="num">−20%</td><td class="num">112,000 cr</td><td>1.5 days</td></tr>
+          <tr><td class="num">10</td><td>Galaxy's Largest Shipyard</td><td>+Dreadnought · Super Capital · Apex</td><td class="num">+15</td><td class="num">−50%</td><td class="num">16,800,000 cr</td><td>7 days</td></tr>
+          <tr><td class="num">15</td><td>Galaxy's Final Shipyard</td><td>(same, cap extended only)</td><td class="num">+20</td><td class="num">−60%</td><td class="num">584,000,000 cr</td><td>60 days</td></tr>
+        </tbody>
+      </table></div>
+      <p>The upgrade cap follows <strong>whichever is lower</strong> of the Shipyard level and your pilot combat level (see <a href="items.html">Items · Upgrades</a>).</p>
+
+      <h3>Bar (facility levels — attendants and content are on a <a href="social.html#bar">separate page</a>)</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Lv</th><th>Name</th><th class="num">Bounty slots</th><th class="num">Reputation bonus</th><th>Mercenary grade</th><th class="num">Cost</th><th>Time</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Temporary Tavern</td><td class="num">2</td><td class="num">±0%</td><td>Regular</td><td class="num">800 cr</td><td>~20 min</td></tr>
+          <tr><td class="num">5</td><td>Major Bar</td><td class="num">7</td><td class="num">+12%</td><td>Elite</td><td class="num">80,000 cr*</td><td>1.5 days</td></tr>
+          <tr><td class="num">10</td><td>Legendary Galactic Tavern</td><td class="num">25</td><td class="num">+35%</td><td>Legendary</td><td class="num">11,200,000 cr</td><td>7 days</td></tr>
+          <tr><td class="num">15</td><td>Galaxy's Final Tavern</td><td class="num">35</td><td class="num">+45%</td><td>Legendary</td><td class="num">386,000,000 cr</td><td>60 days</td></tr>
+        </tbody>
+      </table></div>
+      <p style="font-size:0.82rem;color:var(--text-faint);">* Lv5 also requires a Population (P) indicator of 30 or more.</p>
+
+      <h3>Laboratory</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Lv</th><th>Name</th><th class="num">R&amp;D speed</th><th class="num">Intel detection</th><th class="num">Counter-terror</th><th class="num">Drone intercept</th><th class="num">Cost</th><th>Time</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Makeshift Lab</td><td class="num">−5%</td><td class="num">+2%</td><td class="num">+1%</td><td class="num">+1</td><td class="num">2,000 cr</td><td>30 min</td></tr>
+          <tr><td class="num">5</td><td>Advanced Laboratory</td><td class="num">−20%</td><td class="num">+7%</td><td class="num">+5%</td><td class="num">+4</td><td class="num">160,000 cr*</td><td>2 days</td></tr>
+          <tr><td class="num">10</td><td>Arcfire Institute</td><td class="num">−50%</td><td class="num">+16%</td><td class="num">+14%</td><td class="num">+10</td><td class="num">21,000,000 cr</td><td>8 days</td></tr>
+          <tr><td class="num">15</td><td>Galaxy's Final Laboratory</td><td class="num">−60%</td><td class="num">+22%</td><td class="num">+20%</td><td class="num">+15</td><td class="num">733,788,800 cr</td><td>60 days</td></tr>
+        </tbody>
+      </table></div>
+      <p style="font-size:0.82rem;color:var(--text-faint);">* Lv5 also requires a Technology (T) indicator of 30 or more. This Laboratory is a different facility from the <a href="skills.html">hub skill tree</a> — the skill tree gives permanent pilot traits, while this Laboratory only handles R&amp;D unlock timers and defense-related support stats.</p>
+
+      <h3>Defense Satellite</h3>
+      <p>Lv1: 1 satellite · DPS 200 · 5% interception → Lv10: 5 satellites · DPS 150,000 · 95% interception. When a satellite is destroyed the D indicator drops immediately, and repelling an invasion raises it — unlike the other four facilities, it is the only one that <strong>moves its indicator in both directions</strong>.</p>
+
+      <h2>What happens every day — stat nudges</h2>
+      <p>Facility levels do nothing in real time. Only in the <strong>daily 12:00 KST batch</strong> do they push indicators up by level × coefficient (capped at 100, paused while the planet is unoccupied).</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Facility</th><th>Indicator</th><th class="num">Per level</th><th class="num">Lv10 total</th><th class="num">Lv15 total</th></tr></thead>
+        <tbody>
+          <tr><td>Trade Port</td><td>R, P (each)</td><td class="num">+0.2</td><td class="num">+2.0/day</td><td class="num">+3.0/day</td></tr>
+          <tr><td>Shipyard</td><td>T</td><td class="num">+0.1</td><td class="num">+1.0/day</td><td class="num">+1.5/day</td></tr>
+          <tr><td>Defense Satellite</td><td>D</td><td class="num">+0.3</td><td class="num">+3.0/day</td><td class="num">+4.5/day</td></tr>
+          <tr><td>Laboratory</td><td>T, E (each)</td><td class="num">+0.3</td><td class="num">+3.0/day</td><td class="num">+4.5/day</td></tr>
+          <tr><td>Bar</td><td>P</td><td class="num">+0.25</td><td class="num">+2.5/day</td><td class="num">+3.75/day</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2>Upgrade times and instant completion</h2>
+      <p>Upgrade time grows exponentially with level — Lv1→2 takes 45 minutes, Lv4→5 one day, Lv9→10 thirty days and Lv14→15 sixty days. Each facility has its own speed factor (Trade Port and Bar are slightly faster, the Laboratory 10% slower).</p>
+      <p>
+        Instead of waiting, you can <strong>complete instantly with credits</strong> — it costs an extra <strong>~40%</strong> of the upgrade cost (50% of the installation cost for the first build).
+        Pushing everything through with instant completion from start to finish costs <strong>3–5×</strong> the base cost overall.
+      </p>
+
+      <h2>Daily upkeep</h2>
+      <p>Each facility has its own upkeep that grows by about 9–10 credits per level (separate from the economy's fixed 800 cr per planet).</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Facility</th><th class="num">Lv1</th><th class="num">Lv5</th><th class="num">Lv10</th><th class="num">Lv15</th></tr></thead>
+        <tbody>
+          <tr><td>Shipyard</td><td class="num">24</td><td class="num">64</td><td class="num">114</td><td class="num">164</td></tr>
+          <tr><td>Laboratory</td><td class="num">20</td><td class="num">56</td><td class="num">101</td><td class="num">146</td></tr>
+          <tr><td>Trade Port</td><td class="num">18</td><td class="num">50</td><td class="num">90</td><td class="num">130</td></tr>
+        </tbody>
+      </table></div>
+      <p style="font-size:0.82rem;color:var(--text-faint);">The Defense Satellite and Bar have no rows in this upkeep table — they appear to have no extra upkeep or to be managed in another table.</p>
+
+      <h2>Build conditions</h2>
+      <p>On any planet you occupy, you can start building any facility right away with no combat-win condition — only the installation wait (15–30 minutes). Upgrading requires pilot levels and certain indicator thresholds.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Facility</th><th>Lv5 condition</th><th>Lv8 condition</th></tr></thead>
+        <tbody>
+          <tr><td>Trade Port</td><td>Pilot Lv15</td><td>Pilot Lv30</td></tr>
+          <tr><td>Shipyard</td><td>Pilot Lv20</td><td>Pilot Lv40</td></tr>
+          <tr><td>Bar</td><td>Pilot Lv15 + Population (P) 30</td><td>Pilot Lv30 + Population (P) 55</td></tr>
+          <tr><td>Laboratory</td><td>Pilot Lv20 + Technology (T) 30</td><td>Pilot Lv40 + Technology (T) 55</td></tr>
+        </tbody>
+      </table></div>
+      <p>Because of these thresholds, the facilities have no direct prerequisites on each other but <strong>share the same pool of five indicators</strong> and so push each other indirectly — the T and P raised by the Trade Port and Laboratory meet the next-step conditions for the Bar and Laboratory.</p>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+
+</body>
+</html>

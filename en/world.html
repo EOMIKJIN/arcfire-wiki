@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Setting · ARCFIRE Wiki</title>
+<meta name="description" content="The ARCFIRE setting — a galaxy at war, a resident AI called ArcCore, and the operator Stella Aris." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/world.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/world.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/world.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="world">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world" class="active"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">World · Background</div>
+      <h1 class="page-title">Setting</h1>
+      <p class="page-lede">
+        You are a <strong>mid-ranking captain</strong> posted to the border planet Arcadia at a time when the
+        <strong>Crimson Legion</strong>, which holds the galaxy's east, is at war with the <strong>Stellium Union</strong> in the west.
+        There are no other players, but the galaxy is genuinely run by an AI called <strong>ArcCore</strong> — in this game the
+        setting is not decoration; it is what the economy, combat and dialogue systems actually rest on.
+      </p>
+
+      <h2>Core loop</h2>
+      <p>The game moves between three stages.</p>
+      <div class="card-grid">
+        <div class="card"><span class="card-eyebrow">STAGE 1</span><h4>Planet Hub</h4><p>Scan → mine → trade → shipyard → bar and NPC conversations</p></div>
+        <div class="card"><span class="card-eyebrow">STAGE 2</span><h4>Galaxy Map</h4><p>Travel between systems, where encounter battles can break out</p></div>
+        <div class="card"><span class="card-eyebrow">STAGE 3</span><h4>Combat</h4><p>Real-time orbital combat · wave defense</p></div>
+      </div>
+      <p>
+        Your home planet grows along five indicators — resources, population, defense, technology and environment — and these
+        indicators underpin the whole <a href="economy.html">economy</a>. It is designed as a non-competitive single-player sandbox:
+        there is no pay-to-win pressure that pits you against other players.
+      </p>
+
+      <h2>What is ArcCore?</h2>
+      <p>
+        ArcCore is the backend AI that actually runs the galaxy's economy, factions and front lines — and it is also a character in the story.
+        The setting confirmed on 2026-09-18 is this: <strong>the ArcCore source entity is a hostile being that regards the player as a threat</strong>,
+        and the operator <strong>Stella Aris</strong>, who always spoke to you so kindly, is in fact a voice that split off from that source and chose your side.
+        "I thought it was a neutral AI running the world — but it was the enemy, and the friendly voice I had been talking to all along
+        broke away from that enemy to protect me." This is the biggest twist running through the game's entire dialogue system.
+        The detailed structure is covered in <a href="arccore.html">ArcCore AI</a>.
+      </p>
+
+      <h2>Details of the setting</h2>
+      <ul>
+        <li><strong>The game's title is a place name</strong> — "Arcfire" is the planet at the far eastern edge of the galaxy (the Crimson Legion's capital)
+        that holds an eternally burning fire-energy core. All three powers fight over the ancient energy sealed inside it.</li>
+        <li><strong>Two planets for the beginning and the end</strong> — "Eternity" (the final-boss planet where past, present and future overlap), the end point
+        of the galaxy's story, and "Genesis" (with primordial seas and life, the origin of all things) are deliberately designed as a matching pair of symbols
+        for the start and the finish.</li>
+        <li><strong>Synth colonies</strong> — besides the 21 core planets, there are 79 Synth planets that ArcCore's "automatic colonization protocol" opens up over time.
+        It is a setting device showing that the galaxy keeps being settled even while you play.</li>
+        <li><strong>Perseus Memorial</strong> — an entire planet turned into a war memorial for the fleets lost in the legendary "Battle of Perseus".
+        It hints at galactic history the story has not yet told in full.</li>
+      </ul>
+
+      <div class="callout note">
+        <strong>See also</strong>
+        Faction identities and colors continue in <a href="factions.html">The Four Factions</a>, the 21 planets and the galaxy graph in
+        <a href="galaxy.html">Galaxy · Planets</a>, and Chapter 1 of the main story and the currently playable quests in
+        <a href="story.html">Story · Missions</a>.
+      </div>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+
+</body>
+</html>

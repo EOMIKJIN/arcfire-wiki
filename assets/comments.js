@@ -22,9 +22,13 @@
     return "preferred_color_scheme";
   }
 
+  var EN = (document.documentElement.lang || "").indexOf("en") === 0;
+
   function mount(host) {
     if (location.protocol === "file:") {
-      host.innerHTML = '<p class="comments-offline">댓글은 웹 주소(https://eomikjin.github.io/arcfire-wiki/)에서 열 때 보입니다.</p>';
+      host.innerHTML = EN
+        ? '<p class="comments-offline">Comments appear when the page is opened from the web (https://eomikjin.github.io/arcfire-wiki/).</p>'
+        : '<p class="comments-offline">댓글은 웹 주소(https://eomikjin.github.io/arcfire-wiki/)에서 열 때 보입니다.</p>';
       return;
     }
     var category = host.getAttribute("data-category") || "General";
@@ -40,7 +44,7 @@
       "data-emit-metadata": "0",
       "data-input-position": "top",
       "data-theme": siteTheme(),
-      "data-lang": "ko",
+      "data-lang": EN ? "en" : "ko",
       "data-loading": "lazy",
       "crossorigin": "anonymous",
     };

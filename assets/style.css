@@ -209,6 +209,13 @@ code, .mono, .stat, td.num {
 .theme-toggle:hover { color: var(--text); border-color: var(--border-strong); }
 .theme-toggle svg { width: 16px; height: 16px; }
 
+/* 언어 전환 KO | EN (wiki.js 가 헤더에 넣는다) */
+.lang-switch { display: inline-flex; flex-shrink: 0; border: 1px solid var(--border); border-radius: 7px; overflow: hidden; background: var(--bg-inset); }
+.lang-switch a { padding: 0 9px; height: 32px; display: flex; align-items: center; font: 600 0.72rem/1 "IBM Plex Mono", monospace; letter-spacing: 0.08em; color: var(--text-dim); }
+.lang-switch a:hover { color: var(--text); text-decoration: none; }
+.lang-switch a[aria-current="true"] { color: var(--bg); background: var(--accent); }
+html:lang(en) body { word-break: normal; }
+
 /* ---------- 레이아웃 골격 ---------- */
 .shell {
   display: flex;

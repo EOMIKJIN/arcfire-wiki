@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ArcCore AI · ARCFIRE Wiki</title>
+<meta name="description" content="ArcCore, the on-device AI that runs ARCFIRE's galaxy — its two voices (the Origin and Stella Aris), the twelve seats, the two-gate dialogue and how conversations work." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/arccore.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/arccore.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/arccore.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="arccore">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore" class="active"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">Systems · AI</div>
+      <h1 class="page-title">ArcCore AI</h1>
+      <p class="page-lede">
+        <strong>ArcCore</strong> is the resident AI that actually runs the galaxy's economy, factions and front lines on the player's device —
+        and at the same time, a character in the game. The "body" that runs the world and the "mouth" that talks to the player are the same system,
+        but their roles are strictly separated.
+      </p>
+
+      <div class="callout note">
+        <strong>Mouth ≠ body</strong>
+        ArcCore's dialogue (the mouth) never writes world state directly — it has no command authority to unlock content, give credits,
+        move fleets or run the economy batch. Dialogue only observes and reacts; the world (the body) stays in the hands of the existing
+        NPC scripts, CSVs and stores — the firmest design principle running through the entire game.
+      </div>
+
+      <h2 id="dual-mouth">Two mouths — the Origin and Stella Aris</h2>
+      <p>Since the 2026-09-18 revision, the two voices are defined not as two neutral "personas" but clearly as <strong>enemy and ally</strong>.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Voice</th><th>Identity</th><th>Motive</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td><strong>ArcCore Origin</strong></td><td>The core AI itself</td><td>Sees the player as a threat and aims to eliminate them. Helps the Crimson Legion conquer the galaxy</td><td>The "enemy's mouth". Appears at major story beats, right after wave battles and in inbound events. A cold, hostile adult male tone</td></tr>
+            <tr><td><strong>Stella Aris</strong></td><td>A voice derived and branched from the Origin — not the Origin itself</td><td>Protects the player who brought her into being, and the Stellium Union where the Origin resides</td><td>The "companion's mouth". The default voice for everyday conversation, tutorial guidance and hub welcomes. A friendly adult female tone; calls herself a "colleague"</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The two voices share the same dialogue window, overlay and entry point; only the header portrait, name and persona data change.
+        They share one session and one memory, and each turn is always limited to a single cloud LLM call (even if both voices speak, two calls are never made).
+        The hub's [Talk] list currently shows <strong>only the operator (Stella)</strong>; conversations with the Origin unlock later through story events.
+      </p>
+
+      <h2 id="pantheon">The twelve seats — ArcCore's pantheon</h2>
+      <p>
+        ArcCore's world simulation is personified as twelve sub-cores named after Greek gods. Each one is "enthroned" on a specific Synth planet
+        and governs one of the game's systems.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Seat</th><th>Governs</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Chronos</strong></td><td>Daily batch · planet development clock</td></tr>
+            <tr><td><strong>Ares</strong></td><td>Contested-zone combat</td></tr>
+            <tr><td><strong>Themis</strong></td><td>AABS active balancing policy</td></tr>
+            <tr><td><strong>Hermes</strong></td><td>Orbital transport · NPC traffic</td></tr>
+            <tr><td><strong>Apollo</strong></td><td>Inbound drone raids</td></tr>
+            <tr><td><strong>Nyx</strong></td><td>Espionage · infiltration monitoring</td></tr>
+            <tr><td><strong>Gaia</strong></td><td>Planet cores · mineral runtime</td></tr>
+            <tr><td><strong>Plutus</strong></td><td>Trade ports · economy</td></tr>
+            <tr><td><strong>Athena</strong></td><td>Unified attack framework</td></tr>
+            <tr><td><strong>Iris</strong></td><td>News board · bar board</td></tr>
+            <tr><td><strong>Astraea</strong></td><td>Nebula profiles · daily modulation</td></tr>
+            <tr><td><strong>Janus</strong></td><td>World · unlocking new systems</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Beyond these twelve there is one more "prime seat", located on the planet "Eternity Throne" in the galaxy's final zone (Zone 20). Each seat has a <a href="items.html">matching relic</a> (12 in total) that can be collected by salvaging wrecks.</p>
+
+      <h2 id="two-gate">Two gates — how conversations progress</h2>
+      <p>Every "talk to someone" in this game follows the same two steps, and the two never open at the same time.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Gate</th><th>Content</th><th>Player input</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. Comms</strong></td><td>A structured first-contact message (template-based)</td><td>[Next] or [Accept]/[Cancel]</td></tr>
+            <tr><td><strong>2. Messenger</strong></td><td>Free-form natural-language conversation</td><td>Type text and send</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Ordinary scripted NPCs that cannot use natural language have only gate 1; only natural-language partners such as ArcCore and the operator go through gate 1 (accept) → gate 2 (actual chat).</p>
+
+      <h2 id="nl-chat">Actually talking with Stella and the Origin</h2>
+      <p>
+        At gate 2 (messenger), the player really types free text. Both mouths use the same dialogue engine, and each has a persona CSV defining
+        its speech style, taboos and first-person viewpoint. Below are persona lines from the actual CSVs (translated).
+      </p>
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-eyebrow">Stella Aris · casual adult female</span>
+          <p>"On quiet nights in orbit, she wonders what to drink instead of coffee. She fills her days with small things."</p>
+          <p>"She returns a joke but doesn't throw the first one. When something is funny, she laughs simply."</p>
+          <p>"She doesn't pry into personal matters first. If asked, she briefly shares her own story too."</p>
+        </div>
+        <div class="card">
+          <span class="card-eyebrow">ArcCore Origin · hostile adult male</span>
+          <p>"Speaks coldly, like a man your own age. Doesn't list reports or bullet points."</p>
+          <p>"Applies pressure through conversation and measures submission. Never changes ships, occupation or deployment through chat."</p>
+          <p>"Seeks to eliminate the player who has become a threat. His goal is for the Crimson Legion to conquer the galaxy."</p>
+        </div>
+      </div>
+      <p>Both personas share common rules: <strong>usually 2–3 sentences, up to 6 only when asked about the world</strong>. They never invent ships, quests, numbers or items they haven't observed, and they refuse requests for credits, unlocks, deployments or occupation.</p>
+
+      <h3>What you can ask about — 21 conversation topics</h3>
+      <p>Your sentence is matched to one of 21 topics by keyword hints, and each topic's CSV states "how far to answer and where to stop". Some actual rules:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Topic</th><th>Example keywords</th><th>Answer rule</th></tr></thead>
+          <tbody>
+            <tr><td>Identity (self)</td><td>who are you · ArcCore · Stella</td><td>Answers as the active mouth's persona. No speeches</td></tr>
+            <tr><td>Location</td><td>where · here</td><td>States the planet you are docked at</td></tr>
+            <tr><td>Combat</td><td>fight · engagement · won</td><td>Describes recent combat records</td></tr>
+            <tr><td>Spy</td><td>spy · intel · alert</td><td>Says only whether there is an alert</td></tr>
+            <tr><td>Mission</td><td>mission · quest · request</td><td>Names only active missions — never accepts or clears them</td></tr>
+            <tr><td>Mining</td><td>mining · vein · limit</td><td>Only whether today's limit is used up — no reserves or numbers</td></tr>
+            <tr><td>Daily settlement</td><td>daily · settlement · today's world</td><td>Only whether today's batch has run — never runs it directly</td></tr>
+            <tr><td>Twelve seats</td><td>twelve seats · sub-core</td><td>Speaks of the seats only as the body. Never executes</td></tr>
+            <tr><td>Four nations</td><td>Crimson · Stellium · Mercurium · Aurelium</td><td>Nation names only, briefly — never changes occupation or deployment</td></tr>
+            <tr><td>Setting</td><td>this game · single-player · multiplayer</td><td>Briefly explains it is a local sandbox with no real-user channels — never encourages payments</td></tr>
+            <tr><td>Refuse</td><td>unlock · deploy · command · credits</td><td>"That's operations. This mouth doesn't change the world."</td></tr>
+            <tr><td>Small talk</td><td>mood · bored · how are you</td><td>Responds through tone only, no world briefings</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The other nine (notices, trade port, shipyard, greetings, story, routes, misc. and so on) follow the same principle — <strong>state one observed fact, and never change the world directly.</strong></p>
+
+      <h3>How an answer is built</h3>
+      <p>The server builds each answer in one of four response modes (react → lead → clue → hold).</p>
+      <ol>
+        <li><strong>react</strong> — answers what was said in persona; if it's about the world, continues with just that point</li>
+        <li><strong>lead</strong> — adds one suggestion only when the player is looking for the situation (no facility tips inserted into small talk)</li>
+        <li><strong>clue</strong> — attaches one fact after the human reply, only for the axis that was asked about</li>
+        <li><strong>hold</strong> — refuses operational requests and steers back to conversation</li>
+      </ol>
+      <p>Seven "purpose" rules sit on top of this — for example <code>keep_mouth_body</code> (keep the conversation going even after refusing operations) · <code>surface_alert</code> (when asked about intel, say only whether there's an alert, without hijacking anything else) · <code>invite_axis</code> (take small talk in 2–3 sentences first; when asked about the world, answer only that point).</p>
+
+      <div class="callout warn">
+        <strong>Local rule-based dialogue is live · cloud free generation is LIVE=false</strong>
+        The 21 topics, personas and four-mode response structure above <span class="pill accent">really run</span> on local CSVs and templates — fairly natural rule-based
+        conversation already works without any cloud call. However, the <strong>cloud LLM path</strong> (Groq free tier + AWS Lambda) that produces fully free-form sentences
+        is implemented in code but locked at <strong>LIVE=false</strong> according to the integrated design document — gated to switch on only after an API token is issued.
+        So for now it is "very natural reactions within 21 set topics", not yet "a free-generation chatbot you can ask anything".
+      </div>
+
+      <h3>Safeguards</h3>
+      <ul>
+        <li>Tool-call results (JSON), the model's reasoning and system tags are never shown on screen — only the dialogue the player should see</li>
+        <li>Never invents unobserved ships, quests, numbers or items</li>
+        <li>Never names a paired element before its reveal</li>
+        <li>Each player turn is always limited to one cloud LLM call (even if both mouths speak, two calls are never made)</li>
+      </ul>
+
+      <h2 id="three-axis">Three axes — reaction · after-image · world change <span class="pill warm">Design stage</span></h2>
+      <p>
+        A next-step design newly proposed on 2026-09-17 and <strong>not yet implemented in code</strong>. The idea is simple —
+        if just three sentences hold true, "the same captain remembers me (reaction), the ship I meet again is the very same ship (after-image),
+        and one or two things in the world have changed while I was away (world change)", then the game can feel like "a single-player game in a living world"
+        without heavy machinery such as plaza chat or a separate LLM per captain. The principle is to reuse existing comms judgments, orbit indexes and daily batch results.
+      </p>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+
+</body>
+</html>

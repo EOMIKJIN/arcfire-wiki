@@ -12,7 +12,12 @@
 <link rel="icon" href="img/arcfire_logo_01.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
+<!-- 언어(KO/EN/JP) — ?lang= 로 공유 · 같은 페이지에서 전환 -->
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/?lang=ko" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/?lang=en" />
+<link rel="alternate" hreflang="ja" href="https://eomikjin.github.io/arcfire-wiki/?lang=ja" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/" />
 <style>
 :root {
   --void: #05060b;
@@ -64,6 +69,15 @@ a { color: inherit; }
 .topbar nav a:hover { color: var(--text); }
 .topbar nav a.wiki { color: var(--flare-hot); }
 @media (max-width: 640px) { .topbar nav a:not(.wiki) { display: none; } }
+/* 언어 선택 KO · EN · JP */
+.topbar nav { align-items: center; }
+.topbar .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: rgba(5,6,11,.45); }
+.topbar .lang button { font: 600 11px/1 var(--mono); letter-spacing: .12em; color: var(--dim); background: none; border: 0; padding: 7px 10px; cursor: pointer; transition: color .2s, background .2s; }
+.topbar .lang button:hover { color: var(--text); }
+.topbar .lang button[aria-pressed="true"] { color: #1a0d03; background: linear-gradient(100deg, #ff7a2f, #ffb347); }
+:lang(ja) body, html:lang(ja) body { font-family: "Noto Sans JP", var(--body); word-break: normal; line-break: strict; }
+html:lang(en) body { word-break: normal; }
+.langnote { margin: 12px auto 0; max-width: 620px; color: var(--flare-hot); font-size: 13px; }
 
 /* ---------- 히어로 ---------- */
 .hero {
@@ -316,11 +330,11 @@ footer a:hover { color: var(--text); }
   <div class="box">
     <img src="media/arcfire_logo_glow.png" alt="" />
     <div class="tag">NOTICE</div>
-    <h3 id="noticeTitle">현재 페이지 준비 중<span class="dots"></span></h3>
-    <p>아크파이어 소개 페이지를 준비하고 있습니다.<br />일부 내용과 플레이 영상은 곧 채워집니다.</p>
+    <h3 id="noticeTitle"><span data-i18n="notice.title">현재 페이지 준비 중</span><span class="dots"></span></h3>
+    <p data-i18n="notice.body">아크파이어 소개 페이지를 준비하고 있습니다.<br />일부 내용과 플레이 영상은 곧 채워집니다.</p>
     <div class="cta">
-      <button class="btn primary" type="button" id="noticeClose">둘러보기</button>
-      <a class="btn ghost" href="wiki.html">게임 위키</a>
+      <button class="btn primary" type="button" id="noticeClose" data-i18n="notice.close">둘러보기</button>
+      <a class="btn ghost" href="wiki.html" data-i18n-href="wiki.html" data-i18n="notice.wiki">게임 위키</a>
     </div>
   </div>
 </div>
@@ -329,11 +343,14 @@ footer a:hover { color: var(--text); }
   <header class="topbar" id="topbar">
     <a class="mark" href="#top"><img src="media/arcfire_logo_glow.png" alt="" />ARCFIRE</a>
     <nav>
-      <a href="#gameplay">플레이 영상</a>
-      <a href="#stella">스텔라</a>
-      <a href="#features">특징</a>
-      <a href="#fleet">함선</a>
-      <a class="wiki" href="wiki.html">게임 위키 →</a>
+      <a href="#gameplay" data-i18n="nav.play">플레이 영상</a>
+      <a href="#stella" data-i18n="nav.stella">스텔라</a>
+      <a href="#features" data-i18n="nav.features">특징</a>
+      <a href="#fleet" data-i18n="nav.fleet">함선</a>
+      <a class="wiki" href="wiki.html" data-i18n-href="wiki.html" data-i18n="nav.wiki">게임 위키 →</a>
+      <span class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="ko" lang="ko">KO</button><button type="button" data-lang="en" lang="en">EN</button><button type="button" data-lang="ja" lang="ja">JP</button>
+      </span>
     </nav>
   </header>
 
@@ -346,17 +363,18 @@ footer a:hover { color: var(--text); }
         <span class="ring"></span><span class="ring r2"></span><span class="halo"></span>
         <img class="logo" src="media/arcfire_logo_glow.png" alt="ARCFIRE 로고" />
       </div>
-      <h1 class="tagline">AI가 운영하는 은하,<br /><span class="hl">단 한 척, 오직 나의 함선.</span></h1>
-      <p class="sub">무역으로 벌고, 궤도에서 싸우고, 네 세력 사이에서 길을 찾아라. 당신이 접속하지 않은 사이에도 은하는 움직인다.</p>
+      <h1 class="tagline" data-i18n="hero.tagline">AI가 운영하는 은하,<br /><span class="hl">단 한 척, 오직 나의 함선.</span></h1>
+      <p class="sub" data-i18n="hero.sub">무역으로 벌고, 궤도에서 싸우고, 네 세력 사이에서 길을 찾아라. 당신이 접속하지 않은 사이에도 은하는 움직인다.</p>
+      <p class="langnote" data-i18n="hero.langNote" hidden></p>
       <div class="genre"><span>SINGLE PLAYER</span><span>SPACE STRATEGY</span><span>TRADE · COMBAT · FACTIONS</span><span>MOBILE</span></div>
       <div class="cta">
-        <a class="btn primary" href="#gameplay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>플레이 영상</a>
-        <a class="btn ghost" href="wiki.html">게임 위키 보기</a>
+        <a class="btn primary" href="#gameplay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span data-i18n="hero.ctaPlay">플레이 영상</span></a>
+        <a class="btn ghost" href="wiki.html" data-i18n-href="wiki.html" data-i18n="hero.ctaWiki">게임 위키 보기</a>
       </div>
       </div>
       <div class="keyart" id="keyart">
         <span class="corner tl"></span><span class="corner br"></span>
-        <div class="frame" id="keyartFrame"><img src="img/promo_poster_single_artist_anime.jpg" alt="아크파이어 대표 이미지 — 주요 인물들" /><span class="label">ARCFIRE · KEY ART</span></div>
+        <div class="frame" id="keyartFrame"><img src="img/promo_poster_single_artist_anime.jpg" alt="아크파이어 대표 이미지 — 주요 인물들" data-i18n-alt="hero.keyartAlt" /><span class="label">ARCFIRE · KEY ART</span></div>
       </div>
     </div>
     <div class="scroll-hint">SCROLL<i></i></div>
@@ -371,12 +389,12 @@ footer a:hover { color: var(--text); }
     <div class="play">
       <div>
         <div class="eyebrow reveal">Gameplay</div>
-        <h2 class="reveal d1">손 안의 함교.<br />세 개의 무대.</h2>
-        <p class="lead reveal d2">행성에 내려 준비하고, 은하 지도에서 항로를 정하고, 궤도에서 싸운다. 세 무대가 하나의 항해로 이어진다.</p>
+        <h2 class="reveal d1" data-i18n="gp.h2">손 안의 함교.<br />세 개의 무대.</h2>
+        <p class="lead reveal d2" data-i18n="gp.lead">행성에 내려 준비하고, 은하 지도에서 항로를 정하고, 궤도에서 싸운다. 세 무대가 하나의 항해로 이어진다.</p>
         <ul>
-          <li class="reveal d1"><span class="no">01</span><div><b>행성 허브</b><small>무역소·조선소·바. 화물을 사고, 함선을 손보고, 함장들에게 의뢰를 받는다.</small></div></li>
-          <li class="reveal d2"><span class="no">02</span><div><b>은하 지도</b><small>성계 사이 항로를 고른다. 붐비는 무역로일수록 해적도 많다.</small></div></li>
-          <li class="reveal d3"><span class="no">03</span><div><b>궤도 전투</b><small>레이저·미사일·드론·함재기가 오가는 실시간 함대전. 편성과 장비가 승패를 가른다.</small></div></li>
+          <li class="reveal d1"><span class="no">01</span><div><b data-i18n="gp.l1b">행성 허브</b><small data-i18n="gp.l1s">무역소·조선소·바. 화물을 사고, 함선을 손보고, 함장들에게 의뢰를 받는다.</small></div></li>
+          <li class="reveal d2"><span class="no">02</span><div><b data-i18n="gp.l2b">은하 지도</b><small data-i18n="gp.l2s">성계 사이 항로를 고른다. 붐비는 무역로일수록 해적도 많다.</small></div></li>
+          <li class="reveal d3"><span class="no">03</span><div><b data-i18n="gp.l3b">궤도 전투</b><small data-i18n="gp.l3s">레이저·미사일·드론·함재기가 오가는 실시간 함대전. 편성과 장비가 승패를 가른다.</small></div></li>
         </ul>
       </div>
       <div class="phone reveal d2">
@@ -385,7 +403,7 @@ footer a:hover { color: var(--text); }
             <source src="media/gameplay.mp4" type="video/mp4" />
           </video>
           <div class="poster"></div>
-          <button class="play-btn" id="playBtn" type="button" aria-label="플레이 영상 재생"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+          <button class="play-btn" id="playBtn" type="button" aria-label="플레이 영상 재생" data-i18n-aria="gp.playAria"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
           <div class="soon" id="soon">TAP TO PLAY</div>
         </div>
       </div>
@@ -395,11 +413,11 @@ footer a:hover { color: var(--text); }
   <!-- 스텔라 — 게임의 핵심 「나를 도와주는 AI 동료」 · 플레이 영상 바로 다음 (대표님 10-15) -->
   <section class="block" id="stella" style="padding-top:0">
     <div class="stella">
-      <div class="card reveal"><img src="media/stella_aris.png" alt="오퍼레이터 스텔라 아리스" /><span class="name">STELLA ARIS</span></div>
+      <div class="card reveal"><img src="media/stella_aris.png" alt="오퍼레이터 스텔라 아리스" data-i18n-alt="st.alt" /><span class="name">STELLA ARIS</span></div>
       <div>
         <div class="eyebrow reveal">Operator</div>
-        <h2 class="reveal d1">스텔라 아리스</h2>
-        <p class="lead reveal d2">당신의 함교에 연결된 오퍼레이터. 전황을 읽고, 다음 수를 제안하고, 패배 뒤에는 다시 일어설 길을 함께 찾는다.</p>
+        <h2 class="reveal d1" data-i18n="st.h2">스텔라 아리스</h2>
+        <p class="lead reveal d2" data-i18n="st.lead">당신의 함교에 연결된 오퍼레이터. 전황을 읽고, 다음 수를 제안하고, 패배 뒤에는 다시 일어설 길을 함께 찾는다.</p>
         <div class="comm reveal d3"><div class="who">◉ COMM · STELLA ARIS</div><span class="typed" id="typed"></span></div>
       </div>
     </div>
@@ -408,32 +426,32 @@ footer a:hover { color: var(--text); }
   <!-- 특징 -->
   <section class="block" id="features" style="padding-top:0">
     <div class="eyebrow reveal">Features</div>
-    <h2 class="reveal d1">은하는 멈추지 않는다</h2>
-    <p class="lead reveal d2">이 은하에 다른 플레이어는 없다. 대신 아크코어라는 AI가 하루 한 번 세계를 굴린다. 세력이 흥하고 항로가 붐비거나 끊기며, 어떤 행성은 주인이 바뀐다.</p>
+    <h2 class="reveal d1" data-i18n="f.h2">은하는 멈추지 않는다</h2>
+    <p class="lead reveal d2" data-i18n="f.lead">이 은하에 다른 플레이어는 없다. 대신 아크코어라는 AI가 하루 한 번 세계를 굴린다. 세력이 흥하고 항로가 붐비거나 끊기며, 어떤 행성은 주인이 바뀐다.</p>
     <div class="features">
       <article class="feat reveal d1" data-tilt>
         <div class="art"><img class="lens-glow" src="img/arcCore/arc_core_lens.png" alt="" /></div>
         <span class="tag">ARCCORE AI</span>
-        <h3>AI가 운영하는 세계</h3>
-        <p>아크코어가 매일 경제·세력·교통을 계산한다. 어제와 같은 은하는 없다.</p>
+        <h3 data-i18n="f.1h">AI가 운영하는 세계</h3>
+        <p data-i18n="f.1p">아크코어가 매일 경제·세력·교통을 계산한다. 어제와 같은 은하는 없다.</p>
       </article>
       <article class="feat reveal d2" data-tilt>
         <div class="art cover"><img src="media/ships/npc_red_fleet_1.png" alt="" /></div>
         <span class="tag">ORBITAL COMBAT</span>
-        <h3>실시간 궤도 전투</h3>
-        <p>레이저·미사일·로켓·드론·함재기. 103종 무장과 45개 스킬로 나만의 전함을 만든다.</p>
+        <h3 data-i18n="f.2h">실시간 궤도 전투</h3>
+        <p data-i18n="f.2p">레이저·미사일·로켓·드론·함재기. 103종 무장과 45개 스킬로 나만의 전함을 만든다.</p>
       </article>
       <article class="feat reveal d3" data-tilt>
         <div class="art"><img class="spin-slow" src="img/planet/baked/synth_053_p.png" alt="" /></div>
         <span class="tag">TRADE &amp; ECONOMY</span>
-        <h3>무역으로 쌓는 함대</h3>
-        <p>100종 교역품과 광물. 싸게 사서 비싸게 판다. 번 돈은 고스란히 함선과 무기가 된다.</p>
+        <h3 data-i18n="f.3h">무역으로 쌓는 함대</h3>
+        <p data-i18n="f.3p">100종 교역품과 광물. 싸게 사서 비싸게 판다. 번 돈은 고스란히 함선과 무기가 된다.</p>
       </article>
       <article class="feat reveal d1" data-tilt>
         <div class="art cover"><img src="img/promo_poster_single_artist_anime.jpg" alt="" style="object-position:50% 20%" /></div>
         <span class="tag">FACTIONS &amp; STORY</span>
-        <h3>네 세력과 나의 독립국</h3>
-        <p>네 국가가 나눠 가진 은하. 298명의 함장과 얽히며, 당신만의 독립 세력을 세운다.</p>
+        <h3 data-i18n="f.4h">네 세력과 나의 독립국</h3>
+        <p data-i18n="f.4p">네 국가가 나눠 가진 은하. 298명의 함장과 얽히며, 당신만의 독립 세력을 세운다.</p>
       </article>
     </div>
   </section>
@@ -442,25 +460,25 @@ footer a:hover { color: var(--text); }
   <section class="fleet" id="fleet">
     <div class="head">
       <div class="eyebrow reveal">Fleet</div>
-      <h2 class="reveal d1">격납고에서 기다리는 함선들</h2>
-      <p class="lead reveal d2">생존 포드 하나로 시작해 화물선과 전함을 손에 넣는다. 광물로 함선마다 따로 강화한다.</p>
+      <h2 class="reveal d1" data-i18n="fl.h2">격납고에서 기다리는 함선들</h2>
+      <p class="lead reveal d2" data-i18n="fl.lead">생존 포드 하나로 시작해 화물선과 전함을 손에 넣는다. 광물로 함선마다 따로 강화한다.</p>
     </div>
     <div class="ship-grid">
       <article class="ship-card reveal d1">
-        <div class="pic"><img loading="lazy" src="media/ships/npc_test_ship_001.png" alt="생존 포드" /><span class="no">01</span></div>
-        <div class="info"><small>SURVIVAL POD</small><h3>생존 포드</h3><p>잔해에서 건져 올린 첫 함선. 작고 약하지만, 모든 항해는 여기서 시작된다.</p></div>
+        <div class="pic"><img loading="lazy" src="media/ships/npc_test_ship_001.png" alt="생존 포드" data-i18n-alt="fl.1h" /><span class="no">01</span></div>
+        <div class="info"><small>SURVIVAL POD</small><h3 data-i18n="fl.1h">생존 포드</h3><p data-i18n="fl.1p">잔해에서 건져 올린 첫 함선. 작고 약하지만, 모든 항해는 여기서 시작된다.</p></div>
       </article>
       <article class="ship-card reveal d2">
-        <div class="pic"><img loading="lazy" src="media/ships/npc_faction_cargo_ship_s_01.png" alt="산업 화물선 S-01" /><span class="no">02</span></div>
-        <div class="info"><small>INDUSTRIAL FREIGHTER</small><h3>산업 화물선 S-01</h3><p>광부 길드의 산업 항로를 오가는 수송선. 두툼한 화물칸에 광물과 교역품을 싣고 아르카디아를 떠난다.</p></div>
+        <div class="pic"><img loading="lazy" src="media/ships/npc_faction_cargo_ship_s_01.png" alt="산업 화물선 S-01" data-i18n-alt="fl.2h" /><span class="no">02</span></div>
+        <div class="info"><small>INDUSTRIAL FREIGHTER</small><h3 data-i18n="fl.2h">산업 화물선 S-01</h3><p data-i18n="fl.2p">광부 길드의 산업 항로를 오가는 수송선. 두툼한 화물칸에 광물과 교역품을 싣고 아르카디아를 떠난다.</p></div>
       </article>
       <article class="ship-card reveal d3">
-        <div class="pic"><img loading="lazy" src="media/ships/npc_red_fleet_1.png" alt="레드 전함 Mk.I" /><span class="no">03</span></div>
-        <div class="info"><small>RED HULL MK.I</small><h3>레드 전함 Mk.I</h3><p>뉴에덴 선적의 전열 전함. 중량 레이저와 노바 미사일을 얹은, 교역소에서 가장 비싼 매물 중 하나.</p></div>
+        <div class="pic"><img loading="lazy" src="media/ships/npc_red_fleet_1.png" alt="레드 전함 Mk.I" data-i18n-alt="fl.3h" /><span class="no">03</span></div>
+        <div class="info"><small>RED HULL MK.I</small><h3 data-i18n="fl.3h">레드 전함 Mk.I</h3><p data-i18n="fl.3p">뉴에덴 선적의 전열 전함. 중량 레이저와 노바 미사일을 얹은, 교역소에서 가장 비싼 매물 중 하나.</p></div>
       </article>
       <article class="ship-card reveal d1">
-        <div class="pic"><img loading="lazy" src="media/ships/npc_vega_test_ship_a.png" alt="베가 전함 A" /><span class="no">04</span></div>
-        <div class="info"><small>VEGA HULL A</small><h3>베가 전함 A</h3><p>베가 전초기지 방어선의 주력 전열함. 유도 미사일 3연발로 다가오는 적을 먼저 끊어 낸다.</p></div>
+        <div class="pic"><img loading="lazy" src="media/ships/npc_vega_test_ship_a.png" alt="베가 전함 A" data-i18n-alt="fl.4h" /><span class="no">04</span></div>
+        <div class="info"><small>VEGA HULL A</small><h3 data-i18n="fl.4h">베가 전함 A</h3><p data-i18n="fl.4p">베가 전초기지 방어선의 주력 전열함. 유도 미사일 3연발로 다가오는 적을 먼저 끊어 낸다.</p></div>
       </article>
     </div>
   </section>
@@ -468,31 +486,31 @@ footer a:hover { color: var(--text); }
   <!-- 숫자 -->
   <section class="block" style="padding-top:0">
     <div class="eyebrow reveal">By the numbers</div>
-    <h2 class="reveal d1">은하의 규모</h2>
+    <h2 class="reveal d1" data-i18n="s.h2">은하의 규모</h2>
     <div class="stats reveal d2">
-      <div class="stat"><div class="n" data-count="4">0</div><div class="l">대 세력</div></div>
-      <div class="stat"><div class="n" data-count="21" data-suffix="+">0</div><div class="l">핵심 성계</div></div>
-      <div class="stat"><div class="n" data-count="103">0</div><div class="l">무기 항목</div></div>
-      <div class="stat"><div class="n" data-count="45">0</div><div class="l">스킬</div></div>
-      <div class="stat"><div class="n" data-count="298">0</div><div class="l">NPC 함장</div></div>
-      <div class="stat"><div class="n" data-count="1">0</div><div class="l">척, 오직 나의 함선</div></div>
+      <div class="stat"><div class="n" data-count="4">0</div><div class="l" data-i18n="s.1">대 세력</div></div>
+      <div class="stat"><div class="n" data-count="21" data-suffix="+">0</div><div class="l" data-i18n="s.2">핵심 성계</div></div>
+      <div class="stat"><div class="n" data-count="103">0</div><div class="l" data-i18n="s.3">무기 항목</div></div>
+      <div class="stat"><div class="n" data-count="45">0</div><div class="l" data-i18n="s.4">스킬</div></div>
+      <div class="stat"><div class="n" data-count="298">0</div><div class="l" data-i18n="s.5">NPC 함장</div></div>
+      <div class="stat"><div class="n" data-count="1">0</div><div class="l" data-i18n="s.6">척, 오직 나의 함선</div></div>
     </div>
   </section>
 
   <!-- 마지막 CTA -->
   <section class="final">
     <div class="eyebrow reveal">Arcfire</div>
-    <h2 class="reveal d1">은하가 당신의 항해를 기다린다</h2>
-    <p class="lead reveal d2">세계관·세력·함선·무기·경제까지, 더 자세한 이야기는 게임 위키에 정리했다.</p>
+    <h2 class="reveal d1" data-i18n="fin.h2">은하가 당신의 항해를 기다린다</h2>
+    <p class="lead reveal d2" data-i18n="fin.lead">세계관·세력·함선·무기·경제까지, 더 자세한 이야기는 게임 위키에 정리했다.</p>
     <div class="cta reveal d3">
-      <a class="btn primary" href="wiki.html">게임 위키 열기</a>
-      <a class="btn ghost" href="community.html">커뮤니티</a>
+      <a class="btn primary" href="wiki.html" data-i18n-href="wiki.html" data-i18n="fin.wiki">게임 위키 열기</a>
+      <a class="btn ghost" href="community.html" data-i18n-href="community.html" data-i18n="fin.community">커뮤니티</a>
     </div>
   </section>
 
   <footer>
-    <span>© ARCFIRE · 싱글플레이 우주 전략</span>
-    <span><a href="wiki.html">위키</a> · <a href="community.html">커뮤니티</a> · <a href="#top">맨 위로</a></span>
+    <span data-i18n="foot.copy">© ARCFIRE · 싱글플레이 우주 전략</span>
+    <span><a href="wiki.html" data-i18n-href="wiki.html" data-i18n="foot.wiki">위키</a> · <a href="community.html" data-i18n-href="community.html" data-i18n="foot.community">커뮤니티</a> · <a href="#top" data-i18n="foot.top">맨 위로</a></span>
   </footer>
 </div>
 
@@ -552,10 +570,160 @@ footer a:hover { color: var(--text); }
     if (!reduce && scrollY < window.innerHeight) art.style.translate = "0 " + (scrollY * .3) + "px";
   }, { passive: true });
 
-  /* 흐르는 띠 */
-  var words = ["AI가 운영하는 은하", "4대 세력", "실시간 궤도 전투", "무역 · 경제", "103종 무장", "298명의 함장", "행성 개발", "독립국 건설", "스텔라 아리스"];
-  var t = document.getElementById("ticker"), html = words.map(function (w) { return "<span>" + w + "</span>"; }).join("");
-  t.innerHTML = html + html;
+  /* ---------- 언어 KO · EN · JP (대표님 10-15 「일반적인 웹사이트 규칙」) ----------
+     한국어 원문은 HTML 그대로(사전에 두지 않고 처음 읽어 둔다). 우선순위: ?lang= → 저장한 선택 → 브라우저 언어(ko·ja, 그 외 en).
+     영어·일본어의 위키 링크는 영어 위키(en/)로 간다 — 일본어 위키는 없음. */
+  var I18N = {
+    en: {
+      "meta.title": "ARCFIRE — An AI-run galaxy, one ship of your own",
+      "meta.desc": "ARCFIRE is a single-player space strategy game: trade, fight and navigate faction wars with a single ship in a galaxy run by AI.",
+      "meta.og": "An AI-run galaxy. One ship — yours alone.",
+      "notice.title": "This page is under construction",
+      "notice.body": "We're still building the ARCFIRE introduction page.<br />Some content and the gameplay video are coming soon.",
+      "notice.close": "Look around",
+      "notice.wiki": "Game Wiki",
+      "nav.play": "Gameplay", "nav.stella": "Stella", "nav.features": "Features", "nav.fleet": "Fleet", "nav.wiki": "Game Wiki →",
+      "hero.tagline": "A galaxy run by AI.<br /><span class=\"hl\">One ship. Yours alone.</span>",
+      "hero.sub": "Earn through trade, fight in orbit, and find your way among four factions. The galaxy keeps moving even while you're away.",
+      "hero.langNote": "",
+      "hero.ctaPlay": "Gameplay video",
+      "hero.ctaWiki": "Open the game wiki",
+      "hero.keyartAlt": "ARCFIRE key art — main characters",
+      "gp.h2": "A bridge in your hand.<br />Three stages.",
+      "gp.lead": "Land on a planet to prepare, chart your route on the galaxy map, and fight in orbit. Three stages, one voyage.",
+      "gp.l1b": "Planet Hub", "gp.l1s": "Trade post, shipyard and bar. Buy cargo, refit your ship, and take jobs from captains.",
+      "gp.l2b": "Galaxy Map", "gp.l2s": "Choose your lanes between systems. The busier the trade route, the more pirates.",
+      "gp.l3b": "Orbital Combat", "gp.l3s": "Real-time fleet battles with lasers, missiles, drones and fighters. Your loadout and gear decide the fight.",
+      "gp.playAria": "Play the gameplay video",
+      "gp.noVideo": "Gameplay video coming soon",
+      "st.alt": "Operator Stella Aris",
+      "st.h2": "Stella Aris",
+      "st.lead": "The operator wired into your bridge. She reads the battlefield, suggests your next move, and after a defeat helps you find the way back up.",
+      "f.h2": "The galaxy never stops",
+      "f.lead": "There are no other players in this galaxy. Instead, an AI called ArcCore turns the world once a day. Factions rise, lanes crowd or close, and some planets change hands.",
+      "f.1h": "A world run by AI", "f.1p": "ArcCore computes the economy, factions and traffic every day. No two days of the galaxy are the same.",
+      "f.2h": "Real-time orbital combat", "f.2p": "Lasers, missiles, rockets, drones and fighters. Build your own warship from 103 weapons and 45 skills.",
+      "f.3h": "A fleet built on trade", "f.3p": "100 trade goods and minerals. Buy low, sell high. Every credit you earn becomes ships and weapons.",
+      "f.4h": "Four factions and a nation of your own", "f.4p": "A galaxy split among four nations. Cross paths with 298 captains and found an independent power of your own.",
+      "fl.h2": "Ships waiting in the hangar",
+      "fl.lead": "Start with a single survival pod and earn freighters and warships. Upgrade each ship separately with minerals.",
+      "fl.1h": "Survival Pod", "fl.1p": "Your first ship, pulled from the wreckage. Small and fragile — but every voyage starts here.",
+      "fl.2h": "Industrial Freighter S-01", "fl.2p": "A hauler on the Miners' Guild industrial lanes. It leaves Arcadia with a thick hold full of ore and trade goods.",
+      "fl.3h": "Red Hull Mk.I", "fl.3p": "A line warship registered at New Eden. With heavy lasers and Nova missiles, it is one of the priciest listings at any trade post.",
+      "fl.4h": "Vega Hull A", "fl.4p": "The mainstay of the Vega outpost defense line. Its triple guided missiles cut down enemies before they close in.",
+      "s.h2": "The scale of the galaxy",
+      "s.1": "major factions", "s.2": "core systems", "s.3": "weapons", "s.4": "skills", "s.5": "NPC captains", "s.6": "ship — yours alone",
+      "fin.h2": "The galaxy awaits your voyage",
+      "fin.lead": "Lore, factions, ships, weapons and the economy — the full story lives in the game wiki.",
+      "fin.wiki": "Open the game wiki", "fin.community": "Community",
+      "foot.copy": "© ARCFIRE · Single-player space strategy",
+      "foot.wiki": "Wiki", "foot.community": "Community", "foot.top": "Back to top",
+      "ticker": ["An AI-run galaxy", "4 factions", "Real-time orbital combat", "Trade · Economy", "103 weapons", "298 captains", "Planet development", "Build your own nation", "Stella Aris"],
+      "typed": ["Captain, we're connected. Galaxy prices moved a lot today.", "Pirate signals are up on the Vega lanes. Going without an escort is risky.", "Losing isn't the end. Let's find the next move together."]
+    },
+    ja: {
+      "meta.title": "ARCFIRE — AIが動かす銀河、ただ一隻の自分の艦",
+      "meta.desc": "AIが運営する銀河で、たった一隻の艦を駆り、交易・戦闘・勢力争いを生き抜くシングルプレイ宇宙戦略ゲーム「アークファイア」。",
+      "meta.og": "AIが動かす銀河。ただ一隻、自分だけの艦。",
+      "notice.title": "ページ準備中",
+      "notice.body": "アークファイアの紹介ページを準備しています。<br />一部の内容とプレイ映像はまもなく公開します。",
+      "notice.close": "見てみる",
+      "notice.wiki": "ゲームWiki",
+      "nav.play": "プレイ映像", "nav.stella": "ステラ", "nav.features": "特徴", "nav.fleet": "艦船", "nav.wiki": "ゲームWiki →",
+      "hero.tagline": "AIが動かす銀河、<br /><span class=\"hl\">ただ一隻、自分だけの艦。</span>",
+      "hero.sub": "交易で稼ぎ、軌道で戦い、四つの勢力のはざまで道を切り開け。あなたがログインしていない間も、銀河は動き続ける。",
+      "hero.langNote": "※ ゲーム内の言語は現在、韓国語と英語に対応しています。Wikiは英語版でご案内します。",
+      "hero.ctaPlay": "プレイ映像",
+      "hero.ctaWiki": "ゲームWikiを見る",
+      "hero.keyartAlt": "アークファイア キーアート — 主要キャラクター",
+      "gp.h2": "手のひらの艦橋。<br />三つの舞台。",
+      "gp.lead": "惑星に降りて準備し、銀河マップで航路を決め、軌道で戦う。三つの舞台がひとつの航海につながる。",
+      "gp.l1b": "惑星ハブ", "gp.l1s": "交易所・造船所・バー。貨物を買い、艦を整え、艦長たちから依頼を受ける。",
+      "gp.l2b": "銀河マップ", "gp.l2s": "星系間の航路を選ぶ。にぎわう交易路ほど、海賊も多い。",
+      "gp.l3b": "軌道戦闘", "gp.l3s": "レーザー・ミサイル・ドローン・艦載機が飛び交うリアルタイム艦隊戦。編成と装備が勝敗を分ける。",
+      "gp.playAria": "プレイ映像を再生",
+      "gp.noVideo": "プレイ映像 準備中",
+      "st.alt": "オペレーター ステラ・アリス",
+      "st.h2": "ステラ・アリス",
+      "st.lead": "あなたの艦橋につながるオペレーター。戦況を読み、次の一手を提案し、敗北のあとは再び立ち上がる道を一緒に探す。",
+      "f.h2": "銀河は止まらない",
+      "f.lead": "この銀河にほかのプレイヤーはいない。代わりにアークコアというAIが一日に一度、世界を動かす。勢力が栄え、航路がにぎわい、あるいは途絶え、主が替わる惑星もある。",
+      "f.1h": "AIが運営する世界", "f.1p": "アークコアが毎日、経済・勢力・交通を計算する。昨日と同じ銀河は存在しない。",
+      "f.2h": "リアルタイム軌道戦闘", "f.2p": "レーザー・ミサイル・ロケット・ドローン・艦載機。103種の武装と45のスキルで、自分だけの戦艦をつくる。",
+      "f.3h": "交易で築く艦隊", "f.3p": "100種の交易品と鉱物。安く買い、高く売る。稼いだ金はそのまま艦と武器になる。",
+      "f.4h": "四つの勢力と自分の独立国", "f.4p": "四つの国が分け合う銀河。298人の艦長と関わりながら、自分だけの独立勢力を打ち立てる。",
+      "fl.h2": "格納庫で待つ艦船たち",
+      "fl.lead": "脱出ポッドひとつから始めて、貨物船や戦艦を手に入れる。鉱物で艦ごとに個別に強化する。",
+      "fl.1h": "脱出ポッド", "fl.1p": "残骸から引き上げた最初の艦。小さく脆いが、すべての航海はここから始まる。",
+      "fl.2h": "産業貨物船 S-01", "fl.2p": "鉱夫ギルドの産業航路を行き来する輸送船。分厚い貨物室に鉱物と交易品を積み、アルカディアを発つ。",
+      "fl.3h": "レッド戦艦 Mk.I", "fl.3p": "ニューエデン船籍の戦列艦。重レーザーとノヴァミサイルを積んだ、交易所でも指折りの高額物件。",
+      "fl.4h": "ベガ戦艦 A", "fl.4p": "ベガ前哨基地防衛線の主力戦列艦。誘導ミサイル三連発で、迫る敵を先に断ち切る。",
+      "s.h2": "銀河の規模",
+      "s.1": "大勢力", "s.2": "主要星系", "s.3": "武装", "s.4": "スキル", "s.5": "NPC艦長", "s.6": "隻、自分だけの艦",
+      "fin.h2": "銀河が、<br />あなたの航海を待っている",
+      "fin.lead": "世界観・勢力・艦船・武器・経済まで、詳しくはゲームWiki（英語版）にまとめています。",
+      "fin.wiki": "ゲームWikiを開く", "fin.community": "コミュニティ",
+      "foot.copy": "© ARCFIRE · シングルプレイ宇宙戦略",
+      "foot.wiki": "Wiki", "foot.community": "コミュニティ", "foot.top": "トップへ",
+      "ticker": ["AIが動かす銀河", "4大勢力", "リアルタイム軌道戦闘", "交易・経済", "103種の武装", "298人の艦長", "惑星開発", "独立国の建国", "ステラ・アリス"],
+      "typed": ["艦長、接続しました。今日は銀河の相場が大きく動いています。", "ベガ航路で海賊の信号が増えています。護衛なしでは危険です。", "負けても終わりじゃありません。次の一手を一緒に探しましょう。"]
+    }
+  };
+  var KO = {
+    "meta.title": document.title,
+    "meta.desc": document.querySelector('meta[name="description"]').content,
+    "meta.og": document.querySelector('meta[property="og:description"]').content,
+    "gp.noVideo": "플레이 영상 준비 중",
+    "ticker": ["AI가 운영하는 은하", "4대 세력", "실시간 궤도 전투", "무역 · 경제", "103종 무장", "298명의 함장", "행성 개발", "독립국 건설", "스텔라 아리스"],
+    "typed": ["함장님, 연결됐습니다. 오늘 은하 시세가 크게 움직였어요.", "베가 항로에 해적 신호가 늘었습니다. 호위 없이 가시면 위험해요.", "졌다고 끝난 게 아닙니다. 다음 수를 같이 찾아보죠."]
+  };
+  document.querySelectorAll("[data-i18n]").forEach(function (el) { KO[el.getAttribute("data-i18n")] = el.innerHTML; });
+  document.querySelectorAll("[data-i18n-alt]").forEach(function (el) { KO["alt:" + el.getAttribute("data-i18n-alt")] = el.alt; });
+  document.querySelectorAll("[data-i18n-aria]").forEach(function (el) { KO["aria:" + el.getAttribute("data-i18n-aria")] = el.getAttribute("aria-label"); });
+  var LANGS = ["ko", "en", "ja"], lang = "ko", videoMissing = false;
+  function pickLang() {
+    var q = (new URLSearchParams(location.search).get("lang") || "").toLowerCase();
+    if (q === "jp") q = "ja";
+    if (LANGS.indexOf(q) >= 0) return q;
+    try { var s = localStorage.getItem("arcfire_lang"); if (LANGS.indexOf(s) >= 0) return s; } catch (e) {}
+    var navs = navigator.languages || [navigator.language || ""];
+    for (var i = 0; i < navs.length; i++) {
+      var l = String(navs[i]).toLowerCase();
+      if (l.indexOf("ko") === 0) return "ko";
+      if (l.indexOf("ja") === 0) return "ja";
+      if (l.indexOf("en") === 0) return "en";
+    }
+    return "en";
+  }
+  function tr(key) { var d = I18N[lang]; return d && Object.prototype.hasOwnProperty.call(d, key) ? d[key] : KO[key]; }
+  var t = document.getElementById("ticker");
+  function renderTicker() { var html = tr("ticker").map(function (w) { return "<span>" + w + "</span>"; }).join(""); t.innerHTML = html + html; }
+  function applyLang(next, remember) {
+    lang = LANGS.indexOf(next) >= 0 ? next : "ko";
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var v = tr(el.getAttribute("data-i18n"));
+      el.innerHTML = v == null ? "" : v;
+      if (el.classList.contains("langnote")) el.hidden = !v;
+    });
+    document.querySelectorAll("[data-i18n-alt]").forEach(function (el) { var k = el.getAttribute("data-i18n-alt"); el.alt = lang === "ko" ? KO["alt:" + k] : tr(k); });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) { var k = el.getAttribute("data-i18n-aria"); el.setAttribute("aria-label", lang === "ko" ? KO["aria:" + k] : tr(k)); });
+    document.querySelectorAll("[data-i18n-href]").forEach(function (el) { var h = el.getAttribute("data-i18n-href"); el.setAttribute("href", lang === "ko" ? h : "en/" + h); });
+    document.querySelectorAll(".lang [data-lang]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang)); });
+    document.title = tr("meta.title");
+    document.querySelector('meta[name="description"]').content = tr("meta.desc");
+    document.querySelector('meta[property="og:description"]').content = tr("meta.og");
+    renderTicker();
+    if (videoMissing) document.getElementById("soon").textContent = tr("gp.noVideo");
+    if (remember) {
+      try { localStorage.setItem("arcfire_lang", lang); } catch (e) {}
+      try { var u = new URL(location.href); u.searchParams.set("lang", lang); history.replaceState(null, "", u); } catch (e) {}
+    }
+  }
+  document.querySelectorAll(".lang [data-lang]").forEach(function (b) {
+    b.addEventListener("click", function () { applyLang(b.getAttribute("data-lang"), true); });
+  });
+  applyLang(pickLang(), false);
 
 
   /* 등장 애니메이션 · 숫자 세기 */
@@ -576,11 +744,11 @@ footer a:hover { color: var(--text); }
   document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
 
   /* 스텔라 통신 타이핑 */
-  var lines = ["함장님, 연결됐습니다. 오늘 은하 시세가 크게 움직였어요.", "베가 항로에 해적 신호가 늘었습니다. 호위 없이 가시면 위험해요.", "졌다고 끝난 게 아닙니다. 다음 수를 같이 찾아보죠."], li = 0, started = false, typed = document.getElementById("typed");
+  var li = 0, started = false, typed = document.getElementById("typed");
   function typeStart() {
     if (started) return; started = true;
     (function next() {
-      var s = lines[li % lines.length], i = 0; typed.textContent = "";
+      var lines = tr("typed"), s = lines[li % lines.length], i = 0; typed.textContent = "";
       (function ch() { typed.textContent = s.slice(0, ++i); if (i < s.length) setTimeout(ch, 45); else setTimeout(function () { li++; next(); }, 2600); })();
     })();
   }
@@ -598,7 +766,7 @@ footer a:hover { color: var(--text); }
 
   /* 플레이 영상: 파일이 없으면 「영상 준비 중」 */
   var v = document.getElementById("gameplayVideo"), scr = document.getElementById("screen"), soon = document.getElementById("soon"), btn = document.getElementById("playBtn");
-  function noVideo() { soon.textContent = "플레이 영상 준비 중"; btn.style.display = "none"; }
+  function noVideo() { videoMissing = true; soon.textContent = tr("gp.noVideo"); btn.style.display = "none"; }
   v.querySelector("source").addEventListener("error", noVideo);
   btn.addEventListener("click", function () {
     v.muted = false; v.controls = true;

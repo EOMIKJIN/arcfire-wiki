@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Game UI · ARCFIRE Wiki</title>
+<meta name="description" content="ARCFIRE's single overlay host, the three-tier in-game dialogue popup, two visual themes, the three-stage screen structure and UI audit tooling." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/ui.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/ui.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/ui.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="ui">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="ui.html" data-page="ui" class="active"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">Systems · Screens</div>
+      <h1 class="page-title">Game UI</h1>
+      <p class="page-lede">
+        The screen moves between three stages (planet hub → galaxy map → combat), and every popup, alert and dialogue window on top of them
+        is unified under <strong>one single overlay host</strong> rather than React Native's default Modal.
+        That structural principle is itself the defining trait of this game's UI.
+      </p>
+
+      <h2>The single overlay host — a shared skeleton for every popup</h2>
+      <p>
+        Screen-style popups such as the shop, settings, planet development details and trade quantity input all use the same assembly.
+        New popups extend this assembly instead of building a standalone screen.
+      </p>
+      <blockquote>
+ArcOverlayHost<br />
+&nbsp;└─ ArcOverlayCard (title header + scrolling body + bottom action dock)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;├─ ArcOverlayTitleHeader — title and subtitle only (no data)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;├─ body — panelPrefix (fixed meta such as unit price and stock) + scrolling body<br />
+&nbsp;&nbsp;&nbsp;&nbsp;└─ footerDock — [Cancel]/[Confirm]-style actions, fixed outside the scroll
+      </blockquote>
+      <p>Four anti-regression rules are spelled out to protect this structure:</p>
+      <ol>
+        <li>Card width is always 100% — fixed separately so it doesn't shrink to fit the title text</li>
+        <li>Never put <code>flex:1</code> directly on the body — it causes a collapse-to-zero-height bug in RN, so scrolling is handled only inside the card</li>
+        <li>The bottom button area is fixed <strong>outside</strong> the scroll area — so buttons never get cut off by scrolling</li>
+        <li>No real data such as price or stock in the title header — the header is for the title only; data goes in the fixed area at the top of the body</li>
+      </ol>
+      <p>Simple notices (daily mining limit, level-up, rewards, combat results) <strong>close automatically after 40 seconds</strong> — only exceptions such as destructive confirmations remain manual.</p>
+
+      <h2>In-game dialogue — a three-tier vertical popup</h2>
+      <p>
+        First contact with an NPC (comms, step 1 of the <a href="arccore.html#two-gate">two gates</a>) and story cutscenes appear in a dedicated popup.
+        The current runtime standard is a <strong>three-tier vertical layout</strong>.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Tier</th><th>Height</th><th>Content</th></tr></thead>
+          <tbody>
+            <tr><td>1. Face</td><td class="num">300px</td><td>NPC portrait (or scene image), contain ratio</td></tr>
+            <tr><td>2. Lines</td><td class="num">Variable</td><td>Split into chunks of up to 3 lines and shown in sequence</td></tr>
+            <tr><td>3. Buttons</td><td class="num">56px</td><td>[Next] or [Accept][Cancel]</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.85rem;color:var(--text-faint);">482px in total. A semi-transparent layout overlaid on the hub, with the top bar and quest cards showing through, was also considered earlier (2026-08-24 design), but as of 2026-09-06 it was replaced by and finalized as this three-tier vertical popup.</p>
+
+      <h2>Two visual themes</h2>
+      <p>
+        Two overlay card styles currently coexist — the older <strong>Phosphor</strong> theme remains on most screens, while the new
+        <strong>Tactical (G-ARCHIVE)</strong> theme is being rolled out step by step, starting with the planet info screen.
+      </p>
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-eyebrow">Tactical · G-ARCHIVE</span>
+          <h4>Applied first to the planet info screen</h4>
+          <p>Dark gray header (<code>#252930</code>) with a hatch pattern, light gray body (<code>#DDE1E8</code>) and dedicated button styles (<code>tacticalPrimary</code>/<code>tacticalSecondary</code>). A full switch on other screens is planned step by step after a risk register review.</p>
+        </div>
+        <div class="card">
+          <span class="card-eyebrow">Phosphor · legacy</span>
+          <h4>Most other popups</h4>
+          <p>Settings, shop, trade quantity, planet development, alerts, level-up, rewards, combat results and most other kinds still use this theme. They are scheduled to move to Tactical over time.</p>
+        </div>
+      </div>
+
+      <h2>The three-stage structure</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Stage</th><th>Screen</th><th>Transition rule</th></tr></thead>
+          <tbody>
+            <tr><td>STAGE 1</td><td>Planet hub</td><td rowspan="3">Transitions always use <code>replace()</code> — <code>navigate()</code>, which keeps the previous stage's resources alive for the back button, is forbidden. Releasing the previous stage's resources (especially Skia render resources) on transition is mandatory.</td></tr>
+            <tr><td>STAGE 2</td><td>Galaxy map</td></tr>
+            <tr><td>STAGE 3</td><td>Combat</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Audit tooling against UI regressions</h2>
+      <p>These overlay rules are not checked by eye every time; they are verified by a dedicated automated audit script — if direct use of RN <code>Modal</code>/<code>Alert.alert</code> or magic-number padding remains in the code, the audit fails. Any work touching the overlay UI counts as done only after passing this audit.</p>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+
+</body>
+</html>

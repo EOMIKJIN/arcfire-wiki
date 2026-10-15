@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bar · Captains · Player · ARCFIRE Wiki</title>
+<meta name="description" content="ARCFIRE's bars and 103 attendants, 298 NPC captains, permanent death, character creation, the tarot destiny system and the tutorial." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/social.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/social.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/social.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="social">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social" class="active"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">Systems · Social</div>
+      <h1 class="page-title">Bar · Captains · Player</h1>
+      <p class="page-lede">
+        It's a single-player game, but the galaxy holds 298 named NPC captains and a social space, the "bar", that opens on planet after planet.
+        You yourself start out as a pilot with a backstory.
+      </p>
+
+      <h2 id="bar">The bar — a social hub</h2>
+      <p>The design document states that the bar is <strong>"main content, not a side menu"</strong>. Eighteen planets have a bar, each staffed by 5–20 attendants (more and flashier on capital-class planets).</p>
+      <ol>
+        <li>Enter the bar → the host NPC starts an in-game conversation: "Buy me a drink?"</li>
+        <li>Accept → the attendant roster appears</li>
+        <li>Pick one and buy a drink (costs credits)</li>
+        <li><strong>A performance session begins</strong> — one drink = 15 real-time minutes. Dialogue pages and a short looping animation unlock</li>
+        <li>[Another drink] extends the time and unlocks the next stage of content (1 drink = greeting, 2 = personal story, 3 = dance clip + longer conversation…)</li>
+      </ol>
+      <p>
+        "Popularity" is counted by <strong>total credits spent</strong>, not by number of drinks. There are three drinks — House Ale, Nebula Wine and Phospho Fizz — and only five songs,
+        shared by every attendant; each attendant's personality comes from eight dialogue archetypes plus a unique name and portrait.
+        Attendant dialogue is not generated by ArcCore's LLM — that is explicitly out of scope.
+      </p>
+      <div class="callout note"><strong>Content rating</strong> The design document explicitly fixes "no sexual content and no depiction of minors" as a principle.</div>
+
+      <div class="callout warn">
+        <strong>Design target 288 vs actually registered 103</strong>
+        The design document describes a galaxy-wide target of 288, but counting <code>bar_attendants.csv</code> directly shows <b>103</b> attendants actually registered today.
+        This wiki follows the real table row count, not the document's target.
+      </div>
+
+      <h2 id="all-attendants">All attendants — 103</h2>
+      <p>Search by planet, name or tagline.</p>
+      <div id="attendant-table"></div>
+
+      <h2 id="captains">NPC captains — 298</h2>
+      <p>As of 2026-10 there are 298 — by combat side, 81 blue · 74 red · 143 non-combat — and <strong>38 of them are quest-only captains</strong> (appearing only in side requests or the main story). There are 285 portraits (some captains share one), shown in the first column of the table below. The 103 bar attendants share 22 portraits.</p>
+      <p>
+        The 298 captains in <code>npc_ai_captains.csv</code> are independent entities with a rank (admiral, colonel, fleet leader, warlord and so on), affiliation,
+        AI temperament (cautious to berserk) and role (fleet leader, patrol, escort, garrison, hunter, merchant guard). Observed types:
+      </p>
+      <ul>
+        <li>Fleet commanders and admiral-class leaders</li>
+        <li>Border patrol and escort captains (e.g. guarding mining convoys)</li>
+        <li>Garrison and port commanders</li>
+        <li>Research and science captains — e.g. <strong>Vector-7</strong>, the captain of an experimental AI hull that responds only to anomalous energy signals</li>
+        <li>Hostile warlords and pirate raid captains (many numbered Vega red/blue)</li>
+        <li>Wreck-field looters (Iron Cross remnants)</li>
+        <li>Three AI clan flagship leaders — Adeline Rook (safe zone), Lin Kendall (neutral zone) and Mora Shayer (contested zone), each representing a zone's fleet</li>
+      </ul>
+      <p>Twelve of them form the "civilian orbit filler line" — named captains purely for traffic volume.</p>
+
+      <h2 id="all-captains">All captains — 298</h2>
+      <p>Search by name, affiliation, role, home system or AI clan.</p>
+      <div id="captain-table"></div>
+
+      <div class="callout warn">
+        <strong>Permanent death — designed, but nobody dies yet</strong>
+        Regular patrol, wave-spawn and contested-zone captains are explicitly <strong>immortal (exempt)</strong> — the risk is too high.
+        Permanent death targets only "designated main-story captains", and of the current 298, <strong>zero</strong> are so designated.
+        The system (ledger and gates) is already implemented, but no one is tagged as "able to die" yet.
+      </div>
+
+      <h2 id="chargen">Character creation <span class="pill warm">On hold</span></h2>
+      <p>The current live build has no character creation screen — the earlier implementation got tangled with other changes and was rolled back to a stable commit; the code is only preserved under a git tag. The designed flow and three preset classes are:</p>
+      <blockquote>Title → Intro (story) → Character select → Nickname → Warp sequence → Planet hub</blockquote>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th>Gender</th><th>Combat archetype</th><th>Temperament</th></tr></thead>
+          <tbody>
+            <tr><td>Ren Kaze</td><td>Male</td><td>Assault pilot — close-range breakthrough</td><td>Reticent · resolute</td></tr>
+            <tr><td>Mia Velo</td><td>Female</td><td>Recon pilot — maneuver and evasion</td><td>Calm · observant</td></tr>
+            <tr><td>Kyle Drake</td><td>Male</td><td>Tactical pilot — fleet command</td><td>Cool-headed · analytical</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="tarot">Tarot destiny system <span class="pill warm">Planning</span></h2>
+      <p>
+        The concept is "a first choice that decides the future" — before choosing a character, you set your "destiny" by picking one of 22
+        Major Arcana–style cards directly by number (1–22). It is a fixed principle that the interpretations of the 22 cards are written by the owner,
+        not by AI. The first scope covers only the presentation (cards scatter, and choosing a number flips one over to reveal its reading);
+        connecting it to actual stats and story branches is deferred to a later stage.
+      </p>
+
+      <h2 id="tutorial">Tutorial <span class="pill warm">Foundation design</span></h2>
+      <p>
+        A forced, linear onboarding on Arcadia, the first planet you land on. While it runs, it is designed so that <strong>the tutorial is the only thing in the foreground</strong> —
+        every other menu, inbound alert, wave and rebellion alarm is locked. There is intentionally no skip button.
+        The only voice in this section is <a href="arccore.html#dual-mouth">Stella Aris</a>.
+      </p>
+      <ol>
+        <li><strong>A. Survival loop</strong> — welcome → scan → mine → check cargo → open the trade port → actually sell one item</li>
+        <li><strong>B. Ships</strong> — just browse the shipyard (no forced purchase; you already own a starter ship)</li>
+        <li><strong>C. People</strong> — pick one person from the [Talk] list and browse the bar board (accepting is locked)</li>
+        <li><strong>D. Wrap-up</strong> — closing lines → departure unlocked → the first main mission actually begins here</li>
+      </ol>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+<script src="../assets/data/attendants.js"></script>
+<script src="../assets/data/captains.js"></script>
+<script src="../assets/datatable.js"></script>
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+<script>
+  var CLAN_EN = { "솔라무역 방위연합": "Solar Trade Defense Alliance", "오메가 중립 회항단": "Omega Neutral Circuit Fleet", "홍월 약탈 함대": "Crimson Moon Raiding Fleet" };
+  function esc(s) { return String(s == null ? "" : s).replace(/</g, "&lt;"); }
+  (window.CAPTAIN_DATA || []).forEach(function (r) { r.clanEn = CLAN_EN[r.clan] || r.clan; });
+  mountWikiDataTable({
+    mount: document.getElementById("attendant-table"),
+    data: window.ATTENDANT_DATA || [],
+    label: "Attendants",
+    searchKeys: ["id", "planetEn", "nameEn", "taglineEn"],
+    columns: [
+      { key: "img", label: "Portrait", render: function (r) { return wikiThumb(r.img, r.nameEn || r.id); } },
+      { key: "nameEn", label: "Name", render: function (r) { return esc(r.nameEn || r.id); } },
+      { key: "planetEn", label: "Planet" },
+      { key: "taglineEn", label: "Tagline" },
+      { key: "dialogSet", label: "Dialogue set" },
+    ],
+  });
+  mountWikiDataTable({
+    mount: document.getElementById("captain-table"),
+    data: window.CAPTAIN_DATA || [],
+    label: "Captains",
+    searchKeys: ["id", "nameEn", "faction", "team", "role", "planetEn", "clanEn"],
+    columns: [
+      { key: "img", label: "Portrait", render: function (r) { return wikiThumb(r.img, r.nameEn || r.id); } },
+      { key: "nameEn", label: "Name", render: function (r) { return esc(r.nameEn || r.id); } },
+      { key: "team", label: "Side" },
+      { key: "faction", label: "Affiliation" },
+      { key: "role", label: "Role" },
+      { key: "planetEn", label: "Home system" },
+      { key: "clan", label: "AI clan", render: function (r) { return esc(CLAN_EN[r.clan] || r.clan); } },
+      { key: "deathEligible", label: "Perma-death", render: function (r) { return r.deathEligible === "TRUE" ? '<span class="pill danger">Eligible</span>' : '<span class="pill">Exempt</span>'; } },
+    ],
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Weapons · ARCFIRE Wiki</title>
+<meta name="description" content="ARCFIRE's 103 weapons across five families — lasers, missiles, rockets, drones and fighters — with tiers and the full list." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/weapons.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/weapons.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/weapons.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="weapons">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="weapons.html" data-page="weapons" class="active"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">Power · Armament</div>
+      <h1 class="page-title">Weapons</h1>
+      <p class="page-lede">
+        Five families — lasers, missiles, rockets, drones and fighters — for a total of <strong>103 entries</strong> (83 sold in shops + 20 test-only).
+        Tiers rise in the order Basic → New → Veteran → Elite → Legendary → Epic → Transcendent → Divine → Cosmic, spanning levels 1 to 60.
+      </p>
+
+      <h2>The five families</h2>
+      <div class="card-grid">
+        <div class="card"><span class="card-eyebrow">27 types</span><h4>Lasers</h4><p>17 in shops + 10 test. Instant-hit beam weapons.</p></div>
+        <div class="card"><span class="card-eyebrow">35 types</span><h4>Missiles</h4><p>The largest family, mostly guided missiles.</p></div>
+        <div class="card"><span class="card-eyebrow">19 types</span><h4>Rockets</h4><p>Multi-launch and area projectiles.</p></div>
+        <div class="card"><span class="card-eyebrow">12 types</span><h4>Drones</h4><p>7 in shops + 5 test. Three-step behavior: approach → orbit → charge.</p></div>
+        <div class="card"><span class="card-eyebrow">10 types</span><h4>Fighters</h4><p>5 in shops + 5 test. Launch → repeated figure-eight attacks → return.</p></div>
+      </div>
+
+      <div class="callout note">
+        <strong>Drones and fighters are "units", not projectiles</strong>
+        A normal weapon ends at fire and hit. A drone instead closes on its target, circles at a set radius and finally charges once and self-destructs;
+        a fighter launches from its carrier, loops around the target in a figure-eight (lemniscate) path attacking several times over a set duration,
+        then returns to the carrier (or to wherever the carrier has moved). The Bézier curves used for missiles cannot express this behavior,
+        so they are implemented separately with dedicated slot pools (8 drones and 8 fighters — fixed pools with no new allocation per tick).
+      </div>
+
+      <h2>Tier ladder</h2>
+      <p>The higher the required level, the higher the tier, and prices climb exponentially — a level 1 Basic laser deals 4 damage for 1,430 cr, while a level 60 Cosmic laser deals 60 damage for 7,043,000 cr.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Tier</th><th class="num">Approx. req. Lv</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Basic</td><td class="num">1</td><td>Starting weapons</td></tr>
+            <tr><td>New</td><td class="num">1–5</td><td></td></tr>
+            <tr><td>Veteran</td><td class="num">5–12</td><td></td></tr>
+            <tr><td>Elite</td><td class="num">13–20</td><td></td></tr>
+            <tr><td>Legendary</td><td class="num">17–27</td><td></td></tr>
+            <tr><td>Epic</td><td class="num">27–35</td><td></td></tr>
+            <tr><td>Transcendent</td><td class="num">30–43</td><td></td></tr>
+            <tr><td>Divine</td><td class="num">43–50</td><td></td></tr>
+            <tr><td>Cosmic</td><td class="num">55–60</td><td>Top tier. Priced in the tens of millions of cr</td></tr>
+            <tr><td>Wave / Test</td><td class="num">1</td><td>Wave-defense only · internal test (VMock) items, not shown in shops</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Representative weapons</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th>Family</th><th class="num">Lv</th><th>Tier</th><th class="num">Damage</th><th class="num">Price (cr)</th></tr></thead>
+          <tbody>
+            <tr><td>Light Laser</td><td>Laser</td><td class="num">1</td><td>Basic</td><td class="num">4</td><td class="num">1,430</td></tr>
+            <tr><td>Standard Missile</td><td>Missile</td><td class="num">1</td><td>Basic</td><td class="num">12</td><td class="num">1,530</td></tr>
+            <tr><td>Nova Missile</td><td>Missile</td><td class="num">1</td><td>Basic</td><td class="num">5</td><td class="num">3,600</td></tr>
+            <tr><td>High-Precision Long-Range Round</td><td>Rocket</td><td class="num">2</td><td>New</td><td class="num">1×8</td><td class="num">1,680</td></tr>
+            <tr><td>Interceptor Drone Swarm</td><td>Drone</td><td class="num">1</td><td>New</td><td class="num">12</td><td class="num">2,100</td></tr>
+            <tr><td>General-Purpose Bomber</td><td>Fighter</td><td class="num">2</td><td>New</td><td class="num">12</td><td class="num">2,200</td></tr>
+            <tr><td>Ghost Phase Laser</td><td>Laser</td><td class="num">5</td><td>Veteran</td><td class="num">4</td><td class="num">13,300</td></tr>
+            <tr><td>Long-Range Cruise Missile</td><td>Missile</td><td class="num">13</td><td>Elite</td><td class="num">9</td><td class="num">78,200</td></tr>
+            <tr><td>Anti-Matter Particle Cannon</td><td>Laser</td><td class="num">17</td><td>Legendary</td><td class="num">999*</td><td class="num">142,500</td></tr>
+            <tr><td>Void Vortex Laser</td><td>Laser</td><td class="num">30</td><td>Transcendent</td><td class="num">17</td><td class="num">708,000</td></tr>
+            <tr><td>Hierarchy Control Beam</td><td>Laser</td><td class="num">43</td><td>Divine</td><td class="num">29</td><td class="num">2,553,000</td></tr>
+            <tr><td>Infinite Maneuver Fighter</td><td>Fighter</td><td class="num">27</td><td>Epic</td><td class="num">11</td><td class="num">527,500</td></tr>
+            <tr><td>Entropy Doomsday Drone</td><td>Drone</td><td class="num">60</td><td>Cosmic</td><td class="num">9</td><td class="num">12,000,000</td></tr>
+            <tr><td>Destiny Beam Rifle</td><td>Laser</td><td class="num">55</td><td>Cosmic</td><td class="num">60</td><td class="num">7,043,000</td></tr>
+            <tr><td>Universe Core Star-Fighter</td><td>Fighter</td><td class="num">60</td><td>Cosmic</td><td class="num">10</td><td class="num">12,000,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-faint);">* The Anti-Matter Particle Cannon's "999 damage / instant kill" is flavor text only; in practice 999 is added to a normal damage roll (see "Flavor text vs actual behavior" below).</p>
+
+      <h2 id="all-weapons">Full weapon list — 103 weapons</h2>
+      <p>The whole <code>weapon_list.csv</code>, including shop items and test-only (VMock) items. Search by name, family, tier or required level to find any weapon.</p>
+      <div id="weapon-table"></div>
+
+      <h2>Flavor text vs actual behavior</h2>
+      <p>
+        Most of the 103 weapons hint at flashy special effects in their names and descriptions — ignoring shields, piercing armor, EMP,
+        stopping time, erasing coordinates — but very few actually implement such effects in numbers. We note the gap clearly here.
+      </p>
+      <table>
+        <thead><tr><th>Weapon</th><th>Flavor text</th><th>Actual behavior</th></tr></thead>
+        <tbody>
+          <tr><td>Nova Missile</td><td>Wide-area explosion</td><td><span class="pill accent">Live</span> A 60px-radius AoE at the target point plus a slow — the only weapon with a real area check</td></tr>
+          <tr><td>Ghost Phase Laser</td><td>Strikes through armor</td><td><span class="pill">Not implemented</span> Resolves as an instant hit, like any beam</td></tr>
+          <tr><td>Anti-Magic Pulse Cannon</td><td>Completely nullifies shields</td><td><span class="pill">Not implemented</span></td></tr>
+          <tr><td>Hierarchy Control Beam</td><td>Mind control · self-destruct order</td><td><span class="pill">Not implemented</span></td></tr>
+          <tr><td>Kairos Spacetime Cannon</td><td>Stops time</td><td><span class="pill">Not implemented</span></td></tr>
+          <tr><td>Infinity Zero Laser</td><td>Ignores all armor and shields</td><td><span class="pill">Not implemented</span></td></tr>
+        </tbody>
+      </table>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+<script src="../assets/data/weapons.js"></script>
+<script src="../assets/datatable.js"></script>
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+<script>
+  var FAMILY_EN = { laser: "Laser", missile: "Missile", rocket: "Rocket", drone: "Drone", carrier: "Fighter" };
+  mountWikiDataTable({
+    mount: document.getElementById("weapon-table"),
+    data: window.WEAPON_DATA || [],
+    label: "Weapons",
+    searchKeys: ["id", "nameEn", "family", "tierEn", "rangeEn"],
+    columns: [
+      { key: "nameEn", label: "Name", render: function (r) { return String(r.nameEn || r.id).replace(/</g, "&lt;"); } },
+      { key: "family", label: "Family", render: function (r) { return FAMILY_EN[r.family] || r.family; } },
+      { key: "reqLevel", label: "Lv", num: true },
+      { key: "tierEn", label: "Tier" },
+      { key: "rangeEn", label: "Range" },
+      { key: "dmg", label: "Damage", num: true },
+      { key: "price", label: "Price (cr)", num: true },
+      { key: "listed", label: "In shop", render: function (r) { return r.listed === "TRUE" ? '<span class="pill accent">Sold</span>' : '<span class="pill">Test</span>'; } },
+    ],
+  });
+</script>
+</body>
+</html>

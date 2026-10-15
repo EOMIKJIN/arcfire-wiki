@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Items · Upgrades · ARCFIRE Wiki</title>
+<meta name="description" content="ARCFIRE's 290 items, 57 pieces of ship equipment, 10 minerals and shipyard mineral upgrades." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/items.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/items.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/items.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="items">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items" class="active"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">Power · Equipment</div>
+      <h1 class="page-title">Items · Upgrades</h1>
+      <p class="page-lede">
+        The 290 items fall into luxury goods (mostly planet ownership deeds), tech, minerals, food, weapons cargo for trade and contraband.
+        Three axes actually make your ship stronger, and they stack together — <strong>buying hull classes</strong>, <strong>fitting equipment</strong> and <strong>mineral upgrades</strong>.
+      </p>
+
+      <h2>Item categories</h2>
+      <div class="card-grid">
+        <div class="card"><span class="card-eyebrow">129</span><h4>Luxury</h4><p>Mostly the 100-odd planet ownership deeds</p></div>
+        <div class="card"><span class="card-eyebrow">86</span><h4>Tech</h4><p>Equipment and modules</p></div>
+        <div class="card"><span class="card-eyebrow">36</span><h4>Minerals</h4><p>Upgrade materials</p></div>
+        <div class="card"><span class="card-eyebrow">19</span><h4>Food</h4><p>Trade goods</p></div>
+        <div class="card"><span class="card-eyebrow">12</span><h4>Weapons (cargo)</h4><p>Weapons shipped as trade cargo, not mounted weapons</p></div>
+        <div class="card"><span class="card-eyebrow">8</span><h4>Contraband</h4><p>High-risk, high-return trade goods</p></div>
+      </div>
+
+      <h2 id="all-items">Full item list — 290 items</h2>
+      <p>The whole <code>item_defs.csv</code>, covering luxury goods (many planet deeds), tech, minerals, food, weapons cargo and contraband.</p>
+      <div id="item-table"></div>
+
+      <h2 id="equipment">Ship equipment — 57 items</h2>
+      <p>Seven families × three grades (1/2/3). Each grade roughly doubles both effect and price.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Family</th><th>Representative lines</th><th>Slot</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td>Propulsion</td><td>Ion Booster · Fusion Core · Vector Thruster</td><td>ENGINE/SYSTEM/EX_01</td><td>Speed · power efficiency · maneuverability <span class="pill accent">Live</span></td></tr>
+            <tr><td>Defense</td><td>Molecular Armor Plate · Shield Amplifier · External Armor</td><td>ARMOR/EX_02/ARMOR</td><td>Armor rate · shield rate · damage reduction cap <span class="pill accent">Live</span></td></tr>
+            <tr><td>Sensors</td><td>Long-Range Scan · Encrypted Comms Module · Passive Sensor</td><td>EX_03/EX_04/FIGHTER</td><td>Detection range · comms stability · stealth detection <span class="pill accent">Live</span></td></tr>
+            <tr><td>Electronic warfare</td><td>EM Jammer · Tactical Data Link · Decoy Launcher</td><td>EX_01/EX_02/EX_03</td><td>ECM strength <span class="pill accent">Live</span> · ally buff <span class="pill">Not implemented</span> · decoy strength <span class="pill accent">Live</span></td></tr>
+            <tr><td>Support</td><td>Nano Repair Bots · Fire Suppression System · Hull Patch Bay</td><td>EX_04/SYSTEM/FIGHTER</td><td>Hull regeneration <span class="pill accent">Live</span> · heat reduction <span class="pill accent">Live</span> · post-battle repair <span class="pill">Not implemented</span></td></tr>
+            <tr><td>Navigation</td><td>Auxiliary Nav Unit · Tactical Processor · Warp Nav Computer</td><td>SYSTEM/EX_04/FIGHTER</td><td>Evasion <span class="pill accent">Live</span> · cooldown reduction <span class="pill accent">Live</span> · route efficiency <span class="pill">Not implemented</span></td></tr>
+            <tr><td>Mining</td><td>Mining Drone</td><td>FIGHTER</td><td>Mining yield <span class="pill">Not implemented</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.85rem;color:var(--text-faint);">12 of the 57 (all three grades of the Mining Drone, Tactical Data Link, Hull Patch Bay and Warp Nav Computer) are sold but do not yet apply any numeric effect.</p>
+
+      <h2>The 10 minerals</h2>
+      <p>In order of rarity: Ferrite → Silicate → Carbonaceous → Nickel → Titanium → Platinum → Energy Crystal → Orichalcum → Neutronium → Voidstone. Base prices rise from 10 to 420. They are consumed by shipyard upgrades.</p>
+
+      <h2>Shipyard upgrades</h2>
+      <p>
+        Pick one of five slots — hull armor, shield cells, engine core, weapon mods or energy — and spend a primary mineral (60%) and a secondary mineral (40%)
+        to raise its level. The amount needed grows as <code>5 × next level − 2</code> (level 1 = 3, level 8 = 38), and the maximum upgrade level is capped
+        by your pilot combat level (≤14 → +5 · ≤30 → +8 · ≤50 → +12 · above → +15). Each level adds fixed bonuses such as max HP +50,
+        max shield +30 and turn rate +3%, and laser and missile weapons also gain damage, reload and range bonuses.
+      </p>
+
+      <div class="callout note">
+        <strong>Planet ownership deeds (102 types)</strong>
+        The largest share of any item category (most of the 129 luxury goods). There is one for each of the 21 core planets plus about 45
+        Synth planets. Fixed at 12,000 cr and not resellable — buying one makes that planet the property of the player's clan.
+      </div>
+
+      <h2>The twelve-seat relics</h2>
+      <p>
+        There are twelve "Pantheon relics", such as <code>relic_seat_chronos</code>, matching the <a href="arccore.html#pantheon">twelve seats of ArcCore</a>.
+        They have no combat or economic effect; they are obtained only by salvaging wrecks and unlock codex entries — collectible lore items.
+      </p>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+<script src="../assets/data/items.js"></script>
+<script src="../assets/datatable.js"></script>
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+<script>
+  var CATEGORY_EN = { food: "Food", mineral: "Mineral", tech: "Tech", luxury: "Luxury", weapon: "Weapon (cargo)", contraband: "Contraband" };
+  mountWikiDataTable({
+    mount: document.getElementById("item-table"),
+    data: window.ITEM_DATA || [],
+    label: "Items",
+    searchKeys: ["id", "nameEn", "category", "kind", "type", "descEn"],
+    columns: [
+      { key: "nameEn", label: "Name", render: function (r) { return String(r.nameEn || r.id).replace(/</g, "&lt;"); } },
+      { key: "category", label: "Category", render: function (r) { return CATEGORY_EN[r.category] || r.category; } },
+      { key: "type", label: "Type" },
+      { key: "price", label: "Base price", num: true },
+      { key: "tradeable", label: "Tradeable", render: function (r) { return r.tradeable === "true" ? "Yes" : "No"; } },
+    ],
+  });
+</script>
+</body>
+</html>
