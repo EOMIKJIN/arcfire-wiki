@@ -78,7 +78,7 @@
         <div class="card"><span class="card-eyebrow">방위위성</span><h4>Defense Satellite</h4><p>위성 수·DPS·침공 요격률↑. D 지표(파괴 시 즉시 감소, 격퇴 시 증가).</p></div>
         <div class="card"><span class="card-eyebrow">연구소</span><h4>Laboratory</h4><p>R&amp;D 해금 속도↑·환경 재생·첩보 탐지·대테러·드론 요격 보너스. T·E 지표.</p></div>
         <div class="card"><span class="card-eyebrow">바</span><h4>Bar</h4><p>현상금 게시판 슬롯↑·평판 보너스·용병 등급 해금. P 지표.</p></div>
-        <div class="card"><span class="card-eyebrow">군사령부</span><h4>Military Command</h4><p>영토 방어 교리 보정·자체 유지비 군수 할인. D·T 보정, 대신 R·P·E 소폭 감소.</p></div>
+        <div class="card"><span class="card-eyebrow">군사령부</span><h4>Military Command</h4><p>자체 유지비 군수 할인 · D·T 목표치 보정(대신 R·P·E 소폭 감소). 영토 방어 교리는 엔드 콘텐츠에서 적용 예정.</p></div>
       </div>
       <p style="font-size:0.85rem;color:var(--text-faint);">일일 유지비 테이블에는 이 6개 외에 <code>population_dome</code>(거주돔)이라는 시설명이 등장하지만, 레벨 정책 테이블도 기획 문서도 없어 실제 효과는 확인할 수 없다 — 데이터에만 존재하는 시설로 표기해 둔다.</p>
 
@@ -135,11 +135,11 @@
       <p>Lv1: 위성 1기·DPS 200·요격률 5% → Lv10: 위성 5기·DPS 150,000·요격률 95%. 위성이 파괴되면 D 지표가 즉시 깎이고, 침공을 격퇴하면 D 지표가 오른다 — 무역소·조선소·연구소·바와 달리 <strong>양방향으로 지표가 움직이는</strong> 시설이다.</p>
 
       <h3>군사령부</h3>
-      <p>방위위성과 따로 도는 「영토 교리」 시설이다. 위성 수·요격률은 바꾸지 않고, 다음 세 가지를 레벨에 비례해 적용한다.</p>
+      <p>방위위성과 따로 도는 「영토 교리」 시설이다. 위성 수·요격률은 바꾸지 않는다. 지금 실제로 적용되는 효과는 아래 두 가지다.</p>
       <ul>
-        <li><strong>영토 방어 교리</strong> — 자동 분쟁 전투에서 방어측 보정 Lv1 +0.4% → Lv15 +6%(상한 6%)</li>
-        <li><strong>군수 할인</strong> — 군사령부 자신의 일일 유지비를 최대 12% 깎는다(전역 유지비 할인과 합산 상한 22%, 방위위성 유지비에는 미적용)</li>
-        <li><strong>지표 보정</strong> — 일일 배치 뒤 Lv15 기준 D +2 · T +1.5, 대신 R −1 · P −1 · E −1.2(보정 후 하한 8). 다른 시설의 「스탯 넛지」와는 별도 축이다</li>
+        <li><strong>군수 할인</strong> <span class="pill accent">가동</span> — 군사령부 자신의 일일 유지비를 레벨에 따라 최대 12% 깎는다(전역 유지비 할인과 합산 상한 22%, 방위위성 유지비에는 미적용)</li>
+        <li><strong>지표 보정</strong> <span class="pill accent">가동</span> — 일일 배치에서 지표가 수렴하는 목표치를 Lv15 기준 D +2 · T +1.5, 대신 R −1 · P −1 · E −1.2만큼 옮긴다(행성 원래 기준치와 8 중 큰 값 아래로는 내려가지 않음). 다른 시설의 「스탯 넛지」와는 별도 축이다</li>
+        <li><strong>영토 방어 교리</strong> <span class="pill warm">엔드 콘텐츠에서 적용 예정</span> — 자동 영토 전투의 방어측 보정(Lv1 +0.4% → Lv15 +6%)으로 설계·계산식까지 있지만, 엔드 콘텐츠 착수 때 연결하기로 해 지금 게임에서는 적용되지 않는다</li>
       </ul>
       <div class="table-wrap"><table>
         <thead><tr><th>Lv</th><th>이름</th><th class="num">설치/강화 비용</th><th>소요시간</th></tr></thead>

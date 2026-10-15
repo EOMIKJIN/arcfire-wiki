@@ -87,7 +87,7 @@
         <div class="card"><span class="card-eyebrow">Defense</span><h4>Defense Satellite</h4><p>More satellites, DPS and invasion interception. D indicator (drops instantly when destroyed, rises when invasions are repelled).</p></div>
         <div class="card"><span class="card-eyebrow">Research</span><h4>Laboratory</h4><p>Faster R&amp;D unlocks · environment regeneration · intel detection, counter-terror and drone interception bonuses. Pushes T and E.</p></div>
         <div class="card"><span class="card-eyebrow">Social</span><h4>Bar</h4><p>More bounty board slots · reputation bonus · unlocks mercenary grades. Pushes P.</p></div>
-        <div class="card"><span class="card-eyebrow">Command</span><h4>Military Command</h4><p>Territorial defense doctrine · logistics discount on its own upkeep. Raises D and T at a small cost to R, P and E.</p></div>
+        <div class="card"><span class="card-eyebrow">Command</span><h4>Military Command</h4><p>Logistics discount on its own upkeep · raises D and T targets at a small cost to R, P and E. Territorial defense doctrine is planned for endgame.</p></div>
       </div>
       <p style="font-size:0.85rem;color:var(--text-faint);">The daily upkeep table also mentions another facility, <code>population_dome</code>, but it has neither a level policy table nor a design document, so its actual effect cannot be confirmed — we list it as a facility that exists only in data.</p>
 
@@ -144,11 +144,11 @@
       <p>Lv1: 1 satellite · DPS 200 · 5% interception → Lv10: 5 satellites · DPS 150,000 · 95% interception. When a satellite is destroyed the D indicator drops immediately, and repelling an invasion raises it — unlike the Trade Port, Shipyard, Laboratory and Bar, it <strong>moves its indicator in both directions</strong>.</p>
 
       <h3>Military Command</h3>
-      <p>A "territorial doctrine" facility that works separately from the Defense Satellite. It does not change satellite counts or interception; instead it applies three effects that scale with level.</p>
+      <p>A "territorial doctrine" facility that works separately from the Defense Satellite. It does not change satellite counts or interception. Two effects are live in the game today.</p>
       <ul>
-        <li><strong>Territorial defense doctrine</strong> — a defender bonus in automatic territorial battles, from +0.4% at Lv1 to +6% at Lv15 (capped at 6%)</li>
-        <li><strong>Logistics discount</strong> — cuts the Military Command's own daily upkeep by up to 12% (combined cap of 22% with the global upkeep discount; does not apply to Defense Satellite upkeep)</li>
-        <li><strong>Indicator offsets</strong> — after the daily batch, at Lv15: D +2 · T +1.5, but R −1 · P −1 · E −1.2 (floor of 8 after the offset). This is separate from the other facilities' stat nudges</li>
+        <li><strong>Logistics discount</strong> <span class="pill accent">Live</span> — cuts the Military Command's own daily upkeep by up to 12% depending on level (combined cap of 22% with the global upkeep discount; does not apply to Defense Satellite upkeep)</li>
+        <li><strong>Indicator offsets</strong> <span class="pill accent">Live</span> — in the daily batch, shifts the targets the indicators settle toward by D +2 · T +1.5, but R −1 · P −1 · E −1.2 at Lv15 (never below the planet's original baseline or 8, whichever is higher). This is separate from the other facilities' stat nudges</li>
+        <li><strong>Territorial defense doctrine</strong> <span class="pill warm">Planned for endgame</span> — designed as a defender bonus in automatic territorial battles (+0.4% at Lv1 to +6% at Lv15), with the formula already in place, but it will be connected when endgame content begins and does not apply in the game today</li>
       </ul>
       <div class="table-wrap"><table>
         <thead><tr><th>Lv</th><th>Name</th><th class="num">Build/upgrade cost</th><th>Time</th></tr></thead>
