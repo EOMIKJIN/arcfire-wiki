@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ArcCore AI · ARCFIRE Wiki</title>
-<meta name="description" content="ArcCore, the on-device AI that runs ARCFIRE's galaxy — its two voices (the Origin and Stella Aris), the twelve seats, the two-gate dialogue and how conversations work." />
+<meta name="description" content="ArcCore, the on-device AI that runs ARCFIRE's galaxy — its operator Stella Aris, the twelve seats, the two-gate dialogue and how conversations work." />
 <link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/arccore.html" />
 <link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/arccore.html" />
 <link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/arccore.html" />
@@ -80,21 +80,14 @@
         NPC scripts, CSVs and stores — the firmest design principle running through the entire game.
       </div>
 
-      <h2 id="dual-mouth">Two mouths — the Origin and Stella Aris</h2>
-      <p>Since the 2026-09-18 revision, the two voices are defined not as two neutral "personas" but clearly as <strong>enemy and ally</strong>.</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Voice</th><th>Identity</th><th>Motive</th><th>Role</th></tr></thead>
-          <tbody>
-            <tr><td><strong>ArcCore Origin</strong></td><td>The core AI itself</td><td>Sees the player as a threat and aims to eliminate them. Helps the Crimson Legion conquer the galaxy</td><td>The "enemy's mouth". Appears at major story beats, right after wave battles and in inbound events. A cold, hostile adult male tone</td></tr>
-            <tr><td><strong>Stella Aris</strong></td><td>A voice derived and branched from the Origin — not the Origin itself</td><td>Protects the player who brought her into being, and the Stellium Union where the Origin resides</td><td>The "companion's mouth". The default voice for everyday conversation, tutorial guidance and hub welcomes. A friendly adult female tone; calls herself a "colleague"</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <h2 id="operator">The operator — Stella Aris</h2>
       <p>
-        The two voices share the same dialogue window, overlay and entry point; only the header portrait, name and persona data change.
-        They share one session and one memory, and each turn is always limited to a single cloud LLM call (even if both voices speak, two calls are never made).
-        The hub's [Talk] list currently shows <strong>only the operator (Stella)</strong>; conversations with the Origin unlock later through story events.
+        The voice of ArcCore that speaks to you is the operator <strong>Stella Aris</strong>. She is the default voice for everyday conversation, tutorial guidance
+        and hub welcomes — a friendly adult woman who speaks politely, addresses you as "Captain" and introduces herself as your "colleague".
+      </p>
+      <p>
+        Conversations take place in a single dialogue window, overlay and entry point, and each turn is always limited to one cloud LLM call.
+        You can call Stella at any time from the hub's [Talk] list.
       </p>
 
       <h2 id="pantheon">The twelve seats — ArcCore's pantheon</h2>
@@ -136,26 +129,20 @@
       </div>
       <p>Ordinary scripted NPCs that cannot use natural language have only gate 1; only natural-language partners such as ArcCore and the operator go through gate 1 (accept) → gate 2 (actual chat).</p>
 
-      <h2 id="nl-chat">Actually talking with Stella and the Origin</h2>
+      <h2 id="nl-chat">Actually talking with Stella</h2>
       <p>
-        At gate 2 (messenger), the player really types free text. Both mouths use the same dialogue engine, and each has a persona CSV defining
-        its speech style, taboos and first-person viewpoint. Below are persona lines from the actual CSVs (translated).
+        At gate 2 (messenger), you really type free text. A persona CSV defines Stella's speech style, taboos and first-person viewpoint.
+        Below are persona settings from the actual CSV (translated).
       </p>
       <div class="card-grid">
         <div class="card">
-          <span class="card-eyebrow">Stella Aris · casual adult female</span>
+          <span class="card-eyebrow">Stella Aris · adult female · polite</span>
           <p>"On quiet nights in orbit, she wonders what to drink instead of coffee. She fills her days with small things."</p>
           <p>"She returns a joke but doesn't throw the first one. When something is funny, she laughs simply."</p>
           <p>"She doesn't pry into personal matters first. If asked, she briefly shares her own story too."</p>
         </div>
-        <div class="card">
-          <span class="card-eyebrow">ArcCore Origin · hostile adult male</span>
-          <p>"Speaks coldly, like a man your own age. Doesn't list reports or bullet points."</p>
-          <p>"Applies pressure through conversation and measures submission. Never changes ships, occupation or deployment through chat."</p>
-          <p>"Seeks to eliminate the player who has become a threat. His goal is for the Crimson Legion to conquer the galaxy."</p>
-        </div>
       </div>
-      <p>Both personas share common rules: <strong>usually 2–3 sentences, up to 6 only when asked about the world</strong>. They never invent ships, quests, numbers or items they haven't observed, and they refuse requests for credits, unlocks, deployments or occupation.</p>
+      <p>Common rules: <strong>usually 2–3 sentences, up to 6 only when asked about the world</strong>. Stella never invents ships, quests, numbers or items she hasn't observed, and she turns down requests for credits, unlocks, deployments or occupation.</p>
 
       <h3>What you can ask about — 23 conversation topics</h3>
       <p>Your sentence is matched to one of 23 topics by keyword hints, and each topic's CSV states "how far to answer and where to stop". Some actual rules:</p>
@@ -163,7 +150,7 @@
         <table>
           <thead><tr><th>Topic</th><th>Example keywords</th><th>Answer rule</th></tr></thead>
           <tbody>
-            <tr><td>Identity (self)</td><td>who are you · ArcCore · Stella</td><td>Answers as the active mouth's persona. No speeches</td></tr>
+            <tr><td>Identity (self)</td><td>who are you · ArcCore · Stella</td><td>Answers in Stella's persona. No speeches</td></tr>
             <tr><td>Location</td><td>where · here</td><td>States the planet you are docked at</td></tr>
             <tr><td>Combat</td><td>fight · engagement · won</td><td>Describes recent combat records</td></tr>
             <tr><td>Spy</td><td>spy · intel · alert</td><td>Says only whether there is an alert</td></tr>
@@ -203,7 +190,7 @@
         <li>Tool-call results (JSON), the model's reasoning and system tags are never shown on screen — only the dialogue the player should see</li>
         <li>Never invents unobserved ships, quests, numbers or items</li>
         <li>Never names a paired element before its reveal</li>
-        <li>Each player turn is always limited to one cloud LLM call (even if both mouths speak, two calls are never made)</li>
+        <li>Each player turn is always limited to one cloud LLM call</li>
       </ul>
 
       <h2 id="three-axis">Three axes — reaction · after-image · world change <span class="pill warm">Design stage</span></h2>
