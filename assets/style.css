@@ -1,20 +1,24 @@
 /* ============================================================
    아크파이어 온라인 — 게임 위키 공용 스타일
-   Design tokens: 딥스페이스 배경 + 아크코어 시그니처 틸 + 경고 앰버 + 특수 퍼플
+   Design tokens: 택티컬 라이트(10-17 대표님 · 게임 tacticalOverlayStyles 토큰) + 아크코어 틸 + 경고 앰버 + 특수 퍼플
+   기본 = 밝은 테마(OS 다크 모드 자동 전환 없음 · 다크는 상단 토글로만) · 원본 백업 _backup_space_dark_20261017/assets/style.css
    폰트는 각 HTML <head>의 <link rel="stylesheet"> 로 로드(Google Fonts).
    ============================================================ */
 
 :root {
-  /* --- 팔레트 (라이트, 기본값) --- */
-  --bg: #f3f5f8;
-  --bg-elevated: #ffffff;
-  --bg-inset: #e7eaf0;
-  --bg-hover: #eef1f6;
-  --border: #d7dce4;
-  --border-strong: #b9c1cf;
-  --text: #171b24;
-  --text-dim: #545e70;
-  --text-faint: #808999;
+  /* --- 팔레트 (택티컬 라이트, 기본값) --- */
+  --bg: #e6e9ee;
+  --bg-elevated: #f4f5f7;
+  --bg-inset: #dde1e8;
+  --bg-hover: #e9ecf1;
+  --border: #c6ccd5;
+  --border-strong: #b8bec9;
+  --text: #1a2332;
+  --text-dim: #526483;
+  --text-faint: #7d8799;
+  /* 게임 헤더 바 */
+  --t-head: #252930;
+  --t-head-2: #1a1e24;
 
   --accent: #0d8f7f;          /* 아크코어 틸 */
   --accent-strong: #086b5f;
@@ -38,33 +42,7 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0a0d14;
-    --bg-elevated: #11151f;
-    --bg-inset: #161b27;
-    --bg-hover: #1a2030;
-    --border: #232a3a;
-    --border-strong: #323b52;
-    --text: #e7ebf3;
-    --text-dim: #98a2b8;
-    --text-faint: #5c6579;
-
-    --accent: #4fd8c4;
-    --accent-strong: #7fe8d8;
-    --accent-soft: #113330;
-    --warm: #f0a446;
-    --warm-soft: #2c2011;
-    --purple: #a78bfa;
-    --purple-soft: #241c3d;
-    --danger: #f0716a;
-    --danger-soft: #331615;
-
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -14px rgba(0, 0, 0, 0.6);
-    color-scheme: dark;
-  }
-}
-
+/* 10-17 대표님: OS 다크 모드 자동 전환 제거 — 기본은 항상 택티컬 라이트, 다크는 토글(data-theme="dark")로만 */
 :root[data-theme="dark"] {
   --bg: #0a0d14;
   --bg-elevated: #11151f;
@@ -581,3 +559,77 @@ td.thumbs { white-space: nowrap; } td.thumbs .dt-thumb { display: inline-block; 
 .board-grid a:hover { background: var(--bg-hover); border-color: var(--border-strong); }
 .board-grid strong { display: block; font-family: var(--font-display); margin-bottom: 2px; }
 .board-grid span { font-size: 0.82rem; color: var(--text-dim); }
+
+/* ============================================================
+   택티컬 라이트 카드·헤더 (대표님 10-17 · 게임 택티컬 UI와 같은 결)
+   헤더 바 #252930 · 카드 #DDE1E8/#F4F5F7 · 테두리 #B8BEC9 · 잉크 #1A2332 · 모서리 8px
+   ============================================================ */
+/* 상단 헤더 = 게임 헤더 바(어두운 그레이 + 밝은 글자) */
+.site-header {
+  background: var(--t-head);
+  border-bottom: 1px solid var(--t-head-2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  backdrop-filter: none;
+}
+.site-header .brand { color: #f4f5f7; }
+.site-header .brand .mark { color: #4fd8c4; }
+.site-header .brand .sub { color: #8b93a3; }
+.site-header .site-search input { background: var(--t-head-2); border-color: rgba(255, 255, 255, 0.14); color: #eef0f3; }
+.site-header .site-search input::placeholder { color: #8b93a3; }
+.site-header .site-search svg { color: #8b93a3; }
+.site-header .theme-toggle, .site-header .nav-toggle { background: var(--t-head-2); border-color: rgba(255, 255, 255, 0.14); color: #c9cfda; }
+.site-header .theme-toggle:hover, .site-header .nav-toggle:hover { color: #fff; border-color: rgba(255, 255, 255, 0.3); }
+.site-header .lang-switch { background: var(--t-head-2); border-color: rgba(255, 255, 255, 0.14); }
+.site-header .lang-switch a { color: #c9cfda; }
+.site-header .lang-switch a:hover { color: #fff; }
+.site-header .lang-switch a[aria-current="true"] { color: var(--t-head); background: #dde1e8; }
+
+/* 사이드바 활성 = 카드 슬롯 + 왼쪽 띠 */
+.sidebar-group a { border-radius: 4px; }
+.sidebar-group a.active { background: var(--bg-inset); color: var(--text); box-shadow: inset 3px 0 0 var(--t-head); }
+
+/* 카드 공통 — 밝은 카드 + 위쪽 헤더 띠 */
+.card, .category-card, .board-grid a {
+  border-radius: 8px;
+  border-color: var(--border-strong);
+  background: var(--bg-elevated);
+  position: relative;
+  box-shadow: inset 0 3px 0 var(--t-head);
+}
+.category-card { padding-top: 20px; }
+.category-card:hover { border-color: var(--text-dim); transform: translateY(-2px); }
+.category-card .idx { color: var(--text-dim); }
+.faction-card { box-shadow: inset 3px 0 0 var(--faction-color, var(--accent)), inset 0 3px 0 var(--t-head); border-left-width: 1px; }
+
+/* 인포박스 = 게임 정보 패널(헤더 바 + 밝은 본문) */
+.infobox { border-radius: 8px; border-color: var(--border-strong); }
+.infobox-head { background: var(--t-head); border-bottom-color: var(--t-head-2); }
+.infobox-head .kicker { color: #8b93a3; }
+.infobox-head .name { color: #f4f5f7; }
+.infobox-row { border-bottom-color: rgba(26, 35, 50, 0.12); }
+
+/* 표 머리 = 섹션 바(#B8BEC9 계열) */
+.table-wrap { border-radius: 8px; border-color: var(--border-strong); }
+thead th { background: #d0d5de; color: var(--text); border-bottom-color: var(--border-strong); }
+
+/* 안내 상자 */
+.callout { border-radius: 8px; border-color: var(--border-strong); }
+blockquote { border-radius: 0 6px 6px 0; }
+
+/* 이미지 주변 — 갤러리·썸네일을 카드 슬롯 액자로 */
+.gallery figure { border-radius: 8px; border-color: var(--border-strong); background: var(--bg-inset); padding: 6px 6px 0; }
+.gallery img { border-radius: 5px; border: 1px solid var(--border-strong); }
+.gallery.ships img, .dt-thumb-ship { background: var(--t-head); }
+.gallery figcaption { color: var(--text); font-weight: 500; }
+.dt-thumb { border-radius: 6px; border-color: var(--border-strong); }
+
+/* 버튼 = 게임 확인 버튼(어두운 그레이 + 흰 글자) */
+.dt-pager button { background: var(--t-head); color: #fff; border-color: var(--t-head-2); border-radius: 4px; }
+.dt-pager button:hover:not(:disabled) { background: #343944; color: #fff; border-color: var(--t-head-2); }
+
+/* 푸터 = 헤더 바 */
+footer.site-footer { background: var(--t-head); color: #9aa3b5; border-top-color: var(--t-head-2); max-width: none; }
+footer.site-footer a { color: #dde1e8; }
+
+/* 다크 토글 사용 시 카드 위 헤더 띠는 유지, 표 머리만 어둡게 */
+:root[data-theme="dark"] thead th { background: var(--bg-inset); color: var(--text-faint); }

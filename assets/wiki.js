@@ -40,8 +40,9 @@
     updateToggleIcon(mode);
   }
 
+  // 10-17 대표님: 기본은 항상 택티컬 라이트 — OS 다크 모드를 따르지 않는다(다크는 토글로만)
   function currentSystemPrefersDark() {
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return false;
   }
 
   function updateToggleIcon(mode) {

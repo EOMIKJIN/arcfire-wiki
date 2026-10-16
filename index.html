@@ -8,7 +8,7 @@
 <meta property="og:title" content="ARCFIRE — 아크파이어" />
 <meta property="og:description" content="AI가 운영하는 은하. 단 한 척, 오직 나의 함선." />
 <meta property="og:image" content="img/promo_poster_single_artist_anime.jpg" />
-<meta name="theme-color" content="#05060b" />
+<meta name="theme-color" content="#252930" />
 <link rel="icon" href="img/arcfire_logo_01.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -315,6 +315,139 @@ footer a:hover { color: var(--text); }
 @keyframes fadeIn { from { opacity: 0; } }
 @keyframes popIn { from { opacity: 0; transform: translateY(18px) scale(.94); } }
 @keyframes dots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
+
+/* ============================================================
+   택티컬 라이트(대표님 10-17) — 게임 택티컬 UI 토큰(src/ui/overlay/tacticalOverlayStyles.ts)
+   · 배경 우주 연출(별 캔버스·성운·궤도선)은 그대로 두고, 카드·패널·이미지 프레임·버튼만 밝은 택티컬로
+   · 원본 백업: _backup_space_dark_20261017/index.html
+   ============================================================ */
+:root {
+  --t-head: #252930;      /* 헤더 바 · 확인 버튼 */
+  --t-head-2: #1A1E24;
+  --t-paper: #EEF0F3;     /* 섹션 시트 */
+  --t-card: #DDE1E8;      /* 카드 */
+  --t-inset: #D0D5DE;     /* 카드 안 슬롯·썸네일 */
+  --t-border: #B8BEC9;
+  --t-ink: #1A2332;
+  --t-label: #526483;
+  --t-rule: rgba(26, 35, 50, .12);
+  --t-beige: #ECE7DC;     /* 베이지 포인트(스텔라 통신·숫자) */
+  --t-accent: #B85A16;    /* 밝은 바탕용 앰버 */
+  --t-teal: #0D7F71;      /* 밝은 바탕용 아크코어 틸 */
+}
+
+/* 상단 바 = 게임 헤더 바 */
+.topbar.solid { background: rgba(37, 41, 48, .95); border-color: rgba(255, 255, 255, .08); }
+.topbar .lang { background: rgba(26, 30, 36, .7); border-color: rgba(255, 255, 255, .16); }
+.topbar .lang button[aria-pressed="true"] { color: var(--t-ink); background: var(--t-card); }
+
+/* 히어로 — 우주 배경 위 장르 칩·버튼만 밝게 */
+.genre span { background: rgba(238, 240, 243, .92); color: var(--t-ink); border-color: var(--t-border); backdrop-filter: none; }
+.btn { border-radius: 2px; }
+.btn.primary { background: var(--t-paper); color: var(--t-ink); border: 1px solid var(--t-border); box-shadow: 0 12px 34px -14px rgba(0, 0, 0, .7); }
+.btn.primary svg { color: var(--t-accent); }
+.btn.ghost { background: rgba(37, 41, 48, .72); color: #fff; border: 1px solid rgba(255, 255, 255, .32); }
+.btn::after { background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .45), transparent); }
+
+/* 키아트 — 밝은 플레이트 액자 + 하단 헤더 띠 */
+.keyart .frame {
+  border: 8px solid var(--t-paper); outline: 1px solid var(--t-border); border-radius: 6px;
+  box-shadow: 0 40px 90px -36px rgba(0, 0, 0, .85);
+}
+.keyart .frame::after { background: none; }
+.keyart .corner { border-color: var(--t-paper); }
+.keyart .label {
+  left: 0; right: 0; bottom: 0; padding: 7px 14px; color: #DDE1E8;
+  background: rgba(37, 41, 48, .92); border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
+/* 흐르는 띠 = 택티컬 헤더 바 */
+.ticker { background: var(--t-head); border-block: 1px solid var(--t-head-2); }
+.ticker span { color: #DDE1E8; }
+.ticker span::before { color: #E8964E; }
+
+/* 섹션 = 우주 배경 위에 뜬 밝은 택티컬 시트(위쪽 헤더 띠) */
+section.block, .fleet {
+  position: relative;
+  width: min(1240px, calc(100% - 2 * var(--gutter)));
+  margin: clamp(28px, 5vw, 56px) auto;
+  padding: clamp(52px, 7vw, 88px) clamp(20px, 4vw, 56px) clamp(40px, 6vw, 72px);
+  background: var(--t-paper); color: var(--t-ink);
+  border: 1px solid var(--t-border); border-radius: 8px;
+  box-shadow: 0 34px 90px -44px rgba(0, 0, 0, .9);
+}
+section.block[style] { padding-top: clamp(52px, 7vw, 88px) !important; }
+section.block::before, .fleet::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px;
+  background: var(--t-head); border-radius: 8px 8px 0 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+section.block h2, .fleet h2 { color: var(--t-ink); }
+section.block .lead, .fleet .lead { color: var(--t-label); }
+section.block .eyebrow, .fleet .eyebrow { color: var(--t-accent); }
+
+/* 플레이 목록 카드 */
+.play li { background: var(--t-card); border-color: var(--t-border); border-radius: 8px; }
+.play li b { color: var(--t-ink); }
+.play li small { color: var(--t-label); }
+.play li .no { color: var(--t-paper); background: var(--t-head); border-radius: 3px; text-align: center; padding: 2px 0; font-size: 12px; }
+/* 휴대폰 프레임 — 밝은 시트 위라 금속 그레이 톤 · 네온 빛 제거 */
+.phone { background: linear-gradient(145deg, #3a404c, #252930 45%, #2f3540); box-shadow: 0 0 0 1px var(--t-border), 0 30px 70px -30px rgba(26, 35, 50, .55); }
+
+/* 스텔라 — 액자 + 헤더 띠 이름표 · 통신창은 베이지 슬롯 */
+.stella .card { border: 8px solid var(--t-card); outline: 1px solid var(--t-border); border-radius: 8px; box-shadow: 0 26px 60px -30px rgba(26, 35, 50, .55); }
+.stella .card .name { color: #fff; background: var(--t-head); padding: 9px 16px; }
+.stella .card::after { mix-blend-mode: normal; background: linear-gradient(transparent 0 46%, rgba(13, 127, 113, .12) 50%, transparent 54%); background-size: 100% 220%; }
+.comm { background: var(--t-beige); border-color: var(--t-border); border-left-color: var(--t-teal); color: var(--t-ink); }
+.comm .who { color: var(--t-teal); }
+.comm .typed::after { color: var(--t-teal); }
+
+/* 특징 카드 — 밝은 카드 · 그림 영역은 안쪽 슬롯 */
+.feat { background: var(--t-card); border-color: var(--t-border); border-radius: 8px; min-height: 0; justify-content: flex-start; padding: 238px 22px 24px; }
+.feat:hover { border-color: var(--t-label); }
+.feat .art { inset: 10px 10px auto 10px; height: 210px; padding: 0; border-radius: 6px; background: var(--t-inset); overflow: hidden; border: 1px solid var(--t-border); }
+.feat .art img { width: 62%; max-width: 190px; filter: drop-shadow(0 10px 18px rgba(26, 35, 50, .35)); }
+.feat .art.cover img { width: 100%; height: 100%; max-width: none; opacity: 1; }
+.feat .art::after { background: none; }
+.feat .tag { color: var(--t-teal); }
+.feat h3 { color: var(--t-ink); }
+.feat p { color: var(--t-label); }
+
+/* 함선 카드 — 격납고 슬롯 + 헤더 띠 번호표 */
+.ship-card { background: var(--t-card); border-color: var(--t-border); border-radius: 8px; }
+.ship-card:hover { border-color: var(--t-label); box-shadow: 0 22px 50px -26px rgba(26, 35, 50, .6); }
+.ship-card .pic { margin: 10px 10px 0; border-radius: 6px; border: 1px solid var(--t-border); background: var(--t-head); }
+.ship-card .pic::after { background: linear-gradient(180deg, transparent, rgba(221, 225, 232, .28), transparent); }
+.ship-card .no { background: var(--t-head); color: #DDE1E8; border: 1px solid rgba(255, 255, 255, .14); border-radius: 3px; }
+.ship-card .info { border-top: 0; }
+.ship-card .info small { color: var(--t-accent); }
+.ship-card .info h3 { color: var(--t-ink); }
+.ship-card .info p { color: var(--t-label); }
+
+/* 숫자 — 카드 칸 + 진한 잉크 숫자 */
+.stats { background: var(--t-border); border-color: var(--t-border); border-radius: 8px; }
+.stat { background: var(--t-card); }
+.stat .n { background: none; color: var(--t-ink); -webkit-background-clip: border-box; background-clip: border-box; }
+.stat .l { color: var(--t-label); }
+
+/* 첫 접속 팝업 = 게임 패널 팝업(헤더 띠 + 밝은 본문 · 뒤 80% dim) */
+.notice { background: rgba(37, 41, 48, .80); }
+.notice .box {
+  background: var(--t-paper); border: 1px solid var(--t-border); border-radius: 8px; padding-top: 44px;
+  box-shadow: 0 30px 80px -24px rgba(0, 0, 0, .8); overflow: hidden;
+}
+.notice .box::before { left: 0; right: 0; height: 10px; background: var(--t-head); }
+.notice .tag { color: var(--t-accent); }
+.notice h3 { color: var(--t-ink); }
+.notice p { color: var(--t-label); }
+.notice .btn.primary { background: var(--t-head); color: #fff; border-color: var(--t-head-2); box-shadow: none; }
+.notice .btn.ghost { background: transparent; color: var(--t-label); border: 1px solid rgba(26, 35, 50, .28); }
+
+/* 마지막 CTA(우주 배경 유지) · 푸터 = 헤더 바 */
+.final .eyebrow { color: #E8964E; }
+footer { background: var(--t-head); border-top-color: var(--t-head-2); color: #9AA3B5; }
+footer a { color: #DDE1E8; }
+footer a:hover { color: #fff; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
