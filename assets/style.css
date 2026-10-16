@@ -631,5 +631,28 @@ blockquote { border-radius: 0 6px 6px 0; }
 footer.site-footer { background: var(--t-head); color: #9aa3b5; border-top-color: var(--t-head-2); max-width: none; }
 footer.site-footer a { color: #dde1e8; }
 
+/* ---------- 선 패턴(10-17 대표님 「미세한 벌집·네트워크 라인 · 튀지 않게」) ---------- */
+:root {
+  --pat-hex: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 1 L55 16.5 L55 47.5 L28 63 L1 47.5 L1 16.5 Z M28 63 L28 97 M1 16.5 L1 -1 M55 16.5 L55 -1' fill='none' stroke='%231A2332' stroke-opacity='0.045' stroke-width='1'/%3E%3C/svg%3E");
+  --pat-hex-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='48.5' viewBox='0 0 56 97'%3E%3Cpath d='M28 1 L55 16.5 L55 47.5 L28 63 L1 47.5 L1 16.5 Z M28 63 L28 97 M1 16.5 L1 -1 M55 16.5 L55 -1' fill='none' stroke='%23FFFFFF' stroke-opacity='0.07' stroke-width='1.6'/%3E%3C/svg%3E");
+  --pat-net: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120' viewBox='0 0 160 120'%3E%3Cg fill='none' stroke='%231A2332' stroke-opacity='0.055' stroke-width='1'%3E%3Cpath d='M12 18 L70 40 L148 12 M70 40 L58 102 L128 86 L148 12 M12 18 L58 102 M128 86 L160 120 M0 70 L12 18'/%3E%3C/g%3E%3Cg fill='%231A2332' fill-opacity='0.08'%3E%3Ccircle cx='12' cy='18' r='1.8'/%3E%3Ccircle cx='70' cy='40' r='1.8'/%3E%3Ccircle cx='148' cy='12' r='1.8'/%3E%3Ccircle cx='58' cy='102' r='1.8'/%3E%3Ccircle cx='128' cy='86' r='1.8'/%3E%3C/g%3E%3C/svg%3E");
+}
+/* 페이지 바탕: 벌집(고정 · 아주 옅게) */
+:root:not([data-theme="dark"]) body { background-image: var(--pat-hex); background-size: 56px 97px; background-attachment: fixed; }
+/* 카드: 네트워크 선 — 오른쪽 아래 모서리 쪽만 */
+:root:not([data-theme="dark"]) .card,
+:root:not([data-theme="dark"]) .category-card,
+:root:not([data-theme="dark"]) .board-grid a,
+:root:not([data-theme="dark"]) .callout {
+  background-image: radial-gradient(120% 90% at 0% 0%, var(--bg-elevated) 50%, rgba(244, 245, 247, 0) 100%), var(--pat-net);
+  background-size: 100% 100%, 160px 120px;
+  background-position: 0 0, right bottom;
+  background-repeat: no-repeat, repeat;
+}
+:root:not([data-theme="dark"]) .callout { background-image: radial-gradient(120% 90% at 0% 0%, var(--bg-inset) 50%, rgba(221, 225, 232, 0) 100%), var(--pat-net); }
+:root:not([data-theme="dark"]) .callout.warn { background-image: none; }
+/* 진한 헤더 바: 흰 벌집선(게임 헤더 패턴과 같은 7%) */
+.site-header, .infobox-head, footer.site-footer { background-image: var(--pat-hex-light); background-size: 28px 48.5px; }
+
 /* 다크 토글 사용 시 카드 위 헤더 띠는 유지, 표 머리만 어둡게 */
 :root[data-theme="dark"] thead th { background: var(--bg-inset); color: var(--text-faint); }

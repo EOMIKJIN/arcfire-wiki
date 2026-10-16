@@ -334,6 +334,10 @@ footer a:hover { color: var(--text); }
   --t-beige: #ECE7DC;     /* 베이지 포인트(스텔라 통신·숫자) */
   --t-accent: #B85A16;    /* 밝은 바탕용 앰버 */
   --t-teal: #0D7F71;      /* 밝은 바탕용 아크코어 틸 */
+  /* 선 패턴(10-17 대표님 「미세한 벌집·네트워크 라인 · 튀지 않게」) — 게임 헤더 패턴선(흰 7%)과 같은 결 */
+  --pat-hex: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 1 L55 16.5 L55 47.5 L28 63 L1 47.5 L1 16.5 Z M28 63 L28 97 M1 16.5 L1 -1 M55 16.5 L55 -1' fill='none' stroke='%231A2332' stroke-opacity='0.055' stroke-width='1'/%3E%3C/svg%3E");
+  --pat-hex-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='48.5' viewBox='0 0 56 97'%3E%3Cpath d='M28 1 L55 16.5 L55 47.5 L28 63 L1 47.5 L1 16.5 Z M28 63 L28 97 M1 16.5 L1 -1 M55 16.5 L55 -1' fill='none' stroke='%23FFFFFF' stroke-opacity='0.07' stroke-width='1.6'/%3E%3C/svg%3E");
+  --pat-net: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120' viewBox='0 0 160 120'%3E%3Cg fill='none' stroke='%231A2332' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M12 18 L70 40 L148 12 M70 40 L58 102 L128 86 L148 12 M12 18 L58 102 M128 86 L160 120 M0 70 L12 18'/%3E%3C/g%3E%3Cg fill='%231A2332' fill-opacity='0.09'%3E%3Ccircle cx='12' cy='18' r='1.8'/%3E%3Ccircle cx='70' cy='40' r='1.8'/%3E%3Ccircle cx='148' cy='12' r='1.8'/%3E%3Ccircle cx='58' cy='102' r='1.8'/%3E%3Ccircle cx='128' cy='86' r='1.8'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* 상단 바 = 게임 헤더 바 */
@@ -448,6 +452,32 @@ section.block .eyebrow, .fleet .eyebrow { color: var(--t-accent); }
 footer { background: var(--t-head); border-top-color: var(--t-head-2); color: #9AA3B5; }
 footer a { color: #DDE1E8; }
 footer a:hover { color: #fff; }
+
+/* ---------- 선 패턴(튀지 않게 · 글자 영역은 거의 비게) ---------- */
+/* 섹션 시트: 벌집 — 위쪽에서 아래로 사라짐 */
+section.block, .fleet {
+  background-image:
+    linear-gradient(180deg, rgba(238, 240, 243, 0) 0%, rgba(238, 240, 243, .55) 38%, var(--t-paper) 78%),
+    var(--pat-hex);
+  background-size: 100% 100%, 56px 97px;
+  background-position: 0 0, 0 8px;
+}
+/* 카드: 네트워크 선 — 오른쪽 아래 모서리 쪽만 */
+.play li, .ship-card .info, .stat, .feat {
+  background-image:
+    radial-gradient(120% 90% at 0% 0%, var(--t-card) 45%, rgba(221, 225, 232, 0) 100%),
+    var(--pat-net);
+  background-size: 100% 100%, 160px 120px;
+  background-position: 0 0, right bottom;
+}
+.comm { background-image: linear-gradient(90deg, var(--t-beige) 55%, rgba(236, 231, 220, 0)), var(--pat-net); background-size: 100% 100%, 160px 120px; background-position: 0 0, right center; }
+/* 진한 헤더 바: 흰 벌집선(게임 헤더 headerPatternStroke 와 같은 7%) */
+section.block::before, .fleet::before, .ticker, footer, .topbar.solid,
+.stella .card .name, .keyart .label, .notice .box::before {
+  background-image: var(--pat-hex-light);
+  background-size: 28px 48.5px;
+}
+.notice .box { background-image: linear-gradient(180deg, rgba(238, 240, 243, 0) 0%, var(--t-paper) 60%), var(--pat-hex); background-size: 100% 100%, 56px 97px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
