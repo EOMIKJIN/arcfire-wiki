@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Items · Upgrades · ARCFIRE Wiki</title>
-<meta name="description" content="ARCFIRE's 320 items, 90 pieces of ship equipment, 10 minerals and shipyard mineral upgrades." />
+<meta name="description" content="ARCFIRE's 332 items (with in-game icons), 90 pieces of ship equipment, 10 minerals and shipyard mineral upgrades." />
 <link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/items.html" />
 <link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/items.html" />
 <link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/items.html" />
@@ -68,13 +68,14 @@
       <div class="eyebrow">Power · Equipment</div>
       <h1 class="page-title">Items · Upgrades</h1>
       <p class="page-lede">
-        The 320 items fall into luxury goods (mostly planet ownership deeds), tech, minerals, food, weapons cargo for trade and contraband.
+        The 332 items fall into luxury goods (mostly planet ownership deeds and diplomatic gifts), tech, minerals, food, weapons cargo for trade and contraband.
+        The icons in the full list below are the same artwork used in the game (equipment grades 1–5 share one icon; the number in the bottom-right corner shows the grade).
         Three axes actually make your ship stronger, and they stack together — <strong>buying hull classes</strong>, <strong>fitting equipment</strong> and <strong>mineral upgrades</strong>.
       </p>
 
       <h2>Item categories</h2>
       <div class="card-grid">
-        <div class="card"><span class="card-eyebrow">126</span><h4>Luxury</h4><p>Mostly the 99 planet ownership deeds</p></div>
+        <div class="card"><span class="card-eyebrow">138</span><h4>Luxury</h4><p>Mostly the 99 planet ownership deeds and 12 diplomatic gifts</p></div>
         <div class="card"><span class="card-eyebrow">119</span><h4>Tech</h4><p>Equipment and modules, including the 90 pieces of ship equipment</p></div>
         <div class="card"><span class="card-eyebrow">36</span><h4>Minerals</h4><p>Upgrade materials</p></div>
         <div class="card"><span class="card-eyebrow">19</span><h4>Food</h4><p>Trade goods</p></div>
@@ -82,8 +83,8 @@
         <div class="card"><span class="card-eyebrow">8</span><h4>Contraband</h4><p>High-risk, high-return trade goods</p></div>
       </div>
 
-      <h2 id="all-items">Full item list — 320 items</h2>
-      <p><code>item_defs.csv</code> minus the three ownership deeds for disabled star systems, covering luxury goods (many planet deeds), tech, minerals, food, weapons cargo and contraband.</p>
+      <h2 id="all-items">Full item list — 332 items</h2>
+      <p><code>item_defs.csv</code> minus the three ownership deeds for disabled star systems and the quest evidence items (kept out to avoid story spoilers), covering luxury goods (many planet deeds), tech, minerals, food, weapons cargo and contraband.</p>
       <div id="item-table"></div>
 
       <h2 id="equipment">Ship equipment — 90 items</h2>
@@ -121,9 +122,15 @@
 
       <div class="callout note">
         <strong>Planet ownership deeds (99 types)</strong>
-        The largest group in any item category (most of the 126 luxury goods). There is one for each of the 21 core planets and 78
+        The largest group in any item category (most of the 138 luxury goods). There is one for each of the 21 core planets and 78
         Synth planets. Fixed at 12,000 cr and not resellable — buying one makes that planet the property of the player's clan.
       </div>
+
+      <h2 id="diplomacy">The 12 diplomatic gifts</h2>
+      <p>
+        Each of the three nations — Crimson Legion, Mercurium and Aurelium — has four: a credential, a trade accord, a monument and an insignia.
+        They are diplomatic documents and keepsakes whose effects switch on one by one as your intimacy with that nation reaches levels 1, 2, 3 and 4. They cannot be traded or sold.
+      </p>
 
       <h2>The twelve-seat relics</h2>
       <p>
@@ -155,6 +162,7 @@
     label: "Items",
     searchKeys: ["id", "nameEn", "category", "kind", "type", "descEn"],
     columns: [
+      { key: "img", label: "", render: function (r) { return '<span class="dt-icon-cell">' + wikiThumb(r.img, r.nameEn, "icon") + (r.grade ? '<span class="dt-grade">' + r.grade + '</span>' : "") + '</span>'; } },
       { key: "nameEn", label: "Name", render: function (r) { return String(r.nameEn || r.id).replace(/</g, "&lt;") + (r.pending ? ' <span class="pill warm">Effect coming soon</span>' : ""); } },
       { key: "category", label: "Category", render: function (r) { return CATEGORY_EN[r.category] || r.category; } },
       { key: "type", label: "Type" },

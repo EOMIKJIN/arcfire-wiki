@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Skills · ARCFIRE Wiki</title>
-<meta name="description" content="ARCFIRE's 57-skill SP talent tree across Combat, Navigation, Trade and Fleet, with tiers, requirements and effects." />
+<meta name="description" content="ARCFIRE's 57 skills across Combat, Navigation, Trade and Fleet (with in-game icons) and the four skill slots (2 active · 2 passive)." />
 <link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/skills.html" />
 <link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/skills.html" />
 <link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/skills.html" />
@@ -68,11 +68,42 @@
       <div class="eyebrow">Power · Growth</div>
       <h1 class="page-title">Skills</h1>
       <p class="page-lede">
-        An SP-based talent tree learned at the hub's Research Lab, gated by pilot level and prerequisite skills.
-        It has four branches — Combat, Navigation, Trade and Fleet — each split into tiers 1 to 7, for <strong>57 skills</strong> in total
+        You learn skills with skill points in the skill tree of the hub's Research Lab, then equip the ones you have learned into <strong>four skill slots</strong>.
+        There are four branches — Combat, Navigation, Trade and Fleet — each split into tiers 1 to 7, for <strong>57 skills</strong> in total
         (tiers 6–7 are "II" skills that power up an existing skill a second time).
-        Higher tiers need higher levels and earlier skills, so the tree branches out as you go.
+        Higher tiers need higher levels and earlier skills, so the tree branches out as you go. The icons in the tables below are the same artwork used in the game.
       </p>
+
+      <h2 id="slots">Learn · equip · unequip (reworked 2026-10-20)</h2>
+      <div class="card-grid">
+        <div class="card"><span class="card-eyebrow">1. Learn</span><h4>Skill points</h4><p>You start with no skills and 0 skill points, and gain 1 point each time you level up. Tap an icon in the Research Lab skill tree to learn (unlock) it.</p></div>
+        <div class="card"><span class="card-eyebrow">2. Equip</span><h4>Four slots</h4><p>Tap a learned skill's icon again to open the equip window. <strong>S1 · S2 = active</strong> · <strong>S3 · S4 = passive</strong>. A skill you have learned but not equipped has no effect.</p></div>
+        <div class="card"><span class="card-eyebrow">3. Unequip</span><h4>Unequip skill</h4><p>Use [Unequip] under the slot in the loadout screen to free it, then equip another skill from the Research Lab. You cannot change skills during combat.</p></div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Kind</th><th class="num">Count</th><th>How it works</th></tr></thead>
+          <tbody>
+            <tr><td><span class="pill accent skill-tag">Active</span></td><td class="num">14</td><td>Equip in S1 · S2. In combat, tap the skill button at the bottom left to trigger it; once it recharges (cooldown) you can use it again.<br />
+              <strong>Sustained</strong> = the effect lasts a set time, and recharging starts when it ends · <strong>One-shot</strong> = triggers once, then recharges. 1 turn = 8 seconds.</td></tr>
+            <tr><td><span class="pill skill-tag">Passive</span></td><td class="num">37</td><td>Applies as soon as it is equipped in S3 · S4 (combat, travel and trade alike).</td></tr>
+            <tr><td><span class="pill warm skill-tag">Coming soon</span></td><td class="num">6</td><td>Skills marked [Unfinished] in the game and not equippable — Emergency Warp · Wormhole Generator · Market Monopolist. For the capacity skills Cargo Optimization · Wingman Recruit · Carrier Commander, the effect stays once learned, but they cannot be equipped.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout note">
+        <strong>A II skill inherits its I skill</strong>
+        Learning a II skill includes the full effect of the matching I skill plus the extra effect, so once you have the II you can no longer equip the I separately (one slot gives you I + II).
+        II skills use their I skill's icon with a II mark.
+      </div>
+
+      <div class="callout note">
+        <strong>What learning unlocks — Star Pathfinder</strong>
+        Learning the tier-4 Navigation skill <strong>Star Pathfinder</strong> lets you pass all <a href="galaxy.html">four frontier gateways</a> leading out of the galaxy (learning it is enough; it does not need to be equipped).
+        While a gateway is closed, the galaxy map says "Gateway Closed · Requires Star Pathfinder".
+      </div>
 
       <div class="callout note">
         <strong>Not the same as the planet-development "Research Lab" facility</strong>
@@ -80,107 +111,19 @@
         is a separate building that only changes R&amp;D unlock timer speed and counter-terror detection. The shared name makes them easy to confuse.
       </div>
 
-      <div class="callout note">
-        <strong>Status (updated 2026-10-05)</strong>
-        According to the in-game skill tree badges (<code>skillRuntimeStatus.ts</code>), <strong>56 of 57 skills are "Complete"</strong> — learning them really changes
-        combat, travel, trade and fleet numbers. Auto-combat skill cooldowns and durations are tuned by <code>skill_auto_combat_policy.csv</code> (1 turn = 8 seconds).
-        Only the <strong>Wormhole Generator</strong> is "Partial" <span class="pill warm">Partial</span> — skipping one hop on warp works, while permanent portals are on hold.
-      </div>
-
       <h2 id="combat">Combat — 17 skills</h2>
-      <p>Damage, defense and active combat skills. The early <code>double_shot</code> is given free to new players.</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Name</th><th class="num">Tier</th><th class="num">Req. Lv</th><th>Prerequisite</th><th>Effect</th></tr></thead>
-          <tbody>
-            <tr><td>Double Shot</td><td class="num">1</td><td class="num">2</td><td>—</td><td>Weapon reload −12% · +1 missile salvo <span class="pill accent">Free</span></td></tr>
-            <tr><td>Shield Overload</td><td class="num">1</td><td class="num">3</td><td>—</td><td>Max shield +20%</td></tr>
-            <tr><td>EMP Burst</td><td class="num">2</td><td class="num">5</td><td>Double Shot</td><td>On cooldown, drains 25% of enemy max shield</td></tr>
-            <tr><td>Armor Piercing</td><td class="num">2</td><td class="num">6</td><td>Double Shot</td><td>Enemy armor −5</td></tr>
-            <tr><td>Reactive Armor</td><td class="num">2</td><td class="num">5</td><td>Shield Overload</td><td>Damage taken −15%</td></tr>
-            <tr><td>Focused Strike</td><td class="num">3</td><td class="num">10</td><td>Armor Piercing</td><td>Critical range 19–20</td></tr>
-            <tr><td>Plasma Cannon</td><td class="num">3</td><td class="num">12</td><td>EMP Burst</td><td>10% shield penetration</td></tr>
-            <tr><td>Fortress Mode</td><td class="num">3</td><td class="num">15</td><td>Reactive Armor</td><td>Cannot move, defense +50%</td></tr>
-            <tr><td>Multi-Targeting</td><td class="num">4</td><td class="num">28</td><td>Double Shot</td><td>Lock on and fire at up to 3 targets</td></tr>
-            <tr><td>Nanobot Repair</td><td class="num">4</td><td class="num">32</td><td>Reactive Armor</td><td>Regenerates 5% of lost HP each turn</td></tr>
-            <tr><td>Singularity Cannon</td><td class="num">5</td><td class="num">50</td><td>Multi-Targeting</td><td>Creates a singularity — pulls enemies in and deals area damage</td></tr>
-            <tr><td>Absolute Defense</td><td class="num">5</td><td class="num">55</td><td>Nanobot Repair</td><td>Fully negates all damage for 8 seconds</td></tr>
-            <tr><td>Reactive Armor II</td><td class="num">6</td><td class="num">34</td><td>Reactive Armor</td><td>A further −10% damage taken (subject to the combined cap)</td></tr>
-            <tr><td>Shield Overload II</td><td class="num">6</td><td class="num">42</td><td>Shield Overload</td><td>A further +15% max shield</td></tr>
-            <tr><td>Armor Piercing II</td><td class="num">6</td><td class="num">46</td><td>Armor Piercing</td><td>A further −5 enemy armor</td></tr>
-            <tr><td>Plasma Cannon II</td><td class="num">7</td><td class="num">52</td><td>Plasma Cannon</td><td>A further 10% shield penetration</td></tr>
-            <tr><td>Nanobot Repair II</td><td class="num">7</td><td class="num">57</td><td>Nanobot Repair</td><td>Regenerates a further 3% of lost HP each turn</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <p>Damage, defense and active combat skills. This branch has the most active skills.</p>
+      <div class="skill-table" data-category="combat"></div>
 
       <h2 id="navigation">Navigation — 14 skills</h2>
-      <p>Travel, stealth and fuel-efficiency skills. The three fuel-saving skills share a combined cap of 50% (Stellar Pioneer's +100% is also clipped to 50%).</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Name</th><th class="num">Tier</th><th class="num">Req. Lv</th><th>Prerequisite</th><th>Effect</th></tr></thead>
-          <tbody>
-            <tr><td>Jump Acceleration</td><td class="num">1</td><td class="num">2</td><td>—</td><td>Hyperspace jump speed +30%</td></tr>
-            <tr><td>Recon Sensors</td><td class="num">1</td><td class="num">2</td><td>—</td><td>Detection range +20%</td></tr>
-            <tr><td>Counter-Terror Scanner</td><td class="num">2</td><td class="num">8</td><td>Recon Sensors</td><td>Spy and terror infiltration detection +15%</td></tr>
-            <tr><td>Stealth Drive</td><td class="num">2</td><td class="num">5</td><td>Jump Acceleration</td><td>3-turn stealth that evades detection</td></tr>
-            <tr><td>Warp Stabilizer</td><td class="num">2</td><td class="num">6</td><td>Recon Sensors</td><td>Travel fuel use −20%</td></tr>
-            <tr><td>Arc Threat Analysis</td><td class="num">3</td><td class="num">18</td><td>Counter-Terror Scanner</td><td>ArcCore drone and backdoor terror damage reduced +12%</td></tr>
-            <tr><td>Ghost Ship</td><td class="num">3</td><td class="num">11</td><td>Stealth Drive</td><td>First attack after leaving stealth deals +100% damage</td></tr>
-            <tr><td>Wormhole Seeker</td><td class="num">3</td><td class="num">13</td><td>Warp Stabilizer</td><td>Wormhole discovery chance +15%</td></tr>
-            <tr><td>Gravity Boost</td><td class="num">3</td><td class="num">18</td><td>Jump Acceleration</td><td>Temporary max speed +50% inside combat zones</td></tr>
-            <tr><td>Dimensional Leap</td><td class="num">4</td><td class="num">30</td><td>Ghost Ship</td><td>Invulnerable teleport during combat</td></tr>
-            <tr><td>Orbital Sling Amplifier</td><td class="num">4</td><td class="num">34</td><td>Gravity Boost</td><td>Fuel efficiency +15%</td></tr>
-            <tr><td>Stellar Pioneer</td><td class="num">4</td><td class="num">35</td><td>Wormhole Seeker</td><td>Fuel efficiency +100% on unexplored routes (capped at 50%)</td></tr>
-            <tr><td>Wormhole Generator</td><td class="num">5</td><td class="num">52</td><td>Wormhole Seeker</td><td>Skips one hop on warp (permanent portal on hold) <span class="pill warm">Partial</span></td></tr>
-            <tr><td>Recon Sensors II</td><td class="num">6</td><td class="num">40</td><td>Recon Sensors</td><td>A further +10% detection range</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <p>Travel, stealth and fuel efficiency. The three fuel-saving skills share a combined cap of 50% (Star Pathfinder's +100% is also clipped to 50%).</p>
+      <div class="skill-table" data-category="navigation"></div>
 
       <h2 id="trade">Trade — 11 skills</h2>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Name</th><th class="num">Tier</th><th class="num">Req. Lv</th><th>Prerequisite</th><th>Effect</th></tr></thead>
-          <tbody>
-            <tr><td>Market Sense</td><td class="num">1</td><td class="num">2</td><td>—</td><td>Reveals prices in neighboring systems</td></tr>
-            <tr><td>Cargo Optimization</td><td class="num">1</td><td class="num">3</td><td>—</td><td>Inventory slots +10</td></tr>
-            <tr><td>Smuggling Route</td><td class="num">2</td><td class="num">7</td><td>Market Sense</td><td>Contraband detection risk −50%</td></tr>
-            <tr><td>Expert Negotiator</td><td class="num">2</td><td class="num">8</td><td>Market Sense</td><td>Buy price −5% / sell price +5%</td></tr>
-            <tr><td>Bulk Trading</td><td class="num">3</td><td class="num">20</td><td>Expert Negotiator</td><td>Extra +10% profit on bulk sales</td></tr>
-            <tr><td>Tariff Exemption</td><td class="num">3</td><td class="num">22</td><td>Cargo Optimization</td><td>Trade tax reduced by 10%</td></tr>
-            <tr><td>Black Market Tycoon</td><td class="num">4</td><td class="num">35</td><td>Smuggling Route</td><td>Can trade all contraband, tax-free</td></tr>
-            <tr><td>Investor Accord</td><td class="num">4</td><td class="num">38</td><td>Tariff Exemption · Bulk Trading</td><td>Repair and maintenance costs waived</td></tr>
-            <tr><td>Market Monopolist</td><td class="num">5</td><td class="num">58</td><td>Black Market Tycoon</td><td>Your own buy prices −30% (world prices unchanged)</td></tr>
-            <tr><td>Expert Negotiator II</td><td class="num">6</td><td class="num">40</td><td>Expert Negotiator</td><td>A further −3% buy price / +3% sell price</td></tr>
-            <tr><td>Bulk Trading II</td><td class="num">7</td><td class="num">50</td><td>Bulk Trading</td><td>A further +5% profit on bulk sales</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="skill-table" data-category="trade"></div>
 
       <h2 id="fleet">Fleet — 15 skills</h2>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Name</th><th class="num">Tier</th><th class="num">Req. Lv</th><th>Prerequisite</th><th>Effect</th></tr></thead>
-          <tbody>
-            <tr><td>Wingman Recruitment</td><td class="num">1</td><td class="num">4</td><td>—</td><td>Max hangar ships +1</td></tr>
-            <tr><td>Basic Formation</td><td class="num">1</td><td class="num">3</td><td>—</td><td>Flagship armor +5</td></tr>
-            <tr><td>Wingman</td><td class="num">2</td><td class="num">8</td><td>Wingman Recruitment</td><td>Summons an AI wingman ship for 3 turns</td></tr>
-            <tr><td>Repair Drones</td><td class="num">2</td><td class="num">10</td><td>Basic Formation</td><td>Slow fleet HP regeneration out of combat</td></tr>
-            <tr><td>Wingman Synergy</td><td class="num">2</td><td class="num">12</td><td>Wingman Recruitment</td><td>Weapon reload time −5%</td></tr>
-            <tr><td>Fleet Command</td><td class="num">3</td><td class="num">15</td><td>Wingman</td><td>Party accuracy +2</td></tr>
-            <tr><td>Emergency Escape</td><td class="num">3</td><td class="num">25</td><td>Repair Drones</td><td>One forced escape when hull drops below 10%</td></tr>
-            <tr><td>Carrier Commander</td><td class="num">4</td><td class="num">38</td><td>Fleet Command</td><td>Max fleet slots +2</td></tr>
-            <tr><td>Tactical Link</td><td class="num">4</td><td class="num">40</td><td>Fleet Command · Emergency Escape</td><td>Combat bonus +5% while holding synergy skills</td></tr>
-            <tr><td>Carrier Protocol</td><td class="num">4</td><td class="num">42</td><td>Carrier Commander · Emergency Escape</td><td>Fighter and drone damage +50%</td></tr>
-            <tr><td>Overlord's Majesty</td><td class="num">5</td><td class="num">60</td><td>Carrier Commander</td><td>Ally accuracy +4 / enemy accuracy −4</td></tr>
-            <tr><td>Heavy Formation</td><td class="num">6</td><td class="num">38</td><td>Basic Formation</td><td>A further +5 flagship armor</td></tr>
-            <tr><td>Fleet Command II</td><td class="num">6</td><td class="num">44</td><td>Fleet Command</td><td>A further +2 party accuracy</td></tr>
-            <tr><td>Wingman Synergy II</td><td class="num">6</td><td class="num">48</td><td>Wingman Synergy</td><td>A further −5% weapon reload time (subject to the combined cap)</td></tr>
-            <tr><td>Carrier Protocol II</td><td class="num">7</td><td class="num">56</td><td>Carrier Protocol</td><td>A further +25% fighter and drone damage</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="skill-table" data-category="fleet"></div>
 
       <section class="comments" id="comments">
         <h2>Comments on this page</h2>
@@ -194,9 +137,35 @@
 <footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
 <script>window.WIKI_ASSET_PREFIX = "../";</script>
 <script src="search-index-en.js"></script>
-
+<script src="../assets/data/skills.js"></script>
+<script src="../assets/datatable.js"></script>
 <script src="../assets/wiki.js"></script>
 <script src="../assets/comments.js"></script>
-
+<script>
+  (function () {
+    function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    function slotTag(r) {
+      if (r.slot === "active") {
+        var how = r.activeKind === "once" ? "One-shot" : "Lasts " + r.dur + " turns";
+        return '<span class="pill accent skill-tag">Active</span> <span class="skill-tag">' + how + " · recharge " + r.cd + " turns</span>";
+      }
+      if (r.slot === "hold" || r.slot === "hold_learned") return '<span class="pill warm skill-tag">Coming soon</span>';
+      return '<span class="pill skill-tag">Passive</span>';
+    }
+    var data = window.SKILL_DATA || [];
+    document.querySelectorAll(".skill-table").forEach(function (mount) {
+      var rows = data.filter(function (r) { return r.category === mount.dataset.category; })
+        .sort(function (a, b) { return a.tier - b.tier || a.lvl - b.lvl; });
+      mount.innerHTML = '<div class="table-wrap"><table><thead><tr><th>Name</th><th class="num">Tier</th><th class="num">Req. Lv</th><th>Prerequisite</th><th>Effect</th><th>Slot</th></tr></thead><tbody>' +
+        rows.map(function (r) {
+          var name = r.nameEn || r.name;
+          return "<tr><td><span class=\"skill-name\">" + wikiThumb(r.img, name, "icon") + "<span>" + esc(name) +
+            (r.inherits ? '<br /><span style="font-size:0.78rem;color:var(--text-faint);">Inherits I</span>' : "") + "</span></span></td>" +
+            '<td class="num">' + r.tier + '</td><td class="num">' + r.lvl + "</td><td>" + (r.preEn.length ? esc(r.preEn.join(" · ")) : "—") + "</td>" +
+            "<td>" + esc(r.effectEn || r.effect) + (r.status === "partial" ? ' <span class="pill warm">Partial</span>' : "") + "</td><td>" + slotTag(r) + "</td></tr>";
+        }).join("") + "</tbody></table></div>";
+    });
+  })();
+</script>
 </body>
 </html>

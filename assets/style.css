@@ -656,3 +656,11 @@ footer.site-footer a { color: #dde1e8; }
 
 /* 다크 토글 사용 시 카드 위 헤더 띠는 유지, 표 머리만 어둡게 */
 :root[data-theme="dark"] thead th { background: var(--bg-inset); color: var(--text-faint); }
+
+/* ---------- 아이콘 칸(10-21 · 아이템·무기·스킬 = 게임 아이콘) ---------- */
+.dt-thumb-icon { width: 40px; height: 40px; object-fit: contain; padding: 2px; background: var(--bg-inset); }
+.dt-icon-cell { position: relative; display: inline-block; }
+.dt-grade { position: absolute; right: -4px; bottom: -4px; min-width: 18px; padding: 0 4px; border-radius: 4px; background: var(--t-head, #23272f); color: #fff; font: 600 10px/16px "IBM Plex Mono", monospace; text-align: center; }
+.skill-name { display: flex; align-items: center; gap: 10px; }
+.skill-name .dt-thumb { flex: none; }
+.skill-tag { white-space: nowrap; }
