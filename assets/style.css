@@ -485,7 +485,7 @@ td.num, th.num { text-align: right; }
 .dt-pager button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
 .dt-pager button:disabled { opacity: 0.4; cursor: default; }
 .dt-page-label { font-size: 0.8rem; color: var(--text-faint); font-family: var(--font-mono); }
-.dt-wrap .table-wrap { max-height: 560px; overflow-y: auto; }
+.dt-wrap .table-wrap { max-height: min(80vh, 1100px); overflow-y: auto; }
 .dt-wrap thead th { position: sticky; top: 0; z-index: 1; }
 
 /* ---------- 반응형 ---------- */
@@ -539,8 +539,15 @@ footer.site-footer {
 }
 
 /* 게임 에셋 썸네일 (2026-10-05) */
-.dt-thumb { display: block; width: 44px; height: 44px; object-fit: cover; border-radius: 8px; background: var(--bg-inset); border: 1px solid var(--border); }
-.dt-thumb-ship { width: 72px; height: 44px; object-fit: contain; background: #0b0f17; }
+/* 초상·함선 썸네일 약 3배(대표님 10-24 「너무 작아서 안 보임」 · 초상 44→132 · 함선 72×44→216×132) — 아이콘(dt-thumb-icon)·행성은 아래에서 따로 */
+.dt-thumb { display: block; width: 132px; height: 132px; object-fit: cover; border-radius: 8px; background: var(--bg-inset); border: 1px solid var(--border); }
+.dt-thumb-ship { width: 216px; height: 132px; object-fit: contain; background: #0b0f17; }
+/* 이름 아래 직함·배지 = 가로 한 줄(좁은 칸에서 글자가 세로로 쌓이지 않게) */
+.pill, .dt-name { white-space: nowrap; }
+@media (max-width: 600px) {
+  .dt-thumb { width: 96px; height: 96px; }
+  .dt-thumb-ship { width: 156px; height: 96px; }
+}
 .dt-thumb-planet { width: 64px; height: 44px; }
 .dt-thumb-empty { display: inline-block; }
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 10px; margin: 1em 0 1.8em; }

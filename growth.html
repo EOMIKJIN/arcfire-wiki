@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>성장 곡선 — 아크파이어 위키</title>
+<meta name="description" content="레벨 1~60 필요 경험치·누적 경험치·경험치 보상 배율 — 로그 성장 곡선" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body data-page="growth">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="메뉴 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> 아크파이어 <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="함선, 무기, 세력, 스킬 검색…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="테마 전환"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group"><h5>시작</h5>
+      <a href="index.html" class="to-landing"><span class="dot"></span>게임 소개</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>홈</a>
+    </div>
+    <div class="sidebar-group"><h5>세계</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>세계관 · 아크코어</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>4대 세력</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>은하 · 행성</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>스토리 · 미션</a>
+    </div>
+    <div class="sidebar-group"><h5>전력</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>함선</a>
+      <a href="enemies.html" data-page="enemies"><span class="dot"></span>적함</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>무기체계</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>스킬</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>아이템 · 강화</a>
+    </div>
+    <div class="sidebar-group"><h5>체제</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>경제 시스템</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>행성개발</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>전투 · 분쟁</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>아크코어 AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>바 · 함장 · 플레이어</a>
+      <a href="growth.html" data-page="growth" class="active"><span class="dot"></span>성장 곡선</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>게임 UI</a>
+    </div>
+    <div class="sidebar-group"><h5>커뮤니티</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>커뮤니티 게시판</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">체제 · 성장</div>
+      <h1 class="page-title">성장 곡선 <span class="pill">2026-10-24 갱신</span></h1>
+            <p>
+        최고 레벨은 <strong>60</strong>이다. 다음 레벨까지 필요한 경험치는 <strong>로그 성장 곡선</strong>을 따른다 —
+        L1~15는 짧게 지나가는 입문 구간이고, L16부터 필요량이 매끄럽게 커지며, L40대 중반부터 두 번째 오르막이 시작돼
+        만렙에 가까울수록 한 레벨이 길어진다. 레벨 표는 한 번에 한 레벨씩만 오르도록 짜여 있다(보상 한 번으로 두 레벨을 건너뛰지 않는다).
+      </p>
+      <ul>
+        <li><strong>퀘스트의 몫은 레벨이 오를수록 줄어든다.</strong> 초반에는 퀘스트가 성장의 대부분을 맡지만, 중반 이후에는 전투 수련·이동 중 조우·분쟁지역 웨이브·도전 같은 <strong>반복 활동</strong>이 성장의 중심이 된다.</li>
+        <li><strong>경험치 보상 배율</strong> — 경험치를 받을 때의 내 레벨에 따라 모든 경험치 보상에 배율이 곱해진다. 입문 구간은 조금 낮게(0.85), L20 부근에서 1이 되고, 고레벨에서는 필요량을 따라 커진다.</li>
+        <li><strong>퀘스트 보상은 그 퀘스트의 레벨까지만 배율을 받는다.</strong> 퀘스트를 쌓아 두었다가 높은 레벨에서 깨도 보상이 더 커지지 않는다.</li>
+        <li><strong>레벨 차이</strong> — 내 레벨보다 많이 낮은 전장에서 얻는 전투 경험치는 줄어든다(<a href="combat.html">전투 · 분쟁</a>).</li>
+      </ul>
+      <h2 id="chart">로그 그래프</h2>
+      <div class="table-wrap" id="level-curve-chart" aria-label="레벨별 필요 경험치 · 누적 경험치 로그 그래프"></div>
+      <h2 id="table">레벨 표 — L1~60</h2>
+      <div id="level-table"></div>
+      <div class="callout note">
+        <strong>수치는 바뀔 수 있다</strong>
+        레벨 표와 보상은 밸런스 작업 중이라 계속 조정된다. 이 표는 게임 레벨 표에서 그대로 다시 만든 스냅샷이다.
+      </div>
+
+          <section class="comments" id="comments">
+        <h2>이 문서에 대한 의견</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">아크파이어 게임 위키 · 비공식 정리본</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/data/levels.js"></script>
+<script src="assets/datatable.js"></script>
+<script src="assets/wiki.js"></script>
+<script src="assets/comments.js"></script>
+<script>
+  (function () {
+    var rows = window.LEVEL_DATA || [];
+    var fmt = function (v) { return v == null ? "—" : Number(v).toLocaleString("ko-KR"); };
+    mountWikiDataTable({
+      mount: document.getElementById("level-table"),
+      data: rows,
+      label: "레벨",
+      pageSize: 60,
+      searchKeys: ["level"],
+      columns: [
+        { key: "level", label: "레벨", num: true, render: function (r) { return "L" + r.level; } },
+        { key: "need", label: "다음 레벨까지", num: true, render: function (r) { return r.need == null ? "최고 레벨" : fmt(r.need); } },
+        { key: "cum", label: "누적 경험치", num: true, render: function (r) { return fmt(r.cum); } },
+        { key: "scale", label: "보상 배율", num: true, render: function (r) { return "×" + Number(r.scale).toFixed(2); } },
+      ],
+    });
+    // 로그 그래프 — 다음 레벨 필요량 · 누적 경험치(세로 로그 눈금)
+    var box = document.getElementById("level-curve-chart");
+    var series = [
+      { key: "need", name: "다음 레벨까지 필요 경험치", color: "var(--accent)" },
+      { key: "cum", name: "누적 경험치", color: "var(--warm)" },
+    ];
+    var pts = series.map(function (s) {
+      return rows.filter(function (r) { return r[s.key] != null && r[s.key] > 0; }).map(function (r) { return [r.level, r[s.key]]; });
+    });
+    var all = [].concat.apply([], pts).map(function (p) { return p[1]; });
+    if (!box || !all.length) return;
+    var W = 760, H = 300, mL = 56, mR = 12, mT = 12, mB = 30;
+    var lo = Math.floor(Math.log10(Math.min.apply(null, all))), hi = Math.ceil(Math.log10(Math.max.apply(null, all)));
+    var X = function (lv) { return mL + ((lv - 1) / 59) * (W - mL - mR); };
+    var Y = function (v) { return mT + (1 - (Math.log10(v) - lo) / (hi - lo)) * (H - mT - mB); };
+    var short = function (v) { return v >= 1e6 ? v / 1e6 + "M" : v >= 1e3 ? v / 1e3 + "K" : String(v); };
+    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" style="min-width:420px;font-family:var(--font-body)">';
+    for (var e = lo; e <= hi; e += 1) {
+      var y = Y(Math.pow(10, e));
+      svg += '<line x1="' + mL + '" x2="' + (W - mR) + '" y1="' + y + '" y2="' + y + '" stroke="var(--border)" stroke-width="1"/>';
+      svg += '<text x="' + (mL - 6) + '" y="' + y + '" dy="0.32em" text-anchor="end" font-size="11" fill="var(--text-dim)">' + short(Math.pow(10, e)) + "</text>";
+    }
+    [1, 10, 15, 20, 30, 40, 50, 60].forEach(function (lv) {
+      svg += '<text x="' + X(lv) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="11" fill="var(--text-dim)">L' + lv + "</text>";
+    });
+    pts.forEach(function (p, i) {
+      var d = p.map(function (q, j) { return (j ? "L" : "M") + X(q[0]).toFixed(1) + " " + Y(q[1]).toFixed(1); }).join(" ");
+      svg += '<path d="' + d + '" fill="none" stroke="' + series[i].color + '" stroke-width="2.2" stroke-linejoin="round"/>';
+    });
+    svg += "</svg>";
+    var legend = '<div style="display:flex;gap:1.2em;flex-wrap:wrap;font-size:0.85em;color:var(--text-dim);margin:0.3em 0 0.8em">' +
+      series.map(function (s) { return '<span><span style="display:inline-block;width:14px;height:3px;background:' + s.color + ';vertical-align:middle;margin-right:6px"></span>' + s.name + "</span>"; }).join("") +
+      "<span>세로축 = 로그 눈금</span></div>";
+    box.innerHTML = svg + legend;
+  })();
+</script>
+</body>
+</html>
