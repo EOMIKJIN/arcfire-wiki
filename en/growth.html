@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Growth Curve · ARCFIRE Wiki</title>
+<meta name="description" content="EXP needed and cumulative EXP for levels 1–60, the logarithmic growth curve and EXP reward multipliers." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/growth.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/growth.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/growth.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="growth">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="enemies.html" data-page="enemies"><span class="dot"></span>Enemy Ships</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="growth.html" data-page="growth" class="active"><span class="dot"></span>Growth Curve</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">Systems · Growth</div>
+      <h1 class="page-title">Growth Curve <span class="pill">updated 2026-10-24</span></h1>
+      <p>
+        The level cap is <strong>60</strong>. The EXP needed for the next level follows a <strong>logarithmic growth curve</strong> —
+        L1–15 is a short introduction, from L16 the requirement grows smoothly, and a second climb starts in the mid-40s,
+        so each level takes longer as you approach the cap. The table only ever moves you up one level at a time (one reward never skips two levels).
+      </p>
+      <ul>
+        <li><strong>Quests matter less as you level.</strong> Early on quests carry most of your growth; later, <strong>repeatable activities</strong> — combat training, transit encounters, contested-zone waves and challenges — take over.</li>
+        <li><strong>EXP reward multiplier</strong> — every EXP reward is multiplied by a factor based on your level when you receive it: a little lower in the intro band (0.85), 1 around L20, and rising with the requirement at high levels.</li>
+        <li><strong>Quest rewards only get the multiplier up to the quest's own level.</strong> Saving quests to finish at a higher level does not make them pay more.</li>
+        <li><strong>Level gap</strong> — combat EXP from battlefields far below your level is reduced (<a href="combat.html">Combat · Conflict</a>).</li>
+      </ul>
+
+      <h2 id="chart">Log chart</h2>
+      <div class="table-wrap" id="level-curve-chart" aria-label="Log chart of EXP to next level and cumulative EXP"></div>
+
+      <h2 id="table">Level table — L1–60</h2>
+      <div id="level-table"></div>
+      <div class="callout note">
+        <strong>Numbers may change</strong>
+        The level table and rewards are still being balanced. This table is a snapshot rebuilt straight from the game's level table.
+      </div>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+<script src="../assets/data/levels.js"></script>
+<script src="../assets/datatable.js"></script>
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+<script>
+  (function () {
+    var rows = window.LEVEL_DATA || [];
+    var fmt = function (v) { return v == null ? "—" : Number(v).toLocaleString("en-US"); };
+    mountWikiDataTable({
+      mount: document.getElementById("level-table"),
+      data: rows,
+      label: "Levels",
+      pageSize: 60,
+      searchKeys: ["level"],
+      columns: [
+        { key: "level", label: "Level", num: true, render: function (r) { return "L" + r.level; } },
+        { key: "need", label: "To next level", num: true, render: function (r) { return r.need == null ? "Max level" : fmt(r.need); } },
+        { key: "cum", label: "Cumulative EXP", num: true, render: function (r) { return fmt(r.cum); } },
+        { key: "scale", label: "Reward multiplier", num: true, render: function (r) { return "×" + Number(r.scale).toFixed(2); } },
+      ],
+    });
+    var box = document.getElementById("level-curve-chart");
+    var series = [
+      { key: "need", name: "EXP to next level", color: "var(--accent)" },
+      { key: "cum", name: "Cumulative EXP", color: "var(--warm)" },
+    ];
+    var pts = series.map(function (s) {
+      return rows.filter(function (r) { return r[s.key] != null && r[s.key] > 0; }).map(function (r) { return [r.level, r[s.key]]; });
+    });
+    var all = [].concat.apply([], pts).map(function (p) { return p[1]; });
+    if (!box || !all.length) return;
+    var W = 760, H = 300, mL = 56, mR = 12, mT = 12, mB = 30;
+    var lo = Math.floor(Math.log10(Math.min.apply(null, all))), hi = Math.ceil(Math.log10(Math.max.apply(null, all)));
+    var X = function (lv) { return mL + ((lv - 1) / 59) * (W - mL - mR); };
+    var Y = function (v) { return mT + (1 - (Math.log10(v) - lo) / (hi - lo)) * (H - mT - mB); };
+    var short = function (v) { return v >= 1e6 ? v / 1e6 + "M" : v >= 1e3 ? v / 1e3 + "K" : String(v); };
+    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" style="min-width:420px;font-family:var(--font-body)">';
+    for (var e = lo; e <= hi; e += 1) {
+      var y = Y(Math.pow(10, e));
+      svg += '<line x1="' + mL + '" x2="' + (W - mR) + '" y1="' + y + '" y2="' + y + '" stroke="var(--border)" stroke-width="1"/>';
+      svg += '<text x="' + (mL - 6) + '" y="' + y + '" dy="0.32em" text-anchor="end" font-size="11" fill="var(--text-dim)">' + short(Math.pow(10, e)) + "</text>";
+    }
+    [1, 10, 15, 20, 30, 40, 50, 60].forEach(function (lv) {
+      svg += '<text x="' + X(lv) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="11" fill="var(--text-dim)">L' + lv + "</text>";
+    });
+    pts.forEach(function (p, i) {
+      var d = p.map(function (q, j) { return (j ? "L" : "M") + X(q[0]).toFixed(1) + " " + Y(q[1]).toFixed(1); }).join(" ");
+      svg += '<path d="' + d + '" fill="none" stroke="' + series[i].color + '" stroke-width="2.2" stroke-linejoin="round"/>';
+    });
+    svg += "</svg>";
+    var legend = '<div style="display:flex;gap:1.2em;flex-wrap:wrap;font-size:0.85em;color:var(--text-dim);margin:0.3em 0 0.8em">' +
+      series.map(function (s) { return '<span><span style="display:inline-block;width:14px;height:3px;background:' + s.color + ';vertical-align:middle;margin-right:6px"></span>' + s.name + "</span>"; }).join("") +
+      "<span>Vertical axis = log scale</span></div>";
+    box.innerHTML = svg + legend;
+  })();
+</script>
+</body>
+</html>

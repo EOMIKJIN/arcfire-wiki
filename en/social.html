@@ -43,6 +43,7 @@
     <div class="sidebar-group">
       <h5>Power</h5>
       <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="enemies.html" data-page="enemies"><span class="dot"></span>Enemy Ships</a>
       <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
       <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
       <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
@@ -54,6 +55,7 @@
       <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
       <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
       <a href="social.html" data-page="social" class="active"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="growth.html" data-page="growth"><span class="dot"></span>Growth Curve</a>
       <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
     </div>
     <div class="sidebar-group">
@@ -180,7 +182,7 @@
 <script src="../assets/comments.js"></script>
 <script>
   var CLAN_EN = { "솔라무역 방위연합": "Solar Trade Defense Alliance", "오메가 중립 회항단": "Omega Neutral Circuit Fleet", "홍월 약탈 함대": "Crimson Moon Raiding Fleet" };
-  function esc(s) { return String(s == null ? "" : s).replace(/</g, "&lt;"); }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   (window.CAPTAIN_DATA || []).forEach(function (r) { r.clanEn = CLAN_EN[r.clan] || r.clan; });
   mountWikiDataTable({
     mount: document.getElementById("attendant-table"),
@@ -188,11 +190,14 @@
     label: "Attendants",
     searchKeys: ["id", "planetEn", "nameEn", "taglineEn"],
     columns: [
+      // compact multi-line columns (no horizontal scroll · 10-24)
       { key: "img", label: "Portrait", render: function (r) { return wikiThumb(r.img, r.nameEn || r.id); } },
-      { key: "nameEn", label: "Name", render: function (r) { return esc(r.nameEn || r.id); } },
-      { key: "planetEn", label: "Planet" },
-      { key: "taglineEn", label: "Tagline" },
-      { key: "dialogSet", label: "Dialogue set" },
+      { key: "nameEn", label: "Attendant", render: function (r) {
+        return '<div class="dt-stack"><span class="dt-name dt-strong">' + esc(r.nameEn || r.id) + '</span><span class="dt-sub">' + esc(r.planetEn) + "</span></div>";
+      } },
+      { key: "taglineEn", label: "Tagline · Dialogue set", render: function (r) {
+        return '<div class="dt-stack"><span>' + esc(r.taglineEn) + '</span><span class="dt-sub">' + esc(r.dialogSet) + "</span></div>";
+      } },
     ],
   });
   mountWikiDataTable({
@@ -202,13 +207,15 @@
     searchKeys: ["id", "nameEn", "faction", "team", "role", "planetEn", "clanEn"],
     columns: [
       { key: "img", label: "Portrait", render: function (r) { return wikiThumb(r.img, r.nameEn || r.id); } },
-      { key: "nameEn", label: "Name", render: function (r) { return esc(r.nameEn || r.id); } },
-      { key: "team", label: "Side" },
-      { key: "faction", label: "Affiliation" },
-      { key: "role", label: "Role" },
-      { key: "planetEn", label: "Home system" },
-      { key: "clan", label: "AI clan", render: function (r) { return esc(CLAN_EN[r.clan] || r.clan); } },
-      { key: "deathEligible", label: "Perma-death", render: function (r) { return r.deathEligible === "TRUE" ? '<span class="pill danger">Eligible</span>' : '<span class="pill">Exempt</span>'; } },
+      { key: "nameEn", label: "Captain", render: function (r) {
+        return '<div class="dt-stack"><span class="dt-name dt-strong">' + esc(r.nameEn || r.id) + '</span><span class="dt-sub">Side ' + esc(r.team) + "</span></div>";
+      } },
+      { key: "faction", label: "Affiliation · Role · AI clan", render: function (r) {
+        return '<div class="dt-stack"><span>' + esc(r.faction) + '</span><span class="dt-sub">' + esc(r.role) + '</span><span class="dt-sub">' + esc(CLAN_EN[r.clan] || r.clan) + "</span></div>";
+      } },
+      { key: "planetEn", label: "Home system · Perma-death", render: function (r) {
+        return '<div class="dt-stack"><span>' + esc(r.planetEn) + "</span>" + (r.deathEligible === "TRUE" ? '<span class="pill danger">Perma-death eligible</span>' : '<span class="pill">Perma-death exempt</span>') + "</div>";
+      } },
     ],
   });
 </script>

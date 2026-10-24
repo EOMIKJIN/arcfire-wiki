@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Enemy Ships · ARCFIRE Wiki</title>
+<meta name="description" content="Named enemy captains, the warships they fly, where they appear and what they carry." />
+<link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/enemies.html" />
+<link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/enemies.html" />
+<link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/enemies.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body data-page="enemies">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> ARCFIRE <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="Search ships, weapons, factions, skills…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>Start</h5>
+      <a href="../index.html?lang=en" class="to-landing"><span class="dot"></span>Game Overview</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>Home</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>World</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>Setting · ArcCore</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>The Four Factions</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>Galaxy · Planets</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>Story · Missions</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Power</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>Ships</a>
+      <a href="enemies.html" data-page="enemies" class="active"><span class="dot"></span>Enemy Ships</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Systems</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>Economy</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>Planet Development</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="growth.html" data-page="growth"><span class="dot"></span>Growth Curve</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>Community</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>Community Board</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">Power · Enemy Ships</div>
+      <h1 class="page-title">Enemy Ships</h1>
+      <p class="page-lede">
+        The named enemy captains you meet across the galaxy and the warships they fly. Each captain has a home base and an operating area,
+        and turns up in transit encounters, planet waves and contested-zone battles armed for that level.
+      </p>
+
+      <div class="stat-strip" id="enemy-stats"></div>
+
+      <h2 id="factions">By faction</h2>
+      <p>Enemy fleets are armed groups that act apart from the four nations. Even within one faction, regions and level bands differ.</p>
+      <div class="table-wrap" id="enemy-faction-summary"></div>
+
+      <h2 id="all-enemies">All enemy captains</h2>
+      <p>Search by captain, ship, faction, location or weapon. Sorted by combat level.</p>
+      <div id="enemy-table"></div>
+
+      <div class="callout note">
+        <strong>About the weapons column</strong>
+        An enemy ship's actual loadout is picked at each sortie from its combat level and role (assault, balanced, sniper, carrier, firepower).
+        "Typical weapons" shows the strongest weapon each family can field at that level — in a real fight a ship carries about two of these families.
+      </div>
+      <div class="callout note">
+        <strong>Quest-only enemies are left out</strong>
+        Enemy captains and ships that only appear in quest stories are not listed, so the plots stay unspoiled.
+      </div>
+
+      <section class="comments" id="comments">
+        <h2>Comments on this page</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">ARCFIRE Game Wiki · unofficial guide · English edition (the game itself supports Korean and English)</footer>
+<script>window.WIKI_ASSET_PREFIX = "../";</script>
+<script src="search-index-en.js"></script>
+<script src="../assets/data/enemies.js"></script>
+<script src="../assets/datatable.js"></script>
+<script src="../assets/wiki.js"></script>
+<script src="../assets/comments.js"></script>
+<script>
+  (function () {
+    var rows = window.ENEMY_DATA || [];
+    var fmt = function (v) { return v == null ? "—" : Number(v).toLocaleString("en-US"); };
+    var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+
+    var stats = document.getElementById("enemy-stats");
+    if (stats && rows.length) {
+      var lv = rows.map(function (r) { return r.combatLevel || 0; });
+      var fac = {}; rows.forEach(function (r) { fac[r.factionEn] = 1; });
+      var ships = {}; rows.forEach(function (r) { if (r.shipImg) ships[r.shipImg] = 1; });
+      stats.innerHTML = [
+        [rows.length, "enemy captains"],
+        [Object.keys(fac).length, "armed factions"],
+        [Object.keys(ships).length, "warship artworks"],
+        ["L" + Math.min.apply(null, lv) + "–" + Math.max.apply(null, lv), "combat levels"],
+      ].map(function (s) { return '<div class="stat-item"><span class="num">' + s[0] + '</span><span class="label">' + s[1] + "</span></div>"; }).join("");
+    }
+
+    var sum = document.getElementById("enemy-faction-summary");
+    if (sum && rows.length) {
+      var g = {};
+      rows.forEach(function (r) {
+        var x = g[r.factionEn] || (g[r.factionEn] = { n: 0, lo: 999, hi: 0, where: {} });
+        x.n += 1; x.lo = Math.min(x.lo, r.combatLevel || 0); x.hi = Math.max(x.hi, r.combatLevel || 0);
+        String(r.whereEn || "").split(" · ").forEach(function (w) { if (w) x.where[w] = (x.where[w] || 0) + 1; });
+      });
+      var list = Object.keys(g).map(function (k) { return [k, g[k]]; }).sort(function (a, b) { return a[1].lo - b[1].lo; });
+      sum.innerHTML = "<table><thead><tr><th>Faction</th><th class=\"num\">Captains</th><th class=\"num\">Combat level</th><th>Main areas</th></tr></thead><tbody>" +
+        list.map(function (e) {
+          var top = Object.keys(e[1].where).sort(function (a, b) { return e[1].where[b] - e[1].where[a]; }).slice(0, 4).join(" · ");
+          return "<tr><td>" + esc(e[0]) + "</td><td class=\"num\">" + e[1].n + "</td><td class=\"num\">L" + e[1].lo + "–" + e[1].hi + "</td><td>" + esc(top) + "</td></tr>";
+        }).join("") + "</tbody></table>";
+    }
+
+    mountWikiDataTable({
+      mount: document.getElementById("enemy-table"),
+      data: rows,
+      label: "Enemy captains",
+      pageSize: 40,
+      searchKeys: ["id", "nameEn", "factionEn", "shipEn", "hullEn", "whereEn", "weaponsEn"],
+      columns: [
+        { key: "img", label: "Portrait", render: function (r) { return wikiThumb(r.img, r.nameEn || r.id); } },
+        { key: "nameEn", label: "Captain", render: function (r) {
+          return '<div class="dt-stack"><span class="dt-name dt-strong">' + esc(r.nameEn || r.id) + '</span><span class="dt-sub">' + esc(r.factionEn) + '</span><span class="dt-sub">Captain Lv ' + (r.level || "—") + " · Combat Lv " + (r.combatLevel || "—") + "</span></div>";
+        } },
+        { key: "shipImg", label: "Warship", render: function (r) {
+          return '<div class="dt-stack">' + wikiThumb(r.shipImg, r.shipEn || r.ship, "ship") + '<span class="dt-strong">' + esc(r.shipEn || r.ship) + '</span>' +
+            '<span class="dt-sub">' + esc(r.hullEn) + " · HP " + fmt(r.hp) + " · Shield " + fmt(r.shield) + " · Armor " + fmt(r.armor) + "</span></div>";
+        } },
+        { key: "whereEn", label: "Appears at · Typical weapons", render: function (r) {
+          return '<div class="dt-stack"><span><span class="dt-sub">Appears at</span> ' + esc(r.whereEn) + '</span><span><span class="dt-sub">Weapons</span> ' + esc(r.weaponsEn) + "</span></div>";
+        } },
+      ],
+    });
+  })();
+</script>
+</body>
+</html>

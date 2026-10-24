@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ships · ARCFIRE Wiki</title>
-<meta name="description" content="ARCFIRE's 13-tier player hull ladder, six hull archetypes, NPC fleets and the full list of 327 ships." />
+<meta name="description" content="ARCFIRE's 13-tier player hull ladder, six hull archetypes, NPC fleets and the list of 304 other ships." />
 <link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/ships.html" />
 <link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/ships.html" />
 <link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/ships.html" />
@@ -43,6 +43,7 @@
     <div class="sidebar-group">
       <h5>Power</h5>
       <a href="ships.html" data-page="ships" class="active"><span class="dot"></span>Ships</a>
+      <a href="enemies.html" data-page="enemies"><span class="dot"></span>Enemy Ships</a>
       <a href="weapons.html" data-page="weapons"><span class="dot"></span>Weapons</a>
       <a href="skills.html" data-page="skills"><span class="dot"></span>Skills</a>
       <a href="items.html" data-page="items"><span class="dot"></span>Items · Upgrades</a>
@@ -54,6 +55,7 @@
       <a href="combat.html" data-page="combat"><span class="dot"></span>Combat · Conflict</a>
       <a href="arccore.html" data-page="arccore"><span class="dot"></span>ArcCore AI</a>
       <a href="social.html" data-page="social"><span class="dot"></span>Bar · Captains · Player</a>
+      <a href="growth.html" data-page="growth"><span class="dot"></span>Growth Curve</a>
       <a href="ui.html" data-page="ui"><span class="dot"></span>Game UI</a>
     </div>
     <div class="sidebar-group">
@@ -73,31 +75,37 @@
       </p>
 
       <h2>Player hull ladder</h2>
-      <p>Thirteen shipyard tiers. A mid-step "Corvette Mk.I" was added between the Striker and the destroyers on 2026-10-13. From destroyers onward, <strong>a brawler (main line) and a scout (alternate line)</strong> are sold side by side at the same tier — scouts have lower HP and shields but use more agile hulls. Required levels and prices come from <code>capital_hull_purchase_policy.csv</code>.</p>
+      <p>Thirteen shipyard tiers. A mid-step "Corvette Mk.I" was added between the Striker and the destroyers on 2026-10-13. From destroyers onward, <strong>a brawler (main line) and a scout (alternate line)</strong> are sold side by side at the same tier — scouts have lower HP and shields but use more agile hulls. The table below lists the two lines on separate rows, and ships of the same tier are paired with an orange tag "Same tier L(required level) · partner ship" — same-tier ships share the required level and price and differ only in stats and hull. Required levels and prices come from <code>capital_hull_purchase_policy.csv</code>.</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Image</th><th>Class (main / alternate)</th><th class="num">Req. Lv</th><th class="num">HP</th><th class="num">Shield</th><th class="num">Armor</th><th>Hull</th><th class="num">Price (cr)</th></tr></thead>
+          <thead><tr><th>Image</th><th>Class</th><th class="num">Req. Lv</th><th class="num">HP · Shield · Armor</th><th>Hull</th><th class="num">Price (cr)</th></tr></thead>
           <tbody>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_scout_ship.png" alt="Starter Ranger CM.I" /></td><td>Starter Ranger CM.I</td><td class="num">1</td><td class="num">72</td><td class="num">88</td><td class="num">11</td><td>patrol</td><td class="num">0 (starter)</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/ship_001.png" alt="Starter Fighter Mk.I" /></td><td>Starter Fighter Mk.I</td><td class="num">1</td><td class="num">560</td><td class="num">210</td><td class="num">16</td><td>line</td><td class="num">0 (starter)</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_frigate_mk2.png" alt="Striker Mk.II" /></td><td>Striker Mk.II</td><td class="num">7</td><td class="num">400</td><td class="num">95</td><td class="num">9</td><td>raider</td><td class="num">75,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/ship_001.png" alt="Corvette Mk.I" /></td><td>Corvette Mk.I</td><td class="num">7</td><td class="num">780</td><td class="num">300</td><td class="num">17</td><td>line</td><td class="num">60,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_destroyer_mk1.png" alt="Guardian Destroyer" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_hunter_mk1.png" alt="Hunter Destroyer" /></td><td>Guardian Destroyer / Hunter Destroyer</td><td class="num">16</td><td class="num">1,024 / 768</td><td class="num">384 / 192</td><td class="num">18 / 10</td><td>patrol / raider</td><td class="num">270,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_destroyer_mk2.png" alt="Guardian Destroyer Mk.II" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_hunter_mk2.png" alt="Hunter Destroyer Mk.II" /></td><td>Guardian Destroyer Mk.II / Hunter Destroyer Mk.II</td><td class="num">22</td><td class="num">1,385 / 1,146</td><td class="num">519 / 319</td><td class="num">17 / 11</td><td>line / raider</td><td class="num">380,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_cruiser_mk1.png" alt="Oracle Cruiser" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_shadow_cruiser_mk1.png" alt="Shadow Cruiser" /></td><td>Oracle Cruiser / Shadow Cruiser</td><td class="num">28</td><td class="num">1,872 / 1,467</td><td class="num">702 / 418</td><td class="num">17 / 11</td><td>siege / patrol</td><td class="num">810,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_cruiser_mk2.png" alt="Oracle Cruiser Mk.II" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_shadow_cruiser_mk2.png" alt="Shadow Cruiser Mk.II" /></td><td>Oracle Cruiser Mk.II / Shadow Cruiser Mk.II</td><td class="num">35</td><td class="num">2,532 / 2,034</td><td class="num">950 / 586</td><td class="num">17 / 12</td><td>siege / patrol</td><td class="num">1,340,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_battlecruiser_mk1.png" alt="Sovereign Battlecruiser" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_raptor_bc_mk1.png" alt="Raptor Battlecruiser" /></td><td>Sovereign Battlecruiser / Raptor Battlecruiser</td><td class="num">42</td><td class="num">3,424 / 2,761</td><td class="num">1,284 / 812</td><td class="num">18 / 12</td><td>siege / raider</td><td class="num">3,210,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_battlecruiser_apex.png" alt="Sovereign Battlecruiser Apex" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_raptor_bc_apex.png" alt="Raptor Battlecruiser Apex" /></td><td>Sovereign Battlecruiser Apex / Raptor Battlecruiser Apex</td><td class="num">50</td><td class="num">4,630 / 3,762</td><td class="num">1,736 / 1,123</td><td class="num">18 / 13</td><td>siege / raider</td><td class="num">4,770,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_dreadnought_mk1.png" alt="Dreadnought" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_phantom_dreadnought_mk1.png" alt="Phantom Dreadnought" /></td><td>Dreadnought / Phantom Dreadnought</td><td class="num">58</td><td class="num">6,261 / 4,972</td><td class="num">2,348 / 1,550</td><td class="num">19 / 13</td><td>siege / patrol</td><td class="num">10,170,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_super_capital_mk1.png" alt="Super Capital" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_phantom_super_capital_mk1.png" alt="Phantom Super Capital" /></td><td>Super Capital / Phantom Super Capital</td><td class="num">72</td><td class="num">800 / 580</td><td class="num">295 / 190</td><td class="num">20 / 14</td><td>line / raider</td><td class="num">50,000,000</td></tr>
-            <tr><td class="thumbs"><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_apex_legend_mk1.png" alt="Apex Legend" /><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_phantom_apex_legend_mk1.png" alt="Phantom Legend" /></td><td>Apex Legend / Phantom Legend</td><td class="num">80</td><td class="num">880 / 620</td><td class="num">320 / 205</td><td class="num">21 / 15</td><td>line / patrol</td><td class="num">100,000,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_scout_ship.png" alt="Starter Ranger CM.I" /></td><td><div class="dt-stack"><span class="dt-strong">Starter Ranger CM.I</span></div></td><td class="num">1</td><td class="num"><div class="dt-stack"><span>HP 72</span><span class="dt-sub">Shield 88</span><span class="dt-sub">Armor 11</span></div></td><td>patrol</td><td class="num">0 (starter)</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/ship_001.png" alt="Starter Fighter Mk.I" /></td><td><div class="dt-stack"><span class="dt-strong">Starter Fighter Mk.I</span></div></td><td class="num">1</td><td class="num"><div class="dt-stack"><span>HP 560</span><span class="dt-sub">Shield 210</span><span class="dt-sub">Armor 16</span></div></td><td>line</td><td class="num">0 (starter)</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_frigate_mk2.png" alt="Striker Mk.II" /></td><td><div class="dt-stack"><span class="dt-strong">Striker Mk.II</span></div></td><td class="num">7</td><td class="num"><div class="dt-stack"><span>HP 400</span><span class="dt-sub">Shield 95</span><span class="dt-sub">Armor 9</span></div></td><td>raider</td><td class="num">75,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/ship_001.png" alt="Corvette Mk.I" /></td><td><div class="dt-stack"><span class="dt-strong">Corvette Mk.I</span></div></td><td class="num">7</td><td class="num"><div class="dt-stack"><span>HP 780</span><span class="dt-sub">Shield 300</span><span class="dt-sub">Armor 17</span></div></td><td>line</td><td class="num">60,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_destroyer_mk1.png" alt="Guardian Destroyer" /></td><td><div class="dt-stack"><span class="dt-strong">Guardian Destroyer</span><span class="pill">Brawler · main line</span><span class="pill warm">Same tier L16 · Hunter Destroyer</span></div></td><td class="num">16</td><td class="num"><div class="dt-stack"><span>HP 1,024</span><span class="dt-sub">Shield 384</span><span class="dt-sub">Armor 18</span></div></td><td>patrol</td><td class="num">270,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_hunter_mk1.png" alt="Hunter Destroyer" /></td><td><div class="dt-stack"><span class="dt-strong">Hunter Destroyer</span><span class="pill">Scout · alternate line</span><span class="pill warm">Same tier L16 · Guardian Destroyer</span></div></td><td class="num">16</td><td class="num"><div class="dt-stack"><span>HP 768</span><span class="dt-sub">Shield 192</span><span class="dt-sub">Armor 10</span></div></td><td>raider</td><td class="num">270,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_destroyer_mk2.png" alt="Guardian Destroyer Mk.II" /></td><td><div class="dt-stack"><span class="dt-strong">Guardian Destroyer Mk.II</span><span class="pill">Brawler · main line</span><span class="pill warm">Same tier L22 · Hunter Destroyer Mk.II</span></div></td><td class="num">22</td><td class="num"><div class="dt-stack"><span>HP 1,385</span><span class="dt-sub">Shield 519</span><span class="dt-sub">Armor 17</span></div></td><td>line</td><td class="num">380,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_hunter_mk2.png" alt="Hunter Destroyer Mk.II" /></td><td><div class="dt-stack"><span class="dt-strong">Hunter Destroyer Mk.II</span><span class="pill">Scout · alternate line</span><span class="pill warm">Same tier L22 · Guardian Destroyer Mk.II</span></div></td><td class="num">22</td><td class="num"><div class="dt-stack"><span>HP 1,146</span><span class="dt-sub">Shield 319</span><span class="dt-sub">Armor 11</span></div></td><td>raider</td><td class="num">380,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_cruiser_mk1.png" alt="Oracle Cruiser" /></td><td><div class="dt-stack"><span class="dt-strong">Oracle Cruiser</span><span class="pill">Brawler · main line</span><span class="pill warm">Same tier L28 · Shadow Cruiser</span></div></td><td class="num">28</td><td class="num"><div class="dt-stack"><span>HP 1,872</span><span class="dt-sub">Shield 702</span><span class="dt-sub">Armor 17</span></div></td><td>siege</td><td class="num">810,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_shadow_cruiser_mk1.png" alt="Shadow Cruiser" /></td><td><div class="dt-stack"><span class="dt-strong">Shadow Cruiser</span><span class="pill">Scout · alternate line</span><span class="pill warm">Same tier L28 · Oracle Cruiser</span></div></td><td class="num">28</td><td class="num"><div class="dt-stack"><span>HP 1,467</span><span class="dt-sub">Shield 418</span><span class="dt-sub">Armor 11</span></div></td><td>patrol</td><td class="num">810,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_cruiser_mk2.png" alt="Oracle Cruiser Mk.II" /></td><td><div class="dt-stack"><span class="dt-strong">Oracle Cruiser Mk.II</span><span class="pill">Brawler · main line</span><span class="pill warm">Same tier L35 · Shadow Cruiser Mk.II</span></div></td><td class="num">35</td><td class="num"><div class="dt-stack"><span>HP 2,532</span><span class="dt-sub">Shield 950</span><span class="dt-sub">Armor 17</span></div></td><td>siege</td><td class="num">1,340,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_shadow_cruiser_mk2.png" alt="Shadow Cruiser Mk.II" /></td><td><div class="dt-stack"><span class="dt-strong">Shadow Cruiser Mk.II</span><span class="pill">Scout · alternate line</span><span class="pill warm">Same tier L35 · Oracle Cruiser Mk.II</span></div></td><td class="num">35</td><td class="num"><div class="dt-stack"><span>HP 2,034</span><span class="dt-sub">Shield 586</span><span class="dt-sub">Armor 12</span></div></td><td>patrol</td><td class="num">1,340,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_battlecruiser_mk1.png" alt="Sovereign Battlecruiser" /></td><td><div class="dt-stack"><span class="dt-strong">Sovereign Battlecruiser</span><span class="pill">Brawler · main line</span><span class="pill warm">Same tier L42 · Raptor Battlecruiser</span></div></td><td class="num">42</td><td class="num"><div class="dt-stack"><span>HP 3,424</span><span class="dt-sub">Shield 1,284</span><span class="dt-sub">Armor 18</span></div></td><td>siege</td><td class="num">3,210,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_raptor_bc_mk1.png" alt="Raptor Battlecruiser" /></td><td><div class="dt-stack"><span class="dt-strong">Raptor Battlecruiser</span><span class="pill">Scout · alternate line</span><span class="pill warm">Same tier L42 · Sovereign Battlecruiser</span></div></td><td class="num">42</td><td class="num"><div class="dt-stack"><span>HP 2,761</span><span class="dt-sub">Shield 812</span><span class="dt-sub">Armor 12</span></div></td><td>raider</td><td class="num">3,210,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_battlecruiser_apex.png" alt="Sovereign Battlecruiser Apex" /></td><td><div class="dt-stack"><span class="dt-strong">Sovereign Battlecruiser Apex</span><span class="pill">Brawler · main line</span><span class="pill warm">Same tier L50 · Raptor Battlecruiser Apex</span></div></td><td class="num">50</td><td class="num"><div class="dt-stack"><span>HP 4,630</span><span class="dt-sub">Shield 1,736</span><span class="dt-sub">Armor 18</span></div></td><td>siege</td><td class="num">4,770,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_raptor_bc_apex.png" alt="Raptor Battlecruiser Apex" /></td><td><div class="dt-stack"><span class="dt-strong">Raptor Battlecruiser Apex</span><span class="pill">Scout · alternate line</span><span class="pill warm">Same tier L50 · Sovereign Battlecruiser Apex</span></div></td><td class="num">50</td><td class="num"><div class="dt-stack"><span>HP 3,762</span><span class="dt-sub">Shield 1,123</span><span class="dt-sub">Armor 13</span></div></td><td>raider</td><td class="num">4,770,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_dreadnought_mk1.png" alt="Dreadnought" /></td><td><div class="dt-stack"><span class="dt-strong">Dreadnought</span><span class="pill">Brawler · main line</span><span class="pill warm">Same tier L58 · Phantom Dreadnought</span></div></td><td class="num">58</td><td class="num"><div class="dt-stack"><span>HP 6,261</span><span class="dt-sub">Shield 2,348</span><span class="dt-sub">Armor 19</span></div></td><td>siege</td><td class="num">10,170,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_phantom_dreadnought_mk1.png" alt="Phantom Dreadnought" /></td><td><div class="dt-stack"><span class="dt-strong">Phantom Dreadnought</span><span class="pill">Scout · alternate line</span><span class="pill warm">Same tier L58 · Dreadnought</span></div></td><td class="num">58</td><td class="num"><div class="dt-stack"><span>HP 4,972</span><span class="dt-sub">Shield 1,550</span><span class="dt-sub">Armor 13</span></div></td><td>patrol</td><td class="num">10,170,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_super_capital_mk1.png" alt="Super Capital" /></td><td><div class="dt-stack"><span class="dt-strong">Super Capital</span><span class="pill">Brawler · main line</span><span class="pill warm">Same tier L72 · Phantom Super Capital</span></div></td><td class="num">72</td><td class="num"><div class="dt-stack"><span>HP 800</span><span class="dt-sub">Shield 295</span><span class="dt-sub">Armor 20</span></div></td><td>line</td><td class="num">50,000,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_phantom_super_capital_mk1.png" alt="Phantom Super Capital" /></td><td><div class="dt-stack"><span class="dt-strong">Phantom Super Capital</span><span class="pill">Scout · alternate line</span><span class="pill warm">Same tier L72 · Super Capital</span></div></td><td class="num">72</td><td class="num"><div class="dt-stack"><span>HP 580</span><span class="dt-sub">Shield 190</span><span class="dt-sub">Armor 14</span></div></td><td>raider</td><td class="num">50,000,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_apex_legend_mk1.png" alt="Apex Legend" /></td><td><div class="dt-stack"><span class="dt-strong">Apex Legend</span><span class="pill">Brawler · main line</span><span class="pill warm">Same tier L80 · Phantom Legend</span></div></td><td class="num">80</td><td class="num"><div class="dt-stack"><span>HP 880</span><span class="dt-sub">Shield 320</span><span class="dt-sub">Armor 21</span></div></td><td>line</td><td class="num">100,000,000</td></tr>
+            <tr><td><img class="dt-thumb dt-thumb-ship" loading="lazy" src="../img/ship/Player_phantom_apex_legend_mk1.png" alt="Phantom Legend" /></td><td><div class="dt-stack"><span class="dt-strong">Phantom Legend</span><span class="pill">Scout · alternate line</span><span class="pill warm">Same tier L80 · Apex Legend</span></div></td><td class="num">80</td><td class="num"><div class="dt-stack"><span>HP 620</span><span class="dt-sub">Shield 205</span><span class="dt-sub">Armor 15</span></div></td><td>patrol</td><td class="num">100,000,000</td></tr>
           </tbody>
         </table>
       </div>
       <p>The "Apex" battlecruisers are the top of the battlecruiser line and can now be bought outright. The Super Capital and Apex Legend are long-term goal ships that do not appear in the shipyard's ladder guide. The "Survival Pod" is an emergency hull that is not sold in shops.</p>
-
-      <h2>Player ship gallery</h2>
-      <div id="player-ship-gallery" class="gallery ships"></div>
 
       <h2>Six hull archetypes</h2>
       <p>All 327 player and NPC ships listed here share one of the six hulls below.</p>
@@ -117,8 +125,8 @@
         Omega Station, Helios and Sirius, plus the contested-zone clan "Nightfall (Crimson Moon)".
       </p>
 
-      <h2 id="all-ships">Full ship list — 327 ships</h2>
-      <p><code>npc_ai_ships.csv</code>, minus quest-only ships, test/mock-up ships and the wave reserve ships: home system, hull and stats for every ship, including the player classes.</p>
+      <h2 id="all-ships">Other ships — 304 ships</h2>
+      <p>NPC ships across the galaxy (companions, faction fleets, enemy ships and more). The 22 player ships in the "Player hull ladder" above and the Survival Pod are left out, as are quest-only ships, test/mock-up ships and the wave reserve ships. Home system, hull and stats for each ship.</p>
       <div id="ship-table"></div>
 
       <h2>Wave-defense enemies</h2>
@@ -158,35 +166,26 @@
 <script src="../assets/wiki.js"></script>
 <script src="../assets/comments.js"></script>
 <script>
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   mountWikiDataTable({
     mount: document.getElementById("ship-table"),
-    data: window.SHIP_DATA || [],
+    // player ships (Player_*) are in the ladder above
+    data: (window.SHIP_DATA || []).filter(function (s) { return !/^player_/i.test(s.id); }),
     label: "Ships",
     searchKeys: ["id", "nameEn", "homeSystemEn", "hull", "archetype"],
     columns: [
       { key: "img", label: "Image", render: function (r) { return wikiThumb(r.img, r.nameEn || r.id, "ship"); } },
-      { key: "nameEn", label: "Name", render: function (r) { return String(r.nameEn || r.id).replace(/</g, "&lt;"); } },
-      { key: "homeSystemEn", label: "Home system" },
-      { key: "hull", label: "Hull" },
-      { key: "hp", label: "HP", num: true },
-      { key: "shield", label: "Shield", num: true },
-      { key: "armor", label: "Armor", num: true },
-      { key: "lvl", label: "Combat Lv", num: true },
-      { key: "archetype", label: "Archetype" },
+      { key: "nameEn", label: "Ship", render: function (r) {
+        return '<div class="dt-stack"><span class="dt-strong">' + esc(r.nameEn || r.id) + '</span><span class="dt-sub">Home ' + esc(r.homeSystemEn) + "</span></div>";
+      } },
+      { key: "hull", label: "Hull · Archetype · Combat Lv", render: function (r) {
+        return '<div class="dt-stack"><span>' + esc(r.hull) + '</span><span class="dt-sub">' + esc(r.archetype) + '</span><span class="dt-sub">Combat Lv ' + esc(r.lvl) + "</span></div>";
+      } },
+      { key: "hp", label: "HP · Shield · Armor", num: true, render: function (r) {
+        return '<div class="dt-stack"><span>HP ' + esc(r.hp) + '</span><span class="dt-sub">Shield ' + esc(r.shield) + '</span><span class="dt-sub">Armor ' + esc(r.armor) + "</span></div>";
+      } },
     ],
   });
-</script>
-<script>
-  (function () {
-    var host = document.getElementById("player-ship-gallery");
-    if (!host) return;
-    var list = (window.SHIP_DATA || []).filter(function (s) { return /^player_/i.test(s.id) && s.img; });
-    list.sort(function (a, b) { return (+a.lvl || 0) - (+b.lvl || 0); });
-    host.innerHTML = list.map(function (s) {
-      var n = s.nameEn || s.id;
-      return '<figure><img loading="lazy" src="' + wikiAsset(s.img) + '" alt="' + n + '" /><figcaption>' + n + ' · Lv ' + s.lvl + '</figcaption></figure>';
-    }).join("");
-  })();
 </script>
 </body>
 </html>
