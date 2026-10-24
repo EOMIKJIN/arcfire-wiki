@@ -145,16 +145,20 @@
       pageSize: 40,
       searchKeys: ["id", "name", "nameEn", "rank", "faction", "ship", "hull", "where", "weapons"],
       columns: [
+        // 4칸으로 묶음(대표님 10-24 「가로 스크롤 · 레이아웃 정리」) — 초상 · 함장(이름·직함·세력·레벨) · 탑승 전함(그림·이름·함급·능력치) · 출현·무장
         { key: "img", label: "초상", render: function (r) { return wikiThumb(r.img, r.name); } },
-        { key: "name", label: "함장", render: function (r) { return '<span class="dt-name">' + esc(r.name) + '</span><br><span class="pill">' + esc(r.rank) + "</span>"; } },
-        { key: "faction", label: "세력" },
-        { key: "level", label: "함장 Lv", num: true },
-        { key: "combatLevel", label: "전투 Lv", num: true },
-        { key: "shipImg", label: "탑승 전함", render: function (r) { return wikiThumb(r.shipImg, r.ship, "ship") + '<span class="dt-name">' + esc(r.ship) + "</span>"; } },
-        { key: "hull", label: "함급" },
-        { key: "hp", label: "HP · 실드 · 장갑", num: true, render: function (r) { return fmt(r.hp) + " · " + fmt(r.shield) + " · " + fmt(r.armor); } },
-        { key: "where", label: "출현 위치" },
-        { key: "weapons", label: "대표 무장" },
+        { key: "name", label: "함장", render: function (r) {
+          return '<div class="dt-stack"><span class="dt-name dt-strong">' + esc(r.name) + '</span><span class="pill">' + esc(r.rank) + '</span>' +
+            '<span class="dt-sub">' + esc(r.faction) + '</span><span class="dt-sub">함장 Lv ' + (r.level || "—") + ' · 전투 Lv ' + (r.combatLevel || "—") + "</span></div>";
+        } },
+        { key: "shipImg", label: "탑승 전함", render: function (r) {
+          return '<div class="dt-stack">' + wikiThumb(r.shipImg, r.ship, "ship") + '<span class="dt-strong">' + esc(r.ship) + '</span>' +
+            '<span class="dt-sub">' + esc(r.hull) + " · HP " + fmt(r.hp) + " · 실드 " + fmt(r.shield) + " · 장갑 " + fmt(r.armor) + "</span></div>";
+        } },
+        { key: "where", label: "출현 위치 · 대표 무장", render: function (r) {
+          return '<div class="dt-stack"><span><span class="dt-sub">출현</span> ' + esc(r.where) + '</span>' +
+            '<span><span class="dt-sub">무장</span> ' + esc(r.weapons) + "</span></div>";
+        } },
       ],
     });
   })();

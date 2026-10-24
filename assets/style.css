@@ -544,6 +544,11 @@ footer.site-footer {
 .dt-thumb-ship { width: 216px; height: 132px; object-fit: contain; background: #0b0f17; }
 /* 이름 아래 직함·배지 = 가로 한 줄(좁은 칸에서 글자가 세로로 쌓이지 않게) */
 .pill, .dt-name { white-space: nowrap; }
+/* 한 칸에 여러 줄 묶기(적함 표 · 칸 수를 줄여 가로 스크롤 없애기) */
+.dt-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.dt-stack .pill { align-self: flex-start; }
+.dt-strong { color: var(--text); font-weight: 600; }
+.dt-sub { font-size: 0.78rem; color: var(--text-faint); }
 @media (max-width: 600px) {
   .dt-thumb { width: 96px; height: 96px; }
   .dt-thumb-ship { width: 156px; height: 96px; }
