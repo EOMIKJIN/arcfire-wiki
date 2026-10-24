@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>적함 — 아크파이어 위키</title>
+<meta name="description" content="적 함장·탑승 전함·출현 위치·무장 — 은하에서 마주치는 적 함대 목록" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body data-page="enemies">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="메뉴 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> 아크파이어 <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="함선, 무기, 세력, 스킬 검색…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="테마 전환"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group"><h5>시작</h5>
+      <a href="index.html" class="to-landing"><span class="dot"></span>게임 소개</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>홈</a>
+    </div>
+    <div class="sidebar-group"><h5>세계</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>세계관 · 아크코어</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>4대 세력</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>은하 · 행성</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>스토리 · 미션</a>
+    </div>
+    <div class="sidebar-group"><h5>전력</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>함선</a>
+      <a href="enemies.html" data-page="enemies" class="active"><span class="dot"></span>적함</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>무기체계</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>스킬</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>아이템 · 강화</a>
+    </div>
+    <div class="sidebar-group"><h5>체제</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>경제 시스템</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>행성개발</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>전투 · 분쟁</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>아크코어 AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>바 · 함장 · 플레이어</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>게임 UI</a>
+    </div>
+    <div class="sidebar-group"><h5>커뮤니티</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>커뮤니티 게시판</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">전력 · 적함</div>
+      <h1 class="page-title">적함</h1>
+      <p class="page-lede">
+        은하에서 마주치는 이름 있는 적 함장과 그들이 타는 전함을 모았다. 함장마다 본거지와 활동 지역이 있고,
+        이동 중 조우·행성 웨이브·분쟁지역 전투에서 그 레벨에 맞는 무장을 갖추고 나타난다.
+      </p>
+
+      <div class="stat-strip" id="enemy-stats"></div>
+
+      <h2 id="factions">세력별</h2>
+      <p>적 함대는 4대 국가와 별개로 움직이는 무장 세력이다. 같은 세력이라도 지역과 레벨대가 다르다.</p>
+      <div class="table-wrap" id="enemy-faction-summary"></div>
+
+      <h2 id="gallery">적 전함 갤러리</h2>
+      <p>적 함장이 타는 전함의 원화. 같은 진영·같은 함급은 그림 한 장을 함께 쓴다.</p>
+      <div id="enemy-ship-gallery" class="gallery ships"></div>
+
+      <h2 id="all-enemies">전체 적 함장 목록</h2>
+      <p>함장 이름·전함·세력·출현 위치·무장으로 검색할 수 있다. 전투 레벨 순으로 정렬돼 있다.</p>
+      <div id="enemy-table"></div>
+
+      <div class="callout note">
+        <strong>무장 표기에 대하여</strong>
+        적 함선의 실제 무장은 전투 레벨과 맡은 역할(돌격·균형·저격·모함·화력)에 따라 출격할 때마다 고른다.
+        표의 「대표 무장」은 그 레벨에서 계열마다 나올 수 있는 가장 높은 무기다 — 실제 전투에서는 이 가운데 두 계열 정도를 갖추고 나온다.
+      </div>
+      <div class="callout note">
+        <strong>퀘스트 전용 적은 싣지 않는다</strong>
+        퀘스트 이야기에만 나오는 적 함장과 함선은 줄거리를 드러내지 않도록 이 목록에서 뺐다.
+      </div>
+
+          <section class="comments" id="comments">
+        <h2>이 문서에 대한 의견</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">아크파이어 게임 위키 · 비공식 정리본</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/data/enemies.js"></script>
+<script src="assets/datatable.js"></script>
+<script src="assets/wiki.js"></script>
+<script src="assets/comments.js"></script>
+<script>
+  (function () {
+    var rows = window.ENEMY_DATA || [];
+    var fmt = function (v) { return v == null ? "—" : Number(v).toLocaleString("ko-KR"); };
+    var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+
+    // 요약 숫자
+    var stats = document.getElementById("enemy-stats");
+    if (stats && rows.length) {
+      var lv = rows.map(function (r) { return r.combatLevel || 0; });
+      var fac = {}; rows.forEach(function (r) { fac[r.faction] = 1; });
+      var ships = {}; rows.forEach(function (r) { if (r.shipImg) ships[r.shipImg] = 1; });
+      stats.innerHTML = [
+        [rows.length, "명 적 함장"],
+        [Object.keys(fac).length, "개 무장 세력"],
+        [Object.keys(ships).length, "종 적 전함 원화"],
+        ["L" + Math.min.apply(null, lv) + "~" + Math.max.apply(null, lv), "전투 레벨"],
+      ].map(function (s) { return '<div class="stat-item"><span class="num">' + s[0] + '</span><span class="label">' + s[1] + "</span></div>"; }).join("");
+    }
+
+    // 세력별 요약
+    var sum = document.getElementById("enemy-faction-summary");
+    if (sum && rows.length) {
+      var g = {};
+      rows.forEach(function (r) {
+        var x = g[r.faction] || (g[r.faction] = { n: 0, lo: 999, hi: 0, where: {} });
+        x.n += 1; x.lo = Math.min(x.lo, r.combatLevel || 0); x.hi = Math.max(x.hi, r.combatLevel || 0);
+        String(r.where || "").split(" · ").forEach(function (w) { if (w) x.where[w] = (x.where[w] || 0) + 1; });
+      });
+      var list = Object.keys(g).map(function (k) { return [k, g[k]]; }).sort(function (a, b) { return a[1].lo - b[1].lo; });
+      sum.innerHTML = "<table><thead><tr><th>세력</th><th class=\"num\">함장</th><th class=\"num\">전투 레벨</th><th>주요 출현 지역</th></tr></thead><tbody>" +
+        list.map(function (e) {
+          var top = Object.keys(e[1].where).sort(function (a, b) { return e[1].where[b] - e[1].where[a]; }).slice(0, 4).join(" · ");
+          return "<tr><td>" + esc(e[0]) + "</td><td class=\"num\">" + e[1].n + "</td><td class=\"num\">L" + e[1].lo + "~" + e[1].hi + "</td><td>" + esc(top) + "</td></tr>";
+        }).join("") + "</tbody></table>";
+    }
+
+    // 전함 갤러리 — 그림마다 한 칸(그 그림을 쓰는 가장 낮은 레벨 전함 이름)
+    var gal = document.getElementById("enemy-ship-gallery");
+    if (gal) {
+      var seen = {};
+      gal.innerHTML = rows.filter(function (r) { if (!r.shipImg || seen[r.shipImg]) return false; seen[r.shipImg] = 1; return true; })
+        .map(function (r) { return '<figure><img loading="lazy" src="' + esc(r.shipImg) + '" alt="' + esc(r.ship) + '" /><figcaption>' + esc(r.hull) + " · " + esc(r.faction) + " · Lv " + (r.combatLevel || "—") + "</figcaption></figure>"; })
+        .join("");
+    }
+
+    mountWikiDataTable({
+      mount: document.getElementById("enemy-table"),
+      data: rows,
+      label: "적 함장",
+      pageSize: 40,
+      searchKeys: ["id", "name", "nameEn", "rank", "faction", "ship", "hull", "where", "weapons"],
+      columns: [
+        { key: "img", label: "초상", render: function (r) { return wikiThumb(r.img, r.name); } },
+        { key: "name", label: "함장", render: function (r) { return esc(r.name) + '<br><span class="pill">' + esc(r.rank) + "</span>"; } },
+        { key: "faction", label: "세력" },
+        { key: "level", label: "함장 Lv", num: true },
+        { key: "combatLevel", label: "전투 Lv", num: true },
+        { key: "shipImg", label: "탑승 전함", render: function (r) { return wikiThumb(r.shipImg, r.ship, "ship") + "<br>" + esc(r.ship); } },
+        { key: "hull", label: "함급" },
+        { key: "hp", label: "HP · 실드 · 장갑", num: true, render: function (r) { return fmt(r.hp) + " · " + fmt(r.shield) + " · " + fmt(r.armor); } },
+        { key: "where", label: "출현 위치" },
+        { key: "weapons", label: "대표 무장" },
+      ],
+    });
+  })();
+</script>
+</body>
+</html>
