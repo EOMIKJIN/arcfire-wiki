@@ -143,7 +143,6 @@ window.WIKI_INDEX = [
   { title: "접전지역 · 분쟁 3중 정의", page: "전투 · 분쟁", href: "combat.html#territorial", tags: "territorial contested zone" },
   { title: "커뮤니티 게시판", page: "커뮤니티", href: "community.html", tags: "community board 커뮤니티 게시판 공지 자유 질문 건의 투표 자랑" },
   { title: "스텔리움 편입", page: "전투 · 분쟁", href: "combat.html#annex", tags: "annex stellium 편입 중립 방위위성 블루" },
-  { title: "플레이어 함선 갤러리", page: "함선", href: "ships.html#player-ship-gallery", tags: "ship image 함선 이미지 갤러리" },
   { title: "행성 이미지", page: "은하 · 행성", href: "galaxy.html#planet-gallery", tags: "planet image 행성 이미지" },
   { title: "수도 방위", page: "전투 · 분쟁", href: "combat.html", tags: "capital defense siege" },
   { title: "스텔라 아리스", page: "아크코어 AI", href: "arccore.html#operator", tags: "stella aris operator 오퍼레이터" },

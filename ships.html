@@ -99,9 +99,6 @@
       </div>
       <p>「완성형」은 순양전함 라인의 정점 단계로, 지금은 별도 가격으로 구매할 수 있다. 슈퍼캐피털·아펙스 레전드는 조선소 사다리 안내에 나오지 않는 장기 목표 함선이다. 「생존포드」는 상점에서 팔지 않는 비상용 선체다.</p>
 
-      <h2>플레이어 함선 갤러리</h2>
-      <div id="player-ship-gallery" class="gallery ships"></div>
-
       <h2>선체 6원형</h2>
       <p>이 위키에 실린 플레이어·NPC 함선 327척 전체가 아래 6개 선체 중 하나를 공유한다.</p>
       <div class="card-grid">
@@ -181,17 +178,6 @@
       } },
     ],
   });
-</script>
-<script>
-  (function () {
-    var host = document.getElementById("player-ship-gallery");
-    if (!host) return;
-    var list = (window.SHIP_DATA || []).filter(function (s) { return /^player_/i.test(s.id) && s.img; });
-    list.sort(function (a, b) { return (+a.lvl || 0) - (+b.lvl || 0); });
-    host.innerHTML = list.map(function (s) {
-      return '<figure><img loading="lazy" src="' + s.img + '" alt="' + s.name + '" /><figcaption>' + s.name + ' · Lv ' + s.lvl + '</figcaption></figure>';
-    }).join("");
-  })();
 </script>
 </body>
 </html>
