@@ -151,22 +151,24 @@
 <script src="assets/wiki.js"></script>
 <script src="assets/comments.js"></script>
 <script>
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   mountWikiDataTable({
     mount: document.getElementById("ship-table"),
     data: window.SHIP_DATA || [],
     label: "함선",
     searchKeys: ["id", "name", "nameEn", "homeSystem", "hull", "archetype"],
+    // 표 칸 묶기(대표님 10-24 「가로 스크롤 · 공통 정리」)
     columns: [
       { key: "img", label: "이미지", render: function (r) { return wikiThumb(r.img, r.name, "ship"); } },
-      { key: "name", label: "이름" },
-      { key: "nameEn", label: "영문명" },
-      { key: "homeSystem", label: "본성계" },
-      { key: "hull", label: "선체" },
-      { key: "hp", label: "HP", num: true },
-      { key: "shield", label: "실드", num: true },
-      { key: "armor", label: "장갑", num: true },
-      { key: "lvl", label: "전투Lv", num: true },
-      { key: "archetype", label: "아키타입" },
+      { key: "name", label: "함선", render: function (r) {
+        return '<div class="dt-stack"><span class="dt-strong">' + esc(r.name) + '</span><span class="dt-sub">' + esc(r.nameEn) + '</span><span class="dt-sub">본성계 ' + esc(r.homeSystem) + "</span></div>";
+      } },
+      { key: "hull", label: "선체 · 아키타입 · 전투Lv", render: function (r) {
+        return '<div class="dt-stack"><span>' + esc(r.hull) + '</span><span class="dt-sub">' + esc(r.archetype) + '</span><span class="dt-sub">전투 Lv ' + esc(r.lvl) + "</span></div>";
+      } },
+      { key: "hp", label: "HP · 실드 · 장갑", num: true, render: function (r) {
+        return '<div class="dt-stack"><span>HP ' + esc(r.hp) + '</span><span class="dt-sub">실드 ' + esc(r.shield) + '</span><span class="dt-sub">장갑 ' + esc(r.armor) + "</span></div>";
+      } },
     ],
   });
 </script>

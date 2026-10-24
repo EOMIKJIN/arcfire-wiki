@@ -541,7 +541,8 @@ footer.site-footer {
 /* 게임 에셋 썸네일 (2026-10-05) */
 /* 초상·함선 썸네일 약 3배(대표님 10-24 「너무 작아서 안 보임」 · 초상 44→132 · 함선 72×44→216×132) — 아이콘(dt-thumb-icon)·행성은 아래에서 따로 */
 .dt-thumb { display: block; width: 132px; height: 132px; object-fit: cover; border-radius: 8px; background: var(--bg-inset); border: 1px solid var(--border); }
-.dt-thumb-ship { width: 216px; height: 132px; object-fit: contain; background: #0b0f17; }
+/* 함선 원화는 정사각(348×348) → 초상과 같은 정사각 틀 · 여백 없이 꽉 채움(대표님 10-24) */
+.dt-thumb-ship { width: 132px; height: 132px; object-fit: cover; background: #0b0f17; }
 /* 이름 아래 직함·배지 = 가로 한 줄(좁은 칸에서 글자가 세로로 쌓이지 않게) */
 .pill, .dt-name { white-space: nowrap; }
 /* 한 칸에 여러 줄 묶기(적함 표 · 칸 수를 줄여 가로 스크롤 없애기) */
@@ -551,7 +552,7 @@ footer.site-footer {
 .dt-sub { font-size: 0.78rem; color: var(--text-faint); }
 @media (max-width: 600px) {
   .dt-thumb { width: 96px; height: 96px; }
-  .dt-thumb-ship { width: 156px; height: 96px; }
+  .dt-thumb-ship { width: 96px; height: 96px; }
 }
 .dt-thumb-planet { width: 64px; height: 44px; }
 .dt-thumb-empty { display: inline-block; }
@@ -560,7 +561,8 @@ footer.site-footer {
 .gallery img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: var(--bg-inset); }
 .gallery.ships img { aspect-ratio: 16 / 10; object-fit: contain; background: #0b0f17; }
 .gallery figcaption { padding: 6px 8px; font-size: 0.78rem; color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-td.thumbs { white-space: nowrap; } td.thumbs .dt-thumb { display: inline-block; margin-right: 4px; }
+/* 한 칸에 그림 2장(기본/대체 함급) = 세로로 쌓아 칸 폭을 그림 1장으로(가로 스크롤 방지 · 10-24) */
+td.thumbs .dt-thumb { display: block; margin: 0 0 4px; }
 
 /* 커뮤니티 (giscus) — 2026-10-05 */
 .comments { margin-top: 2.4em; padding-top: 1.2em; border-top: 1px solid var(--border); }

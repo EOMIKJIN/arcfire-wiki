@@ -172,6 +172,8 @@
 <script src="assets/wiki.js"></script>
 <script src="assets/comments.js"></script>
 <script>
+  // 표 칸 묶기(대표님 10-24 「가로 스크롤 · 공통 정리」) — 초상 + 여러 줄 칸
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   mountWikiDataTable({
     mount: document.getElementById("attendant-table"),
     data: window.ATTENDANT_DATA || [],
@@ -179,11 +181,12 @@
     searchKeys: ["id", "planet", "name", "nameEn", "tagline"],
     columns: [
       { key: "img", label: "초상", render: function (r) { return wikiThumb(r.img, r.name); } },
-      { key: "name", label: "이름" },
-      { key: "nameEn", label: "영문명" },
-      { key: "planet", label: "행성" },
-      { key: "tagline", label: "한줄소개" },
-      { key: "dialogSet", label: "대사셋" },
+      { key: "name", label: "종업원", render: function (r) {
+        return '<div class="dt-stack"><span class="dt-name dt-strong">' + esc(r.name) + '</span><span class="dt-sub">' + esc(r.nameEn) + '</span><span class="dt-sub">' + esc(r.planet) + "</span></div>";
+      } },
+      { key: "tagline", label: "한줄소개 · 대사셋", render: function (r) {
+        return '<div class="dt-stack"><span>' + esc(r.tagline) + '</span><span class="dt-sub">' + esc(r.dialogSet) + "</span></div>";
+      } },
     ],
   });
   mountWikiDataTable({
@@ -193,14 +196,15 @@
     searchKeys: ["id", "name", "nameEn", "rank", "faction", "role", "bio", "clan", "planet"],
     columns: [
       { key: "img", label: "초상", render: function (r) { return wikiThumb(r.img, r.name); } },
-      { key: "name", label: "이름" },
-      { key: "nameEn", label: "영문명" },
-      { key: "rank", label: "계급" },
-      { key: "faction", label: "소속" },
-      { key: "role", label: "역할" },
-      { key: "planet", label: "본성계" },
-      { key: "clan", label: "AI클랜" },
-      { key: "deathEligible", label: "영구사망", render: function (r) { return r.deathEligible === "TRUE" ? '<span class="pill danger">대상</span>' : '<span class="pill">면제</span>'; } },
+      { key: "name", label: "함장", render: function (r) {
+        return '<div class="dt-stack"><span class="dt-name dt-strong">' + esc(r.name) + '</span><span class="dt-sub">' + esc(r.nameEn) + '</span><span class="pill">' + esc(r.rank) + "</span></div>";
+      } },
+      { key: "faction", label: "소속 · 역할 · AI클랜", render: function (r) {
+        return '<div class="dt-stack"><span>' + esc(r.faction) + '</span><span class="dt-sub">' + esc(r.role) + '</span><span class="dt-sub">' + esc(r.clan) + "</span></div>";
+      } },
+      { key: "planet", label: "본성계 · 영구사망", render: function (r) {
+        return '<div class="dt-stack"><span>' + esc(r.planet) + "</span>" + (r.deathEligible === "TRUE" ? '<span class="pill danger">영구사망 대상</span>' : '<span class="pill">영구사망 면제</span>') + "</div>";
+      } },
     ],
   });
 </script>
