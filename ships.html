@@ -120,8 +120,8 @@
         그리고 분쟁지역 클랜 「나이트폴(홍월/Crimson Moon)」까지 총 11개 본성계 소속이 등록돼 있다.
       </p>
 
-      <h2 id="all-ships">전체 함선 목록 — 327척</h2>
-      <p><code>npc_ai_ships.csv</code>에서 퀘스트 전용 함선·테스트/목업 함선·웨이브 예비 함선을 뺀 목록이다. 플레이어 함급을 포함해 본성계·선체·스탯을 담았다.</p>
+      <h2 id="all-ships">기타 함선 목록 — 304척</h2>
+      <p>은하의 NPC 함선(동료·세력 함대·적함 등)이다. 위 「플레이어 함급 사다리」에 실은 플레이어 함선 22척과 생존포드는 빼고, 퀘스트 전용 함선·테스트/목업 함선·웨이브 예비 함선도 싣지 않았다. 본성계·선체·스탯을 담았다.</p>
       <div id="ship-table"></div>
 
       <h2>웨이브 디펜스의 적</h2>
@@ -163,7 +163,8 @@
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   mountWikiDataTable({
     mount: document.getElementById("ship-table"),
-    data: window.SHIP_DATA || [],
+    // 플레이어 함선(Player_*)은 위 함급 사다리에 따로 있으므로 뺀다(대표님 10-24)
+    data: (window.SHIP_DATA || []).filter(function (s) { return !/^player_/i.test(s.id); }),
     label: "함선",
     searchKeys: ["id", "name", "nameEn", "homeSystem", "hull", "archetype"],
     // 표 칸 묶기(대표님 10-24 「가로 스크롤 · 공통 정리」)
