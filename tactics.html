@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>전략 · 전술 — 아크파이어 위키</title>
+<meta name="description" content="무기 상성, 장갑 두께, 태세·스킬 전술, 적 역할, 행성별 웨이브 공략" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body data-page="tactics">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="메뉴 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> 아크파이어 <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="함선, 무기, 세력, 스킬 검색…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="테마 전환"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group"><h5>시작</h5><a href="index.html" class="to-landing"><span class="dot"></span>게임 소개</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>홈</a></div>
+    <div class="sidebar-group"><h5>세계</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>세계관 · 아크코어</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>4대 세력</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>은하 · 행성</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>스토리 · 미션</a>
+    </div>
+    <div class="sidebar-group"><h5>전력</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>함선</a>
+      <a href="enemies.html" data-page="enemies"><span class="dot"></span>적함</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>무기체계</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>스킬</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>아이템 · 강화</a>
+    </div>
+    <div class="sidebar-group"><h5>체제</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>경제 시스템</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>행성개발</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>전투 · 분쟁</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>아크코어 AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>바 · 함장 · 플레이어</a>
+      <a href="growth.html" data-page="growth"><span class="dot"></span>성장 곡선</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>게임 UI</a>
+    </div>
+    <div class="sidebar-group"><h5>공략</h5>
+      <a href="tactics.html" data-page="tactics" class="active"><span class="dot"></span>전략 · 전술</a>
+    </div>
+    <div class="sidebar-group"><h5>커뮤니티</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>커뮤니티 게시판</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">공략 · 전투</div>
+      <h1 class="page-title">전략 · 전술</h1>
+      <p class="page-lede">
+        전투 중에 적 한 척을 찍어 조준하는 버튼은 없다. 기함은 늘 가장 가까운 적을 쏜다.
+        그래서 이기는 길은 둘이다. <strong>출격 전에 그 구역 적에 맞는 무기를 끼우는 것</strong>,
+        그리고 <strong>전투 중에 태세와 스킬을 제때 쓰는 것</strong>. 이 페이지는 그 두 가지를 정리한다.
+      </p>
+
+      <h2 id="affinity">무기 상성 — 가위바위보</h2>
+      <p>
+        탄이 맞을 때 배율이 붙는다. 실드가 1이라도 남아 있으면 바깥 층은 <strong>실드</strong>로 계산하고,
+        실드가 0이 된 뒤에야 안쪽 <strong>장갑</strong>으로 계산한다.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>무기</th><th>실드</th><th>경장갑</th><th>중장갑</th></tr></thead>
+          <tbody>
+            <tr><td><strong>레이저</strong></td><td><strong>1.9</strong></td><td>1.0</td><td>0.55</td></tr>
+            <tr><td><strong>로켓</strong> (근거리)</td><td>0.55</td><td><strong>1.85</strong></td><td>1.0</td></tr>
+            <tr><td><strong>미사일 · 드론 · 함재기</strong></td><td>1.0</td><td>0.65</td><td><strong>1.4</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li>실드를 벗기는 건 <strong>레이저</strong>, 얇은 장갑을 찢는 건 <strong>로켓</strong>, 두꺼운 장갑을 뚫는 건 <strong>미사일</strong>이다.</li>
+        <li>실드형 함선의 안쪽은 어떤 무기로 쳐도 <strong>1.0</strong>이다. 실드형에게 이득을 보는 구간은 실드가 남아 있는 동안의 레이저뿐이다.</li>
+        <li>기본 피해가 큰 상위 무기는 상성이 틀려도 싼 천적 무기를 이길 수 있다. 상성은 <strong>같은 등급끼리</strong> 비교할 때 의미가 크다.</li>
+      </ul>
+
+      <h3>장갑 종류별 두께</h3>
+      <p>상성과 별개로, 장갑 종류마다 실드와 선체의 두께가 다르다.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>안쪽 장갑</th><th>실드 두께</th><th>선체 두께</th><th>실드를 벗긴 뒤</th></tr></thead>
+          <tbody>
+            <tr><td><span class="pill warm">경장갑</span></td><td>×0.4</td><td>×1.18</td><td>로켓 1.85</td></tr>
+            <tr><td><span class="pill purple">중장갑</span></td><td>×0.5</td><td>×1.15</td><td>미사일 1.4 · 레이저는 0.55</td></tr>
+            <tr><td><span class="pill accent">실드형</span></td><td>×3.0</td><td>×0.38</td><td>전부 1.0 — 실드 구간의 레이저 1.9가 핵심</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout note">
+        <strong>무기는 거리로 나간다</strong>
+        함선은 적에게 다가가며 사거리가 닿는 무기부터 쏜다. 멀면 미사일, 중간이면 레이저, 붙으면 로켓.
+        적의 장갑을 보고 무기를 바꾸지는 않는다. 그래서 한 종류만 끼우면 맞지 않는 거리에서 빈 칸이 생긴다.
+      </div>
+
+      <h2 id="loadout">출격 전 — 무장</h2>
+      <ol>
+        <li><strong>세 종류를 같이 끼운다.</strong> 레이저 · 로켓 · 미사일. 드론·함재기는 미사일과 같은 배율이라 중장갑 보조다.</li>
+        <li><strong>그 구역에서 오래 맞는 무기에 좋은 등급을 넣는다.</strong> 경장갑이 많은 구역은 로켓, 중장갑이 많은 구역은 미사일, 실드가 두꺼운 구역은 레이저.</li>
+        <li><strong>스킬 칸을 그 구역 적에 맞춘다.</strong> 아래 스킬 표에서 고른다.</li>
+      </ol>
+
+      <h2 id="stance">전투 중 — 태세</h2>
+      <p>태세는 플레이어 기함에만 적용된다. 적은 늘 중립이다.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>태세</th><th>주는 피해</th><th>받는 피해</th><th>이동</th><th>언제</th></tr></thead>
+          <tbody>
+            <tr><td><strong>공격</strong></td><td>×1.19</td><td>×1.18</td><td>×1.1</td><td>내 편이 앞설 때 빨리 끝낸다. 더 맞는다</td></tr>
+            <tr><td><strong>중립</strong></td><td>×1.0</td><td>×1.0</td><td>×1.0</td><td>기본</td></tr>
+            <tr><td><strong>방어</strong></td><td>×0.85</td><td>×0.82</td><td>×0.9</td><td>근접 돌격이 붙는 판 · 내 선체가 낮을 때</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="skills">전투 중 — 스킬</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>스킬</th><th>Lv</th><th>효과</th><th>쓰는 곳</th></tr></thead>
+          <tbody>
+            <tr><td><strong>이중 사격</strong></td><td>2</td><td>무기 쿨다운 −12% · 미사일 연발 +1</td><td>어디서나 — 화력 보강</td></tr>
+            <tr><td><strong>실드 과부하</strong></td><td>3</td><td>내 최대 실드 +20% (II: Lv42 +15% 추가)</td><td>근접 돌격·마무리 사냥이 붙을 때</td></tr>
+            <tr><td><strong>EMP 폭발</strong></td><td>5</td><td>상대 최대 실드의 25%를 즉시 방전</td><td>실드형(실드 ×3) — 레이저가 실드를 벗기는 시간을 줄인다</td></tr>
+            <tr><td><strong>스텔스 드라이브</strong></td><td>5</td><td>3턴 스텔스</td><td>집중 공격을 피할 때</td></tr>
+            <tr><td><strong>윙맨</strong></td><td>8</td><td>동료 함 소환(3턴)</td><td>화력 보강 · 표적은 여전히 최근접</td></tr>
+            <tr><td><strong>플라즈마 포</strong></td><td>12</td><td>실드 관통 10% (II: Lv52 +10%)</td><td>실드가 남아 있어도 피해 일부가 안쪽으로 들어간다</td></tr>
+            <tr><td><strong>요새화 모드</strong></td><td>15</td><td>이동 불가 · 방어 +50%</td><td>돌격을 받아낼 때 — 방어 태세와 같이</td></tr>
+            <tr><td><strong>중력 가속</strong></td><td>18</td><td>최고 속도 +50%</td><td>멀리 있는 저격·모함에게 붙을 때</td></tr>
+            <tr><td><strong>다중 타겟팅</strong></td><td>28</td><td>최대 3척 동시 공격</td><td>장갑이 섞인 판 · 역할이 섞인 웨이브</td></tr>
+            <tr><td><strong>차원 도약</strong></td><td>30</td><td>무적 상태로 순간 이동</td><td>거리를 벌리는 저격(R4)·모함(R6)에게 접근</td></tr>
+            <tr><td><strong>싱귤래리티 포</strong></td><td>50</td><td>적을 모으고 광역 피해</td><td>많은 적이 흩어진 후반 웨이브</td></tr>
+            <tr><td><strong>절대 방어 체계</strong></td><td>55</td><td>1턴(8초) 동안 모든 피해 무효</td><td>지휘함이 나오는 마지막 판</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warn">
+        <strong>공격 태세 + 방어 스킬은 손해</strong>
+        공격 태세는 받는 피해도 늘린다. 돌격 판에서 요새화·실드 과부하를 쓸 거라면 방어 태세와 같이 쓴다.
+      </div>
+
+      <h3 id="nova">광역 무기 — 노바 미사일</h3>
+      <p>
+        노바 미사일은 목표 지점에서 터져 <strong>반경 안의 적 전부</strong>에게 각각 명중 굴림과 피해를 주고,
+        6초 동안 <strong>속도를 절반</strong>으로 줄인다. 한 척에게는 일반 미사일보다 약하지만, 적이 뭉쳐 오는
+        돌격조·라인 진형에서 값을 한다. 다른 특수 무기의 착탄 광역은 범위가 좁고 주변 적에게 일부 피해만 준다.
+      </p>
+
+      <h2 id="roles">적의 역할 — 시리우스부터</h2>
+      <p>
+        아르카디아~아이언 크로스(1~7구역)의 웨이브는 역할이 없다. 전원 가장 가까운 적을 노린다.
+        <strong>시리우스(8구역)부터 아크파이어 코어(19구역)까지</strong>는 판마다 역할이 붙고, 역할에 따라
+        장갑·전술·무기가 정해진다.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>역할</th><th>하는 일</th><th>무기</th><th>장갑</th><th>대응</th></tr></thead>
+          <tbody>
+            <tr><td><strong>R1 정찰</strong></td><td>리드 표적에 집중 · 거리를 조금 유지</td><td>레이저 + 미사일</td><td><span class="pill warm">경장갑</span></td><td>로켓</td></tr>
+            <tr><td><strong>R2 돌격</strong></td><td>빠르게 붙어 진형을 깬다</td><td>레이저 + 로켓</td><td><span class="pill purple">중장갑</span></td><td>미사일 · 방어 태세</td></tr>
+            <tr><td><strong>R3 화력</strong></td><td>돌격조 뒤에서 근접 화력</td><td>로켓 + 미사일</td><td><span class="pill warm">경장갑</span></td><td>로켓 · 붙으면 방어</td></tr>
+            <tr><td><strong>R4 저격</strong></td><td>미사일 거리에서 오래 버틴다</td><td>레이저 + 장거리 미사일</td><td><span class="pill accent">실드 ×3</span></td><td>레이저 · EMP · 차원 도약/중력 가속으로 접근</td></tr>
+            <tr><td><strong>R5 방벽</strong></td><td>라인으로 앞을 막고 리드에 집중</td><td>레이저 + 미사일</td><td><span class="pill accent">실드 ×3</span></td><td>레이저로 먼저 벗긴다</td></tr>
+            <tr><td><strong>R6 모함</strong></td><td>뒤에서 드론·함재기</td><td>레이저 + 드론</td><td><span class="pill purple">중장갑</span></td><td>미사일 · 본체까지 접근</td></tr>
+            <tr><td><strong>R7 마무리</strong></td><td>선체가 많이 깎인 함부터 노린다</td><td>레이저 + 로켓</td><td><span class="pill warm">경장갑</span></td><td>로켓 · 내 선체가 낮으면 방어·실드 과부하</td></tr>
+            <tr><td><strong>R8 지휘</strong></td><td>마지막 판 리더 · 라인 집중</td><td>함장마다 다름</td><td>함장마다 다름</td><td>아래 지휘함 표</td></tr>
+            <tr><td><strong>R9 특수</strong></td><td>구역 전용 함장의 전술</td><td>함장마다 다름</td><td>함장마다 다름</td><td>그 함장의 장갑</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>지휘함 장갑</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>행성</th><th>지휘함 장갑</th><th>마지막 판 주력</th></tr></thead>
+          <tbody>
+            <tr><td>시리우스</td><td><span class="pill warm">경장갑</span></td><td>로켓</td></tr>
+            <tr><td>페르세우스</td><td><span class="pill purple">중장갑</span></td><td>미사일</td></tr>
+            <tr><td>크림슨</td><td><span class="pill accent">실드 ×3</span></td><td>레이저 · EMP</td></tr>
+            <tr><td>블러드 필드</td><td><span class="pill purple">중장갑</span></td><td>미사일</td></tr>
+            <tr><td>헬리오스</td><td><span class="pill purple">중장갑</span></td><td>미사일</td></tr>
+            <tr><td>타이탄 게이트</td><td><span class="pill warm">경장갑</span></td><td>로켓</td></tr>
+            <tr><td>오메가</td><td><span class="pill accent">실드 ×3</span></td><td>레이저 · EMP</td></tr>
+            <tr><td>나이트폴</td><td><span class="pill accent">실드 ×3</span></td><td>레이저 · EMP</td></tr>
+            <tr><td>섀도우 넥서스</td><td><span class="pill purple">중장갑</span></td><td>미사일</td></tr>
+            <tr><td>다크 리프트</td><td colspan="2">웨이브에 지휘함이 나오지 않는다 — 마지막 판은 마무리·모함·정찰·돌격</td></tr>
+            <tr><td>아크파이어 코어</td><td><span class="pill purple">중장갑</span></td><td>미사일</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="waves">행성별 웨이브 공략</h2>
+      <p>
+        웨이브는 판이 넘어갈 때마다 적이 <strong>최소 1척씩 늘어난다</strong>. 시리우스 이후 셋째 판부터는
+        일부 함선이 <strong>20~30초 늦게 합류</strong>한다 — 첫 무리를 정리했다고 방심하면 뒤에서 저격·모함이 들어온다.
+      </p>
+
+      <h3>1~7구역 — 역할 없음</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>구역</th><th>장소</th><th>만나는 장갑</th><th>무장</th><th>요령</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>아르카디아 프라임</td><td>경장갑</td><td>레이저 + 로켓</td><td>실드는 레이저, 이후 로켓 1.85</td></tr>
+            <tr><td>2</td><td>베가 전초기지</td><td>경장갑 + 중장갑</td><td>세 종류</td><td>중장갑엔 미사일, 경장갑엔 로켓</td></tr>
+            <tr><td>3</td><td>솔라 항구</td><td>경장갑 + 실드형</td><td>레이저 등급을 올리고 로켓 유지</td><td>실드형이 가까울 때 EMP</td></tr>
+            <tr><td>4</td><td>미네르바 딥</td><td>경장갑 · 일부 실드형</td><td>레이저 + 로켓</td><td>실드형에게 EMP</td></tr>
+            <tr><td>5</td><td>드라코 성운</td><td>경장갑 · 중장갑 · 실드형</td><td>세 종류 모두 등급을 맞춘다</td><td>가장 가까운 적의 장갑에 따라 무기가 갈린다</td></tr>
+            <tr><td>6</td><td>뉴에덴</td><td>중장갑 + 경장갑</td><td>미사일 + 로켓</td><td>중장갑에 레이저는 0.55</td></tr>
+            <tr><td>7</td><td>아이언 크로스</td><td>실드(얇음) → 안쪽 경장갑</td><td>레이저 + 로켓</td><td>실드 구간만 레이저, 이후 로켓</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>8~21구역 — 역할 있음</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>구역</th><th>장소</th><th>판 흐름</th><th>공략</th></tr></thead>
+          <tbody>
+            <tr><td>8</td><td>시리우스</td><td>① 돌격 ② 저격+정찰 ③ 지휘+마무리+방벽(늦게)</td><td>1판 미사일+방어 · 2판 저격은 레이저·접근 스킬 · 지휘함은 경장갑이라 로켓</td></tr>
+            <tr><td>9</td><td>페르세우스</td><td>① 방벽 ② 저격+정찰 ③ 지휘+모함(늦게)+마무리</td><td>1판부터 실드 ×3 — 레이저·EMP · 지휘·모함은 중장갑이라 미사일</td></tr>
+            <tr><td>10</td><td>크림슨</td><td>① 마무리 ② 화력+정찰 ③ 지휘+모함+저격(늦게)</td><td>1판은 내 선체가 낮으면 노린다 — 방어로 유지 · 지휘함 실드 ×3</td></tr>
+            <tr><td>11</td><td>블러드 필드</td><td>① 화력 ② 정찰+돌격 ③ 저격+정찰×2 ④ 지휘+돌격+정찰+저격(늦게)</td><td>1~2판 로켓·방어 · 3판부터 저격 실드 · 지휘 중장갑</td></tr>
+            <tr><td>12</td><td>헬리오스</td><td>① 정찰 ② 정찰+저격 ③ 모함+마무리+저격 ④ 지휘+돌격+정찰+저격</td><td>저격·모함이 일찍 나온다 — 레이저와 미사일을 같이</td></tr>
+            <tr><td>13</td><td>타이탄 게이트</td><td>① 돌격 ② 마무리+모함 ③ 정찰+돌격+저격 ④ 지휘+특수+마무리+모함</td><td>1판 중장갑 돌격 · 지휘함은 경장갑이라 마지막은 로켓</td></tr>
+            <tr><td>14</td><td>오메가</td><td>① 정찰 ② 돌격+저격 ③ 모함+마무리×2 ④ 지휘+모함+특수+돌격</td><td>저격·지휘 실드 ×3, 모함·돌격 중장갑 — 레이저와 미사일</td></tr>
+            <tr><td>15</td><td>나이트폴</td><td>5판 · 특수 함장(근접 강습·경장갑)이 2·4·5판에</td><td>특수엔 로켓 · 5판 지휘는 실드 ×3 · 판이 길다</td></tr>
+            <tr><td>16</td><td>섀도우 넥서스</td><td>5판 · 1판부터 마무리</td><td>선체를 방어로 유지 · 특수 함장은 은신 저격(실드 ×3) · 지휘 중장갑</td></tr>
+            <tr><td>17</td><td>다크 리프트</td><td>① 마무리 ② 모함+돌격 ③ 정찰+저격+돌격 ④ 마무리+모함+정찰+돌격</td><td>마무리가 먼저 나온다 — 방어 태세 · 모함·돌격 중장갑이라 미사일 비중</td></tr>
+            <tr><td>18</td><td>어비스 게이트</td><td>역할 없음 · 중장갑</td><td>레이저로 실드를 벗기고 미사일</td></tr>
+            <tr><td>19</td><td>아크파이어 코어</td><td>6판 · 마지막 판 지휘+방벽+모함+돌격+저격+특수</td><td>방벽·저격 실드 ×3, 지휘·돌격·모함 중장갑 — 접근·방어 스킬을 마지막 판에 남긴다</td></tr>
+            <tr><td>20~21</td><td>이터니티 스론 · 제네시스 오리진</td><td>역할 없음 · 보스급 중장갑</td><td>실드는 레이저, 이후 미사일</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="quest-combat">퀘스트 전투의 규칙</h2>
+      <ul>
+        <li>퀘스트 궤도 전투에서 기함이 격침되면 <strong>퀘스트 도전 실패</strong>다. 함선은 잃지 않고 손상만 입는다.</li>
+        <li>받아 둔 서브퀘스트·의뢰는 실패 처리되고, <strong>같은 의뢰를 다시 받을 수 있다</strong>. 본편은 같은 단계에서 다시 도전한다.</li>
+        <li>퀘스트 전투에서 지면 <strong>격침한 몫의 경험치만</strong> 받는다. 일부러 지는 반복으로는 성장하지 않는다 — 2~3번 지면 무장·등급을 손보고 다시 오는 것이 빠르다.</li>
+      </ul>
+
+      <h2 id="tip">팁 — 싸운 뒤에 패턴을 외운다</h2>
+      <p>
+        적 함선은 무기를 <strong>두 종류만</strong> 들고 나온다. 나는 세 종류를 다 들 수 있지만, 싸움이 시작되면 바꿀 수 없다.
+        그래서 그 판에 누가 나왔는지를 기억해 두었다가 <strong>다음 출격에서 갚는다</strong>.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>방금 만난 적</th><th>들고 있던 무기</th><th>다음에 올릴 칸</th></tr></thead>
+          <tbody>
+            <tr><td>돌격 · 마무리</td><td>레이저 + 로켓</td><td><strong>미사일</strong> (돌격은 중장갑) / <strong>로켓</strong> (마무리는 경장갑)</td></tr>
+            <tr><td>정찰 · 방벽</td><td>레이저 + 미사일</td><td><strong>로켓</strong> (정찰) / <strong>레이저</strong> (방벽 실드 ×3)</td></tr>
+            <tr><td>저격</td><td>레이저 + 장거리 미사일</td><td><strong>레이저</strong> — 실드가 두껍고 로켓은 실드에 반토막</td></tr>
+            <tr><td>모함</td><td>레이저 + 드론</td><td><strong>미사일</strong> — 본체가 중장갑</td></tr>
+            <tr><td>화력</td><td>로켓 + 미사일</td><td><strong>로켓</strong> — 경장갑이고 레이저가 없어 실드를 잘 못 벗긴다</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout note">
+        <strong>「행성」보다 「판」으로 외운다</strong>
+        「시리우스는 저격 행성」은 틀린다. 「시리우스 2판은 저격」이 맞다. 같은 행성도 판마다 적이 바뀐다.
+        한 번 배운 역할은 다른 행성에서도 같은 장갑으로 나온다.
+      </div>
+
+      <h2>한 줄 요약</h2>
+      <p>
+        출격 전에 레이저·로켓·미사일을 그 구역 장갑에 맞게 끼우고, 전투 중에는 태세와 스킬로 실드를 벗기거나 거리를 줄인다.
+        판이 끝나면 누가 나왔는지 한 줄로 기억하고, 다음에 그 칸의 등급을 올린다.
+      </p>
+
+          <section class="comments" id="comments">
+        <h2>이 문서에 대한 의견</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">아크파이어 게임 위키 · 비공식 정리본</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/wiki.js"></script>
+<script src="assets/comments.js"></script>
+</body>
+</html>
