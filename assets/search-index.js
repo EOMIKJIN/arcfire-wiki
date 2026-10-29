@@ -17,6 +17,7 @@ window.WIKI_INDEX = [
   { title: "경제 시스템", page: "체제", href: "economy.html", tags: "economy 경제 무역 금고 배치" },
   { title: "전략 · 전술", page: "공략", href: "tactics.html", tags: "tactics strategy 전략 전술 공략 상성 장갑 태세" },
   { title: "무기 상성 (레이저·로켓·미사일)", page: "전략 · 전술", href: "tactics.html#affinity", tags: "affinity counter 상성 실드 경장갑 중장갑 가위바위보" },
+  { title: "적을 눌러 조준 (수동 표적)", page: "전략 · 전술", href: "tactics.html#target", tags: "target tap focus 조준 표적 지정 터치 누르기" },
   { title: "전투 태세 (공격·중립·방어)", page: "전략 · 전술", href: "tactics.html#stance", tags: "stance 태세 공격 방어 중립" },
   { title: "전투 스킬 활용", page: "전략 · 전술", href: "tactics.html#skills", tags: "skill emp blink 스킬 EMP 차원도약 요새화 다중타겟팅" },
   { title: "적 역할 R1~R9", page: "전략 · 전술", href: "tactics.html#roles", tags: "enemy role 정찰 돌격 화력 저격 방벽 모함 마무리 지휘 특수" },
