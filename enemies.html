@@ -85,6 +85,11 @@
         표의 「대표 무장」은 그 레벨에서 계열마다 나올 수 있는 가장 높은 무기다 — 실제 전투에서는 이 가운데 두 계열 정도를 갖추고 나온다.
       </div>
       <div class="callout note">
+        <strong>「실전」 표기에 대하여</strong>
+        전함의 선체·실드·장갑 수치는 출현 지역과 맡은 역할에 따라 달라져 숫자 대신 실제 전투에서의 장갑 형태와 역할만 적었다.
+        경장갑은 선체가 두껍고 실드가 얇다 · 중장갑은 레이저에 강하고 미사일에 약하다 · 실드형은 실드가 두껍고 레이저에 약하다.
+      </div>
+      <div class="callout note">
         <strong>퀘스트 전용 적은 싣지 않는다</strong>
         퀘스트 이야기에만 나오는 적 함장과 함선은 줄거리를 드러내지 않도록 이 목록에서 뺐다.
       </div>
@@ -146,7 +151,7 @@
       data: rows,
       label: "적 함장",
       pageSize: 40,
-      searchKeys: ["id", "name", "nameEn", "rank", "faction", "ship", "hull", "where", "weapons"],
+      searchKeys: ["id", "name", "nameEn", "rank", "faction", "ship", "hull", "combat", "where", "weapons"],
       columns: [
         // 4칸으로 묶음(대표님 10-24 「가로 스크롤 · 레이아웃 정리」) — 초상 · 함장(이름·직함·세력·레벨) · 탑승 전함(그림·이름·함급·능력치) · 출현·무장
         { key: "img", label: "초상", render: function (r) { return wikiThumb(r.img, r.name); } },
@@ -156,7 +161,7 @@
         } },
         { key: "shipImg", label: "탑승 전함", render: function (r) {
           return '<div class="dt-stack">' + wikiThumb(r.shipImg, r.ship, "ship") + '<span class="dt-strong">' + esc(r.ship) + '</span>' +
-            '<span class="dt-sub">' + esc(r.hull) + " · HP " + fmt(r.hp) + " · 실드 " + fmt(r.shield) + " · 장갑 " + fmt(r.armor) + "</span></div>";
+            '<span class="dt-sub">' + esc(r.hull) + (r.combat ? " · 실전: " + esc(r.combat) : "") + "</span></div>";
         } },
         { key: "where", label: "출현 위치 · 대표 무장", render: function (r) {
           return '<div class="dt-stack"><span><span class="dt-sub">출현</span> ' + esc(r.where) + '</span>' +

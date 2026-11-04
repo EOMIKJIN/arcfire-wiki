@@ -90,6 +90,11 @@
         "Typical weapons" shows the strongest weapon each family can field at that level — in a real fight a ship carries about two of these families.
       </div>
       <div class="callout note">
+        <strong>About "In combat"</strong>
+        Hull, shield and armor values change with the zone a ship appears in and the role it takes, so instead of numbers we list its armor type and role in real combat.
+        Light armor has a thick hull and thin shield · Heavy armor resists lasers but is weak to missiles · Shielded ships carry thick shields but are weak to lasers.
+      </div>
+      <div class="callout note">
         <strong>Quest-only enemies are left out</strong>
         Enemy captains and ships that only appear in quest stories are not listed, so the plots stay unspoiled.
       </div>
@@ -150,7 +155,7 @@
       data: rows,
       label: "Enemy captains",
       pageSize: 40,
-      searchKeys: ["id", "nameEn", "factionEn", "shipEn", "hullEn", "whereEn", "weaponsEn"],
+      searchKeys: ["id", "nameEn", "factionEn", "shipEn", "hullEn", "combatEn", "whereEn", "weaponsEn"],
       columns: [
         { key: "img", label: "Portrait", render: function (r) { return wikiThumb(r.img, r.nameEn || r.id); } },
         { key: "nameEn", label: "Captain", render: function (r) {
@@ -158,7 +163,7 @@
         } },
         { key: "shipImg", label: "Warship", render: function (r) {
           return '<div class="dt-stack">' + wikiThumb(r.shipImg, r.shipEn || r.ship, "ship") + '<span class="dt-strong">' + esc(r.shipEn || r.ship) + '</span>' +
-            '<span class="dt-sub">' + esc(r.hullEn) + " · HP " + fmt(r.hp) + " · Shield " + fmt(r.shield) + " · Armor " + fmt(r.armor) + "</span></div>";
+            '<span class="dt-sub">' + esc(r.hullEn) + (r.combatEn ? " · In combat: " + esc(r.combatEn) : "") + "</span></div>";
         } },
         { key: "whereEn", label: "Appears at · Typical weapons", render: function (r) {
           return '<div class="dt-stack"><span><span class="dt-sub">Appears at</span> ' + esc(r.whereEn) + '</span><span><span class="dt-sub">Weapons</span> ' + esc(r.weaponsEn) + "</span></div>";
