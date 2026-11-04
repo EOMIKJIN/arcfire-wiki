@@ -63,9 +63,36 @@
     <div class="content-wrap">
     <article class="content">
       <div class="eyebrow">체제 · 성장</div>
-      <h1 class="page-title">성장 곡선 <span class="pill">2026-10-24 갱신</span></h1>
-            <p>
-        최고 레벨은 <strong>60</strong>이다. 다음 레벨까지 필요한 경험치는 <strong>로그 성장 곡선</strong>을 따른다 —
+      <h1 class="page-title">성장 곡선 <span class="pill">2026-11-04 갱신</span></h1>
+      <p>
+        최고 레벨은 <strong>60</strong>이다. 레벨이 오를 때마다 <strong>다음 레벨까지 걸리는 시간이 일정한 비율로 늘어난다</strong> —
+        시간을 가로축에 놓으면 레벨은 <strong>로그 곡선</strong>(y = k·log x)을 그린다. 초반은 빠르게 오르고, 중반부터 점점 느려지며,
+        만렙 가까이에서는 한 레벨이 매우 길다(포화).
+      </p>
+      <ul>
+        <li><strong>L1~15 — 입문.</strong> 첫 1시간 설계 그대로 약 40분에 지나간다.</li>
+        <li><strong>L15~60 — 한 가지 비율.</strong> 다음 레벨까지 시간이 매 레벨 <strong id="r-inline">×1.21</strong>배. 꺾이는 곳이 없다.</li>
+        <li><strong>본편 끝(L36)</strong> 누적 약 <strong id="story-inline">22시간</strong> · <strong>L60</strong> 누적 약 <strong id="l60-inline">2,000시간</strong>. 마지막 한 레벨(L59→60)이 전체의 약 <strong id="last-inline">17%</strong>를 차지한다.</li>
+        <li>시간은 <strong>자동 플레이(트윈)</strong>로 잰 시간이 기준이다. 사람 플레이 시간은 이와 다를 수 있다.</li>
+      </ul>
+
+      <h2 id="time-chart">레벨당 시간 — 로그 그래프</h2>
+      <div class="table-wrap" id="growth-chart" aria-label="레벨별 다음 레벨까지 시간 로그 그래프 — 목표 곡선 · 이전 표 · 자동 플레이 실측"></div>
+
+      <h2 id="smooth">매끄러움 판정</h2>
+      <div id="smooth-box"></div>
+
+      <h2 id="time-table">레벨 표 — 시간 (L1~60)</h2>
+      <div id="growth-table"></div>
+      <div class="callout note">
+        <strong>읽는 법</strong>
+        「목표 곡선」이 기준이다. 「이전 표」는 지금까지 쓰던 레벨 시간 표, 「실측」은 자동 플레이 재테스트4(본편 끝 L36까지) 결과다.
+        누적 편차 ±15%, 3레벨 이동평균 편차 ±30% 안이면 통과로 본다. 중간 레벨(L22~34)의 출렁임은 다음 테스트들에서 단계적으로 편다.
+      </div>
+
+      <h2 id="exp">필요 경험치</h2>
+      <p>
+        다음 레벨까지 필요한 경험치도 <strong>로그 성장 곡선</strong>을 따른다 —
         L1~15는 짧게 지나가는 입문 구간이고, L16부터 필요량이 매끄럽게 커지며, L40대 중반부터 두 번째 오르막이 시작돼
         만렙에 가까울수록 한 레벨이 길어진다. 레벨 표는 한 번에 한 레벨씩만 오르도록 짜여 있다(보상 한 번으로 두 레벨을 건너뛰지 않는다).
       </p>
@@ -75,9 +102,9 @@
         <li><strong>퀘스트 보상은 그 퀘스트의 레벨까지만 배율을 받는다.</strong> 퀘스트를 쌓아 두었다가 높은 레벨에서 깨도 보상이 더 커지지 않는다.</li>
         <li><strong>레벨 차이</strong> — 내 레벨보다 많이 낮은 전장에서 얻는 전투 경험치는 줄어든다(<a href="combat.html">전투 · 분쟁</a>).</li>
       </ul>
-      <h2 id="chart">로그 그래프</h2>
+      <h2 id="chart">필요 경험치 — 로그 그래프</h2>
       <div class="table-wrap" id="level-curve-chart" aria-label="레벨별 필요 경험치 · 누적 경험치 로그 그래프"></div>
-      <h2 id="table">레벨 표 — L1~60</h2>
+      <h2 id="table">레벨 표 — 경험치 (L1~60)</h2>
       <div id="level-table"></div>
       <div class="callout note">
         <strong>수치는 바뀔 수 있다</strong>
@@ -96,6 +123,7 @@
 <footer class="site-footer">아크파이어 게임 위키 · 비공식 정리본</footer>
 <script src="assets/search-index.js"></script>
 <script src="assets/data/levels.js"></script>
+<script src="assets/data/growth_v2.js"></script>
 <script src="assets/datatable.js"></script>
 <script src="assets/wiki.js"></script>
 <script src="assets/comments.js"></script>
@@ -149,6 +177,96 @@
     var legend = '<div style="display:flex;gap:1.2em;flex-wrap:wrap;font-size:0.85em;color:var(--text-dim);margin:0.3em 0 0.8em">' +
       series.map(function (s) { return '<span><span style="display:inline-block;width:14px;height:3px;background:' + s.color + ';vertical-align:middle;margin-right:6px"></span>' + s.name + "</span>"; }).join("") +
       "<span>세로축 = 로그 눈금</span></div>";
+    box.innerHTML = svg + legend;
+  })();
+  // 레벨당 시간 곡선(11-04) — 목표 곡선 · 이전 표 · 자동 플레이 실측
+  (function () {
+    var D = window.GROWTH_V2;
+    if (!D) return;
+    var S = D.summary, rows = D.rows;
+    var hm = function (min) {
+      if (min == null) return "—";
+      if (min < 60) return min.toFixed(min < 10 ? 1 : 0) + "분";
+      var h = min / 60;
+      return (h < 100 ? h.toFixed(1) : Math.round(h).toLocaleString("ko-KR")) + "시간";
+    };
+    var hh = function (h) { return h == null ? "—" : hm(h * 60); };
+    var pct = function (v, lim) {
+      if (v == null) return "—";
+      var ok = Math.abs(v) <= lim;
+      return '<span style="color:' + (ok ? "var(--text)" : "var(--warm)") + '">' + (v > 0 ? "+" : "") + v + "%" + (ok ? "" : " ✕") + "</span>";
+    };
+    document.getElementById("r-inline").textContent = "×" + S.r.toFixed(3);
+    document.getElementById("story-inline").textContent = S.storyEndCumH.toFixed(1) + "시간";
+    document.getElementById("l60-inline").textContent = Math.round(S.l60CumH).toLocaleString("ko-KR") + "시간";
+    document.getElementById("last-inline").textContent = S.lastLevelSharePct.toFixed(1) + "%(약 " + Math.round(S.lastLevelH) + "시간)";
+
+    var sm = S.smooth, fj = S.freezeJoin;
+    var cp = (S.checkpoints || []).map(function (c) {
+      return "<li>L" + c.level + " 누적: 실측 " + c.twinH.toFixed(1) + "시간 / 목표 " + c.newH.toFixed(1) + "시간 → " + pct(Math.round(c.devPct), 15) + "</li>";
+    }).join("");
+    document.getElementById("smooth-box").innerHTML =
+      "<ul>" +
+      "<li><strong>목표 곡선 L15~60</strong>: 레벨당 증가율이 일정(ln r = " + S.g.toFixed(3) + ") — 꺾임 없음</li>" +
+      "<li><strong>이전 표 L15~60</strong>: 증가율 변화 최대 " + sm.curL15to60.dg.toFixed(3) + "(L" + sm.curL15to60.at + ") — L22~24에서 꺾임</li>" +
+      "<li><strong>입문 이음(L14→16)</strong>: 입문 표 L14→15가 ×" + Math.exp(fj.gFrozenL14).toFixed(2) + " → 곡선 ×" + S.r.toFixed(3) + " — 작은 꺾임이 남아 있다(입문 표는 고정)</li>" +
+      "<li><strong>자동 플레이 실측 누적</strong>(±15%):<ul>" + cp + "</ul></li>" +
+      "</ul>";
+
+    mountWikiDataTable({
+      mount: document.getElementById("growth-table"),
+      data: rows,
+      label: "레벨",
+      pageSize: 60,
+      searchKeys: ["level"],
+      columns: [
+        { key: "level", label: "레벨", num: true, render: function (r) { return "L" + r.level; } },
+        { key: "newMin", label: "다음 레벨까지", num: true, render: function (r) { return r.newMin == null ? "최고 레벨" : hm(r.newMin); } },
+        { key: "newCumH", label: "누적", num: true, render: function (r) { return hh(r.newCumH); } },
+        { key: "r", label: "비율 r", num: true, render: function (r) { return r.r == null ? "—" : "×" + Number(r.r).toFixed(3); } },
+        { key: "curMin", label: "이전 표", num: true, render: function (r) { return hm(r.curMin); } },
+        { key: "curCumH", label: "이전 누적", num: true, render: function (r) { return hh(r.curCumH); } },
+        { key: "twinMin", label: "실측", num: true, render: function (r) { return hm(r.twinMin); } },
+        { key: "twinCumH", label: "실측 누적", num: true, render: function (r) { return hh(r.twinCumH); } },
+        { key: "cumDevPct", label: "누적 편차", num: true, render: function (r) { return pct(r.cumDevPct, 15); } },
+        { key: "ma3DevPct", label: "3레벨 편차", num: true, render: function (r) { return pct(r.ma3DevPct, 30); } },
+      ],
+    });
+
+    var box = document.getElementById("growth-chart");
+    var series = [
+      { key: "newMin", name: "목표 곡선", color: "var(--accent)", width: 2.6 },
+      { key: "curMin", name: "이전 표", color: "var(--text-dim)", width: 1.6, dash: "5 4" },
+      { key: "twinMin", name: "자동 플레이 실측(재테스트4)", color: "var(--warm)", width: 2 },
+    ];
+    var pts = series.map(function (s) {
+      return rows.filter(function (r) { return r[s.key] != null && r[s.key] > 0; }).map(function (r) { return [r.level, r[s.key]]; });
+    });
+    var all = [].concat.apply([], pts).map(function (p) { return p[1]; });
+    if (!box || !all.length) return;
+    var W = 760, H = 320, mL = 60, mR = 12, mT = 12, mB = 30;
+    var lo = Math.floor(Math.log10(Math.min.apply(null, all))), hi = Math.ceil(Math.log10(Math.max.apply(null, all)));
+    var X = function (lv) { return mL + ((lv - 1) / 59) * (W - mL - mR); };
+    var Y = function (v) { return mT + (1 - (Math.log10(v) - lo) / (hi - lo)) * (H - mT - mB); };
+    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" style="min-width:420px;font-family:var(--font-body)">';
+    for (var e = lo; e <= hi; e += 1) {
+      var v = Math.pow(10, e), y = Y(v);
+      svg += '<line x1="' + mL + '" x2="' + (W - mR) + '" y1="' + y + '" y2="' + y + '" stroke="var(--border)" stroke-width="1"/>';
+      svg += '<text x="' + (mL - 6) + '" y="' + y + '" dy="0.32em" text-anchor="end" font-size="11" fill="var(--text-dim)">' + hm(v) + "</text>";
+    }
+    [1, 10, 15, 20, 30, 36, 40, 50, 60].forEach(function (lv) {
+      svg += '<text x="' + X(lv) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="11" fill="var(--text-dim)">L' + lv + "</text>";
+    });
+    svg += '<line x1="' + X(36) + '" x2="' + X(36) + '" y1="' + mT + '" y2="' + (H - mB) + '" stroke="var(--border)" stroke-dasharray="2 4"/>';
+    svg += '<text x="' + (X(36) + 4) + '" y="' + (mT + 12) + '" font-size="11" fill="var(--text-dim)">본편 끝</text>';
+    pts.forEach(function (p, i) {
+      var d = p.map(function (q, j) { return (j ? "L" : "M") + X(q[0]).toFixed(1) + " " + Y(q[1]).toFixed(1); }).join(" ");
+      svg += '<path d="' + d + '" fill="none" stroke="' + series[i].color + '" stroke-width="' + series[i].width + '"' + (series[i].dash ? ' stroke-dasharray="' + series[i].dash + '"' : "") + ' stroke-linejoin="round"/>';
+    });
+    svg += "</svg>";
+    var legend = '<div style="display:flex;gap:1.2em;flex-wrap:wrap;font-size:0.85em;color:var(--text-dim);margin:0.3em 0 0.8em">' +
+      series.map(function (s) { return '<span><span style="display:inline-block;width:14px;height:3px;background:' + s.color + ';vertical-align:middle;margin-right:6px"></span>' + s.name + "</span>"; }).join("") +
+      "<span>세로축 = 로그 눈금 · 목표 곡선이 직선 = 비율 일정</span></div>";
     box.innerHTML = svg + legend;
   })();
 </script>

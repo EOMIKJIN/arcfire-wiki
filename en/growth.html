@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Growth Curve · ARCFIRE Wiki</title>
-<meta name="description" content="EXP needed and cumulative EXP for levels 1–60, the logarithmic growth curve and EXP reward multipliers." />
+<meta name="description" content="Time per level and cumulative time for levels 1–60 on a logarithmic growth curve, plus EXP needed and EXP reward multipliers." />
 <link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/growth.html" />
 <link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/growth.html" />
 <link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/growth.html" />
@@ -68,9 +68,36 @@
     <div class="content-wrap">
     <article class="content">
       <div class="eyebrow">Systems · Growth</div>
-      <h1 class="page-title">Growth Curve <span class="pill">updated 2026-10-24</span></h1>
+      <h1 class="page-title">Growth Curve <span class="pill">updated 2026-11-04</span></h1>
       <p>
-        The level cap is <strong>60</strong>. The EXP needed for the next level follows a <strong>logarithmic growth curve</strong> —
+        The level cap is <strong>60</strong>. Each level takes <strong>a fixed ratio longer than the one before</strong> —
+        put time on the horizontal axis and your level traces a <strong>logarithmic curve</strong> (y = k·log x). Early levels come fast,
+        progress slows through the middle, and near the cap a single level takes a very long time (saturation).
+      </p>
+      <ul>
+        <li><strong>L1–15 — introduction.</strong> Kept as designed for the first hour: about 40 minutes.</li>
+        <li><strong>L15–60 — one ratio.</strong> Time to the next level grows by <strong id="r-inline">×1.21</strong> every level. No kinks.</li>
+        <li><strong>End of the main story (L36)</strong> at about <strong id="story-inline">22 h</strong> total · <strong>L60</strong> at about <strong id="l60-inline">2,000 h</strong>. The last level (L59→60) alone is about <strong id="last-inline">17%</strong> of the total.</li>
+        <li>Times are measured with <strong>autoplay (the twin)</strong>. Human play time may differ.</li>
+      </ul>
+
+      <h2 id="time-chart">Time per level — log chart</h2>
+      <div class="table-wrap" id="growth-chart" aria-label="Log chart of time to next level — target curve, previous table, autoplay measurement"></div>
+
+      <h2 id="smooth">Smoothness check</h2>
+      <div id="smooth-box"></div>
+
+      <h2 id="time-table">Level table — time (L1–60)</h2>
+      <div id="growth-table"></div>
+      <div class="callout note">
+        <strong>How to read</strong>
+        The <em>target curve</em> is the reference. <em>Previous table</em> is the level-time table used until now; <em>measured</em> is autoplay retest 4 (up to the end of the main story, L36).
+        Within ±15% cumulative and ±30% on a 3-level moving average counts as a pass. The swings in the middle levels (L22–34) will be smoothed out step by step in the next tests.
+      </div>
+
+      <h2 id="exp">EXP needed</h2>
+      <p>
+        The EXP needed for the next level also follows a <strong>logarithmic growth curve</strong> —
         L1–15 is a short introduction, from L16 the requirement grows smoothly, and a second climb starts in the mid-40s,
         so each level takes longer as you approach the cap. The table only ever moves you up one level at a time (one reward never skips two levels).
       </p>
@@ -81,10 +108,10 @@
         <li><strong>Level gap</strong> — combat EXP from battlefields far below your level is reduced (<a href="combat.html">Combat · Conflict</a>).</li>
       </ul>
 
-      <h2 id="chart">Log chart</h2>
+      <h2 id="chart">EXP needed — log chart</h2>
       <div class="table-wrap" id="level-curve-chart" aria-label="Log chart of EXP to next level and cumulative EXP"></div>
 
-      <h2 id="table">Level table — L1–60</h2>
+      <h2 id="table">Level table — EXP (L1–60)</h2>
       <div id="level-table"></div>
       <div class="callout note">
         <strong>Numbers may change</strong>
@@ -104,6 +131,7 @@
 <script>window.WIKI_ASSET_PREFIX = "../";</script>
 <script src="search-index-en.js"></script>
 <script src="../assets/data/levels.js"></script>
+<script src="../assets/data/growth_v2.js"></script>
 <script src="../assets/datatable.js"></script>
 <script src="../assets/wiki.js"></script>
 <script src="../assets/comments.js"></script>
@@ -156,6 +184,96 @@
     var legend = '<div style="display:flex;gap:1.2em;flex-wrap:wrap;font-size:0.85em;color:var(--text-dim);margin:0.3em 0 0.8em">' +
       series.map(function (s) { return '<span><span style="display:inline-block;width:14px;height:3px;background:' + s.color + ';vertical-align:middle;margin-right:6px"></span>' + s.name + "</span>"; }).join("") +
       "<span>Vertical axis = log scale</span></div>";
+    box.innerHTML = svg + legend;
+  })();
+  // Time per level curve (11-04) — target curve · previous table · autoplay measurement
+  (function () {
+    var D = window.GROWTH_V2;
+    if (!D) return;
+    var S = D.summary, rows = D.rows;
+    var hm = function (min) {
+      if (min == null) return "—";
+      if (min < 60) return min.toFixed(min < 10 ? 1 : 0) + " min";
+      var h = min / 60;
+      return (h < 100 ? h.toFixed(1) : Math.round(h).toLocaleString("en-US")) + " h";
+    };
+    var hh = function (h) { return h == null ? "—" : hm(h * 60); };
+    var pct = function (v, lim) {
+      if (v == null) return "—";
+      var ok = Math.abs(v) <= lim;
+      return '<span style="color:' + (ok ? "var(--text)" : "var(--warm)") + '">' + (v > 0 ? "+" : "") + v + "%" + (ok ? "" : " ✕") + "</span>";
+    };
+    document.getElementById("r-inline").textContent = "×" + S.r.toFixed(3);
+    document.getElementById("story-inline").textContent = S.storyEndCumH.toFixed(1) + " h";
+    document.getElementById("l60-inline").textContent = Math.round(S.l60CumH).toLocaleString("en-US") + " h";
+    document.getElementById("last-inline").textContent = S.lastLevelSharePct.toFixed(1) + "% (about " + Math.round(S.lastLevelH) + " h)";
+
+    var sm = S.smooth, fj = S.freezeJoin;
+    var cp = (S.checkpoints || []).map(function (c) {
+      return "<li>L" + c.level + " cumulative: measured " + c.twinH.toFixed(1) + " h / target " + c.newH.toFixed(1) + " h → " + pct(Math.round(c.devPct), 15) + "</li>";
+    }).join("");
+    document.getElementById("smooth-box").innerHTML =
+      "<ul>" +
+      "<li><strong>Target curve L15–60</strong>: constant growth per level (ln r = " + S.g.toFixed(3) + ") — no kinks</li>" +
+      "<li><strong>Previous table L15–60</strong>: largest change in growth " + sm.curL15to60.dg.toFixed(3) + " (L" + sm.curL15to60.at + ") — kinks at L22–24</li>" +
+      "<li><strong>Intro join (L14→16)</strong>: intro table L14→15 is ×" + Math.exp(fj.gFrozenL14).toFixed(2) + " → curve ×" + S.r.toFixed(3) + " — a small kink remains (the intro table is fixed)</li>" +
+      "<li><strong>Autoplay measured, cumulative</strong> (±15%):<ul>" + cp + "</ul></li>" +
+      "</ul>";
+
+    mountWikiDataTable({
+      mount: document.getElementById("growth-table"),
+      data: rows,
+      label: "Levels",
+      pageSize: 60,
+      searchKeys: ["level"],
+      columns: [
+        { key: "level", label: "Level", num: true, render: function (r) { return "L" + r.level; } },
+        { key: "newMin", label: "To next level", num: true, render: function (r) { return r.newMin == null ? "Max level" : hm(r.newMin); } },
+        { key: "newCumH", label: "Cumulative", num: true, render: function (r) { return hh(r.newCumH); } },
+        { key: "r", label: "Ratio r", num: true, render: function (r) { return r.r == null ? "—" : "×" + Number(r.r).toFixed(3); } },
+        { key: "curMin", label: "Previous", num: true, render: function (r) { return hm(r.curMin); } },
+        { key: "curCumH", label: "Prev. cum.", num: true, render: function (r) { return hh(r.curCumH); } },
+        { key: "twinMin", label: "Measured", num: true, render: function (r) { return hm(r.twinMin); } },
+        { key: "twinCumH", label: "Meas. cum.", num: true, render: function (r) { return hh(r.twinCumH); } },
+        { key: "cumDevPct", label: "Cum. dev.", num: true, render: function (r) { return pct(r.cumDevPct, 15); } },
+        { key: "ma3DevPct", label: "3-level dev.", num: true, render: function (r) { return pct(r.ma3DevPct, 30); } },
+      ],
+    });
+
+    var box = document.getElementById("growth-chart");
+    var series = [
+      { key: "newMin", name: "Target curve", color: "var(--accent)", width: 2.6 },
+      { key: "curMin", name: "Previous table", color: "var(--text-dim)", width: 1.6, dash: "5 4" },
+      { key: "twinMin", name: "Autoplay measured (retest 4)", color: "var(--warm)", width: 2 },
+    ];
+    var pts = series.map(function (s) {
+      return rows.filter(function (r) { return r[s.key] != null && r[s.key] > 0; }).map(function (r) { return [r.level, r[s.key]]; });
+    });
+    var all = [].concat.apply([], pts).map(function (p) { return p[1]; });
+    if (!box || !all.length) return;
+    var W = 760, H = 320, mL = 60, mR = 12, mT = 12, mB = 30;
+    var lo = Math.floor(Math.log10(Math.min.apply(null, all))), hi = Math.ceil(Math.log10(Math.max.apply(null, all)));
+    var X = function (lv) { return mL + ((lv - 1) / 59) * (W - mL - mR); };
+    var Y = function (v) { return mT + (1 - (Math.log10(v) - lo) / (hi - lo)) * (H - mT - mB); };
+    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" style="min-width:420px;font-family:var(--font-body)">';
+    for (var e = lo; e <= hi; e += 1) {
+      var v = Math.pow(10, e), y = Y(v);
+      svg += '<line x1="' + mL + '" x2="' + (W - mR) + '" y1="' + y + '" y2="' + y + '" stroke="var(--border)" stroke-width="1"/>';
+      svg += '<text x="' + (mL - 6) + '" y="' + y + '" dy="0.32em" text-anchor="end" font-size="11" fill="var(--text-dim)">' + hm(v) + "</text>";
+    }
+    [1, 10, 15, 20, 30, 36, 40, 50, 60].forEach(function (lv) {
+      svg += '<text x="' + X(lv) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="11" fill="var(--text-dim)">L' + lv + "</text>";
+    });
+    svg += '<line x1="' + X(36) + '" x2="' + X(36) + '" y1="' + mT + '" y2="' + (H - mB) + '" stroke="var(--border)" stroke-dasharray="2 4"/>';
+    svg += '<text x="' + (X(36) + 4) + '" y="' + (mT + 12) + '" font-size="11" fill="var(--text-dim)">Story end</text>';
+    pts.forEach(function (p, i) {
+      var d = p.map(function (q, j) { return (j ? "L" : "M") + X(q[0]).toFixed(1) + " " + Y(q[1]).toFixed(1); }).join(" ");
+      svg += '<path d="' + d + '" fill="none" stroke="' + series[i].color + '" stroke-width="' + series[i].width + '"' + (series[i].dash ? ' stroke-dasharray="' + series[i].dash + '"' : "") + ' stroke-linejoin="round"/>';
+    });
+    svg += "</svg>";
+    var legend = '<div style="display:flex;gap:1.2em;flex-wrap:wrap;font-size:0.85em;color:var(--text-dim);margin:0.3em 0 0.8em">' +
+      series.map(function (s) { return '<span><span style="display:inline-block;width:14px;height:3px;background:' + s.color + ';vertical-align:middle;margin-right:6px"></span>' + s.name + "</span>"; }).join("") +
+      "<span>Vertical axis = log scale · straight target line = constant ratio</span></div>";
     box.innerHTML = svg + legend;
   })();
 </script>
