@@ -76,6 +76,14 @@
         <li>시간은 <strong>자동 플레이(트윈)</strong>로 잰 시간이 기준이다. 사람 플레이 시간은 이와 다를 수 있다.</li>
       </ul>
 
+      <h2 id="log-curve">성장형 로그 곡선 — 레벨 ↔ 누적 플레이 시간</h2>
+      <div style="display:flex;gap:0;margin:0.2em 0 0.6em;border:1px solid var(--border);border-radius:8px;overflow:hidden;width:max-content;max-width:100%">
+        <button type="button" id="lc-story" aria-pressed="true" style="font:inherit;font-size:0.85em;padding:5px 12px;border:0;cursor:pointer">본편 구간 0~30시간</button>
+        <button type="button" id="lc-all" aria-pressed="false" style="font:inherit;font-size:0.85em;padding:5px 12px;border:0;cursor:pointer">L1~60 전체 (로그 축)</button>
+      </div>
+      <div class="table-wrap" id="log-curve-chart" aria-label="레벨 대 누적 플레이 시간 — 목표 로그 곡선 · 이전 표 · 자동 플레이 실측"></div>
+      <p id="log-curve-note" style="font-size:0.9em;color:var(--text-dim)"></p>
+
       <h2 id="time-chart">레벨당 시간 — 로그 그래프</h2>
       <div class="table-wrap" id="growth-chart" aria-label="레벨별 다음 레벨까지 시간 로그 그래프 — 목표 곡선 · 이전 표 · 자동 플레이 실측"></div>
 
@@ -178,6 +186,61 @@
       series.map(function (s) { return '<span><span style="display:inline-block;width:14px;height:3px;background:' + s.color + ';vertical-align:middle;margin-right:6px"></span>' + s.name + "</span>"; }).join("") +
       "<span>세로축 = 로그 눈금</span></div>";
     box.innerHTML = svg + legend;
+  })();
+  // 성장형 로그 곡선(11-04 · 김플레이 아티팩트 첫 그래프와 같은 구성) — 가로 = 누적 시간 · 세로 = 레벨
+  (function () {
+    var D = window.GROWTH_V2;
+    var box = document.getElementById("log-curve-chart");
+    if (!D || !box) return;
+    var S = D.summary, rows = D.rows;
+    var series = [
+      { key: "newCumH", name: "목표 로그 곡선 (r ×" + S.r.toFixed(3) + ")", color: "var(--accent)", width: 2.6, dash: "6 4" },
+      { key: "curCumH", name: "이전 표", color: "var(--text-dim)", width: 1.8 },
+      { key: "twinCumH", name: "자동 플레이 실측(재테스트4)", color: "var(--warm)", width: 2.2 },
+    ];
+    var fmtH = function (h) { return h < 1 ? Math.round(h * 60) + "분" : h < 100 ? h.toFixed(1) + "시간" : Math.round(h).toLocaleString("ko-KR") + "시간"; };
+    var mode = "story";
+    function draw() {
+      var all = mode === "all";
+      var W = 760, H = 340, mL = 46, mR = 14, mT = 12, mB = 34;
+      var xmin = all ? 0.1 : 0, xmax = all ? 3000 : 30;
+      var fx = all ? function (v) { return Math.log10(Math.max(v, xmin)); } : function (v) { return v; };
+      var X = function (h) { return mL + (fx(h) - fx(xmin)) / (fx(xmax) - fx(xmin)) * (W - mL - mR); };
+      var Y = function (lv) { return mT + (1 - lv / 60) * (H - mT - mB); };
+      var svg = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" style="min-width:420px;font-family:var(--font-body)">';
+      [0, 10, 20, 30, 36, 40, 50, 60].forEach(function (lv) {
+        svg += '<line x1="' + mL + '" x2="' + (W - mR) + '" y1="' + Y(lv) + '" y2="' + Y(lv) + '" stroke="var(--border)" stroke-width="1"' + (lv === 36 ? ' stroke-dasharray="2 4"' : "") + "/>";
+        svg += '<text x="' + (mL - 6) + '" y="' + Y(lv) + '" dy="0.32em" text-anchor="end" font-size="11" fill="var(--text-dim)">L' + lv + "</text>";
+      });
+      var ticks = all ? [0.1, 1, 10, 100, 1000] : [0, 5, 10, 15, 20, 25, 30];
+      ticks.forEach(function (t) {
+        svg += '<text x="' + X(t) + '" y="' + (H - 12) + '" text-anchor="middle" font-size="11" fill="var(--text-dim)">' + (all ? (t < 1 ? t * 60 + "분" : t.toLocaleString("ko-KR") + "h") : t + "h") + "</text>";
+      });
+      svg += '<text x="' + (W - mR) + '" y="' + (Y(36) - 4) + '" text-anchor="end" font-size="11" fill="var(--text-dim)">본편 끝 L36</text>';
+      svg += '<clipPath id="lc-clip"><rect x="' + mL + '" y="' + (mT - 4) + '" width="' + (W - mL - mR) + '" height="' + (H - mT - mB + 8) + '"/></clipPath>';
+      series.forEach(function (s) {
+        var pts = rows.filter(function (r) { return r[s.key] != null && (all ? r[s.key] > 0 : true); });
+        var d = pts.map(function (r, j) { return (j ? "L" : "M") + X(r[s.key]).toFixed(1) + " " + Y(r.level).toFixed(1); }).join(" ");
+        svg += '<path d="' + d + '" fill="none" clip-path="url(#lc-clip)" stroke="' + s.color + '" stroke-width="' + s.width + '"' + (s.dash ? ' stroke-dasharray="' + s.dash + '"' : "") + ' stroke-linejoin="round"/>';
+      });
+      svg += "</svg>";
+      var legend = '<div style="display:flex;gap:1.2em;flex-wrap:wrap;font-size:0.85em;color:var(--text-dim);margin:0.3em 0 0.4em">' +
+        series.map(function (s) { return '<span><span style="display:inline-block;width:16px;height:0;border-top:2px ' + (s.dash ? "dashed" : "solid") + " " + s.color + ';vertical-align:middle;margin-right:6px"></span>' + s.name + "</span>"; }).join("") + "</div>";
+      box.innerHTML = legend + svg;
+      var r36 = rows[35], r60 = rows[59];
+      document.getElementById("log-curve-note").innerHTML = all
+        ? "가로축을 로그로 놓으면 교과서 로그 곡선(레벨 = k·log 시간)이 <strong>직선</strong>으로 보인다. 목표 곡선은 L15 이후 곧게 L60 ≈ " + fmtH(r60.newCumH) + "에 닿는다. 이전 표는 L60이 " + fmtH(r60.curCumH) + "에서 멈춘다."
+        : "교과서 그림과 같은 모양(초반 급성장 → 점진 감속)이다. 본편 끝 L36 도달: 목표 곡선 <strong>" + fmtH(r36.newCumH) + "</strong> · 이전 표 " + fmtH(r36.curCumH) + " · 자동 플레이 실측 " + (r36.twinCumH != null ? fmtH(r36.twinCumH) : "—") + ". 실측은 L25~30에서 곡선보다 늦고, L31~34에서 서브퀘스트가 몰려 빠르게 따라붙는다.";
+      ["lc-story", "lc-all"].forEach(function (id) {
+        var b = document.getElementById(id), on = (id === "lc-all") === all;
+        b.setAttribute("aria-pressed", String(on));
+        b.style.background = on ? "var(--text)" : "transparent";
+        b.style.color = on ? "var(--bg)" : "var(--text-dim)";
+      });
+    }
+    document.getElementById("lc-story").onclick = function () { mode = "story"; draw(); };
+    document.getElementById("lc-all").onclick = function () { mode = "all"; draw(); };
+    draw();
   })();
   // 레벨당 시간 곡선(11-04) — 목표 곡선 · 이전 표 · 자동 플레이 실측
   (function () {

@@ -81,6 +81,14 @@
         <li>Times are measured with <strong>autoplay (the twin)</strong>. Human play time may differ.</li>
       </ul>
 
+      <h2 id="log-curve">Logarithmic growth curve — level vs total play time</h2>
+      <div style="display:flex;gap:0;margin:0.2em 0 0.6em;border:1px solid var(--border);border-radius:8px;overflow:hidden;width:max-content;max-width:100%">
+        <button type="button" id="lc-story" aria-pressed="true" style="font:inherit;font-size:0.85em;padding:5px 12px;border:0;cursor:pointer">Main story 0–30 h</button>
+        <button type="button" id="lc-all" aria-pressed="false" style="font:inherit;font-size:0.85em;padding:5px 12px;border:0;cursor:pointer">All of L1–60 (log axis)</button>
+      </div>
+      <div class="table-wrap" id="log-curve-chart" aria-label="Level vs total play time — target log curve, previous table, autoplay measurement"></div>
+      <p id="log-curve-note" style="font-size:0.9em;color:var(--text-dim)"></p>
+
       <h2 id="time-chart">Time per level — log chart</h2>
       <div class="table-wrap" id="growth-chart" aria-label="Log chart of time to next level — target curve, previous table, autoplay measurement"></div>
 
@@ -185,6 +193,61 @@
       series.map(function (s) { return '<span><span style="display:inline-block;width:14px;height:3px;background:' + s.color + ';vertical-align:middle;margin-right:6px"></span>' + s.name + "</span>"; }).join("") +
       "<span>Vertical axis = log scale</span></div>";
     box.innerHTML = svg + legend;
+  })();
+  // Logarithmic growth curve (11-04) — x = total play time · y = level
+  (function () {
+    var D = window.GROWTH_V2;
+    var box = document.getElementById("log-curve-chart");
+    if (!D || !box) return;
+    var S = D.summary, rows = D.rows;
+    var series = [
+      { key: "newCumH", name: "Target log curve (r ×" + S.r.toFixed(3) + ")", color: "var(--accent)", width: 2.6, dash: "6 4" },
+      { key: "curCumH", name: "Previous table", color: "var(--text-dim)", width: 1.8 },
+      { key: "twinCumH", name: "Autoplay measured (retest 4)", color: "var(--warm)", width: 2.2 },
+    ];
+    var fmtH = function (h) { return h < 1 ? Math.round(h * 60) + " min" : h < 100 ? h.toFixed(1) + " h" : Math.round(h).toLocaleString("en-US") + " h"; };
+    var mode = "story";
+    function draw() {
+      var all = mode === "all";
+      var W = 760, H = 340, mL = 46, mR = 14, mT = 12, mB = 34;
+      var xmin = all ? 0.1 : 0, xmax = all ? 3000 : 30;
+      var fx = all ? function (v) { return Math.log10(Math.max(v, xmin)); } : function (v) { return v; };
+      var X = function (h) { return mL + (fx(h) - fx(xmin)) / (fx(xmax) - fx(xmin)) * (W - mL - mR); };
+      var Y = function (lv) { return mT + (1 - lv / 60) * (H - mT - mB); };
+      var svg = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" style="min-width:420px;font-family:var(--font-body)">';
+      [0, 10, 20, 30, 36, 40, 50, 60].forEach(function (lv) {
+        svg += '<line x1="' + mL + '" x2="' + (W - mR) + '" y1="' + Y(lv) + '" y2="' + Y(lv) + '" stroke="var(--border)" stroke-width="1"' + (lv === 36 ? ' stroke-dasharray="2 4"' : "") + "/>";
+        svg += '<text x="' + (mL - 6) + '" y="' + Y(lv) + '" dy="0.32em" text-anchor="end" font-size="11" fill="var(--text-dim)">L' + lv + "</text>";
+      });
+      var ticks = all ? [0.1, 1, 10, 100, 1000] : [0, 5, 10, 15, 20, 25, 30];
+      ticks.forEach(function (t) {
+        svg += '<text x="' + X(t) + '" y="' + (H - 12) + '" text-anchor="middle" font-size="11" fill="var(--text-dim)">' + (all ? (t < 1 ? t * 60 + " min" : t.toLocaleString("en-US") + "h") : t + "h") + "</text>";
+      });
+      svg += '<text x="' + (W - mR) + '" y="' + (Y(36) - 4) + '" text-anchor="end" font-size="11" fill="var(--text-dim)">Story end L36</text>';
+      svg += '<clipPath id="lc-clip"><rect x="' + mL + '" y="' + (mT - 4) + '" width="' + (W - mL - mR) + '" height="' + (H - mT - mB + 8) + '"/></clipPath>';
+      series.forEach(function (s) {
+        var pts = rows.filter(function (r) { return r[s.key] != null && (all ? r[s.key] > 0 : true); });
+        var d = pts.map(function (r, j) { return (j ? "L" : "M") + X(r[s.key]).toFixed(1) + " " + Y(r.level).toFixed(1); }).join(" ");
+        svg += '<path d="' + d + '" fill="none" clip-path="url(#lc-clip)" stroke="' + s.color + '" stroke-width="' + s.width + '"' + (s.dash ? ' stroke-dasharray="' + s.dash + '"' : "") + ' stroke-linejoin="round"/>';
+      });
+      svg += "</svg>";
+      var legend = '<div style="display:flex;gap:1.2em;flex-wrap:wrap;font-size:0.85em;color:var(--text-dim);margin:0.3em 0 0.4em">' +
+        series.map(function (s) { return '<span><span style="display:inline-block;width:16px;height:0;border-top:2px ' + (s.dash ? "dashed" : "solid") + " " + s.color + ';vertical-align:middle;margin-right:6px"></span>' + s.name + "</span>"; }).join("") + "</div>";
+      box.innerHTML = legend + svg;
+      var r36 = rows[35], r60 = rows[59];
+      document.getElementById("log-curve-note").innerHTML = all
+        ? "With a log time axis the textbook curve (level = k·log time) becomes a <strong>straight line</strong>. The target curve runs straight from L15 to L60 at about " + fmtH(r60.newCumH) + "; the previous table stops at " + fmtH(r60.curCumH) + " for L60."
+        : "The same shape as the textbook picture (fast early growth → gradual slowdown). Reaching the end of the main story (L36): target curve <strong>" + fmtH(r36.newCumH) + "</strong> · previous table " + fmtH(r36.curCumH) + " · autoplay measured " + (r36.twinCumH != null ? fmtH(r36.twinCumH) : "—") + ". The measurement lags the curve at L25–30 and catches up quickly at L31–34 when side quests bunch up.";
+      ["lc-story", "lc-all"].forEach(function (id) {
+        var b = document.getElementById(id), on = (id === "lc-all") === all;
+        b.setAttribute("aria-pressed", String(on));
+        b.style.background = on ? "var(--text)" : "transparent";
+        b.style.color = on ? "var(--bg)" : "var(--text-dim)";
+      });
+    }
+    document.getElementById("lc-story").onclick = function () { mode = "story"; draw(); };
+    document.getElementById("lc-all").onclick = function () { mode = "all"; draw(); };
+    draw();
   })();
   // Time per level curve (11-04) — target curve · previous table · autoplay measurement
   (function () {
