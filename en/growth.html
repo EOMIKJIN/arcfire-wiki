@@ -126,7 +126,7 @@
         The level table and rewards are still being balanced. This table is a snapshot rebuilt straight from the game's level table.
       </div>
 
-      <h2 id="quest-reward">Quest rewards — logarithmic growth curve <span class="pill">current data 2026-11-06</span></h2>
+      <h2 id="quest-reward">Quest rewards — logarithmic growth curve <span class="pill">2026-11-06 · L28–36 planned fill</span></h2>
       <p>
         For each level, the total EXP from doing every main and side quest at that level is drawn on the <strong>same log scale</strong> as the EXP needed for that level.
         On a log scale a curve that grows at a steady rate is a straight line, and the gap between two lines is a ratio. Where the line dips, few quests sit at that level.
@@ -134,7 +134,8 @@
       <div class="table-wrap" id="quest-reward-chart" aria-label="Log chart of quest reward total and EXP needed per level"></div>
       <ul>
         <li><strong>L1–16</strong> — at many levels quests alone give more than the EXP needed. This is the intro stretch where quests carry you up.</li>
-        <li><strong>L17–35</strong> — the EXP needed grows smoothly, but the quest total rises and falls with how many quests sit at each level. <strong>L28 · L31 · L35</strong> dip hard: no main quest and only 1–3 side quests.</li>
+        <li><strong>L17–27</strong> — the EXP needed grows smoothly, but the quest total rises and falls with how many quests sit at each level (L24 at 17%).</li>
+        <li><strong>L28–36</strong> — this is the planned fill: 12 side quests added at levels with no main quest (L28 · L31 · L35). The quest share stays within 22–50%. L28 stays at 22% because its quests unlock only after the main quest before them.</li>
         <li><strong>After L36</strong> — the quest total grows more slowly than the EXP needed, so its share keeps shrinking. Here repeatable play (training battles, transit encounters, conflict waves) drives growth.</li>
       </ul>
       <h2 id="quest-reward-table">Level table — quest rewards (L1–59)</h2>
@@ -143,7 +144,7 @@
         <strong>How this is calculated</strong>
         Each quest is assumed to be finished at its own level: the quest table's EXP times the level reward multiplier. Main and Side cells show "count · EXP total".
         "Design share" is the quest share the game was designed for (30% at L16–40 → 10% at L60). "Autoplay measured" is the quest EXP (main + side + stage rewards) received while at that level in autoplay retest 7.
-        Orange = lower than the level before. Quest placement and rewards are still being tuned.
+        L28–36 include the 12 side quests planned for the next update. Orange = lower than the level before. Quest placement and rewards are still being tuned.
       </div>
 
       <section class="comments" id="comments">
