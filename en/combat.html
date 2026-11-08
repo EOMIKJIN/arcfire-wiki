@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Combat · Conflict · ARCFIRE Wiki</title>
-<meta name="description" content="ARCFIRE's four combat axes, target combat level (TCL), drone and fighter combat, contested zones, capital defense and Stellium annexation." />
+<meta name="description" content="ARCFIRE's four combat axes, target combat level (TCL), drone and fighter combat, the Danger Zone, capital defense and Stellium annexation." />
 <link rel="alternate" hreflang="ko" href="https://eomikjin.github.io/arcfire-wiki/combat.html" />
 <link rel="alternate" hreflang="en" href="https://eomikjin.github.io/arcfire-wiki/en/combat.html" />
 <link rel="alternate" hreflang="x-default" href="https://eomikjin.github.io/arcfire-wiki/combat.html" />
@@ -71,7 +71,7 @@
       <h1 class="page-title">Combat · Conflict</h1>
       <p class="page-lede">
         Combat is not one system but four distinct axes, while the galaxy's balance of power shifts separately through an automatic
-        rotation every 20 minutes. This page covers those four axes and the contested-zone system that changes the map.
+        rotation every 20 minutes. This page covers those four axes and the Danger Zone system that changes the map.
       </p>
 
       <h2>The four combat axes</h2>
@@ -80,7 +80,7 @@
           <thead><tr><th>Axis</th><th>Player experience</th><th>Trigger</th><th>Difficulty input</th></tr></thead>
           <tbody>
             <tr><td><strong>A. Hub real-time combat</strong></td><td>Engage as soon as you are ready when enemies are in orbit</td><td>A hostile captain in orbit</td><td>TCL → weapon loadout only</td></tr>
-            <tr><td><strong>B. Wave defense (9 rounds)</strong></td><td>Invasions that grow 3 → 6 → 12 after a countdown</td><td>Contested-zone turn · assault · mission-assigned</td><td>TCL → invader tier (only when the planet has no dedicated roster)</td></tr>
+            <tr><td><strong>B. Wave defense (9 rounds)</strong></td><td>Invasions that grow 3 → 6 → 12 after a countdown</td><td>Danger Zone turn · assault · mission-assigned</td><td>TCL → invader tier (only when the planet has no dedicated roster)</td></tr>
             <tr><td><strong>C. In-transit encounters</strong></td><td>Random encounters while traveling between systems</td><td>Probability roll · certain quests</td><td>Encounter target level function</td></tr>
             <tr><td><strong>D. Quest combat</strong></td><td>Destroy one designated enemy while traveling</td><td>Mission combat operation table</td><td>Inherits the anchor planet's TCL and ship CSV</td></tr>
           </tbody>
@@ -108,11 +108,10 @@
         The existing missile Bézier curves cannot express this, so they are implemented separately with fixed slot pools of 8 drones and 8 fighters — see <a href="weapons.html">Weapons</a>.
       </p>
 
-      <h2 id="territorial">Contested zones — why "conflict" splits three ways</h2>
+      <h2 id="territorial">Danger Zone — the on-screen name</h2>
       <p>
         The galaxy map moves through a campaign rotation that visits <strong>one planet every 20 minutes</strong> (the sub-core only checks every 60 seconds
-        whether "it's time"). However, the word "contested zone" is used with three different definitions in the code — a structural flaw identified
-        as the root cause of the map changing while the economy and the feel of play fail to keep up.
+        whether "it's time"). The on-screen zone name is Danger Zone. The territorial check is separate from that name and still uses three definitions in the code, which is why the map can move while the economy and the feel of play do not keep up.
       </p>
       <div class="table-wrap">
         <table>
