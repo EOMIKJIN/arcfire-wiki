@@ -8,6 +8,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
 <link rel="stylesheet" href="assets/style.css" />
+<style>
+  /* 등장하는 곳 표(11-10) — 카드 안 작은 표 · 좁은 화면은 칸이 줄바꿈 */
+  .appear-table { width: 100%; border-collapse: collapse; font-size: 0.86em; margin: 0 0 4px; }
+  .appear-table th, .appear-table td { padding: 3px 6px; border-bottom: 1px solid rgba(127, 160, 200, 0.18); text-align: left; vertical-align: top; }
+  .appear-table th { font-weight: 600; opacity: 0.75; }
+  .appear-table td:first-child { white-space: nowrap; }
+</style>
 </head>
 <body data-page="enemies">
 
@@ -90,6 +97,11 @@
         경장갑은 선체가 두껍고 실드가 얇다 · 중장갑은 레이저에 강하고 미사일에 약하다 · 실드형은 실드가 두껍고 레이저에 약하다.
       </div>
       <div class="callout note">
+        <strong>「등장하는 곳」 표에 대하여</strong>
+        한 함장이 여러 곳에 나올 수 있다. 본거지 · 이동 중 조우(그 성계 소속 함장만) · 침공·분쟁 웨이브(판 번호) · 수련장 · 퀘스트 전투를 게임 데이터에서 그대로 뽑아 모두 적었다.
+        수련장에서는 플레이어 레벨에 맞춰 전함이 더 강한 적 전함으로 바뀔 수 있다. 함장 이름으로 검색하면 그 함장이 나오는 곳을 모두 볼 수 있다.
+      </div>
+      <div class="callout note">
         <strong>퀘스트 전용 적은 싣지 않는다</strong>
         퀘스트 이야기에만 나오는 적 함장과 함선은 줄거리를 드러내지 않도록 이 목록에서 뺐다.
       </div>
@@ -151,7 +163,7 @@
       data: rows,
       label: "적 함장",
       pageSize: 40,
-      searchKeys: ["id", "name", "nameEn", "rank", "faction", "ship", "hull", "combat", "where", "weapons"],
+      searchKeys: ["id", "name", "nameEn", "rank", "faction", "ship", "hull", "combat", "where", "weapons", "appearsText"],
       columns: [
         // 4칸으로 묶음(대표님 10-24 「가로 스크롤 · 레이아웃 정리」) — 초상 · 함장(이름·직함·세력·레벨) · 탑승 전함(그림·이름·함급·능력치) · 출현·무장
         { key: "img", label: "초상", render: function (r) { return wikiThumb(r.img, r.name); } },
@@ -163,9 +175,15 @@
           return '<div class="dt-stack">' + wikiThumb(r.shipImg, r.ship, "ship") + '<span class="dt-strong">' + esc(r.ship) + '</span>' +
             '<span class="dt-sub">' + esc(r.hull) + (r.combat ? " · 실전: " + esc(r.combat) : "") + "</span></div>";
         } },
-        { key: "where", label: "출현 위치 · 대표 무장", render: function (r) {
-          return '<div class="dt-stack"><span><span class="dt-sub">출현</span> ' + esc(r.where) + '</span>' +
-            '<span><span class="dt-sub">무장</span> ' + esc(r.weapons) + "</span></div>";
+        // 출현처 전부(대표님 11-10 「함장 하나에 배치 행성·전함이 리스트되게」) — 본거지 · 이동 중 조우 · 웨이브 · 수련장 · 퀘스트 전투
+        { key: "where", label: "등장하는 곳 · 전함 · 대표 무장", render: function (r) {
+          var list = r.appears && r.appears.length ? r.appears : [{ kind: "출현", place: r.where, ship: r.ship, shipLv: r.combatLevel, detail: "" }];
+          var body = list.map(function (a) {
+            return "<tr><td><span class=\"pill\">" + esc(a.kind) + "</span></td><td>" + esc(a.place) + (a.detail ? '<br><span class="dt-sub">' + esc(a.detail) + "</span>" : "") +
+              "</td><td>" + esc(a.ship) + (a.shipLv ? ' <span class="dt-sub">Lv ' + a.shipLv + "</span>" : "") + "</td></tr>";
+          }).join("");
+          return '<div class="dt-stack"><table class="appear-table"><thead><tr><th>구분</th><th>장소</th><th>전함</th></tr></thead><tbody>' + body + "</tbody></table>" +
+            '<span><span class="dt-sub">대표 무장</span> ' + esc(r.weapons) + "</span></div>";
         } },
       ],
     });

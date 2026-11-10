@@ -155,7 +155,7 @@
       data: rows,
       label: "Enemy captains",
       pageSize: 40,
-      searchKeys: ["id", "nameEn", "factionEn", "shipEn", "hullEn", "combatEn", "whereEn", "weaponsEn"],
+      searchKeys: ["id", "nameEn", "factionEn", "shipEn", "hullEn", "combatEn", "whereEn", "weaponsEn", "appearsText"],
       columns: [
         { key: "img", label: "Portrait", render: function (r) { return wikiThumb(r.img, r.nameEn || r.id); } },
         { key: "nameEn", label: "Captain", render: function (r) {
@@ -165,8 +165,14 @@
           return '<div class="dt-stack">' + wikiThumb(r.shipImg, r.shipEn || r.ship, "ship") + '<span class="dt-strong">' + esc(r.shipEn || r.ship) + '</span>' +
             '<span class="dt-sub">' + esc(r.hullEn) + (r.combatEn ? " · In combat: " + esc(r.combatEn) : "") + "</span></div>";
         } },
-        { key: "whereEn", label: "Appears at · Typical weapons", render: function (r) {
-          return '<div class="dt-stack"><span><span class="dt-sub">Appears at</span> ' + esc(r.whereEn) + '</span><span><span class="dt-sub">Weapons</span> ' + esc(r.weaponsEn) + "</span></div>";
+        { key: "whereEn", label: "Where they appear · Warship · Typical weapons", render: function (r) {
+          var list = r.appears && r.appears.length ? r.appears : [{ kindEn: "Appears", placeEn: r.whereEn, shipEn: r.shipEn, shipLv: r.combatLevel, detailEn: "" }];
+          var body = list.map(function (a) {
+            return "<tr><td><span class=\"pill\">" + esc(a.kindEn) + "</span></td><td>" + esc(a.placeEn) + (a.detailEn ? '<br><span class="dt-sub">' + esc(a.detailEn) + "</span>" : "") +
+              "</td><td>" + esc(a.shipEn || a.ship) + (a.shipLv ? ' <span class="dt-sub">Lv ' + a.shipLv + "</span>" : "") + "</td></tr>";
+          }).join("");
+          return '<div class="dt-stack"><table class="appear-table" style="width:100%;border-collapse:collapse;font-size:0.86em"><thead><tr><th style="text-align:left">Type</th><th style="text-align:left">Place</th><th style="text-align:left">Warship</th></tr></thead><tbody>' + body + "</tbody></table>" +
+            '<span><span class="dt-sub">Weapons</span> ' + esc(r.weaponsEn) + "</span></div>";
         } },
       ],
     });
