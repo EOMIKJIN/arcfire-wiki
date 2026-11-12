@@ -10,21 +10,32 @@
 <link rel="stylesheet" href="assets/style.css" />
 <style>
 .tfsm-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:12px 0}
-.tfsm-card{border:1px solid var(--line, rgba(127,127,127,.3));border-radius:10px;padding:14px 16px;min-width:0}
-.tfsm-card .n{font-family:"IBM Plex Mono",monospace;font-size:.75rem;opacity:.7}
-.tfsm-scroll{overflow-x:auto}
-.tfsm-ladder{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
-.tfsm-rung{border:1px solid var(--line, rgba(127,127,127,.3));border-radius:8px;padding:8px 12px}
-.tfsm-rung small{display:block;opacity:.75;font-size:.8rem}
-.tfsm-arrow{opacity:.6;font-family:"IBM Plex Mono",monospace}
-ol.tfsm-pri{display:grid;gap:4px;padding-left:1.4em}
-[data-risk]{border-left:3px solid #d93a3a;padding-left:10px;background:rgba(217,58,58,.06)}
+.tfsm-card{border:1px solid var(--border);border-radius:10px;padding:14px 16px;min-width:0;background:var(--bg-elevated)}
+.tfsm-card p{margin:4px 0 0}
+.tfsm-card .n{font-family:"IBM Plex Mono",monospace;font-size:.75rem;color:var(--text-faint)}
+.tfsm-ladder{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 1.4em}
+.tfsm-rung{border:1px solid var(--border);border-radius:8px;padding:8px 12px;background:var(--bg-elevated)}
+.tfsm-rung small{display:block;color:var(--text-faint);font-size:.8rem}
+.tfsm-arrow{color:var(--text-faint);font-family:"IBM Plex Mono",monospace}
+ol.tfsm-order li{margin-bottom:.3em}
+li[data-risk],p[data-risk]{border-left:3px solid #d93a3a;padding-left:10px;background:rgba(217,58,58,.06)}
+tr[data-risk] td{background:rgba(217,58,58,.06)}
 tr[data-risk] td:first-child{box-shadow:inset 3px 0 0 #d93a3a}
+.tfsm-diagram{width:100%;min-width:640px;height:auto;display:block}
+.tfsm-diagram .tf-node{fill:var(--bg-elevated);stroke:var(--border-strong);stroke-width:1.2}
+.tfsm-diagram .tf-node.tf-risk{stroke:#d93a3a;stroke-width:2}
+.tfsm-diagram .tf-nlab{fill:var(--text);font:600 14px "IBM Plex Sans KR",sans-serif;text-anchor:middle}
+.tfsm-diagram .tf-edge{stroke:var(--text-faint);stroke-width:1.2}
+.tfsm-diagram .tf-arrowhead{fill:var(--text-faint)}
+.tfsm-diagram .tf-elab{fill:var(--text-faint);font:11px "IBM Plex Sans KR",sans-serif;text-anchor:middle}
+.tfsm-diagram .tf-badge circle{fill:#1f9d55;stroke:var(--bg);stroke-width:2}
+.tfsm-diagram .tf-badge text{fill:#fff;font:700 12px "IBM Plex Mono",monospace;text-anchor:middle}
+.tfsm-legend{list-style:none;padding-left:0}
+.tfsm-legend li{margin:4px 0}
 .tfsm-risk-note{display:block;margin-top:4px;font-size:.85rem;color:#d93a3a}
 .tfsm-risk-list li{border-left:3px solid #d93a3a;padding:6px 10px;margin:6px 0;background:rgba(217,58,58,.06);list-style:none}
 .tfsm-pri{display:inline-flex;align-items:center;justify-content:center;width:1.45em;height:1.45em;border-radius:50%;background:#1f9d55;color:#fff;font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.82rem;margin-right:6px;vertical-align:middle;flex:none}
 .tfsm-state{font-family:"IBM Plex Mono",monospace;font-size:.75rem;border:1px solid #d93a3a;color:#d93a3a;border-radius:999px;padding:0 8px;margin-left:6px;white-space:nowrap}
-pre.mermaid{background:transparent;text-align:center}
 </style>
 </head>
 <body data-page="twin-fsm">
@@ -89,7 +100,7 @@ pre.mermaid{background:transparent;text-align:center}
     <article class="content">
       <div class="eyebrow">개발 · AI</div>
       <h1 class="page-title">AI 트윈 FSM</h1>
-      <p class="page-lede"><strong>스텔라 트윈</strong>은 플레이어와 같은 버튼을 눌러 게임을 대신 플레이하는 테스트·학습용 AI다. 1~2초마다 <b>상태 읽기 → 감독 점검 → 지금 화면에서 버튼 1개 결정 → 실행·기록</b>을 반복한다. 이 문서는 표 값에서 자동 생성된다(2026-11-12 12:17 KST · 게임 저장소 c90ac3d1 2026-11-12).</p>
+      <p class="page-lede"><strong>스텔라 트윈</strong>은 플레이어와 같은 버튼을 눌러 게임을 대신 플레이하는 테스트·학습용 AI다. 1~2초마다 <b>상태 읽기 → 감독 점검 → 지금 화면에서 버튼 1개 결정 → 실행·기록</b>을 반복한다. 이 문서는 표 값에서 자동 생성된다(2026-11-12 12:22 KST · 게임 저장소 c90ac3d1 2026-11-12).</p>
 
       <div class="callout note"><p><b style="color:#d93a3a">붉은 줄</b> = 지금 열려 있는 문제·리스크(앞으로 해결할 부분). 녹색 원 숫자 = 우선순위 — <span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span>지금 막혀 있거나 바로 고칠 것 · <span class="tfsm-pri" title="우선순위 2" aria-label="우선순위 2">2</span>밸런스·관찰 · <span class="tfsm-pri" title="우선순위 3" aria-label="우선순위 3">3</span>알고 수용. 아래 「열린 문제」 목록과 같은 항목이다.</p></div>
 
@@ -115,32 +126,14 @@ pre.mermaid{background:transparent;text-align:center}
       </div>
 
       <h2>화면 상태 기계</h2>
-      <div class="tfsm-scroll"><pre class="mermaid">
-stateDiagram-v2
-  direction LR
-  [*] --> 허브
-  허브 --> 은하지도: 출발
-  은하지도 --> 이동전투: 조우
-  이동전투 --> 은하지도: 승리
-  이동전투 --> 포드: 패배(격침)
-  은하지도 --> 허브: 착륙
-  은하지도 --> 궤도전투: RED 행성 전투
-  궤도전투 --> 허브: 승리 후 착륙
-  허브 --> 허브전투: 침공·웨이브
-  허브전투 --> 허브: 종료
-  허브 --> 조선소: 수리·탑승·장착·강화
-  조선소 --> 허브: 뒤로
-  허브 --> 무역소: 구매·판매
-  무역소 --> 허브: 뒤로
-  허브 --> 바: 의뢰 수락
-  바 --> 허브: 뒤로
-  허브 --> 연구소: 스킬
-  연구소 --> 허브: 뒤로
-  포드 --> 조선소: 격납고 함 선택
-</pre></div>
+      <p>화면이 곧 상태다. 창(대사·알림)이 열리면 어느 화면이든 먼저 창을 처리한다. <b style="color:#d93a3a">붉은 테두리</b> = 열린 문제가 걸린 상태 · 녹색 원 = 그 문제의 우선순위(누르면 목록으로).</p>
+      <div class="table-wrap" style="padding:8px"><svg viewBox="40 20 880 450" class="tfsm-diagram" role="img" aria-label="스텔라 트윈 화면 상태 기계 · 녹색 원 = 그 상태에 걸린 열린 문제 우선순위">
+  <defs><marker id="tf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="tf-arrowhead"/></marker></defs>
+  <line x1="470.0" y1="221.0" x2="470.0" y2="99.0" class="tf-edge" marker-end="url(#tf-arrow)" marker-start="url(#tf-arrow)"/><text x="480.0" y="164.0" class="tf-elab" style="text-anchor:start">출발 / 착륙</text><line x1="536.0" y1="70.0" x2="734.0" y2="70.0" class="tf-edge" marker-end="url(#tf-arrow)" marker-start="url(#tf-arrow)"/><text x="635.0" y="64.0" class="tf-elab" style="text-anchor:middle">조우 / 승리</text><line x1="800.0" y1="99.0" x2="800.0" y2="221.0" class="tf-edge" marker-end="url(#tf-arrow)"/><text x="810.0" y="164.0" class="tf-elab" style="text-anchor:start">패배(격침)</text><line x1="800.0" y1="279.0" x2="800.0" y2="401.0" class="tf-edge" marker-end="url(#tf-arrow)"/><text x="810.0" y="344.0" class="tf-elab" style="text-anchor:start">격납고 함 선택</text><line x1="404.0" y1="70.0" x2="206.0" y2="70.0" class="tf-edge" marker-end="url(#tf-arrow)"/><text x="305.0" y="64.0" class="tf-elab" style="text-anchor:middle">RED 전투</text><line x1="193.2" y1="99.0" x2="416.8" y2="221.0" class="tf-edge" marker-end="url(#tf-arrow)"/><text x="309.8" y="155.2" class="tf-elab" style="text-anchor:middle">승리 후 착륙</text><line x1="404.0" y1="250.0" x2="206.0" y2="250.0" class="tf-edge" marker-end="url(#tf-arrow)" marker-start="url(#tf-arrow)"/><text x="305.0" y="244.0" class="tf-elab" style="text-anchor:middle">침공·웨이브 / 종료</text><line x1="523.2" y1="279.0" x2="746.8" y2="401.0" class="tf-edge" marker-end="url(#tf-arrow)"/><text x="639.8" y="335.2" class="tf-elab" style="text-anchor:middle">수리·탑승·강화</text><line x1="489.3" y1="279.0" x2="570.7" y2="401.0" class="tf-edge" marker-end="url(#tf-arrow)"/><text x="538.3" y="338.5" class="tf-elab" style="text-anchor:middle">구매·판매</text><line x1="455.5" y1="279.0" x2="394.5" y2="401.0" class="tf-edge" marker-end="url(#tf-arrow)"/><text x="433.9" y="348.5" class="tf-elab" style="text-anchor:start">의뢰</text><line x1="420.1" y1="279.0" x2="209.9" y2="401.0" class="tf-edge" marker-end="url(#tf-arrow)"/><text x="310.0" y="335.4" class="tf-elab" style="text-anchor:middle">스킬</text><g><rect x="410" y="47" width="120" height="46" rx="9" class="tf-node tf-risk"/><text x="470" y="75" class="tf-nlab">은하 지도</text><a href="#risk-sub-picker"><g class="tf-badge"><title>서브 고르기가 출격 금지 길을 안 봄</title><circle cx="526" cy="47" r="10"/><text x="526" y="51">1</text></g></a><a href="#risk-rank-unify"><g class="tf-badge"><title>새 서브·정복 순위 판정 통일 — 빌드 대기</title><circle cx="504" cy="47" r="10"/><text x="504" y="51">1</text></g></a></g><g><rect x="740" y="47" width="120" height="46" rx="9" class="tf-node tf-risk"/><text x="800" y="75" class="tf-nlab">이동 전투</text><a href="#risk-transit-l22"><g class="tf-badge"><title>L25 대 L22 3척 이동 조우 승률 ≈15%</title><circle cx="856" cy="47" r="10"/><text x="856" y="51">2</text></g></a><a href="#risk-future-rival"><g class="tf-badge"><title>숙적 참전 · 동료 트윈 2·3 · 숙적 복제 — 미적용</title><circle cx="834" cy="47" r="10"/><text x="834" y="51">2</text></g></a></g><g><rect x="80" y="47" width="120" height="46" rx="9" class="tf-node"/><text x="140" y="75" class="tf-nlab">궤도 전투</text></g><g><rect x="410" y="227" width="120" height="46" rx="9" class="tf-node tf-risk"/><text x="470" y="255" class="tf-nlab">허브</text><a href="#risk-ambiguous"><g class="tf-badge"><title>「애매」 감지 문턱 미측정</title><circle cx="526" cy="227" r="10"/><text x="526" y="231">2</text></g></a></g><g><rect x="80" y="227" width="120" height="46" rx="9" class="tf-node"/><text x="140" y="255" class="tf-nlab">허브 전투(수련)</text></g><g><rect x="740" y="227" width="120" height="46" rx="9" class="tf-node tf-risk"/><text x="800" y="255" class="tf-nlab">포드</text><a href="#risk-stall-check-gap"><g class="tf-badge"><title>정체 검사가 「패 → 수리」 경제 누수를 못 봄</title><circle cx="856" cy="227" r="10"/><text x="856" y="231">1</text></g></a></g><g><rect x="740" y="407" width="120" height="46" rx="9" class="tf-node tf-risk"/><text x="800" y="435" class="tf-nlab">조선소</text><a href="#risk-board-approx"><g class="tf-badge"><title>실전 세기 식의 근사</title><circle cx="856" cy="407" r="10"/><text x="856" y="411">3</text></g></a></g><g><rect x="530" y="407" width="120" height="46" rx="9" class="tf-node tf-risk"/><text x="590" y="435" class="tf-nlab">무역소</text><a href="#risk-shop-miss"><g class="tf-badge"><title>사러 가기 헛걸음 1회는 남음</title><circle cx="646" cy="407" r="10"/><text x="646" y="411">3</text></g></a></g><g><rect x="320" y="407" width="120" height="46" rx="9" class="tf-node tf-risk"/><text x="380" y="435" class="tf-nlab">바(의뢰)</text><a href="#risk-s022"><g class="tf-badge"><title>sandbox_022 「시리우스로 이동」 단계 미완료</title><circle cx="436" cy="407" r="10"/><text x="436" y="411">1</text></g></a></g><g><rect x="100" y="407" width="120" height="46" rx="9" class="tf-node"/><text x="160" y="435" class="tf-nlab">연구소</text></g></svg></div>
+      <ul class="tfsm-legend"><li><b>은하 지도</b> — <span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span><a href="#risk-sub-picker">서브 고르기가 출격 금지 길을 안 봄</a> · <span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span><a href="#risk-rank-unify">새 서브·정복 순위 판정 통일 — 빌드 대기</a></li><li><b>이동 전투</b> — <span class="tfsm-pri" title="우선순위 2" aria-label="우선순위 2">2</span><a href="#risk-transit-l22">L25 대 L22 3척 이동 조우 승률 ≈15%</a> · <span class="tfsm-pri" title="우선순위 2" aria-label="우선순위 2">2</span><a href="#risk-future-rival">숙적 참전 · 동료 트윈 2·3 · 숙적 복제 — 미적용</a></li><li><b>허브</b> — <span class="tfsm-pri" title="우선순위 2" aria-label="우선순위 2">2</span><a href="#risk-ambiguous">「애매」 감지 문턱 미측정</a></li><li><b>포드</b> — <span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span><a href="#risk-stall-check-gap">정체 검사가 「패 → 수리」 경제 누수를 못 봄</a></li><li><b>조선소</b> — <span class="tfsm-pri" title="우선순위 3" aria-label="우선순위 3">3</span><a href="#risk-board-approx">실전 세기 식의 근사</a></li><li><b>무역소</b> — <span class="tfsm-pri" title="우선순위 3" aria-label="우선순위 3">3</span><a href="#risk-shop-miss">사러 가기 헛걸음 1회는 남음</a></li><li><b>바(의뢰)</b> — <span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span><a href="#risk-s022">sandbox_022 「시리우스로 이동」 단계 미완료</a></li></ul>
 
       <h2>허브 우선순위(위에서 첫 번째 1개)</h2>
-      <ol class="tfsm-pri">
+      <ol class="tfsm-order">
         <li>허브 전투 중 → 대기</li>
         <li>복구(포드·대파·함 없음) → 조선소</li>
         <li data-risk="board-approx">센 대파 함 회수 · 돌아온 주력함 · 출격 함 = <b>실전 세기 최대</b><span class="tfsm-risk-note"><span class="tfsm-pri" title="우선순위 3" aria-label="우선순위 3">3</span><b>⚑ 실전 세기 식의 근사</b> — (선체+실드) × 강화 배수 × 피해 배수 — 기동(속도·선회 3~4%)·장착 칸 수 차이는 식 밖 · 칸 수가 다른 함끼리는 지금 탄 함 장착 기준 근사</span></li>
@@ -153,7 +146,7 @@ stateDiagram-v2
       </ol>
 
       <h2>어디로 갈지 — travelTarget</h2>
-      <ol class="tfsm-pri">
+      <ol class="tfsm-order">
         <li>출격 전 학습(연구소 행성)</li>
         <li>본편 제안 / 진행 퀘스트 목적지(레벨 숙제면 건너뜀)</li>
         <li data-risk="shop-miss">사러 가기(헛걸음 행성 제외)</li>
@@ -164,7 +157,7 @@ stateDiagram-v2
 
       <h2>「갈 수 있나」 단일 판정</h2>
       <p>이동 쪽과 감독 순위가 같은 함수(<code>twinTravelBlockReason</code>)를 쓴다.</p>
-      <div class="tfsm-scroll"><table>
+      <div class="table-wrap"><table>
         <thead><tr><th>사유</th><th>뜻</th><th>트윈 행동</th></tr></thead>
         <tbody>
           <tr><td>exhausted</td><td>시도 상한 · 후보 제외 · 체류 상한</td><td>다음 순위</td></tr>
@@ -177,7 +170,7 @@ stateDiagram-v2
 
       <h2>감독 — 판단 부정확 → 단순 행동 1개</h2>
       <p>감지하면 사다리에서 지금 할 수 있는 첫 칸을 고정 · 재발 = 다음 칸 · 끝 = 구멍 후보 1줄 + 쉼. (simple_order_enabled = 1)</p>
-      <div class="tfsm-scroll"><table>
+      <div class="table-wrap"><table>
         <thead><tr><th>감지</th><th>조건</th></tr></thead>
         <tbody>
           <tr><td>mismatch</td><td>같은 상위 순위 전환 판정 연속(1층이 안 따라감)</td></tr>
@@ -189,7 +182,7 @@ stateDiagram-v2
       <div class="tfsm-ladder"><div class="tfsm-rung"><b>1 survive</b><small>생존 · 10분 고정</small></div><span class="tfsm-arrow">→</span><div class="tfsm-rung"><b>2 story_direct</b><small>본편·진행 목적지로 직행 · 10분 고정</small></div><span class="tfsm-arrow">→</span><div class="tfsm-rung"><b>3 unblock</b><small>막힘 푸는 행동 1개 · 10분 고정</small></div><span class="tfsm-arrow">→</span><div class="tfsm-rung"><b>4 safe_training</b><small>가장 가까운 안전 수련장 · 10분 고정</small></div><span class="tfsm-arrow">→</span><div class="tfsm-rung"><b>5 mining</b><small>채굴 · 10분 고정</small></div></div>
 
       <h2>반복을 막는 기억 장치</h2>
-      <div class="tfsm-scroll"><table>
+      <div class="table-wrap"><table>
         <thead><tr><th>장치</th><th>켜짐</th><th>효과 · 풀림</th></tr></thead>
         <tbody>
           <tr><td>weak_hull_goal</td><td>상위 함 대파로 본편 출격 금지</td><td>상위 함 수리 목표(수리비 몫 상한 해제 · 바닥 유지)</td></tr>
@@ -215,8 +208,6 @@ stateDiagram-v2
 </div>
 
 <footer class="site-footer">아크파이어 게임 위키 · 비공식 정리본</footer>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
-<script>try{mermaid.initialize({startOnLoad:true,theme:(document.documentElement.dataset.theme==='dark'||matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'default'});}catch(e){}</script>
 <script src="assets/search-index.js"></script>
 <script src="assets/wiki.js"></script>
 <script src="assets/comments.js"></script>
