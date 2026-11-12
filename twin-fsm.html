@@ -89,21 +89,21 @@ pre.mermaid{background:transparent;text-align:center}
     <article class="content">
       <div class="eyebrow">개발 · AI</div>
       <h1 class="page-title">AI 트윈 FSM</h1>
-      <p class="page-lede"><strong>스텔라 트윈</strong>은 플레이어와 같은 버튼을 눌러 게임을 대신 플레이하는 테스트·학습용 AI다. 1~2초마다 <b>상태 읽기 → 감독 점검 → 지금 화면에서 버튼 1개 결정 → 실행·기록</b>을 반복한다. 이 문서는 표 값에서 자동 생성된다(2026-11-12 12:16 KST · 게임 저장소 c90ac3d1 2026-11-12).</p>
+      <p class="page-lede"><strong>스텔라 트윈</strong>은 플레이어와 같은 버튼을 눌러 게임을 대신 플레이하는 테스트·학습용 AI다. 1~2초마다 <b>상태 읽기 → 감독 점검 → 지금 화면에서 버튼 1개 결정 → 실행·기록</b>을 반복한다. 이 문서는 표 값에서 자동 생성된다(2026-11-12 12:17 KST · 게임 저장소 c90ac3d1 2026-11-12).</p>
 
       <div class="callout note"><p><b style="color:#d93a3a">붉은 줄</b> = 지금 열려 있는 문제·리스크(앞으로 해결할 부분). 녹색 원 숫자 = 우선순위 — <span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span>지금 막혀 있거나 바로 고칠 것 · <span class="tfsm-pri" title="우선순위 2" aria-label="우선순위 2">2</span>밸런스·관찰 · <span class="tfsm-pri" title="우선순위 3" aria-label="우선순위 3">3</span>알고 수용. 아래 「열린 문제」 목록과 같은 항목이다.</p></div>
 
       <h2>열린 문제 · 리스크</h2>
       <ul class="tfsm-risk-list">
-        <li id="risk-sub-picker"><b>서브 고르기가 출격 금지 길을 안 봄</b><span class="tfsm-state">수정 중</span><br>약한 함 출격 금지로 못 가는 서브를 제안으로 붙잡아, 갈 수 있는 다른 서브를 못 고름 → 같은 판정 함수로 거르기(김클로드 작업 중)</li>
-        <li id="risk-rank-unify"><b>새 서브·정복 순위 판정 통일 — 빌드 대기</b><span class="tfsm-state">빌드 대기</span><br>16d 에서 감독이 갈 수 없는 서브를 매 분 「전환」(27회) · main 수정 완료(new_sub·conquest 도 같은 판정) · 다음 빌드(16f) 반영 전까지 남아 있음</li>
-        <li id="risk-stall-check-gap"><b>정체 검사가 「패 → 수리」 경제 누수를 못 봄</b><span class="tfsm-state">해야 함</span><br>16c 수리 11회/시간·잔고 7.6만 → 0.9만은 정체 검사 5종 모두 OK 였음 → 잔고 급감·수리 횟수 검사 추가 필요</li>
-        <li id="risk-s022"><b>sandbox_022 「시리우스로 이동」 단계 미완료</b><span class="tfsm-state">해야 함</span><br>13c·14·15차 모두 obj_s022_b 완료 기록 0 — 단계 완료 판정 구멍 후보(원인 미조사)</li>
-        <li id="risk-transit-l22"><b>L25 대 L22 3척 이동 조우 승률 ≈15%</b><span class="tfsm-state">밸런스 기록</span><br>목표 띠 35~60% 밖 — 수리비가 저레벨 수입을 넘어 경제 누수 · 트윈은 수리→패 미룸으로 막지만 원인은 조우 강도(밸런스 · 16차 기록)</li>
-        <li id="risk-ambiguous"><b>「애매」 감지 문턱 미측정</b><span class="tfsm-state">관찰 중</span><br>차례 뒤집힘 6번/10분 문턱은 실기 교대 주기를 재지 않은 값 — 정상 교대가 더 빠르면 오발령 가능 · 16차 simple_order(ambiguous) 횟수로 표 조정</li>
-        <li id="risk-future-rival"><b>숙적 참전 · 동료 트윈 2·3 · 숙적 복제 — 미적용</b><span class="tfsm-state">16차 뒤</span><br>숙적 범용 참전(구현·검증 끝 · 16차 뒤 적용) · 동료 트윈·숙적 복제(설계) — 적용 뒤 숙적 빈도 최대 3배(대표님 「감안하고 간다」) · 보호 아닌 퀘스트 궤도전 패배 증가 가능</li>
-        <li id="risk-board-approx"><b>실전 세기 식의 근사</b><span class="tfsm-state">관찰 중</span><br>(선체+실드) × 강화 배수 × 피해 배수 — 기동(속도·선회 3~4%)·장착 칸 수 차이는 식 밖 · 칸 수가 다른 함끼리는 지금 탄 함 장착 기준 근사</li>
-        <li id="risk-shop-miss"><b>사러 가기 헛걸음 1회는 남음</b><span class="tfsm-state">수용</span><br>진열가 ±14% 변동 — 첫 헛걸음 1회는 못 막고 2회째부터 기억이 막음</li>
+        <li id="risk-sub-picker"><span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span><b>서브 고르기가 출격 금지 길을 안 봄</b><span class="tfsm-state">수정 중</span><br>약한 함 출격 금지로 못 가는 서브를 제안으로 붙잡아, 갈 수 있는 다른 서브를 못 고름 → 같은 판정 함수로 거르기(김클로드 작업 중)</li>
+        <li id="risk-rank-unify"><span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span><b>새 서브·정복 순위 판정 통일 — 빌드 대기</b><span class="tfsm-state">빌드 대기</span><br>16d 에서 감독이 갈 수 없는 서브를 매 분 「전환」(27회) · main 수정 완료(new_sub·conquest 도 같은 판정) · 다음 빌드(16f) 반영 전까지 남아 있음</li>
+        <li id="risk-stall-check-gap"><span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span><b>정체 검사가 「패 → 수리」 경제 누수를 못 봄</b><span class="tfsm-state">해야 함</span><br>16c 수리 11회/시간·잔고 7.6만 → 0.9만은 정체 검사 5종 모두 OK 였음 → 잔고 급감·수리 횟수 검사 추가 필요</li>
+        <li id="risk-s022"><span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span><b>sandbox_022 「시리우스로 이동」 단계 미완료</b><span class="tfsm-state">해야 함</span><br>13c·14·15차 모두 obj_s022_b 완료 기록 0 — 단계 완료 판정 구멍 후보(원인 미조사)</li>
+        <li id="risk-transit-l22"><span class="tfsm-pri" title="우선순위 2" aria-label="우선순위 2">2</span><b>L25 대 L22 3척 이동 조우 승률 ≈15%</b><span class="tfsm-state">밸런스 기록</span><br>목표 띠 35~60% 밖 — 수리비가 저레벨 수입을 넘어 경제 누수 · 트윈은 수리→패 미룸으로 막지만 원인은 조우 강도(밸런스 · 16차 기록)</li>
+        <li id="risk-ambiguous"><span class="tfsm-pri" title="우선순위 2" aria-label="우선순위 2">2</span><b>「애매」 감지 문턱 미측정</b><span class="tfsm-state">관찰 중</span><br>차례 뒤집힘 6번/10분 문턱은 실기 교대 주기를 재지 않은 값 — 정상 교대가 더 빠르면 오발령 가능 · 16차 simple_order(ambiguous) 횟수로 표 조정</li>
+        <li id="risk-future-rival"><span class="tfsm-pri" title="우선순위 2" aria-label="우선순위 2">2</span><b>숙적 참전 · 동료 트윈 2·3 · 숙적 복제 — 미적용</b><span class="tfsm-state">16차 뒤</span><br>숙적 범용 참전(구현·검증 끝 · 16차 뒤 적용) · 동료 트윈·숙적 복제(설계) — 적용 뒤 숙적 빈도 최대 3배(대표님 「감안하고 간다」) · 보호 아닌 퀘스트 궤도전 패배 증가 가능</li>
+        <li id="risk-board-approx"><span class="tfsm-pri" title="우선순위 3" aria-label="우선순위 3">3</span><b>실전 세기 식의 근사</b><span class="tfsm-state">관찰 중</span><br>(선체+실드) × 강화 배수 × 피해 배수 — 기동(속도·선회 3~4%)·장착 칸 수 차이는 식 밖 · 칸 수가 다른 함끼리는 지금 탄 함 장착 기준 근사</li>
+        <li id="risk-shop-miss"><span class="tfsm-pri" title="우선순위 3" aria-label="우선순위 3">3</span><b>사러 가기 헛걸음 1회는 남음</b><span class="tfsm-state">수용</span><br>진열가 ±14% 변동 — 첫 헛걸음 1회는 못 막고 2회째부터 기억이 막음</li>
       </ul>
 
       <h2>한 박자의 4층</h2>
