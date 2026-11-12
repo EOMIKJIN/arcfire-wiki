@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI 트윈 FSM — 아크파이어 위키</title>
+<meta name="description" content="스텔라 트윈(자동 플레이 AI)의 의사결정 순서와 상태 변화(FSM) · 막힘 사유 · 감독의 단순 행동 지시 · 반복 방지 기억 장치 · 열린 문제" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="assets/style.css" />
+<style>
+.tfsm-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:12px 0}
+.tfsm-card{border:1px solid var(--line, rgba(127,127,127,.3));border-radius:10px;padding:14px 16px;min-width:0}
+.tfsm-card .n{font-family:"IBM Plex Mono",monospace;font-size:.75rem;opacity:.7}
+.tfsm-scroll{overflow-x:auto}
+.tfsm-ladder{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.tfsm-rung{border:1px solid var(--line, rgba(127,127,127,.3));border-radius:8px;padding:8px 12px}
+.tfsm-rung small{display:block;opacity:.75;font-size:.8rem}
+.tfsm-arrow{opacity:.6;font-family:"IBM Plex Mono",monospace}
+ol.tfsm-pri{display:grid;gap:4px;padding-left:1.4em}
+[data-risk]{border-left:3px solid #d93a3a;padding-left:10px;background:rgba(217,58,58,.06)}
+tr[data-risk] td:first-child{box-shadow:inset 3px 0 0 #d93a3a}
+.tfsm-risk-note{display:block;margin-top:4px;font-size:.85rem;color:#d93a3a}
+.tfsm-risk-list li{border-left:3px solid #d93a3a;padding:6px 10px;margin:6px 0;background:rgba(217,58,58,.06);list-style:none}
+.tfsm-pri{display:inline-flex;align-items:center;justify-content:center;width:1.45em;height:1.45em;border-radius:50%;background:#1f9d55;color:#fff;font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.82rem;margin-right:6px;vertical-align:middle;flex:none}
+.tfsm-state{font-family:"IBM Plex Mono",monospace;font-size:.75rem;border:1px solid #d93a3a;color:#d93a3a;border-radius:999px;padding:0 8px;margin-left:6px;white-space:nowrap}
+pre.mermaid{background:transparent;text-align:center}
+</style>
+</head>
+<body data-page="twin-fsm">
+
+<header class="site-header">
+  <button class="nav-toggle" type="button" aria-label="메뉴 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="brand" href="wiki.html"><span class="mark">✦</span> 아크파이어 <span class="sub">Game Wiki</span></a>
+  <div class="site-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" placeholder="함선, 무기, 세력, 스킬 검색…" autocomplete="off" />
+    <div class="search-hits"></div>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="테마 전환"></button>
+</header>
+<div class="sidebar-scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-group">
+      <h5>시작</h5>
+      <a href="index.html" class="to-landing"><span class="dot"></span>게임 소개</a>
+      <a href="wiki.html" data-page="index"><span class="dot"></span>홈</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>세계</h5>
+      <a href="world.html" data-page="world"><span class="dot"></span>세계관 · 아크코어</a>
+      <a href="factions.html" data-page="factions"><span class="dot"></span>4대 세력</a>
+      <a href="galaxy.html" data-page="galaxy"><span class="dot"></span>은하 · 행성</a>
+      <a href="story.html" data-page="story"><span class="dot"></span>스토리 · 미션</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>전력</h5>
+      <a href="ships.html" data-page="ships"><span class="dot"></span>함선</a>
+      <a href="enemies.html" data-page="enemies"><span class="dot"></span>적함</a>
+      <a href="weapons.html" data-page="weapons"><span class="dot"></span>무기체계</a>
+      <a href="skills.html" data-page="skills"><span class="dot"></span>스킬</a>
+      <a href="items.html" data-page="items"><span class="dot"></span>아이템 · 강화</a>
+    </div>
+    <div class="sidebar-group">
+      <h5>체제</h5>
+      <a href="economy.html" data-page="economy"><span class="dot"></span>경제 시스템</a>
+      <a href="planetdev.html" data-page="planetdev"><span class="dot"></span>행성개발</a>
+      <a href="combat.html" data-page="combat"><span class="dot"></span>전투 · 분쟁</a>
+      <a href="arccore.html" data-page="arccore"><span class="dot"></span>아크코어 AI</a>
+      <a href="social.html" data-page="social"><span class="dot"></span>바 · 함장 · 플레이어</a>
+      <a href="growth.html" data-page="growth"><span class="dot"></span>성장 곡선</a>
+      <a href="ui.html" data-page="ui"><span class="dot"></span>게임 UI</a>
+    </div>
+    <div class="sidebar-group"><h5>공략</h5>
+      <a href="tactics.html" data-page="tactics"><span class="dot"></span>전략 · 전술</a>
+    </div>
+    <div class="sidebar-group"><h5>개발 · AI</h5>
+      <a href="twin-fsm.html" data-page="twin-fsm" class="active"><span class="dot"></span>AI 트윈 FSM</a>
+    </div>
+    <div class="sidebar-group"><h5>커뮤니티</h5>
+      <a href="community.html" data-page="community"><span class="dot"></span>커뮤니티 게시판</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="content-wrap">
+    <article class="content">
+      <div class="eyebrow">개발 · AI</div>
+      <h1 class="page-title">AI 트윈 FSM</h1>
+      <p class="page-lede"><strong>스텔라 트윈</strong>은 플레이어와 같은 버튼을 눌러 게임을 대신 플레이하는 테스트·학습용 AI다. 1~2초마다 <b>상태 읽기 → 감독 점검 → 지금 화면에서 버튼 1개 결정 → 실행·기록</b>을 반복한다. 이 문서는 표 값에서 자동 생성된다(2026-11-12 12:16 KST · 게임 저장소 c90ac3d1 2026-11-12).</p>
+
+      <div class="callout note"><p><b style="color:#d93a3a">붉은 줄</b> = 지금 열려 있는 문제·리스크(앞으로 해결할 부분). 녹색 원 숫자 = 우선순위 — <span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span>지금 막혀 있거나 바로 고칠 것 · <span class="tfsm-pri" title="우선순위 2" aria-label="우선순위 2">2</span>밸런스·관찰 · <span class="tfsm-pri" title="우선순위 3" aria-label="우선순위 3">3</span>알고 수용. 아래 「열린 문제」 목록과 같은 항목이다.</p></div>
+
+      <h2>열린 문제 · 리스크</h2>
+      <ul class="tfsm-risk-list">
+        <li id="risk-sub-picker"><b>서브 고르기가 출격 금지 길을 안 봄</b><span class="tfsm-state">수정 중</span><br>약한 함 출격 금지로 못 가는 서브를 제안으로 붙잡아, 갈 수 있는 다른 서브를 못 고름 → 같은 판정 함수로 거르기(김클로드 작업 중)</li>
+        <li id="risk-rank-unify"><b>새 서브·정복 순위 판정 통일 — 빌드 대기</b><span class="tfsm-state">빌드 대기</span><br>16d 에서 감독이 갈 수 없는 서브를 매 분 「전환」(27회) · main 수정 완료(new_sub·conquest 도 같은 판정) · 다음 빌드(16f) 반영 전까지 남아 있음</li>
+        <li id="risk-stall-check-gap"><b>정체 검사가 「패 → 수리」 경제 누수를 못 봄</b><span class="tfsm-state">해야 함</span><br>16c 수리 11회/시간·잔고 7.6만 → 0.9만은 정체 검사 5종 모두 OK 였음 → 잔고 급감·수리 횟수 검사 추가 필요</li>
+        <li id="risk-s022"><b>sandbox_022 「시리우스로 이동」 단계 미완료</b><span class="tfsm-state">해야 함</span><br>13c·14·15차 모두 obj_s022_b 완료 기록 0 — 단계 완료 판정 구멍 후보(원인 미조사)</li>
+        <li id="risk-transit-l22"><b>L25 대 L22 3척 이동 조우 승률 ≈15%</b><span class="tfsm-state">밸런스 기록</span><br>목표 띠 35~60% 밖 — 수리비가 저레벨 수입을 넘어 경제 누수 · 트윈은 수리→패 미룸으로 막지만 원인은 조우 강도(밸런스 · 16차 기록)</li>
+        <li id="risk-ambiguous"><b>「애매」 감지 문턱 미측정</b><span class="tfsm-state">관찰 중</span><br>차례 뒤집힘 6번/10분 문턱은 실기 교대 주기를 재지 않은 값 — 정상 교대가 더 빠르면 오발령 가능 · 16차 simple_order(ambiguous) 횟수로 표 조정</li>
+        <li id="risk-future-rival"><b>숙적 참전 · 동료 트윈 2·3 · 숙적 복제 — 미적용</b><span class="tfsm-state">16차 뒤</span><br>숙적 범용 참전(구현·검증 끝 · 16차 뒤 적용) · 동료 트윈·숙적 복제(설계) — 적용 뒤 숙적 빈도 최대 3배(대표님 「감안하고 간다」) · 보호 아닌 퀘스트 궤도전 패배 증가 가능</li>
+        <li id="risk-board-approx"><b>실전 세기 식의 근사</b><span class="tfsm-state">관찰 중</span><br>(선체+실드) × 강화 배수 × 피해 배수 — 기동(속도·선회 3~4%)·장착 칸 수 차이는 식 밖 · 칸 수가 다른 함끼리는 지금 탄 함 장착 기준 근사</li>
+        <li id="risk-shop-miss"><b>사러 가기 헛걸음 1회는 남음</b><span class="tfsm-state">수용</span><br>진열가 ±14% 변동 — 첫 헛걸음 1회는 못 막고 2회째부터 기억이 막음</li>
+      </ul>
+
+      <h2>한 박자의 4층</h2>
+      <div class="tfsm-grid">
+        <div class="tfsm-card"><span class="n">1 · 상태 읽기</span><p><b>readSnapshot</b> — 화면 · 위치 · 함선/격납고 · 잔고 · 퀘스트 단계 · 본편 제안 · 수련/정복/서브 후보 · 사러 가기 · 막힘 판정</p></div>
+        <div class="tfsm-card"><span class="n">2 · 감독(최소)</span><p>무진척 · 상위 순위 점검 · 핵심 정체 · <b>판단 부정확 → 단순 행동 1개 고정</b> · 기억 장치 갱신</p></div>
+        <div class="tfsm-card"><span class="n">3 · 버튼 결정</span><p><b>decideTwinAutopilotStep</b> — 창 → 전투 버튼 → 화면별 우선순위(위에서 첫 번째)</p></div>
+        <div class="tfsm-card"><span class="n">4 · 실행·기록</span><p>결과 ok / no_effect / blocked · 같은 키 시도 상한 · 로그</p></div>
+      </div>
+
+      <h2>화면 상태 기계</h2>
+      <div class="tfsm-scroll"><pre class="mermaid">
+stateDiagram-v2
+  direction LR
+  [*] --> 허브
+  허브 --> 은하지도: 출발
+  은하지도 --> 이동전투: 조우
+  이동전투 --> 은하지도: 승리
+  이동전투 --> 포드: 패배(격침)
+  은하지도 --> 허브: 착륙
+  은하지도 --> 궤도전투: RED 행성 전투
+  궤도전투 --> 허브: 승리 후 착륙
+  허브 --> 허브전투: 침공·웨이브
+  허브전투 --> 허브: 종료
+  허브 --> 조선소: 수리·탑승·장착·강화
+  조선소 --> 허브: 뒤로
+  허브 --> 무역소: 구매·판매
+  무역소 --> 허브: 뒤로
+  허브 --> 바: 의뢰 수락
+  바 --> 허브: 뒤로
+  허브 --> 연구소: 스킬
+  연구소 --> 허브: 뒤로
+  포드 --> 조선소: 격납고 함 선택
+</pre></div>
+
+      <h2>허브 우선순위(위에서 첫 번째 1개)</h2>
+      <ol class="tfsm-pri">
+        <li>허브 전투 중 → 대기</li>
+        <li>복구(포드·대파·함 없음) → 조선소</li>
+        <li data-risk="board-approx">센 대파 함 회수 · 돌아온 주력함 · 출격 함 = <b>실전 세기 최대</b><span class="tfsm-risk-note"><span class="tfsm-pri" title="우선순위 3" aria-label="우선순위 3">3</span><b>⚑ 실전 세기 식의 근사</b> — (선체+실드) × 강화 배수 × 피해 배수 — 기동(속도·선회 3~4%)·장착 칸 수 차이는 식 밖 · 칸 수가 다른 함끼리는 지금 탄 함 장착 기준 근사</span></li>
+        <li>스킬 칸 교체 · 배울 스킬 → 연구소</li>
+        <li data-risk="shop-miss">사기·달기·팔기(조선소·무역소) · 재열기 대기 ≤60초<span class="tfsm-risk-note"><span class="tfsm-pri" title="우선순위 3" aria-label="우선순위 3">3</span><b>⚑ 사러 가기 헛걸음 1회는 남음</b> — 진열가 ±14% 변동 — 첫 헛걸음 1회는 못 막고 2회째부터 기억이 막음</span></li>
+        <li>강화(함선 저축 중이면 보조 몫 안에서만)</li>
+        <li>행성정보 · 퀘스트 통신 · 편입·중립화</li>
+        <li><b>핵심 루프 목표</b>가 다른 곳 → 출발</li>
+        <li>대기 중 손상 수리 → 보조(바 의뢰·인스턴스) → 스캔 → 채굴 → 수색 → 탈출</li>
+      </ol>
+
+      <h2>어디로 갈지 — travelTarget</h2>
+      <ol class="tfsm-pri">
+        <li>출격 전 학습(연구소 행성)</li>
+        <li>본편 제안 / 진행 퀘스트 목적지(레벨 숙제면 건너뜀)</li>
+        <li data-risk="shop-miss">사러 가기(헛걸음 행성 제외)</li>
+        <li data-risk="sub-picker">G1: 새 서브 ↔ 정복<span class="tfsm-risk-note"><span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span><b>⚑ 서브 고르기가 출격 금지 길을 안 봄</b> — 약한 함 출격 금지로 못 가는 서브를 제안으로 붙잡아, 갈 수 있는 다른 서브를 못 고름 → 같은 판정 함수로 거르기(김클로드 작업 중)</span></li>
+        <li>G2: 수련 ↔ 정복·합병</li>
+        <li>보조: 인스턴스 → 탈출</li>
+      </ol>
+
+      <h2>「갈 수 있나」 단일 판정</h2>
+      <p>이동 쪽과 감독 순위가 같은 함수(<code>twinTravelBlockReason</code>)를 쓴다.</p>
+      <div class="tfsm-scroll"><table>
+        <thead><tr><th>사유</th><th>뜻</th><th>트윈 행동</th></tr></thead>
+        <tbody>
+          <tr><td>exhausted</td><td>시도 상한 · 후보 제외 · 체류 상한</td><td>다음 순위</td></tr>
+          <tr><td>sortie_weak_hull</td><td>상위 함 대파 → 탈 함 등급보다 높은 조우 길</td><td>상위 함 수리 목표 · 모자라면 수련·채굴로 모음</td></tr>
+          <tr><td>route_risky</td><td>경유 조우 최대 L &gt; 내 L + gap(안전 경로만)</td><td>다른 목적지</td></tr>
+          <tr data-risk="transit-l22"><td>route_lost</td><td>같은 도착 성계 이동 패 20분 안 2회</td><td>다른 안전 수련장·채굴 · 시간 지나면 해제<span class="tfsm-risk-note"><span class="tfsm-pri" title="우선순위 2" aria-label="우선순위 2">2</span><b>⚑ L25 대 L22 3척 이동 조우 승률 ≈15%</b> — 목표 띠 35~60% 밖 — 수리비가 저레벨 수입을 넘어 경제 누수 · 트윈은 수리→패 미룸으로 막지만 원인은 조우 강도(밸런스 · 16차 기록)</span></td></tr>
+          <tr data-risk="rank-unify"><td>순위 통일</td><td>본편·진행 목적지 + 새 서브·정복</td><td>감독도 「막힘」으로 봄<span class="tfsm-risk-note"><span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span><b>⚑ 새 서브·정복 순위 판정 통일 — 빌드 대기</b> — 16d 에서 감독이 갈 수 없는 서브를 매 분 「전환」(27회) · main 수정 완료(new_sub·conquest 도 같은 판정) · 다음 빌드(16f) 반영 전까지 남아 있음</span></td></tr>
+        </tbody>
+      </table></div>
+
+      <h2>감독 — 판단 부정확 → 단순 행동 1개</h2>
+      <p>감지하면 사다리에서 지금 할 수 있는 첫 칸을 고정 · 재발 = 다음 칸 · 끝 = 구멍 후보 1줄 + 쉼. (simple_order_enabled = 1)</p>
+      <div class="tfsm-scroll"><table>
+        <thead><tr><th>감지</th><th>조건</th></tr></thead>
+        <tbody>
+          <tr><td>mismatch</td><td>같은 상위 순위 전환 판정 연속(1층이 안 따라감)</td></tr>
+          <tr><td>repeat</td><td>같은 상황 같은 큰 행동 반복 · 두 성계 왕복</td></tr>
+          <tr data-risk="ambiguous"><td>ambiguous</td><td>G1/G2 차례 짧은 시간 안 반복 뒤집힘<span class="tfsm-risk-note"><span class="tfsm-pri" title="우선순위 2" aria-label="우선순위 2">2</span><b>⚑ 「애매」 감지 문턱 미측정</b> — 차례 뒤집힘 6번/10분 문턱은 실기 교대 주기를 재지 않은 값 — 정상 교대가 더 빠르면 오발령 가능 · 16차 simple_order(ambiguous) 횟수로 표 조정</span></td></tr>
+          <tr><td>core_stall</td><td>본편·퀘스트 단계 30분 불변(EXP 무시 · 레벨 숙제 제외)</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tfsm-ladder"><div class="tfsm-rung"><b>1 survive</b><small>생존 · 10분 고정</small></div><span class="tfsm-arrow">→</span><div class="tfsm-rung"><b>2 story_direct</b><small>본편·진행 목적지로 직행 · 10분 고정</small></div><span class="tfsm-arrow">→</span><div class="tfsm-rung"><b>3 unblock</b><small>막힘 푸는 행동 1개 · 10분 고정</small></div><span class="tfsm-arrow">→</span><div class="tfsm-rung"><b>4 safe_training</b><small>가장 가까운 안전 수련장 · 10분 고정</small></div><span class="tfsm-arrow">→</span><div class="tfsm-rung"><b>5 mining</b><small>채굴 · 10분 고정</small></div></div>
+
+      <h2>반복을 막는 기억 장치</h2>
+      <div class="tfsm-scroll"><table>
+        <thead><tr><th>장치</th><th>켜짐</th><th>효과 · 풀림</th></tr></thead>
+        <tbody>
+          <tr><td>weak_hull_goal</td><td>상위 함 대파로 본편 출격 금지</td><td>상위 함 수리 목표(수리비 몫 상한 해제 · 바닥 유지)</td></tr>
+          <tr><td>route_lost</td><td>같은 길 이동 패 20분 안 2회</td><td>그 길 제외 · 시간 지나면 해제</td></tr>
+          <tr data-risk="shop-miss"><td>shop_trip_miss</td><td>사러 간 행성에서 안 사고 떠남</td><td>그 행성 제외 · 레벨 변화 또는 잔고 +20000</td></tr>
+          <tr data-risk="stall-check-gap"><td>repair_loss_hold</td><td>같은 함 「수리 → 격침」 20분 안 2회</td><td>그 함 수리 60분 미룸(재발 2배 · 최대 4배) · 레벨 변화 시 해제<span class="tfsm-risk-note"><span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span><b>⚑ 정체 검사가 「패 → 수리」 경제 누수를 못 봄</b> — 16c 수리 11회/시간·잔고 7.6만 → 0.9만은 정체 검사 5종 모두 OK 였음 → 잔고 급감·수리 횟수 검사 추가 필요</span></td></tr>
+          <tr><td>upgrade_swap</td><td>상위 함 강화할 것 있음</td><td>조선소에서 상위 함 강화 → 실전 세기 최대 함 · 방문당 1번</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2>감시 — 「정상」 보고 전 자동 판정</h2>
+      <p><code>node tools/play-bot-console/twin-stall-check.mjs</code> — 퀘스트 단계 30분 불변 · 같은 감독 전환 10회 · 레벨↑ 본편 60분 불변 · 퀘스트 없음+EXP 30분 불변 · 감독 사다리 끝 60분 안. 하나라도 걸리면 원인 조사.</p>
+      <p data-risk="s022"><span class="tfsm-risk-note"><span class="tfsm-pri" title="우선순위 1" aria-label="우선순위 1">1</span><b>⚑ sandbox_022 「시리우스로 이동」 단계 미완료</b> — 13c·14·15차 모두 obj_s022_b 완료 기록 0 — 단계 완료 판정 구멍 후보(원인 미조사)</span></p>
+      <p data-risk="future-rival"><span class="tfsm-risk-note"><span class="tfsm-pri" title="우선순위 2" aria-label="우선순위 2">2</span><b>⚑ 숙적 참전 · 동료 트윈 2·3 · 숙적 복제 — 미적용</b> — 숙적 범용 참전(구현·검증 끝 · 16차 뒤 적용) · 동료 트윈·숙적 복제(설계) — 적용 뒤 숙적 빈도 최대 3배(대표님 「감안하고 간다」) · 보호 아닌 퀘스트 궤도전 패배 증가 가능</span></p>
+
+          <section class="comments" id="comments">
+        <h2>이 문서에 대한 의견</h2>
+        <div class="giscus-thread" data-category="General"></div>
+      </section>
+    </article>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">아크파이어 게임 위키 · 비공식 정리본</footer>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>try{mermaid.initialize({startOnLoad:true,theme:(document.documentElement.dataset.theme==='dark'||matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'default'});}catch(e){}</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/wiki.js"></script>
+<script src="assets/comments.js"></script>
+</body>
+</html>
