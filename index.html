@@ -683,9 +683,11 @@ section.block::before, .fleet::before, .ticker, footer, .topbar.solid,
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* 첫 접속 팝업: 이번 방문에서 이미 닫았으면 다시 띄우지 않는다(저장소 접근 실패 시 그냥 띄움) */
+  /* 11-18 대표님 「위키 팝업은 비활성화」 — 다시 켜려면 true */
+  var NOTICE_ENABLED = false;
   var notice = document.getElementById("notice"), seen = false;
   try { seen = sessionStorage.getItem("arcfire_notice_seen") === "1"; } catch (e) {}
-  if (!seen) {
+  if (NOTICE_ENABLED && !seen) {
     notice.hidden = false;
     var closeNotice = function () {
       notice.hidden = true;
