@@ -163,9 +163,9 @@
 <script src="../assets/data/growth_v2.js"></script>
 <script src="../assets/data/quest_reward.js"></script>
 <script src="../assets/datatable.js"></script>
-<script src="../assets/quest-reward-chart.js"></script>
 <script src="../assets/wiki.js"></script>
 <script src="../assets/comments.js"></script>
+<script src="../assets/quest-reward-chart.js"></script>
 <script>
   (function () {
     var rows = window.LEVEL_DATA || [];
@@ -362,7 +362,6 @@
       "<span>Vertical axis = log scale · straight target line = constant ratio</span></div>";
     box.innerHTML = svg + legend;
   })();
-  // Quest reward log curve (11-06)
   mountQuestReward({ chart: document.getElementById("quest-reward-chart"), table: document.getElementById("quest-reward-table-box"), lang: "en" });
 </script>
 </body>

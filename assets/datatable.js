@@ -18,7 +18,7 @@
     ? { search: "Search this table…", none: "No results", rows: "rows", of: "of", prev: "Prev", next: "Next" }
     : { search: "이 표 안에서 검색…", none: "결과 없음", rows: "개", of: "전체", prev: "이전", next: "다음" };
 
-  /** 썸네일 — 게임 에셋(img/...) 지연 로딩. 경로 없으면 빈 칸 */
+  /** 썸네일 — 게임 에셋(../assets/images/...) 지연 로딩. 경로 없으면 빈 칸 */
   window.wikiThumb = function (src, alt, variant) {
     if (!src) return '<span class="dt-thumb dt-thumb-empty" aria-hidden="true"></span>';
     return '<img class="dt-thumb' + (variant ? ' dt-thumb-' + variant : '') + '" loading="lazy" decoding="async" src="' +
