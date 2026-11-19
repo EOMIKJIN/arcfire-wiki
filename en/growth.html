@@ -68,7 +68,7 @@
     <div class="content-wrap">
     <article class="content">
       <div class="eyebrow">Systems · Growth</div>
-      <h1 class="page-title">Growth Curve <span class="pill">updated 2026-11-04</span></h1>
+      <h1 class="page-title">Growth Curve <span class="pill">updated 2026-11-19</span></h1>
       <p>
         The level cap is <strong>60</strong>. Each level takes <strong>a fixed ratio longer than the one before</strong> —
         put time on the horizontal axis and your level traces a <strong>logarithmic curve</strong> (y = k·log x). Early levels come fast,
@@ -99,8 +99,9 @@
       <div id="growth-table"></div>
       <div class="callout note">
         <strong>How to read</strong>
-        The <em>target curve</em> is the reference. <em>Previous table</em> is the level-time table used until now; <em>measured</em> is autoplay retest 4 (up to the end of the main story, L36).
-        Within ±15% cumulative and ±30% on a 3-level moving average counts as a pass. The swings in the middle levels (L22–34) will be smoothed out step by step in the next tests.
+        The <em>target curve</em> is the reference. <em>Previous table</em> is the level-time table used until now; <em>measured</em> is autoplay test 25 (2026-11-19 · up to the end of chapter 1, story_030 · L36).
+        Within ±15% cumulative and ±30% on a 3-level moving average counts as a pass. Test 25 reached L36 at about 19.7 hours (active time), meeting the main-story target of about 20 hours. Cumulative deviation at the key levels (L20 · 25 · 30 · 35 · 36) is within ±15%.
+        L33–34 ran long once (two quest-battle losses, then a ship swap) and stays on the watch list for the next test.
       </div>
 
       <h2 id="exp">EXP needed</h2>
@@ -126,7 +127,7 @@
         The level table and rewards are still being balanced. This table is a snapshot rebuilt straight from the game's level table.
       </div>
 
-      <h2 id="quest-reward">Quest rewards — logarithmic growth curve <span class="pill">2026-11-06 · L28–36 planned fill</span></h2>
+      <h2 id="quest-reward">Quest rewards — logarithmic growth curve <span class="pill">updated 2026-11-19</span></h2>
       <p>
         For each level, the total EXP from doing every main and side quest at that level is drawn on the <strong>same log scale</strong> as the EXP needed for that level.
         On a log scale a curve that grows at a steady rate is a straight line, and the gap between two lines is a ratio. Where the line dips, few quests sit at that level.
@@ -135,7 +136,8 @@
       <ul>
         <li><strong>L1–16</strong> — at many levels quests alone give more than the EXP needed. This is the intro stretch where quests carry you up.</li>
         <li><strong>L17–27</strong> — the EXP needed grows smoothly, but the quest total rises and falls with how many quests sit at each level (L24 at 17%).</li>
-        <li><strong>L28–36</strong> — this is the planned fill: 12 side quests added at levels with no main quest (L28 · L31 · L35). The quest share stays within 22–50%. L28 stays at 22% because its quests unlock only after the main quest before them.</li>
+        <li><strong>L28–35</strong> — side quests sit even at levels with no main quest, so quest rewards don't drop out.</li>
+        <li><strong>L36</strong> — the end of chapter 1 (story_030) and all of chapter 2 act 1 (story_031–039), 10 main quests, sit at L36.</li>
         <li><strong>After L36</strong> — the quest total grows more slowly than the EXP needed, so its share keeps shrinking. Here repeatable play (training battles, transit encounters, Danger Zone waves) drives growth.</li>
       </ul>
       <h2 id="quest-reward-table">Level table — quest rewards (L1–59)</h2>
@@ -143,8 +145,8 @@
       <div class="callout note">
         <strong>How this is calculated</strong>
         Each quest is assumed to be finished at its own level: the quest table's EXP times the level reward multiplier. Main and Side cells show "count · EXP total".
-        "Design share" is the quest share the game was designed for (30% at L16–40 → 10% at L60). "Autoplay measured" is the quest EXP (main + side + stage rewards) received while at that level in autoplay retest 7.
-        L28–36 include the 12 side quests planned for the next update. Orange = lower than the level before. Quest placement and rewards are still being tuned.
+        "Design share" is the quest share the game was designed for (30% at L16–40 → 10% at L60). "Autoplay measured" is the quest EXP (main + side + stage rewards) received while at that level in autoplay test 25 (2026-11-19). L36 is partial because the test stopped at the end of chapter 1.
+        Orange = lower than the level before. Quest placement and rewards are still being tuned.
       </div>
 
       <section class="comments" id="comments">
@@ -226,7 +228,7 @@
     var series = [
       { key: "newCumH", name: "Target log curve (r ×" + S.r.toFixed(3) + ")", color: "var(--accent)", width: 2.6, dash: "6 4" },
       { key: "curCumH", name: "Previous table", color: "var(--text-dim)", width: 1.8 },
-      { key: "twinCumH", name: "Autoplay measured (retest 4)", color: "var(--warm)", width: 2.2 },
+      { key: "twinCumH", name: "Autoplay measured (test 25)", color: "var(--warm)", width: 2.2 },
     ];
     var fmtH = function (h) { return h < 1 ? Math.round(h * 60) + " min" : h < 100 ? h.toFixed(1) + " h" : Math.round(h).toLocaleString("en-US") + " h"; };
     var mode = "story";
@@ -260,7 +262,7 @@
       var r36 = rows[35], r60 = rows[59];
       document.getElementById("log-curve-note").innerHTML = all
         ? "With a log time axis the textbook curve (level = k·log time) becomes a <strong>straight line</strong>. The target curve runs straight from L15 to L60 at about " + fmtH(r60.newCumH) + "; the previous table stops at " + fmtH(r60.curCumH) + " for L60."
-        : "The same shape as the textbook picture (fast early growth → gradual slowdown). Reaching the end of the main story (L36): target curve <strong>" + fmtH(r36.newCumH) + "</strong> · previous table " + fmtH(r36.curCumH) + " · autoplay measured " + (r36.twinCumH != null ? fmtH(r36.twinCumH) : "—") + ". The measurement lags the curve at L25–30 and catches up quickly at L31–34 when side quests bunch up.";
+        : "The same shape as the textbook picture (fast early growth → gradual slowdown). Reaching the end of the main story (L36): target curve <strong>" + fmtH(r36.newCumH) + "</strong> · previous table " + fmtH(r36.curCumH) + " · autoplay measured " + (r36.twinCumH != null ? fmtH(r36.twinCumH) : "—") + ". The measurement runs ahead of the curve up to L30, ran long once at L33–34, and reaches L36 slightly ahead of the target curve (within ±15%).";
       ["lc-story", "lc-all"].forEach(function (id) {
         var b = document.getElementById(id), on = (id === "lc-all") === all;
         b.setAttribute("aria-pressed", String(on));
@@ -330,7 +332,7 @@
     var series = [
       { key: "newMin", name: "Target curve", color: "var(--accent)", width: 2.6 },
       { key: "curMin", name: "Previous table", color: "var(--text-dim)", width: 1.6, dash: "5 4" },
-      { key: "twinMin", name: "Autoplay measured (retest 4)", color: "var(--warm)", width: 2 },
+      { key: "twinMin", name: "Autoplay measured (test 25)", color: "var(--warm)", width: 2 },
     ];
     var pts = series.map(function (s) {
       return rows.filter(function (r) { return r[s.key] != null && r[s.key] > 0; }).map(function (r) { return [r.level, r[s.key]]; });

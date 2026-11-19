@@ -66,7 +66,7 @@
     <div class="content-wrap">
     <article class="content">
       <div class="eyebrow">체제 · 성장</div>
-      <h1 class="page-title">성장 곡선 <span class="pill">2026-11-04 갱신</span></h1>
+      <h1 class="page-title">성장 곡선 <span class="pill">2026-11-19 갱신</span></h1>
       <p>
         최고 레벨은 <strong>60</strong>이다. 레벨이 오를 때마다 <strong>다음 레벨까지 걸리는 시간이 일정한 비율로 늘어난다</strong> —
         시간을 가로축에 놓으면 레벨은 <strong>로그 곡선</strong>(y = k·log x)을 그린다. 초반은 빠르게 오르고, 중반부터 점점 느려지며,
@@ -97,8 +97,9 @@
       <div id="growth-table"></div>
       <div class="callout note">
         <strong>읽는 법</strong>
-        「목표 곡선」이 기준이다. 「이전 표」는 지금까지 쓰던 레벨 시간 표, 「실측」은 자동 플레이 재테스트4(본편 끝 L36까지) 결과다.
-        누적 편차 ±15%, 3레벨 이동평균 편차 ±30% 안이면 통과로 본다. 중간 레벨(L22~34)의 출렁임은 다음 테스트들에서 단계적으로 편다.
+        「목표 곡선」이 기준이다. 「이전 표」는 지금까지 쓰던 레벨 시간 표, 「실측」은 자동 플레이 25차(2026-11-19 · 본편 1장 끝 story_030 · L36까지) 결과다.
+        누적 편차 ±15%, 3레벨 이동평균 편차 ±30% 안이면 통과로 본다. 25차는 L36에 약 19.7시간(활동 시간 기준)에 닿아 본편 목표(약 20시간)를 맞췄다. 주요 레벨(L20 · 25 · 30 · 35 · 36) 누적 편차는 모두 ±15% 안이다.
+        L33~34 구간은 한 번의 막힘(퀘스트 전투 2연패 뒤 함선 교체)으로 길어졌고, 다음 테스트에서 계속 지켜본다.
       </div>
 
       <h2 id="exp">필요 경험치</h2>
@@ -122,7 +123,7 @@
         레벨 표와 보상은 밸런스 작업 중이라 계속 조정된다. 이 표는 게임 레벨 표에서 그대로 다시 만든 스냅샷이다.
       </div>
 
-      <h2 id="quest-reward">퀘스트 보상 — 성장형 로그 곡선 <span class="pill">2026-11-06 · L28~36 보강안 반영</span></h2>
+      <h2 id="quest-reward">퀘스트 보상 — 성장형 로그 곡선 <span class="pill">2026-11-19 갱신</span></h2>
       <p>
         레벨마다 본편 + 서브퀘스트를 모두 했을 때 받는 경험치 합계를, 그 레벨을 올리는 데 필요한 경험치와 <strong>같은 로그 눈금</strong>에 겹쳐 본다.
         로그 눈금에서는 같은 비율로 자라는 곡선이 곧은 선이 되고, 두 선 사이 간격이 곧 배수다. 선이 꺼지는 곳은 퀘스트가 적게 놓인 레벨이다.
@@ -131,7 +132,8 @@
       <ul>
         <li><strong>L1~16</strong> — 퀘스트 보상이 필요 경험치를 넘는 레벨이 많다. 퀘스트만으로 레벨이 오르는 입문 구간이다.</li>
         <li><strong>L17~27</strong> — 필요 경험치는 매끄럽게 커지지만 퀘스트 합계는 레벨마다 몇 편이 놓였는지에 따라 오르내린다(L24 17%).</li>
-        <li><strong>L28~36</strong> — 본편이 없는 레벨(L28 · L31 · L35)에 서브퀘스트 12편을 더한 보강안이다. 퀘스트 몫이 22~50% 안에서 이어진다. L28 은 앞선 본편이 끝나야 열리는 퀘스트라 22%에 머문다.</li>
+        <li><strong>L28~35</strong> — 본편이 없는 레벨에도 서브퀘스트가 놓여 퀘스트 보상이 끊기지 않는다.</li>
+        <li><strong>L36</strong> — 1장 끝(story_030)과 2장 1막(story_031~039) 본편 10편이 모두 L36에 놓인다.</li>
         <li><strong>L36 이후</strong> — 퀘스트 합계가 필요 경험치보다 완만하게 올라가 몫이 점점 줄어든다. 이 구간은 전투 수련·이동 중 조우·위험지역 웨이브 같은 반복 활동이 성장의 중심이다.</li>
       </ul>
       <h2 id="quest-reward-table">레벨 표 — 퀘스트 보상 (L1~59)</h2>
@@ -139,8 +141,8 @@
       <div class="callout note">
         <strong>계산 기준</strong>
         퀘스트를 그 퀘스트의 레벨에서 끝낸다고 보고, 게임 퀘스트 표의 경험치에 레벨 보상 배율을 곱한 값이다. 본편 · 서브 칸은 「편수 · 경험치 합」.
-        「설계 몫」은 원래 설계한 퀘스트 비중(L16~40 30% → L60 10%)이다. 「실측」은 자동 플레이 재테스트7에서 그 레벨에 있는 동안 받은 퀘스트 경험치(본편 + 서브 + 단계 보상)다.
-        L28~36 은 다음 업데이트에 들어갈 서브퀘스트 12편 보강안을 반영한 값이다. 주황 = 앞 레벨보다 합계가 줄어든 곳. 퀘스트 배치와 보상은 계속 조정된다.
+        「설계 몫」은 원래 설계한 퀘스트 비중(L16~40 30% → L60 10%)이다. 「실측」은 자동 플레이 25차(2026-11-19)에서 그 레벨에 있는 동안 받은 퀘스트 경험치(본편 + 서브 + 단계 보상)다. L36은 1장 끝에서 테스트를 멈춰 일부만 들어 있다.
+        주황 = 앞 레벨보다 합계가 줄어든 곳. 퀘스트 배치와 보상은 계속 조정된다.
       </div>
 
           <section class="comments" id="comments">
@@ -222,7 +224,7 @@
     var series = [
       { key: "newCumH", name: "목표 로그 곡선 (r ×" + S.r.toFixed(3) + ")", color: "var(--accent)", width: 2.6, dash: "6 4" },
       { key: "curCumH", name: "이전 표", color: "var(--text-dim)", width: 1.8 },
-      { key: "twinCumH", name: "자동 플레이 실측(재테스트4)", color: "var(--warm)", width: 2.2 },
+      { key: "twinCumH", name: "자동 플레이 실측(25차)", color: "var(--warm)", width: 2.2 },
     ];
     var fmtH = function (h) { return h < 1 ? Math.round(h * 60) + "분" : h < 100 ? h.toFixed(1) + "시간" : Math.round(h).toLocaleString("ko-KR") + "시간"; };
     var mode = "story";
@@ -256,7 +258,7 @@
       var r36 = rows[35], r60 = rows[59];
       document.getElementById("log-curve-note").innerHTML = all
         ? "가로축을 로그로 놓으면 교과서 로그 곡선(레벨 = k·log 시간)이 <strong>직선</strong>으로 보인다. 목표 곡선은 L15 이후 곧게 L60 ≈ " + fmtH(r60.newCumH) + "에 닿는다. 이전 표는 L60이 " + fmtH(r60.curCumH) + "에서 멈춘다."
-        : "교과서 그림과 같은 모양(초반 급성장 → 점진 감속)이다. 본편 끝 L36 도달: 목표 곡선 <strong>" + fmtH(r36.newCumH) + "</strong> · 이전 표 " + fmtH(r36.curCumH) + " · 자동 플레이 실측 " + (r36.twinCumH != null ? fmtH(r36.twinCumH) : "—") + ". 실측은 L25~30에서 곡선보다 늦고, L31~34에서 서브퀘스트가 몰려 빠르게 따라붙는다.";
+        : "교과서 그림과 같은 모양(초반 급성장 → 점진 감속)이다. 본편 끝 L36 도달: 목표 곡선 <strong>" + fmtH(r36.newCumH) + "</strong> · 이전 표 " + fmtH(r36.curCumH) + " · 자동 플레이 실측 " + (r36.twinCumH != null ? fmtH(r36.twinCumH) : "—") + ". 실측은 L30까지 곡선보다 빠르게 오르고, L33~34에서 한 번 막혀 길어진 뒤 L36에는 목표 곡선보다 조금 일찍(편차 ±15% 안) 닿는다.";
       ["lc-story", "lc-all"].forEach(function (id) {
         var b = document.getElementById(id), on = (id === "lc-all") === all;
         b.setAttribute("aria-pressed", String(on));
@@ -326,7 +328,7 @@
     var series = [
       { key: "newMin", name: "목표 곡선", color: "var(--accent)", width: 2.6 },
       { key: "curMin", name: "이전 표", color: "var(--text-dim)", width: 1.6, dash: "5 4" },
-      { key: "twinMin", name: "자동 플레이 실측(재테스트4)", color: "var(--warm)", width: 2 },
+      { key: "twinMin", name: "자동 플레이 실측(25차)", color: "var(--warm)", width: 2 },
     ];
     var pts = series.map(function (s) {
       return rows.filter(function (r) { return r[s.key] != null && r[s.key] > 0; }).map(function (r) { return [r.level, r[s.key]]; });
